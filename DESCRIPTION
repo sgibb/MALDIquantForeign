@@ -15,3 +15,5 @@ Description: This package allows to read and write different file formats of
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
 LazyLoad: yes
+Collate:
+    'package.R'
