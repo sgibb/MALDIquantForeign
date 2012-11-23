@@ -17,3 +17,4 @@ URL: http://strimmerlab.org/software/maldiquant/
 LazyLoad: yes
 Collate:
     'package.R'
+    'importTab-functions.R'
