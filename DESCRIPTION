@@ -1,0 +1,17 @@
+Package: MALDIquantForeign
+Version: 0.1
+Date: 2012-11-23
+Title: Import/Export routines for MALDIquant
+Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
+    email="mail@sebastiangibb.de"))
+Depends:
+    R (>= 2.14.0),
+    MALDIquant (>= 1.4.3),
+    methods
+Suggests:
+    testthat
+Description: This package allows to read and write different file formats of
+    mass spectrometry data into/from MALDIquant objects.
+License: GPL (>= 3)
+URL: http://strimmerlab.org/software/maldiquant/
+LazyLoad: yes
