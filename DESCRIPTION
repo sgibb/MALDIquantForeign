@@ -18,3 +18,5 @@ LazyLoad: yes
 Collate:
     'package.R'
     'importTab-functions.R'
+    'AllGenerics.R'
+    'exportTab-methods.R'
