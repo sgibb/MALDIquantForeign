@@ -7,6 +7,7 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
 Depends:
     R (>= 2.14.0),
     MALDIquant (>= 1.4.3),
+    readBrukerFlexData (>= 1.5),
     methods
 Suggests:
     testthat
@@ -20,3 +21,4 @@ Collate:
     'importTab-functions.R'
     'AllGenerics.R'
     'exportTab-methods.R'
+    'importBrukerFlex-functions.R'
