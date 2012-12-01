@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mzXML
+ xmlns="http://sashimi.sourceforge.net/schema_revision/mzXML_3.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://sashimi.sourceforge.net/schema_revision/mzXML_3.0 http://sashimi.sourceforge.net/schema_revision/mzXML_3.0/mzXML_idx_3.0.xsd">
+  <msRun scanCount="1">
+    <parentFile fileName="file://tiny.RAW"
+                fileType="RAW"
+                fileSha1="0000000000000000000000000000000000000000"/>
+    <msInstrument>
+	    <msManufacturer category="msManufacturer" value="FooBar"/>
+      <msModel category="msModel" value="FooBar Model1"/>
+ 	    <msIonisation category="msIonisation" value="MALDI"/>
+	    <msMassAnalyzer category="msMassAnalyzer" value="TOF"/>
+	    <msDetector category="msDetector" value="msD"/>
+      <software type="acquisition"
+                name="AcquisitionSoftware"
+                version="1.0.0"/>
+    </msInstrument>
+    <scan num="1"
+          msLevel="1"
+          peaksCount="5"
+          polarity="+"
+          scanType="Full"
+          lowMz="1"
+          highMz="5"
+	        totIonCurrent="40">
+      <peaks precision="64"
+             byteOrder="network"
+             contentType="m/z-int"
+             compressionType="zlib"
+             compressedLen="0">eJyz/8AABg4SUJoBSstAaQ4orQClBaC0EpQWgdIqEBoA0joENg==</peaks>
+    </scan>
+  </msRun>
+  <index name="scan">
+    <offset id="1">0</offset>
+  </index>
+  <indexOffset>0</indexOffset>
+  <sha1>7e7ef0ea030f6a56d34a4ebd446e22b22844d432</sha1>
+</mzXML>
