@@ -17,20 +17,16 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importBrukerFlex <- function(file, verbose=FALSE, ...) {
+importFormats <- data.frame(type=c("ascii", "txt", "text", "tab",
+                                   "csv", "fid", "mzxml"),
+                            pattern=c(rep("^.*\\.txt$", 3), "^.*\\.tab$",
+                                      "^.*\\.csv$", "^fid$", 
+                                      "^.*\\.mz[Xx][Mm][Ll]$"),
+                            handler=c(rep(".import.tab", 4),
+                                      ".import.csv", ".import.fid",
+                                      ".import.mzxml"),
+                            stringsAsFactors=FALSE)
 
-  if (!require(readBrukerFlexData)) {
-    stop("Could not load package ", sQuote("readBrukerFlexData"), ".")
-  }
-  
-  s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
-                                              ...)
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
-}
-
-#' @keywords internal
-.import.fid <- function(...) {
-  return(.importBrukerFlex(...))
+isImportFormatSupported <- function(type) {
+  return(tolower(type) %in% importFormats$type)
 }

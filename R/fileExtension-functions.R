@@ -16,21 +16,29 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
+#' Determine file extension
+#'
+#' @param x \code{character}, filename.
+#' 
+#' @return \code{character}, file extension.
+#'
+#' @seealso \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @keywords internal
-.importBrukerFlex <- function(file, verbose=FALSE, ...) {
+#' @rdname fileExtension
+#' @examples
+#' library("MALDIquantForeign")
+#' files <- c("/home/foo/bar.txt", "foobar.pdf")
+#' MALDIquantForeign:::.fileExtension(files)
+#'
+.fileExtension <- function(x) {
+  ## get filename 
+  x <- basename(x)
 
-  if (!require(readBrukerFlexData)) {
-    stop("Could not load package ", sQuote("readBrukerFlexData"), ".")
-  }
+  ## split filename at dot
+  x <- strsplit(x, "\\.")  
   
-  s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
-                                              ...)
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
-}
+  ## extension is the last element
+  x <- unlist(lapply(x, tail, n=1L))
 
-#' @keywords internal
-.import.fid <- function(...) {
-  return(.importBrukerFlex(...))
+  return(x)
 }

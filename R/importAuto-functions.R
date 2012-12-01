@@ -17,20 +17,19 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importBrukerFlex <- function(file, verbose=FALSE, ...) {
+.importAuto <- function(path, verbose=FALSE, ...) {
+  pattern <- unique(importFormats$pattern)
 
-  if (!require(readBrukerFlexData)) {
-    stop("Could not load package ", sQuote("readBrukerFlexData"), ".")
-  }
-  
-  s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
-                                              ...)
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
+  files <- lapply(pattern, .files, path=path) 
+  n <- lapply(files, length)
+  m <- which.max(n)[1]
+
+  return(import(path=files[[m]], type=tolower(.fileExtension(files[[m]][1])),
+         pattern=pattern[m], ...))
 }
 
 #' @keywords internal
-.import.fid <- function(...) {
-  return(.importBrukerFlex(...))
+.import.auto <- function(...) {
+  return(.importAuto(...))
 }
+

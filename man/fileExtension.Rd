@@ -1,0 +1,25 @@
+\name{.fileExtension}
+\alias{.fileExtension}
+\title{Determine file extension}
+\usage{
+  .fileExtension(x)
+}
+\arguments{
+  \item{x}{\code{character}, filename.}
+}
+\value{
+  \code{character}, file extension.
+}
+\description{
+  Determine file extension
+}
+\examples{
+library("MALDIquantForeign")
+files <- c("/home/foo/bar.txt", "foobar.pdf")
+MALDIquantForeign:::.fileExtension(files)
+}
+\seealso{
+  \code{\link[MALDIquant]{MassSpectrum-class}}
+}
+\keyword{internal}
+

@@ -24,3 +24,8 @@ Collate:
     'exportTab-methods.R'
     'importBrukerFlex-functions.R'
     'importMzXml-functions.R'
+    'fileExtension-functions.R'
+    'importAuto-functions.R'
+    'importFormats.R'
+    'import-functions.R'
+    'list.files-functions.R'

@@ -16,21 +16,15 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
-.importBrukerFlex <- function(file, verbose=FALSE, ...) {
+context("fileExtension-functions")
 
-  if (!require(readBrukerFlexData)) {
-    stop("Could not load package ", sQuote("readBrukerFlexData"), ".")
-  }
-  
-  s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
-                                              ...)
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
-}
+test_that("file extension is returned", {
+  expect_true(MALDIquantForeign:::.fileExtension("~/foo.txt") == "txt")
+  expect_true(all(
+    MALDIquantForeign:::.fileExtension(c("/etc/a.conf", "b.pdf")) ==
+    c("conf", "pdf")))
+})
 
-#' @keywords internal
-.import.fid <- function(...) {
-  return(.importBrukerFlex(...))
-}
+test_that("file name is returned", {
+  expect_true(MALDIquantForeign:::.fileExtension("~/foo") == "foo")
+})
