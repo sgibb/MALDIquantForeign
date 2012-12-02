@@ -16,6 +16,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
+if (is.null(getGeneric(".composeFilename")))
+  setGeneric(".composeFilename", function(x, ...) standardGeneric(".composeFilename"))
 if (is.null(getGeneric(".exportTab")))
   setGeneric(".exportTab", function(x, ...) standardGeneric(".exportTab"))
 if (is.null(getGeneric(".export.tab")))
