@@ -17,17 +17,36 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-importFormats <- data.frame(type=c("ascii", "txt", "text", "tab",
-                                   "csv", "fid", "mzxml", "mzml"),
-                            pattern=c(rep("^.*\\.txt$", 3), "^.*\\.tab$",
-                                      "^.*\\.csv$", "^fid$", 
-                                      "^.*\\.mz[Xx][Mm][Ll]$",
-                                      "^.*\\.mz[Mm][Ll]$"),
-                            handler=c(rep(".import.tab", 4),
-                                      ".import.csv", ".import.fid",
-                                      ".import.mzxml", ".import.mzml"),
-                            stringsAsFactors=FALSE)
+.importMzMl <- function(file, verbose=FALSE, ...) {
 
-isImportFormatSupported <- function(type) {
-  return(tolower(type) %in% importFormats$type)
+  if (!require(readMzXmlData)) {
+    stop("Could not load package ", sQuote("readMzXmlData"), ".")
+  }
+  
+  if (verbose) {
+    message("Reading spectrum from ", sQuote(file), " ...")
+  }
+  
+  if (!file.exists(file)) {
+    stop("File ", sQuote(file), " doesn't exists!")
+  }
+
+  ## read file
+  s <- .parseMzMl(file=file, verbose=verbose)
+
+  spectra <- lapply(s$spectra, function(x, globalS=s) {
+    m <- modifyList(s$metaData, x$metaData)
+    m$file <- file
+    return(createMassSpectrum(mass=x$mass,
+                              intensity=x$intensity,
+                              metaData=m))
+  })
+
+  return(spectra)
 }
+
+#' @keywords internal
+.import.mzml <- function(...) {
+  return(.importMzMl(...))
+}
+

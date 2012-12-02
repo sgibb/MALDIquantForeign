@@ -1,0 +1,22 @@
+\name{.parseMzMl}
+\alias{.parseMzMl}
+\title{Parse mzML files.}
+\usage{
+  .parseMzMl(file, verbose = FALSE, ...)
+}
+\arguments{
+  \item{file}{\code{character}, path to mzML file}
+
+  \item{verbose}{\code{logical}, verbose output?}
+}
+\value{
+  Returns a list with metadata and spectra.
+}
+\description{
+  This function parses mzML files.
+}
+\author{
+  Sebastian Gibb \email{mail@sebastiangibb.de}
+}
+\keyword{internal}
+

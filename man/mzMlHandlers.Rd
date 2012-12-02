@@ -1,0 +1,30 @@
+\name{.mzMlHandlers}
+\alias{.mzMlHandlers}
+\title{Parse mzML files.}
+\usage{
+  .mzMlHandlers(fileName, verbose = FALSE)
+}
+\arguments{
+  \item{fileName}{\code{character}, path to mzML file}
+
+  \item{verbose}{\code{logical}, verbose output?}
+}
+\value{
+  function closure
+}
+\description{
+  This function is defines handlers for XML SAX parser.
+  Internal use only.
+}
+\details{
+  TODO: fetch obo map file and use it
+}
+\author{
+  Sebastian Gibb \email{mail@sebastiangibb.de}
+}
+\references{
+  Definition of \code{mzML} format:
+  \url{http://www.psidev.info/mzml_1_0_0}
+}
+\keyword{internal}
+

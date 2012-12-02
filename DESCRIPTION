@@ -29,3 +29,5 @@ Collate:
     'importFormats.R'
     'import-functions.R'
     'list.files-functions.R'
+    'importMzMl-functions.R'
+    'parseMzMl.R'
