@@ -16,15 +16,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-if (is.null(getGeneric(".exportTab")))
-  setGeneric(".exportTab", function(x, ...) standardGeneric(".exportTab"))
-if (is.null(getGeneric(".export.tab")))
-  setGeneric(".export.tab", function(x, ...) standardGeneric(".export.tab"))
-if (is.null(getGeneric(".exportCsv")))
-  setGeneric(".exportCsv", function(x, ...) standardGeneric(".exportCsv"))
-if (is.null(getGeneric(".export.csv")))
-  setGeneric(".export.csv", function(x, ...) standardGeneric(".export.csv"))
-if (is.null(getGeneric(".exportMsd")))
-  setGeneric(".exportMsd", function(x, ...) standardGeneric(".exportMsd"))
-if (is.null(getGeneric(".export.msd")))
-  setGeneric(".export.msd", function(x, ...) standardGeneric(".export.msd"))
+setMethod(f=".exportMsd",
+  signature=signature(x="MassSpectrum"),
+  definition=function(x, file, peaks, ...) {
+  return(.writeMsdDocument(x=x, file=file, peaks=peaks, ...))
+})
+
+setMethod(f=".export.msd",
+  signature=signature(x="MassSpectrum"),
+  definition=function(x, ...) {
+  return(.exportMsd(x, ...))
+})

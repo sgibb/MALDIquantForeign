@@ -9,6 +9,9 @@ Depends:
     MALDIquant (>= 1.4.3),
     readBrukerFlexData (>= 1.5),
     readMzXmlData (>= 2.4),
+    base64enc,
+    digest,
+    XML,
     methods
 Suggests:
     testthat
@@ -31,3 +34,7 @@ Collate:
     'importMzMl-functions.R'
     'parseMzMl.R'
     'fileFormats.R'
+    'exportMsd-methods.R'
+    'msd-functions.R'
+    'sanitize-functions.R'
+    'base64encode-functions.R'

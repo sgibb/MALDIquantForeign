@@ -29,9 +29,10 @@ importFormats <- data.frame(type=c("ascii", "txt", "text", "tab",
                             stringsAsFactors=FALSE)
 
 #' @keywords internal
-exportFormats <- data.frame(type=c("tab", "csv"),
-                            extension=c(".tab", ".csv"),
-                            handler=c(".export.tab", "export.csv"),
+exportFormats <- data.frame(type=c("tab", "csv", "msd"),
+                            extension=c("tab", "csv", "msd"),
+                            handler=c(".export.tab", ".export.csv", 
+                                      ".export.msd"),
                             stringsAsFactors=FALSE)
 
 #' @export
