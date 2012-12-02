@@ -28,6 +28,15 @@ importFormats <- data.frame(type=c("ascii", "txt", "text", "tab",
                                       ".import.mzxml", ".import.mzml"),
                             stringsAsFactors=FALSE)
 
-isImportFormatSupported <- function(type) {
-  return(tolower(type) %in% importFormats$type)
+#' @keywords internal
+exportFormats <- data.frame(type=c("tab", "csv"),
+                            extension=c(".tab", ".csv"),
+                            handler=c(".export.tab", "export.csv"),
+                            stringsAsFactors=FALSE)
+
+#' @export
+supportedFormats <- function() {
+  return(list(import=importFormats$type,
+              export=exportFormats$type))
 }
+
