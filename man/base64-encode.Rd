@@ -1,0 +1,37 @@
+\name{.base64encode}
+\alias{.base64encode}
+\title{Converts double to base64 character.}
+\usage{
+  .base64encode(x, size, endian = .Platform$endian,
+    compressionType = c("none", "gzip"))
+}
+\arguments{
+  \item{x}{\code{double}, vector}
+
+  \item{size}{\code{integer}, number of bytes per element
+  in the byte stream (see \code{size} in
+  \code{\link[base]{writeBin}}).}
+
+  \item{endian}{\code{character}, the endian-ness (see
+  \code{endian} in \code{\link[base]{writeBin}}).}
+
+  \item{compressionType}{\code{character}, type of
+  compression to use for compression of \code{x} (see
+  \code{type} in \code{\link[base]{memCompress}}.}
+}
+\value{
+  Vector of type \code{character}.
+}
+\description{
+  This function converts a \code{double} vector to a base64
+  encoded \code{character} vector.
+}
+\author{
+  Sebastian Gibb \email{mail@sebastiangibb.de}
+}
+\seealso{
+  \code{\link[base64enc]{base64encode}} from
+  \pkg{base64enc} package
+}
+\keyword{internal}
+
