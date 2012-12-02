@@ -60,11 +60,20 @@ test_that("import.csv", {
   expect_equal(basename(metaData(s[[1]])$file), "csv2.csv")
 })
 
+x <- c("10, 30", "\"foo\", \"bar\"", "foo; bar", "foo\tbar", "1\t 2")
+sep <- c(",", ",", ";", "\t", "\t")
+
 test_that("autoHeader", {
-  s <- "10, 30"
-  expect_false(MALDIquantForeign:::.autoHeader(textConnection(s), sep=","))
-  s <- "\"foo\", \"bar\""
-  expect_true(MALDIquantForeign:::.autoHeader(textConnection(s), sep=","))
-  s <- "foo; bar"
-  expect_true(MALDIquantForeign:::.autoHeader(textConnection(s), sep=";"))
+  result <- c(FALSE, TRUE, TRUE, TRUE, FALSE)
+
+  for (i in seq(along=x)) {
+    expect_identical(MALDIquantForeign:::.autoHeader(textConnection(x[i]),
+                                                     sep=sep[i]), result[i])
+  }
+})
+
+test_that("autoSep", {
+  for (i in seq(along=x)) {
+    expect_identical(MALDIquantForeign:::.autoSep(textConnection(x[i])), sep[i])
+  }
 })
