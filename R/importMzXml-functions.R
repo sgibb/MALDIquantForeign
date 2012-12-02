@@ -32,5 +32,5 @@
 
 #' @keywords internal
 .import.mzxml <- function(...) {
-  return(.importBrukerFlex(...))
+  return(.importMzXml(...))
 }
