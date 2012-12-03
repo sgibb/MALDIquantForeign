@@ -17,13 +17,12 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-importFormats <- data.frame(type=c("ascii", "txt", "text", "tab",
-                                   "csv", "fid", "mzxml", "mzml"),
-                            pattern=c(rep("^.*\\.txt$", 3), "^.*\\.tab$",
+importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "mzxml", "mzml"),
+                            pattern=c("^.*\\.txt$", "^.*\\.tab$",
                                       "^.*\\.csv$", "^fid$", 
                                       "^.*\\.mz[Xx][Mm][Ll]$",
                                       "^.*\\.mz[Mm][Ll]$"),
-                            handler=c(rep(".import.tab", 4),
+                            handler=c(rep(".import.tab", 2),
                                       ".import.csv", ".import.fid",
                                       ".import.mzxml", ".import.mzml"),
                             stringsAsFactors=FALSE)

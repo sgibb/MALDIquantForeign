@@ -16,8 +16,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
+#' @export
 import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
+
+  e <- file.exists(path)
+
+  if (!all(e)) {
+    stop(sQuote(path[!e]), " doesn't exist!")
+  }
 
   i <- pmatch(tolower(type), c("auto", importFormats$type), nomatch=0,
               duplicates.ok=FALSE)-1
@@ -35,5 +41,29 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
     handler <- importFormats$handler[i]
     return(unlist(lapply(.files(path=path, pattern=pattern), handler, ...)))
   }
+}
+
+importTxt <- function(path, ...) {
+  return(import(path=path, type="txt", ...))
+}
+
+importTab <- function(path, ...) {
+  return(import(path=path, type="tab", ...))
+}
+
+importCsv <- function(path, ...) {
+  return(import(path=path, type="csv", ...))
+}
+
+importBrukerFlex <- function(path, ...) {
+  return(import(path=path, type="fid", ...))
+}
+
+importMzXml <- function(path, ...) {
+  return(import(path=path, type="mzxml", ...))
+}
+
+importMzMl <- function(path, ...) {
+  return(import(path=path, type="mzml", ...))
 }
 

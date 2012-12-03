@@ -78,11 +78,11 @@
   return(filenames)
 }
 
-.uniqueBaseFilenames <- function(x, fileExtension,
-                                 sep="", sepExt=".") {
+.uniqueBaseFilenames <- function(x, fileExtension="csv",
+                                 sep="_") {
   filenames <- .cutFilenames(.withoutFileExtension(x))
   filenames <- .cleanFilename(filenames)
   filenames <- make.unique(filenames, sep=sep)
-  return(paste(filenames, fileExtension, sep=sepExt))
+  return(paste(filenames, fileExtension, sep="."))
 }
 
