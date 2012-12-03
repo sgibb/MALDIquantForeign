@@ -56,8 +56,10 @@
     polarity <- ""
   }
 
-  xmlDoc$addTag("spectrum", attrs=c(points=length(x), polarity=polarity), 
-                close=FALSE)
+  xmlDoc$addTag("spectrum", attrs=c(points=length(x),
+                                    msLevel=ifelse(is.null(x@metaData$msLevel),
+                                                   1, x@metaData$msLevel),
+                                    polarity=polarity), close=FALSE)
     xmlDoc <- .writeMsdArray(x@mass, name="mzArray", xmlDoc=xmlDoc)
     xmlDoc <- .writeMsdArray(x@intensity, name="intArray", xmlDoc=xmlDoc)
   xmlDoc$closeTag() # spectrum
