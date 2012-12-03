@@ -50,3 +50,10 @@ test_that(".cutFilenames", {
   r <- c("foo.bar", "foo.bar")
   expect_true(all(MALDIquantForeign:::.cutFilenames(s) == r))
 })
+
+test_that(".uniqueBaseFilenames", {
+  s <- c("/home/user/foo.bar", "/home/user/foo.bar")
+  r <- c("foo.txt", "foo_1.txt")
+  expect_true(all(
+    MALDIquantForeign:::.uniqueBaseFilenames(s, fileExtension="txt") == r))
+})
