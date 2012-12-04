@@ -43,26 +43,32 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
   }
 }
 
+#' @export
 importTxt <- function(path, ...) {
   return(import(path=path, type="txt", ...))
 }
 
+#' @export
 importTab <- function(path, ...) {
   return(import(path=path, type="tab", ...))
 }
 
+#' @export
 importCsv <- function(path, ...) {
   return(import(path=path, type="csv", ...))
 }
 
+#' @export
 importBrukerFlex <- function(path, ...) {
   return(import(path=path, type="fid", ...))
 }
 
+#' @export
 importMzXml <- function(path, ...) {
   return(import(path=path, type="mzxml", ...))
 }
 
+#' @export
 importMzMl <- function(path, ...) {
   return(import(path=path, type="mzml", ...))
 }

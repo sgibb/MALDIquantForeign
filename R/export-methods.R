@@ -16,6 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
+#' @export
 setMethod(f="export",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file, type, force=FALSE, ...) {
@@ -39,6 +40,7 @@ setMethod(f="export",
   }
 })
 
+#' @export
 setMethod(f="export",
   signature=signature(x="list"),
   definition=function(x, path, type, force=FALSE, ...) {
@@ -79,12 +81,14 @@ setMethod(f="export",
 })
 
 ## tab
+#' @export
 setMethod(f="exportTab",
           signature=signature(x="AbstractMassObject"),
           definition=function(x, file, force=FALSE, ...) {
   export(x, file=file, type="tab", force=force, ...)
 })
 
+#' @export
 setMethod(f="exportTab",
           signature=signature(x="list"),
           definition=function(x, path, force=FALSE, ...) {
@@ -92,12 +96,14 @@ setMethod(f="exportTab",
 })
 
 ## csv
+#' @export
 setMethod(f="exportCsv",
           signature=signature(x="AbstractMassObject"),
           definition=function(x, file, force=FALSE, ...) {
   export(x, file=file, type="csv", force=force, ...)
 })
 
+#' @export
 setMethod(f="exportCsv",
           signature=signature(x="list"),
           definition=function(x, path, force=FALSE, ...) {
@@ -105,15 +111,29 @@ setMethod(f="exportCsv",
 })
 
 ## msd 
+#' @export
 setMethod(f="exportMsd",
           signature=signature(x="AbstractMassObject"),
           definition=function(x, file, force=FALSE, peaks, ...) {
+  stopifnot(isMassSpectrum(x))
+
+  if (!missing(peaks)) {
+    stopifnot(isMassPeaks(peaks))
+  }
+
   export(x, file=file, type="msd", force=force, peaks=peaks,  ...)
 })
 
+#' @export
 setMethod(f="exportMsd",
           signature=signature(x="list"),
           definition=function(x, path, force=FALSE, peaks, ...) {
+  stopifnot(isMassSpectrumList(x))
+
+  if (!missing(peaks)) {
+    stopifnot(isMassPeaksList(peaks))
+  }
+
   export(x, path=path, type="msd", force=force, peaks=peaks, ...)
 })
 

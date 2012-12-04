@@ -15,8 +15,9 @@ Depends:
     methods
 Suggests:
     testthat
-Description: This package allows to read and write different file formats of
-    mass spectrometry data into/from MALDIquant objects.
+Description: This package allows to read (tab, csv, fid, mzXML, mzML) and
+    write (csv, msd) different file formats of mass spectrometry data
+    into/from MALDIquant objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
 LazyLoad: yes

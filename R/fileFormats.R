@@ -16,6 +16,52 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
+#' Supported file formats
+#'
+#' This function prints all file formats supported by
+#' \code{\link{MALDIquantForeign}}.
+#'
+#' \subsection{Import}{
+#'
+#' \tabular{ll}{
+#'  txt & \code{\link[MALDIquantForeign]{importTxt}} \\
+#'  tab & \code{\link[MALDIquantForeign]{importTab}} \\
+#'  csv & \code{\link[MALDIquantForeign]{importCsv}} \\
+#'  fid & \code{\link[MALDIquantForeign]{importBrukerFlex}} \\
+#'  mzXML & \code{\link[MALDIquantForeign]{importMzXml}} \\
+#'  mzML & \code{\link[MALDIquantForeign]{importMzMl}} \\
+#' }
+#' }
+#'
+#' \subsection{Export}{
+#'
+#' \tabular{ll}{
+#'  tab & \code{\link[MALDIquantForeign]{exportTab}} \\
+#'  csv & \code{\link[MALDIquantForeign]{exportCsv}} \\
+#'  msd & \code{\link[MALDIquantForeign]{exportMsd}} \\
+#' }
+#' }
+#'
+#' @return a \code{list} with two named elements (\code{import} and
+#' \code{export}) containing a \code{character} vector of supported file types.
+#'
+#' @seealso
+#'  \code{\link[MALDIquantForeign]{export}},
+#'  \code{\link[MALDIquantForeign]{import}}
+#' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @examples
+#' library("MALDIquantForeign")
+#' 
+#' supportedFileFormats()
+#'
+#' @rdname supportedFileFormats-functions
+#' @export
+supportedFileFormats <- function() {
+  return(list(import=importFormats$type,
+              export=exportFormats$type))
+}
+
 #' @keywords internal
 importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "mzxml", "mzml"),
                             pattern=c("^.*\\.txt$", "^.*\\.tab$",
@@ -33,10 +79,4 @@ exportFormats <- data.frame(type=c("tab", "csv", "msd"),
                             handler=c(".export.tab", ".export.csv", 
                                       ".export.msd"),
                             stringsAsFactors=FALSE)
-
-#' @export
-supportedFormats <- function() {
-  return(list(import=importFormats$type,
-              export=exportFormats$type))
-}
 
