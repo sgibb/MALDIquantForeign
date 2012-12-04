@@ -16,10 +16,51 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
+#' Export
+#'
+#' This function provides a general interface to export
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} (e.g. 
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}})
+#' into different file formats.
+#'
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
+#'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
+#' @param file \code{character}, file name.
+#' @param path \code{character}, path to directory in which the \code{list} of
+#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
+#' @param type \code{character}, file format. If \code{type} is set to 
+#'  \dQuote{auto} the file extension is used.
+#' @param force \code{logical}, If \code{TRUE} the \code{file} would be
+#'  overwritten or \code{path} would be created.
+#' @param \ldots arguments to be passed to other export functions
+#'  (see \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-methods}},
+#'  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-methods}},
+#'  \code{\link[MALDIquantForeign]{exportMsd,AbstractMassObject-methods}}).
+#'
+#' @seealso
+#' \code{\link[MALDIquant]{MassPeaks-class}},
+#' \code{\link[MALDIquant]{MassSpectrum-class}} 
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @examples
+#'
+#' \dontrun{
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' s <- createMassSpectrum(mass=1:5, intensity=1:5)
+#'
+#' export(s, file="~/spectrum.csv") 
+#' ## identical to exportCsv(s, file="~/spectrum.csv")
+#' }
+#'
+#' @aliases export,AbstractMassObject-methods export,list-methods
+#' @rdname export-methods
 #' @export
 setMethod(f="export",
   signature=signature(x="AbstractMassObject"),
-  definition=function(x, file, type, force=FALSE, ...) {
+  definition=function(x, file, type="auto", force=FALSE, ...) {
 
   if (file.exists(file) && !force) {
     stop("File already exists! Use ", sQuote("force=TRUE"), " to overwrite it.")
@@ -40,6 +81,7 @@ setMethod(f="export",
   }
 })
 
+#' @rdname export-methods
 #' @export
 setMethod(f="export",
   signature=signature(x="list"),

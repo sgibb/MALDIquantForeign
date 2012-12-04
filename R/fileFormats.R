@@ -24,12 +24,12 @@
 #' \subsection{Import}{
 #'
 #' \tabular{ll}{
-#'  txt & \code{\link[MALDIquantForeign]{importTxt}} \\
-#'  tab & \code{\link[MALDIquantForeign]{importTab}} \\
-#'  csv & \code{\link[MALDIquantForeign]{importCsv}} \\
-#'  fid & \code{\link[MALDIquantForeign]{importBrukerFlex}} \\
-#'  mzXML & \code{\link[MALDIquantForeign]{importMzXml}} \\
-#'  mzML & \code{\link[MALDIquantForeign]{importMzMl}} \\
+#'  txt \tab \code{\link[MALDIquantForeign]{importTxt}} \cr
+#'  tab \tab \code{\link[MALDIquantForeign]{importTab}} \cr
+#'  csv \tab \code{\link[MALDIquantForeign]{importCsv}} \cr
+#'  fid \tab \code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
+#'  mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
+#'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #' }
 #' }
 #'
@@ -48,7 +48,7 @@
 #' @seealso
 #'  \code{\link[MALDIquantForeign]{export}},
 #'  \code{\link[MALDIquantForeign]{import}}
-#' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
+#' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
 #' library("MALDIquantForeign")
