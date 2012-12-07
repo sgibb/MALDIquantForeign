@@ -78,6 +78,7 @@
   return(filenames)
 }
 
+#' @keywords internal
 .uniqueBaseFilenames <- function(x, fileExtension="csv",
                                  sep="_") {
   filenames <- .cutFilenames(.withoutFileExtension(x))

@@ -24,7 +24,8 @@
 #' \code{\link[MALDIquant]{MassPeaks-class}})
 #' into different file formats.
 #'
-#' Please read specific manual pages, too:
+#' @details
+#' Specific export functions:
 #' \tabular{ll}{
 #'  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
 #'  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
@@ -40,10 +41,7 @@
 #'  \dQuote{auto} the file extension is used.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
-#' @param \ldots arguments to be passed to other export functions
-#'  (see \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-method}},
-#'  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-method}},
-#'  \code{\link[MALDIquantForeign]{exportMsd,MassSpectrum-method}}).
+#' @param \ldots arguments to be passed to specific export functions.
 #'
 #' @seealso
 #' \code{\link[MALDIquant]{MassPeaks-class}},

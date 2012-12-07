@@ -17,19 +17,21 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importAuto <- function(path, verbose=FALSE, ...) {
-  pattern <- unique(importFormats$pattern)
+.importAuto <- function(path, pattern, verbose=FALSE, ...) {
+  if (missing(pattern)) {
+    pattern <- unique(importFormats$pattern)
+  } 
 
   files <- lapply(pattern, .files, path=path) 
   n <- lapply(files, length)
-  m <- which.max(n)[1]
+  m <- which.max(n)
 
   return(import(path=files[[m]], type=tolower(.fileExtension(files[[m]][1])),
          pattern=pattern[m], ...))
 }
 
 #' @keywords internal
-.import.auto <- function(...) {
-  return(.importAuto(...))
+.import.auto <- function(path, pattern, verbose, ...) {
+  return(.importAuto(path, pattern, verbose, ...))
 }
 

@@ -24,11 +24,8 @@
   \code{file} would be overwritten or \code{path} would be
   created.}
 
-  \item{\ldots}{arguments to be passed to other export
-  functions (see
-  \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-method}},
-  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-method}},
-  \code{\link[MALDIquantForeign]{exportMsd,MassSpectrum-method}}).}
+  \item{\ldots}{arguments to be passed to specific export
+  functions.}
 }
 \description{
   This function provides a general interface to export
@@ -39,10 +36,10 @@
   file formats.
 }
 \details{
-  Please read specific manual pages, too: \tabular{ll}{ tab
-  \tab \code{\link[MALDIquantForeign]{exportTab}} \cr csv
-  \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr msd
-  \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr }
+  Specific export functions: \tabular{ll}{ tab \tab
+  \code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
+  \code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
+  \code{\link[MALDIquantForeign]{exportMsd}} \cr }
 }
 \examples{
 \dontrun{
