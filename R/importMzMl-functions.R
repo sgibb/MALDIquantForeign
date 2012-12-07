@@ -45,8 +45,3 @@
   return(spectra)
 }
 
-#' @keywords internal
-.import.mzml <- function(...) {
-  return(.importMzMl(...))
-}
-

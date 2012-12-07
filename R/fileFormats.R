@@ -68,15 +68,15 @@ importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "mzxml", "mzml"),
                                       "^.*\\.csv$", "^fid$", 
                                       "^.*\\.mz[Xx][Mm][Ll]$",
                                       "^.*\\.mz[Mm][Ll]$"),
-                            handler=c(rep(".import.tab", 2),
-                                      ".import.csv", ".import.fid",
-                                      ".import.mzxml", ".import.mzml"),
+                            handler=c(rep(".importTab", 2),
+                                      ".importCsv", ".importBrukerFlex",
+                                      ".importMzXml", ".importMzMl"),
                             stringsAsFactors=FALSE)
 
 #' @keywords internal
 exportFormats <- data.frame(type=c("tab", "csv", "msd"),
                             extension=c("tab", "csv", "msd"),
-                            handler=c(".export.tab", ".export.csv", 
-                                      ".export.msd"),
+                            handler=c(".exportTab", ".exportCsv", 
+                                      ".exportMsd"),
                             stringsAsFactors=FALSE)
 

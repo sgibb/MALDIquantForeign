@@ -30,8 +30,3 @@
          pattern=pattern[m], ...))
 }
 
-#' @keywords internal
-.import.auto <- function(path, pattern, verbose, ...) {
-  return(.importAuto(path, pattern, verbose, ...))
-}
-

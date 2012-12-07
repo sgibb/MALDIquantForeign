@@ -268,9 +268,10 @@ setMethod(f="exportMsd",
 
   if (!missing(peaks)) {
     stopifnot(isMassPeaks(peaks))
+    export(x, file=file, type="msd", force=force, peaks=peaks,  ...)
+  } else {
+    export(x, file=file, type="msd", force=force, ...)
   }
-
-  export(x, file=file, type="msd", force=force, peaks=peaks,  ...)
 })
 
 #' @rdname exportMsd-methods

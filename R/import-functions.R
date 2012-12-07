@@ -86,7 +86,7 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
     stop("File type ", sQuote(type), " is not supported!")
   } else if (i == 0) {
     ## auto
-    return(.import.auto(path=path, pattern=pattern, verbose=verbose, ...))
+    return(.importAuto(path=path, pattern=pattern, verbose=verbose, ...))
   } else {
     ## specific type
     if (missing(pattern)) {

@@ -30,7 +30,3 @@
                                                  metaData=x$metaData)))
 }
 
-#' @keywords internal
-.import.mzxml <- function(...) {
-  return(.importMzXml(...))
-}

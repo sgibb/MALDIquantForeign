@@ -27,20 +27,10 @@
 }
 
 #' @keywords internal
-.import.tab <- function(...) {
-  return(.importTab(...))
-}
-
-#' @keywords internal
 .importCsv <- function(file, verbose=FALSE, sep=.autoSep(file),
                        header=.autoHeader(file, sep), ...) {
   
   return(.importTab(file=file, verbose=verbose, sep=sep, header=header, ...))
-}
-
-#' @keywords internal
-.import.csv <- function(...) {
-  return(.importCsv(...))
 }
 
 #' @keywords internal

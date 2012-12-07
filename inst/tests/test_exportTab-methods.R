@@ -20,15 +20,15 @@ context("exportTab-functions")
 
 m <- createMassSpectrum(mass=1:5, intensity=6:10)
 
-test_that("export.tab", {
+test_that("exportTab", {
   temp <- tempfile()
-  MALDIquantForeign:::.export.tab(m, file=temp)
+  MALDIquantForeign:::.exportTab(m, file=temp)
   expect_equivalent(tools::md5sum(temp), tools::md5sum("data/ascii.txt"))
 })
 
-test_that("export.csv", {
+test_that("exportCsv", {
   temp <- tempfile()
-  MALDIquantForeign:::.export.csv(m, file=temp)
+  MALDIquantForeign:::.exportCsv(m, file=temp)
   expect_equivalent(tools::md5sum(temp), tools::md5sum("data/csv1.csv"))
 })
 

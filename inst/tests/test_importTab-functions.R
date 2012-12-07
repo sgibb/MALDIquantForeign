@@ -18,42 +18,42 @@
 
 context("importTab-functions")
 
-test_that("import.tab", {
-  expect_warning(expect_error(MALDIquantForeign:::.import.tab("tmp.tmp")),
+test_that("importTab", {
+  expect_warning(expect_error(MALDIquantForeign:::.importTab("tmp.tmp")),
                  "cannot open file")
 
-  s <- MALDIquantForeign:::.import.tab("data/ascii.txt")
+  s <- MALDIquantForeign:::.importTab("data/ascii.txt")
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "ascii.txt")
 })
 
-test_that("import.csv", {
-  expect_warning(expect_error(MALDIquantForeign:::.import.csv("tmp.tmp")),
+test_that("importCsv", {
+  expect_warning(expect_error(MALDIquantForeign:::.importCsv("tmp.tmp")),
                  "cannot open file")
 
-  s <- MALDIquantForeign:::.import.csv("data/csv1.csv", sep=",", header=TRUE)
+  s <- MALDIquantForeign:::.importCsv("data/csv1.csv", sep=",", header=TRUE)
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.import.csv("data/csv1.csv")
+  s <- MALDIquantForeign:::.importCsv("data/csv1.csv")
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
-  s <- MALDIquantForeign:::.import.csv("data/csv2.csv", sep=";", header=FALSE)
+  s <- MALDIquantForeign:::.importCsv("data/csv2.csv", sep=";", header=FALSE)
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv2.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.import.csv("data/csv2.csv", sep=";")
+  s <- MALDIquantForeign:::.importCsv("data/csv2.csv", sep=";")
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)

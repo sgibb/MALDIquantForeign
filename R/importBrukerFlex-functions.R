@@ -30,7 +30,3 @@
                                  metaData=s$metaData)))
 }
 
-#' @keywords internal
-.import.fid <- function(...) {
-  return(.importBrukerFlex(...))
-}

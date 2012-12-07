@@ -23,23 +23,11 @@ setMethod(f=".exportTab",
                      row.names=row.names, col.names=col.names, ... ))
 })
 
-setMethod(f=".export.tab",
-  signature=signature(x="AbstractMassObject"),
-  definition=function(x, ...) {
-  return(.exportTab(x, ...))
-})
-
 setMethod(f=".exportCsv",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file="", sep=",", row.names=FALSE, col.names=TRUE,
                       ...) {
   return(.exportTab(x, file=file, sep=sep, row.names=row.names,
                     col.names=col.names, ...))
-})
-
-setMethod(f=".export.csv",
-  signature=signature(x="AbstractMassObject"),
-  definition=function(x, ...) {
-  return(.exportCsv(x, ...))
 })
 
