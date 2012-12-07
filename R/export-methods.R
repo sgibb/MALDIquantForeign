@@ -208,7 +208,7 @@ setMethod(f="exportCsv",
 setMethod(f="exportCsv",
           signature=signature(x="list"),
           definition=function(x, path, force=FALSE, ...) {
-  export(x, path=path, type="tab", force=force, ...)
+  export(x, path=path, type="csv", force=force, ...)
 })
 
 #' Export to MSD files
