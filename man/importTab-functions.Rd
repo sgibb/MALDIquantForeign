@@ -1,14 +1,8 @@
 \name{importTxt}
 \alias{importCsv}
-\alias{importCsv,AbstractMassObject-method}
-\alias{importCsv,list-method}
 \alias{importTab}
-\alias{importTab,AbstractMassObject-method}
-\alias{importTab,list-method}
 \alias{importTxt}
-\alias{importTxt,AbstractMassObject-method}
-\alias{importTxt,list-method}
-\title{Import text files.}
+\title{Import text files}
 \usage{
   importTxt(path, ...)
 
@@ -22,6 +16,10 @@
 
   \item{\ldots}{arguments to be passed to
   \code{\link[utils]{read.table}}.}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
   This function imports different text file formats into

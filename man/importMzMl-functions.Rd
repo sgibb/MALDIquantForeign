@@ -1,15 +1,18 @@
 \name{importMzMl}
 \alias{importMzMl}
-\title{Import mzML files.}
+\title{Import mzML files}
 \usage{
-  importMzMl(path, ...)
+  importMzMl(path, verbose = FALSE)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
   which should be read in.}
 
-  \item{\ldots}{arguments to be passed to
-  \code{\link[readMzXmlData]{readMzXmlFile}}.}
+  \item{verbose}{\code{logical}, verbose output?}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
   This function imports files in mzML file format into

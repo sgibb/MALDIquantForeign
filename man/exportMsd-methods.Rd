@@ -2,7 +2,7 @@
 \alias{exportMsd}
 \alias{exportMsd,list-method}
 \alias{exportMsd,MassSpectrum-method}
-\title{Export to MSD files.}
+\title{Export to MSD files}
 \arguments{
   \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
   object or a \code{list} of

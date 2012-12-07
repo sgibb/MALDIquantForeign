@@ -1,6 +1,6 @@
 \name{importBrukerFlex}
 \alias{importBrukerFlex}
-\title{Import Bruker Daltonics *flex files.}
+\title{Import Bruker Daltonics *flex files}
 \usage{
   importBrukerFlex(path, ...)
 }
@@ -10,6 +10,10 @@
 
   \item{\ldots}{arguments to be passed to
   \code{\link[readBrukerFlexData]{readBrukerFlexFile}}.}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
   This function imports files in Bruker Daltonics

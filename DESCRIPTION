@@ -9,9 +9,6 @@ Depends:
     MALDIquant (>= 1.4.3),
     readBrukerFlexData (>= 1.5),
     readMzXmlData (>= 2.4),
-    base64enc,
-    digest,
-    XML,
     methods
 Suggests:
     testthat

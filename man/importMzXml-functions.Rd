@@ -1,6 +1,6 @@
 \name{importMzXml}
 \alias{importMzXml}
-\title{Import mzXML files.}
+\title{Import mzXML files}
 \usage{
   importMzXml(path, ...)
 }
@@ -10,6 +10,10 @@
 
   \item{\ldots}{arguments to be passed to
   \code{\link[readMzXmlData]{readMzXmlFile}}.}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
   This function imports files in mzXML file format into

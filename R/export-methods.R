@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' Export
+#' Export files
 #'
 #' This function provides a general interface to export
 #' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
@@ -133,7 +133,7 @@ setMethod(f="export",
   invisible()
 })
 
-#' Export to text files.
+#' Export to text files
 #'
 #' This function exports 
 #' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
@@ -144,7 +144,7 @@ setMethod(f="export",
 #' @details
 #' \code{exportTab} and \code{exportCsv} use \code{\link[utils]{write.table}}
 #' with different defaults (\code{sep="\t"} in \code{exportTab} and
-#' \code{sep=",")} in \code{exportCsv}).
+#' \code{sep=","} in \code{exportCsv}).
 #'
 #' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
 #'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
@@ -173,7 +173,7 @@ setMethod(f="export",
 #' ## export a single spectrum
 #' exportTab(s[[1]], file="~/spectrum.tab") 
 #'
-#' ## export a list of spectra
+#' ## export a list of spectra and use ; as separator
 #' exportCsv(s, path="~/spectra", sep=";") 
 #' }
 #'
@@ -211,7 +211,7 @@ setMethod(f="exportCsv",
   export(x, path=path, type="tab", force=force, ...)
 })
 
-#' Export to MSD files.
+#' Export to MSD files
 #'
 #' This function exports 
 #' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
@@ -245,8 +245,8 @@ setMethod(f="exportCsv",
 #'
 #' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
-#' p <- list(createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)),
-#'           createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)))
+#' p <- list(createMassPeaks(mass=4:5, intensity=4:5, snr=1:2),
+#'           createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 #'
 #' ## export a single spectrum
 #' exportMsd(s[[1]], file="~/spectrum.msd") 

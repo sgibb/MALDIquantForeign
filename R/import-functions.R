@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' Import
+#' Import files
 #'
 #' This function provides a general interface to import different file formats
 #' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
@@ -48,6 +48,8 @@
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}} 
 #' @author Sebastian Gibb
@@ -97,7 +99,7 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
   }
 }
 
-#' Import text files.
+#' Import text files
 #'
 #' This function imports different text file formats
 #' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
@@ -109,6 +111,8 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 #'  in.
 #' @param \ldots arguments to be passed to \code{\link[utils]{read.table}}.
 #'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[utils]{read.table}}
@@ -129,9 +133,6 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 #' s <- importCsv(exampleDirectory)
 #'
 #' @rdname importTab-functions
-#' @aliases importTab,AbstractMassObject-method importTab,list-method
-#' importTxt,AbstractMassObject-method importTxt,list-method
-#' importCsv,AbstractMassObject-method importCsv,list-method
 #' @export
 importTxt <- function(path, ...) {
   return(import(path=path, type="txt", ...))
@@ -149,7 +150,7 @@ importCsv <- function(path, ...) {
   return(import(path=path, type="csv", ...))
 }
 
-#' Import Bruker Daltonics *flex files.
+#' Import Bruker Daltonics *flex files
 #'
 #' This function imports files in Bruker Daltonics *flex-series file format
 #' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
@@ -159,6 +160,8 @@ importCsv <- function(path, ...) {
 #' @param \ldots arguments to be passed to
 #' \code{\link[readBrukerFlexData]{readBrukerFlexFile}}.
 #'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[readBrukerFlexData]{readBrukerFlexFile}}
@@ -180,7 +183,7 @@ importBrukerFlex <- function(path, ...) {
   return(import(path=path, type="fid", ...))
 }
 
-#' Import mzXML files.
+#' Import mzXML files
 #'
 #' This function imports files in mzXML file format
 #' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
@@ -190,6 +193,8 @@ importBrukerFlex <- function(path, ...) {
 #' @param \ldots arguments to be passed to
 #' \code{\link[readMzXmlData]{readMzXmlFile}}.
 #'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[readMzXmlData]{readMzXmlFile}}
@@ -214,16 +219,17 @@ importMzXml <- function(path, ...) {
   return(import(path=path, type="mzxml", ...))
 }
 
-#' Import mzML files.
+#' Import mzML files
 #'
 #' This function imports files in mzML file format
 #' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
-#' @param \ldots arguments to be passed to
-#' \code{\link[readMzXmlData]{readMzXmlFile}}.
+#' @param verbose \code{logical}, verbose output?
 #'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[readMzXmlData]{readMzXmlFile}}
@@ -244,7 +250,7 @@ importMzXml <- function(path, ...) {
 #'
 #' @rdname importMzMl-functions
 #' @export
-importMzMl <- function(path, ...) {
-  return(import(path=path, type="mzml", ...))
+importMzMl <- function(path, verbose=FALSE) {
+  return(import(path=path, type="mzml", verbose=verbose))
 }
 

@@ -5,7 +5,7 @@
 \alias{exportTab}
 \alias{exportTab,AbstractMassObject-method}
 \alias{exportTab,list-method}
-\title{Export to text files.}
+\title{Export to text files}
 \arguments{
   \item{x}{a
   \code{\link[MALDIquant]{AbstractMassObject-class}} object
@@ -38,7 +38,7 @@
 \details{
   \code{exportTab} and \code{exportCsv} use
   \code{\link[utils]{write.table}} with different defaults
-  (\code{sep="\t"} in \code{exportTab} and \code{sep=",")}
+  (\code{sep="\t"} in \code{exportTab} and \code{sep=","}
   in \code{exportCsv}).
 }
 \examples{
@@ -52,7 +52,7 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
 ## export a single spectrum
 exportTab(s[[1]], file="~/spectrum.tab")
 
-## export a list of spectra
+## export a list of spectra and use ; as separator
 exportCsv(s, path="~/spectra", sep=";")
 }
 }

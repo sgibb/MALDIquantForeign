@@ -2,7 +2,7 @@
 \alias{export}
 \alias{export,AbstractMassObject-method}
 \alias{export,list-method}
-\title{Export}
+\title{Export files}
 \arguments{
   \item{x}{a
   \code{\link[MALDIquant]{AbstractMassObject-class}} object

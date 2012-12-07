@@ -1,6 +1,6 @@
 \name{import}
 \alias{import}
-\title{Import}
+\title{Import files}
 \usage{
   import(path, type = "auto", pattern, verbose = FALSE,
     ...)
@@ -21,6 +21,10 @@
 
   \item{\ldots}{arguments to be passed to specific import
   functions.}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
   This function provides a general interface to import
