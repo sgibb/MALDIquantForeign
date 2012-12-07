@@ -1,8 +1,11 @@
-\name{export}
-\alias{export}
-\alias{export,AbstractMassObject-method}
-\alias{export,list-method}
-\title{Export}
+\name{exportTab}
+\alias{exportCsv}
+\alias{exportCsv,AbstractMassObject-method}
+\alias{exportCsv,list-method}
+\alias{exportTab}
+\alias{exportTab,AbstractMassObject-method}
+\alias{exportTab,list-method}
+\title{Export to text files.}
 \arguments{
   \item{x}{a
   \code{\link[MALDIquant]{AbstractMassObject-class}} object
@@ -17,32 +20,26 @@
   \code{\link[MALDIquant]{AbstractMassObject-class}} would
   be exported.}
 
-  \item{type}{\code{character}, file format. If \code{type}
-  is set to \dQuote{auto} the file extension is used.}
-
   \item{force}{\code{logical}, If \code{TRUE} the
   \code{file} would be overwritten or \code{path} would be
   created.}
 
-  \item{\ldots}{arguments to be passed to other export
-  functions (see
-  \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-method}},
-  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-method}},
-  \code{\link[MALDIquantForeign]{exportMsd,MassSpectrum-method}}).}
+  \item{\ldots}{arguments to be passed to
+  \code{\link[utils]{write.table}}.}
 }
 \description{
-  This function provides a general interface to export
+  This function exports
   \code{\link[MALDIquant]{AbstractMassObject-class}}
   objects (e.g.
   \code{\link[MALDIquant]{MassSpectrum-class}},
   \code{\link[MALDIquant]{MassPeaks-class}}) into different
-  file formats.
+  text file formats.
 }
 \details{
-  Please read specific manual pages, too: \tabular{ll}{ tab
-  \tab \code{\link[MALDIquantForeign]{exportTab}} \cr csv
-  \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr msd
-  \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr }
+  \code{exportTab} and \code{exportCsv} use
+  \code{\link[utils]{write.table}} with different defaults
+  (\code{sep="\t"} in \code{exportTab} and \code{sep=",")}
+  in \code{exportCsv}).
 }
 \examples{
 \dontrun{
@@ -53,12 +50,10 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
 
 ## export a single spectrum
-export(s[[1]], file="~/spectrum.csv")
-## identical to exportCsv(s[[1]], file="~/spectrum.csv")
+exportTab(s[[1]], file="~/spectrum.tab")
 
 ## export a list of spectra
-export(s, path="~/spectra", type="csv")
-## identical to exportCsv(s, path="~/spectra")
+exportCsv(s, path="~/spectra", sep=";")
 }
 }
 \author{
@@ -69,6 +64,7 @@ export(s, path="~/spectra", type="csv")
 }
 \seealso{
   \code{\link[MALDIquant]{MassPeaks-class}},
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+  \code{\link[MALDIquant]{MassSpectrum-class}},
+  \code{\link[utils]{write.table}}
 }
 

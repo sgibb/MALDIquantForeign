@@ -36,9 +36,9 @@
 #' \subsection{Export}{
 #'
 #' \tabular{ll}{
-#'  tab & \code{\link[MALDIquantForeign]{exportTab}} \\
-#'  csv & \code{\link[MALDIquantForeign]{exportCsv}} \\
-#'  msd & \code{\link[MALDIquantForeign]{exportMsd}} \\
+#'  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
+#'  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
+#'  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
 #' }
 #' }
 #'

@@ -1,0 +1,68 @@
+\name{exportMsd}
+\alias{exportMsd}
+\alias{exportMsd,list-method}
+\alias{exportMsd,MassSpectrum-method}
+\title{Export to MSD files.}
+\arguments{
+  \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
+  object or a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.}
+
+  \item{file}{\code{character}, file name.}
+
+  \item{path}{\code{character}, path to directory in which
+  the \code{list} of
+  \code{\link[MALDIquant]{AbstractMassObject-class}} would
+  be exported.}
+
+  \item{peaks}{a \code{\link[MALDIquant]{MassPeaks-class}}
+  object or a \code{list} of
+  \code{\link[MALDIquant]{MassPeaks-class}} objects.}
+
+  \item{force}{\code{logical}, If \code{TRUE} the
+  \code{file} would be overwritten or \code{path} would be
+  created.}
+
+  \item{\ldots}{arguments to be passed to
+  \code{\link[utils]{write.table}}.}
+}
+\description{
+  This function exports
+  \code{\link[MALDIquant]{AbstractMassObject-class}}
+  objects (e.g.
+  \code{\link[MALDIquant]{MassSpectrum-class}},
+  \code{\link[MALDIquant]{MassPeaks-class}}) into mMass MSD
+  files.
+}
+\examples{
+\dontrun{
+library("MALDIquant")
+library("MALDIquantForeign")
+
+s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+          createMassSpectrum(mass=1:5, intensity=1:5))
+p <- list(createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)),
+          createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)))
+
+## export a single spectrum
+exportMsd(s[[1]], file="~/spectrum.msd")
+
+## export a single spectrum with corresponding peaks
+exportMsd(s[[1]], file="~/spectrum.msd", peaks=p[[1]])
+
+## export a list of spectra with corresponding peaks
+exportMsd(s, path="~/spectra", peaks=p)
+}
+}
+\author{
+  Sebastian Gibb
+}
+\references{
+  \url{http://strimmerlab.org/software/maldiquant/}, \cr
+  mMass homepage \url{http://mmass.org/}
+}
+\seealso{
+  \code{\link[MALDIquant]{MassPeaks-class}},
+  \code{\link[MALDIquant]{MassSpectrum-class}}
+}
+

@@ -19,10 +19,17 @@
 #' Export
 #'
 #' This function provides a general interface to export
-#' \code{\link[MALDIquant]{AbstractMassObject-class}} (e.g. 
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}})
 #' into different file formats.
+#'
+#' Please read specific manual pages, too:
+#' \tabular{ll}{
+#'  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
+#'  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
+#'  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
+#' }
 #'
 #' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
 #'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
@@ -34,9 +41,9 @@
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
 #' @param \ldots arguments to be passed to other export functions
-#'  (see \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-methods}},
-#'  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-methods}},
-#'  \code{\link[MALDIquantForeign]{exportMsd,AbstractMassObject-methods}}).
+#'  (see \code{\link[MALDIquantForeign]{exportTab,AbstractMassObject-method}},
+#'  \code{\link[MALDIquantForeign]{exportCsv,AbstractMassObject-method}},
+#'  \code{\link[MALDIquantForeign]{exportMsd,MassSpectrum-method}}).
 #'
 #' @seealso
 #' \code{\link[MALDIquant]{MassPeaks-class}},
@@ -49,13 +56,19 @@
 #' library("MALDIquant")
 #' library("MALDIquantForeign")
 #'
-#' s <- createMassSpectrum(mass=1:5, intensity=1:5)
+#' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+#'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
-#' export(s, file="~/spectrum.csv") 
-#' ## identical to exportCsv(s, file="~/spectrum.csv")
+#' ## export a single spectrum
+#' export(s[[1]], file="~/spectrum.csv") 
+#' ## identical to exportCsv(s[[1]], file="~/spectrum.csv")
+#'
+#' ## export a list of spectra
+#' export(s, path="~/spectra", type="csv") 
+#' ## identical to exportCsv(s, path="~/spectra")
 #' }
 #'
-#' @aliases export,AbstractMassObject-methods export,list-methods
+#' @aliases export,AbstractMassObject-method export,list-method
 #' @rdname export-methods
 #' @export
 setMethod(f="export",
@@ -122,7 +135,53 @@ setMethod(f="export",
   invisible()
 })
 
-## tab
+#' Export to text files.
+#'
+#' This function exports 
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}})
+#' into different text file formats.
+#'
+#' @details
+#' \code{exportTab} and \code{exportCsv} use \code{\link[utils]{write.table}}
+#' with different defaults (\code{sep="\t"} in \code{exportTab} and
+#' \code{sep=",")} in \code{exportCsv}).
+#'
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
+#'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
+#' @param file \code{character}, file name.
+#' @param path \code{character}, path to directory in which the \code{list} of
+#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
+#' @param force \code{logical}, If \code{TRUE} the \code{file} would be
+#'  overwritten or \code{path} would be created.
+#' @param \ldots arguments to be passed to \code{\link[utils]{write.table}}.
+#'
+#' @seealso
+#' \code{\link[MALDIquant]{MassPeaks-class}},
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[utils]{write.table}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @examples
+#'
+#' \dontrun{
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+#'           createMassSpectrum(mass=1:5, intensity=1:5))
+#'
+#' ## export a single spectrum
+#' exportTab(s[[1]], file="~/spectrum.tab") 
+#'
+#' ## export a list of spectra
+#' exportCsv(s, path="~/spectra", sep=";") 
+#' }
+#'
+#' @aliases exportTab,AbstractMassObject-method exportTab,list-method
+#' exportCsv,AbstractMassObject-method exportCsv,list-method
+#' @rdname exportTab-methods
 #' @export
 setMethod(f="exportTab",
           signature=signature(x="AbstractMassObject"),
@@ -130,6 +189,7 @@ setMethod(f="exportTab",
   export(x, file=file, type="tab", force=force, ...)
 })
 
+#' @rdname exportTab-methods
 #' @export
 setMethod(f="exportTab",
           signature=signature(x="list"),
@@ -137,7 +197,7 @@ setMethod(f="exportTab",
   export(x, path=path, type="tab", force=force, ...)
 })
 
-## csv
+#' @rdname exportTab-methods
 #' @export
 setMethod(f="exportCsv",
           signature=signature(x="AbstractMassObject"),
@@ -145,6 +205,7 @@ setMethod(f="exportCsv",
   export(x, file=file, type="csv", force=force, ...)
 })
 
+#' @rdname exportTab-methods
 #' @export
 setMethod(f="exportCsv",
           signature=signature(x="list"),
@@ -152,10 +213,58 @@ setMethod(f="exportCsv",
   export(x, path=path, type="tab", force=force, ...)
 })
 
-## msd 
+#' Export to MSD files.
+#'
+#' This function exports 
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}})
+#' into mMass MSD files.
+#'
+#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a 
+#'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' @param file \code{character}, file name.
+#' @param path \code{character}, path to directory in which the \code{list} of
+#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
+#' @param peaks a \code{\link[MALDIquant]{MassPeaks-class}} object or a 
+#'  \code{list} of \code{\link[MALDIquant]{MassPeaks-class}} objects.
+#' @param force \code{logical}, If \code{TRUE} the \code{file} would be
+#'  overwritten or \code{path} would be created.
+#' @param \ldots arguments to be passed to \code{\link[utils]{write.table}}.
+#'
+#' @seealso
+#' \code{\link[MALDIquant]{MassPeaks-class}},
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#'
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' mMass homepage \url{http://mmass.org/}
+#' @examples
+#'
+#' \dontrun{
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+#'           createMassSpectrum(mass=1:5, intensity=1:5))
+#' p <- list(createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)),
+#'           createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)))
+#'
+#' ## export a single spectrum
+#' exportMsd(s[[1]], file="~/spectrum.msd") 
+#'
+#' ## export a single spectrum with corresponding peaks
+#' exportMsd(s[[1]], file="~/spectrum.msd", peaks=p[[1]]) 
+#'
+#' ## export a list of spectra with corresponding peaks
+#' exportMsd(s, path="~/spectra", peaks=p) 
+#' }
+#'
+#' @aliases exportMsd,MassSpectrum-method exportMsd,list-method
+#' @rdname exportMsd-methods
 #' @export
 setMethod(f="exportMsd",
-          signature=signature(x="AbstractMassObject"),
+          signature=signature(x="MassSpectrum"),
           definition=function(x, file, force=FALSE, peaks, ...) {
   stopifnot(isMassSpectrum(x))
 
@@ -166,6 +275,7 @@ setMethod(f="exportMsd",
   export(x, file=file, type="msd", force=force, peaks=peaks,  ...)
 })
 
+#' @rdname exportMsd-methods
 #' @export
 setMethod(f="exportMsd",
           signature=signature(x="list"),
