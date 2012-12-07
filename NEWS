@@ -3,4 +3,6 @@ RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 
 Version 0.1 [2012-07-19]:
 - First public release.
-
+- Supported file formats:
+  - Import: tab, txt, csv, Bruker Daltonics *flex files, mzXML, mzML
+  - Export: tab, csv, msd
