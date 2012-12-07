@@ -41,8 +41,8 @@ library("MALDIquantForeign")
 
 s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
-p <- list(createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)),
-          createMassPeaks(mass=1:5, intensity=1:5, snr=rep(1, 5)))
+p <- list(createMassPeaks(mass=4:5, intensity=4:5, snr=1:2),
+          createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 
 ## export a single spectrum
 exportMsd(s[[1]], file="~/spectrum.msd")

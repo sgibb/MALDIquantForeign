@@ -19,7 +19,7 @@
 #' Supported file formats
 #'
 #' This function prints all file formats supported by
-#' \code{\link{MALDIquantForeign}}.
+#' \code{\link{MALDIquantForeign-package}}.
 #'
 #' \subsection{Import}{
 #'

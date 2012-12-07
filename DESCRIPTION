@@ -4,12 +4,16 @@ Date: 2012-11-23
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
+Imports:
+    MALDIquant
 Depends:
     R (>= 2.14.0),
-    MALDIquant (>= 1.4.3),
+    methods,
+    digest,
+    XML,
+    base64enc,
     readBrukerFlexData (>= 1.5),
-    readMzXmlData (>= 2.4),
-    methods
+    readMzXmlData (>= 2.4)
 Suggests:
     testthat
 Description: This package allows to read (tab, csv, fid, mzXML, mzML) and

@@ -11,7 +11,7 @@
 }
 \description{
   This function prints all file formats supported by
-  \code{\link{MALDIquantForeign}}.
+  \code{\link{MALDIquantForeign-package}}.
 }
 \details{
   \subsection{Import}{
