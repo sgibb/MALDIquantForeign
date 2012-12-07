@@ -19,8 +19,8 @@
 context("importTab-functions")
 
 test_that("importTab", {
-  expect_warning(expect_error(MALDIquantForeign:::.importTab("tmp.tmp")),
-                 "cannot open file")
+  ## suppress warnings to avoid creation of Rplots.pdf
+  expect_error(suppressWarnings(MALDIquantForeign:::.importTab("tmp.tmp")))
 
   s <- MALDIquantForeign:::.importTab("data/ascii.txt")
 
@@ -30,8 +30,8 @@ test_that("importTab", {
 })
 
 test_that("importCsv", {
-  expect_warning(expect_error(MALDIquantForeign:::.importCsv("tmp.tmp")),
-                 "cannot open file")
+  ## suppress warnings to avoid creation of Rplots.pdf
+  expect_error(suppressWarnings(MALDIquantForeign:::.importCsv("tmp.tmp")))
 
   s <- MALDIquantForeign:::.importCsv("data/csv1.csv", sep=",", header=TRUE)
 
