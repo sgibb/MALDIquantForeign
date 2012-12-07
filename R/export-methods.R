@@ -122,7 +122,7 @@ setMethod(f="export",
     filenames <- file.path(path, filenames)
      
     for (i in seq(along=x)) {
-      if (!missing(peaks)) {
+      if (hasArg(peaks)) {
         export(x=x[[i]], file=filenames[i], peaks=peaks[[i]], type=type, 
                force=force, ...)
       } else {
