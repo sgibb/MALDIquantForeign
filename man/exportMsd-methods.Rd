@@ -45,13 +45,13 @@ p <- list(createMassPeaks(mass=4:5, intensity=4:5, snr=1:2),
           createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 
 ## export a single spectrum
-exportMsd(s[[1]], file="~/spectrum.msd")
+exportMsd(s[[1]], file="spectrum.msd")
 
 ## export a single spectrum with corresponding peaks
-exportMsd(s[[1]], file="~/spectrum.msd", peaks=p[[1]])
+exportMsd(s[[1]], file="spectrum.msd", peaks=p[[1]])
 
 ## export a list of spectra with corresponding peaks
-exportMsd(s, path="~/spectra", peaks=p)
+exportMsd(s, path="spectra", peaks=p, force=TRUE)
 }
 }
 \author{

@@ -50,12 +50,12 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
 
 ## export a single spectrum
-export(s[[1]], file="~/spectrum.csv")
-## identical to exportCsv(s[[1]], file="~/spectrum.csv")
+export(s[[1]], file="spectrum.csv")
+## identical to exportCsv(s[[1]], file="spectrum.csv")
 
 ## export a list of spectra
-export(s, path="~/spectra", type="csv")
-## identical to exportCsv(s, path="~/spectra")
+export(s, path="spectra", type="csv")
+## identical to exportCsv(s, path="spectra")
 }
 }
 \author{

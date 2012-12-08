@@ -58,12 +58,12 @@
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
 #' ## export a single spectrum
-#' export(s[[1]], file="~/spectrum.csv") 
-#' ## identical to exportCsv(s[[1]], file="~/spectrum.csv")
+#' export(s[[1]], file="spectrum.csv") 
+#' ## identical to exportCsv(s[[1]], file="spectrum.csv")
 #'
 #' ## export a list of spectra
-#' export(s, path="~/spectra", type="csv") 
-#' ## identical to exportCsv(s, path="~/spectra")
+#' export(s, path="spectra", type="csv") 
+#' ## identical to exportCsv(s, path="spectra")
 #' }
 #'
 #' @aliases export,AbstractMassObject-method export,list-method
@@ -171,10 +171,10 @@ setMethod(f="export",
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
 #' ## export a single spectrum
-#' exportTab(s[[1]], file="~/spectrum.tab") 
+#' exportTab(s[[1]], file="spectrum.tab") 
 #'
 #' ## export a list of spectra and use ; as separator
-#' exportCsv(s, path="~/spectra", sep=";") 
+#' exportCsv(s, path="spectra", sep=";", force=TRUE) 
 #' }
 #'
 #' @aliases exportTab,AbstractMassObject-method exportTab,list-method
@@ -249,13 +249,13 @@ setMethod(f="exportCsv",
 #'           createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 #'
 #' ## export a single spectrum
-#' exportMsd(s[[1]], file="~/spectrum.msd") 
+#' exportMsd(s[[1]], file="spectrum.msd") 
 #'
 #' ## export a single spectrum with corresponding peaks
-#' exportMsd(s[[1]], file="~/spectrum.msd", peaks=p[[1]]) 
+#' exportMsd(s[[1]], file="spectrum.msd", peaks=p[[1]]) 
 #'
 #' ## export a list of spectra with corresponding peaks
-#' exportMsd(s, path="~/spectra", peaks=p) 
+#' exportMsd(s, path="spectra", peaks=p, force=TRUE) 
 #' }
 #'
 #' @aliases exportMsd,MassSpectrum-method exportMsd,list-method

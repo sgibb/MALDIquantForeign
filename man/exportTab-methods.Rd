@@ -50,10 +50,10 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
 
 ## export a single spectrum
-exportTab(s[[1]], file="~/spectrum.tab")
+exportTab(s[[1]], file="spectrum.tab")
 
 ## export a list of spectra and use ; as separator
-exportCsv(s, path="~/spectra", sep=";")
+exportCsv(s, path="spectra", sep=";", force=TRUE)
 }
 }
 \author{
