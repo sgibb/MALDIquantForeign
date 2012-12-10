@@ -22,7 +22,7 @@ test_that("importTab", {
   ## suppress warnings to avoid creation of Rplots.pdf
   expect_error(suppressWarnings(MALDIquantForeign:::.importTab("tmp.tmp")))
 
-  s <- MALDIquantForeign:::.importTab("data/ascii.txt")
+  s <- MALDIquantForeign:::.importTab(file.path("data", "ascii.txt"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
@@ -33,27 +33,29 @@ test_that("importCsv", {
   ## suppress warnings to avoid creation of Rplots.pdf
   expect_error(suppressWarnings(MALDIquantForeign:::.importCsv("tmp.tmp")))
 
-  s <- MALDIquantForeign:::.importCsv("data/csv1.csv", sep=",", header=TRUE)
+  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv1.csv"),
+                                      sep=",", header=TRUE)
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.importCsv("data/csv1.csv")
+  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv1.csv"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
-  s <- MALDIquantForeign:::.importCsv("data/csv2.csv", sep=";", header=FALSE)
+  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv2.csv"),
+                                      sep=";", header=FALSE)
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv2.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.importCsv("data/csv2.csv", sep=";")
+  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv2.csv"), sep=";")
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)

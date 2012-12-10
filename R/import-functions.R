@@ -60,7 +60,8 @@
 #' library("MALDIquantForeign")
 #'
 #' ## get example directory
-#' exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
 #'
 #' ## import mzXML files
 #' s <- import(exampleDirectory, type="mzXML")
@@ -124,7 +125,8 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 #' library("MALDIquantForeign")
 #'
 #' ## get example directory
-#' exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
 #'
 #' ## import txt files
 #' s <- importTxt(exampleDirectory) 
@@ -173,7 +175,8 @@ importCsv <- function(path, ...) {
 #' library("MALDIquantForeign")
 #'
 #' ## get example directory
-#' exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
 #'
 #' s <- importBrukerFlex(exampleDirectory) 
 #'
@@ -208,7 +211,8 @@ importBrukerFlex <- function(path, ...) {
 #' library("MALDIquantForeign")
 #'
 #' ## get example directory
-#' exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
 #'
 #' ## import
 #' s <- importMzXml(exampleDirectory) 
@@ -243,7 +247,8 @@ importMzXml <- function(path, ...) {
 #' library("MALDIquantForeign")
 #'
 #' ## get example directory
-#' exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
 #'
 #' ## import
 #' s <- importMzMl(exampleDirectory) 

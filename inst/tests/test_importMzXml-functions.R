@@ -21,7 +21,8 @@ context("importMzXml-functions")
 test_that("importMzXml", {
   expect_error(MALDIquantForeign:::.importMzXml("tmp.tmp"))
 
-  s <- MALDIquantForeign:::.importMzXml("data/tiny1.mzXML3.0.mzXML")
+  s <- MALDIquantForeign:::.importMzXml(file.path("data",
+                                                  "tiny1.mzXML3.0.mzXML"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
@@ -31,7 +32,8 @@ test_that("importMzXml", {
 test_that("importMzXml compressed", {
   expect_error(MALDIquantForeign:::.importMzXml("tmp.tmp"))
 
-  s <- MALDIquantForeign:::.importMzXml("data/tiny1-compressed.mzXML3.0.mzXML")
+  s <- MALDIquantForeign:::.importMzXml(
+    file.path("data", "tiny1-compressed.mzXML3.0.mzXML"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)

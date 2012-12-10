@@ -23,7 +23,8 @@ library("MALDIquant")
 library("MALDIquantForeign")
 
 ## get example directory
-exampleDirectory <- system.file("tests/data", package="MALDIquantForeign")
+exampleDirectory <- system.file(file.path("tests", "data"),
+                                package="MALDIquantForeign")
 
 ## import
 s <- importMzMl(exampleDirectory)

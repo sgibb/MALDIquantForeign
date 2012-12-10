@@ -21,7 +21,8 @@ context("importBrukerFlex-functions")
 test_that("importBrukerFlex", {
   expect_error(MALDIquantForeign:::.importBrukerFlex("tmp.tmp"))
 
-  s <- MALDIquantForeign:::.importBrukerFlex("data/brukerflex/0_A1/1/1SLin/fid")
+  s <- MALDIquantForeign:::.importBrukerFlex(
+    file.path("data", "brukerflex", "0_A1", "1", "1SLin", "fid"))
 
   expect_equal(trunc(mass(s[[1]])), 226:230)
   expect_equal(intensity(s[[1]]), 1:5)
