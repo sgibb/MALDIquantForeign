@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.1.2 [2012-12-11]:
+- fix empty filenames
+
 Version 0.1.1 [2012-12-11]:
 - exportMsd: fix peaks argument.
 

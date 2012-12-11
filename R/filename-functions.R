@@ -83,6 +83,10 @@
                                  sep="_") {
   filenames <- .cutFilenames(.withoutFileExtension(x))
   filenames <- .cleanFilename(filenames)
+  
+  empty <- nchar(filenames) <= 0
+  filenames[empty] <- seq_along(empty)
+
   filenames <- make.unique(filenames, sep=sep)
   return(paste(filenames, fileExtension, sep="."))
 }
