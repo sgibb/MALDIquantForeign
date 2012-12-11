@@ -121,13 +121,22 @@ setMethod(f="export",
     filenames <- .composeFilename(x, fileExtension=exportFormats$extension[i])
     filenames <- file.path(path, filenames)
      
+    optArgs <- list(...)
+    peaks <- list()
+
+    if (hasArg(peaks)) {
+      peaks <- optArgs$peaks 
+      optArgs$peaks <- NULL
+    }
+
     for (i in seq(along=x)) {
-      if (hasArg(peaks)) {
-        export(x=x[[i]], file=filenames[i], peaks=peaks[[i]], type=type, 
-               force=force, ...)
-      } else {
-        export(x=x[[i]], file=filenames[i], type=type, force=force, ...)
+      arguments <- list(x=x[[i]], file=filenames[i], type=type, force=force)
+      arguments <- modifyList(arguments, optArgs)
+
+      if (length(peaks)) {
+        arguments$peaks <- peaks[[i]]
       }
+      do.call(export, arguments)
     }
   }
   invisible()
@@ -283,8 +292,9 @@ setMethod(f="exportMsd",
 
   if (!missing(peaks)) {
     stopifnot(isMassPeaksList(peaks))
+    export(x, path=path, type="msd", force=force, peaks=peaks,  ...)
+  } else {
+    export(x, path=path, type="msd", force=force, ...)
   }
-
-  export(x, path=path, type="msd", force=force, peaks=peaks, ...)
 })
 

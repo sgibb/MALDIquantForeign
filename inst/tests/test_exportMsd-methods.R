@@ -18,7 +18,7 @@
 
 context("exportMsd-functions")
 
-m <- createMassSpectrum(mass=1:5, intensity=6:10, 
+m <- createMassSpectrum(mass=1:5, intensity=6:10,
                         metaData=list(owner="OWNER", institution="INSTITUTION",
                                       instrument="INSTRUMENT"))
 p <- createMassPeaks(mass=4:5, intensity=9:10, snr=1:2)
@@ -49,5 +49,14 @@ test_that("exportMsd", {
   tmp <- tempdir()
   MALDIquantForeign:::.exportMsd(m, file=file.path(tmp, "tmp.msd"), peaks=p)
   expect_equal(readLines(file.path(tmp, "tmp.msd"))[-c(4, 5)], msd[-c(4, 5)])
+})
+
+test_that("exportMsd,list", {
+  tmp <- tempdir()
+  spectra <- list(m, m)
+  peaks <- list(p, p)
+  MALDIquantForeign:::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
+  expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4, 5)], msd[-c(4, 5)])
+  expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4, 5)], msd[-c(4, 5)])
 })
 

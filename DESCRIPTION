@@ -1,6 +1,6 @@
 Package: MALDIquantForeign
-Version: 0.1
-Date: 2012-12-10
+Version: 0.1.1
+Date: 2012-12-11
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
@@ -26,21 +26,21 @@ URL: http://strimmerlab.org/software/maldiquant/
 LazyLoad: yes
 Collate:
     'package.R'
-    'importTab-functions.R'
     'AllGenerics.R'
-    'exportTab-methods.R'
-    'importBrukerFlex-functions.R'
-    'importMzXml-functions.R'
-    'importAuto-functions.R'
-    'import-functions.R'
-    'list.files-functions.R'
-    'importMzMl-functions.R'
-    'parseMzMl.R'
-    'fileFormats.R'
-    'exportMsd-methods.R'
-    'msd-functions.R'
-    'sanitize-functions.R'
     'base64encode-functions.R'
     'export-methods.R'
+    'exportMsd-methods.R'
+    'exportTab-methods.R'
+    'fileFormats.R'
     'filename-functions.R'
     'filename-methods.R'
+    'importAuto-functions.R'
+    'importBrukerFlex-functions.R'
+    'import-functions.R'
+    'importMzMl-functions.R'
+    'importMzXml-functions.R'
+    'importTab-functions.R'
+    'list.files-functions.R'
+    'msd-functions.R'
+    'parseMzMl.R'
+    'sanitize-functions.R'
