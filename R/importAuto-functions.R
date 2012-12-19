@@ -27,6 +27,6 @@
   m <- which.max(n)
 
   return(import(path=files[[m]], type=tolower(.fileExtension(files[[m]][1])),
-         pattern=pattern[m], ...))
+         pattern=pattern[m], verbose=verbose, ...))
 }
 

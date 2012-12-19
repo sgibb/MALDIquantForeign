@@ -75,7 +75,6 @@
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
-
   e <- file.exists(path)
 
   if (!all(e)) {
@@ -96,7 +95,8 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
       pattern <- importFormats$pattern[i]
     }
     handler <- importFormats$handler[i]
-    return(unlist(lapply(.files(path=path, pattern=pattern), handler, ...)))
+    return(unlist(lapply(.files(path=path, pattern=pattern), handler,
+                         verbose=verbose, ...)))
   }
 }
 
