@@ -45,6 +45,12 @@ msd <- c(
 " </peaklist>",
 "</mSD>")
 
+if (.Platform$endian == "big") {
+  msd[13:14] <- c(
+    "  <mzArray precision=\"64\" compression=\"zlib\" endian=\"big\">eJyz/8AABg4MUJoDSgtAaREIDQBExAJc</mzArray>",
+    "  <intArray precision=\"64\" compression=\"zlib\" endian=\"big\">eJxzkGAAAwcZKK0ApZWgtAqEBgArDgHb</intArray>")
+}
+
 test_that("exportMsd", {
   tmp <- tempdir()
   MALDIquantForeign:::.exportMsd(m, file=file.path(tmp, "tmp.msd"), peaks=p)
