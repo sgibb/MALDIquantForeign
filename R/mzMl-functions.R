@@ -33,7 +33,7 @@
   .writeFileDescription(x, doc)
   .writeSoftwareList(x, doc)
   .writeInstrumentConfigurationList(x, doc)
-  #.writeDataProcessingList(x, xmlDoc)
+  .writeDataProcessingList(x, doc)
   #.writeRun(x, xmlDoc)
 
   invisible(XML::saveXML(doc$value(), file=file, encoding=encoding))
@@ -95,5 +95,18 @@
   xmlDoc$addTag("instrumentConfigurationList", attrs=c(count=1), close=FALSE)
     xmlDoc$addTag("instrumentConfiguration", attrs=c(id="IC1"))
   xmlDoc$closeTag() # instrumentConfigurationList
+}
+
+.writeDataProcessingList <- function(x, xmlDoc) {
+  xmlDoc$addTag("dataProcessingList", attrs=c(count=1), close=FALSE)
+    xmlDoc$addTag("dataProcessing", attrs=c(id="export"), close=FALSE)
+      xmlDoc$addTag("processingMethod", attrs=c(order=1,
+                      softwareRef="MALDIquantForeign"), close=FALSE)
+        xmlDoc$addTag("userParam", attrs=c(
+                        name="MALDIquant object(s) exported to mzXML",
+                        value=""))
+      xmlDoc$closeTag() # processingMethod
+    xmlDoc$closeTag() # dataProcessing
+  xmlDoc$closeTag() # dataProcessingList
 }
 
