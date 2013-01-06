@@ -34,7 +34,7 @@
   .writeSoftwareList(x, doc)
   .writeInstrumentConfigurationList(x, doc)
   .writeDataProcessingList(x, doc)
-  #.writeRun(x, xmlDoc)
+  .writeRun(x, doc)
 
   invisible(XML::saveXML(doc$value(), file=file, encoding=encoding))
 }
@@ -64,13 +64,13 @@
                       accession="MS:1000579", name="MS1 spectrum"))
       xmlDoc$addTag("userParam", attrs=c(name="MALDIquantForeign",
                       value="MALDIquant object(s) exported to mzML"))
-      .writeSourceFileList(x, xmlDoc)
     xmlDoc$closeTag() # fileContent
+    .writeSourceFileList(x, xmlDoc)
   xmlDoc$closeTag() # fileDescription
 }
 
 .writeSourceFileList <- function(x, xmlDoc) {
-  files <- unique(vapply(x, function(s)metaData(s)$file, character(1)))
+  files <- unique(vapply(x, function(s)s@metaData$file, character(1)))
   
   if (length(files)) {
     xmlDoc$addTag("sourceFileList", attrs=c(count=length(files)), close=FALSE)
@@ -110,3 +110,76 @@
   xmlDoc$closeTag() # dataProcessingList
 }
 
+.writeRun <- function(x, xmlDoc) {
+  xmlDoc$addTag("run", attrs=c(id="run",
+                               defaultInstrumentConfigurationRef="IC1"),
+                close=FALSE)
+  .writeSpectrumList(x, xmlDoc)
+  xmlDoc$closeTag() # run
+}
+
+.writeSpectrumList <- function(x, xmlDoc) {
+  xmlDoc$addTag("spectrumList", attrs=c(count=length(x),
+                  defaultDataProcessingRef="export"), close=FALSE)
+  for (i in seq(along=x)) {
+    xmlDoc$addTag("spectrum", attrs=c(index=i-1,
+                    id=paste("scan=", i-1, sep=""),
+                    defaultArrayLength=length(x[[i]]),
+                    spotID=x[[i]]@metaData$fullName),  close=FALSE)
+
+      msLevel <- ifelse(is.null(x[[1]]@metaData$msLevel), 1,
+                        x[[1]]@metaData$msLevel)
+      xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000511",
+                                       name="ms level", value=msLevel))
+      xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000294",
+                                       name="mass spectrum"))
+
+    if (MALDIquant::isMassSpectrum(x[[i]])) {
+      xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000128",
+                                       name="profile spectrum"))
+    } else {
+      xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000127",
+                                       name="centroid spectrum"))
+    }
+
+    .writeBinaryDataArrayList(x[[i]], xmlDoc)
+
+    xmlDoc$closeTag() # spectrum
+  }
+  xmlDoc$closeTag() # spectrumList
+}
+
+.writeBinaryDataArrayList <- function(x, xmlDoc) {
+  count <- ifelse(MALDIquant:::isMassSpectrum(x), 2, 3)
+  xmlDoc$addTag("binaryDataArrayList", attrs=c(count=count), close=FALSE)
+  .writeBinaryData(x@mass, xmlDoc, c(cvRef="MS", accession="MS:1000514",
+                    name="m/z array", unitCvRef="MS",
+                    unitAccession="MS:1000040", unitName="m/z"))
+
+  .writeBinaryData(x@intensity, xmlDoc, c(cvRef="MS", accession="MS:1000515",
+                    name="intensity array", unitCvRef="MS",
+                    unitAccession="MS:1000131", unitName="number of counts"))
+
+  if (MALDIquant::isMassPeaks(x)) {
+    .writeBinaryData(x@snr, xmlDoc, c(cvRef="MS", accession="MS:1000517",
+                      name="signal to noise array"))
+  }
+  xmlDoc$closeTag() # binaryDataArrayList
+}
+
+.writeBinaryData <- function(x, xmlDoc, additionalAttrs) {
+  binaryData <- .base64encode(x, size=8, endian="little",
+                              compressionType="gzip")
+
+  xmlDoc$addTag("binaryDataArray", attrs=c(encodedLength=nchar(binaryData)),
+                close=FALSE)
+    xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000574",
+                                     name="zlib compression"))
+    xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000523",
+                                     name="64-bit float"))
+    if (!missing(additionalAttrs)) {
+      xmlDoc$addTag("cvParam", attrs=additionalAttrs)
+    }
+    xmlDoc$addTag("binary", binaryData)
+  xmlDoc$closeTag() # binaryDataArray
+}
