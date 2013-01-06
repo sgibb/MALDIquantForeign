@@ -31,7 +31,7 @@
 
   .writeCvList(x, doc)
   .writeFileDescription(x, doc)
-  #.writeSoftwareList(x, xmlDoc)
+  .writeSoftwareList(x, doc)
   #.writeInstrumentConfigurationList(x, xmlDoc)
   #.writeDataProcessingList(x, xmlDoc)
   #.writeRun(x, xmlDoc)
@@ -63,8 +63,15 @@
       xmlDoc$addTag("cvParam", attrs=c(cvRef="MS",
                       accession="MS:1000579", name="MS1 spectrum"))
       xmlDoc$addTag("userParam", attrs=c(name="MALDIquantForeign",
-                      value="MALDIquant object exported to mzML"))
+                      value="MALDIquant object(s) exported to mzML"))
     xmlDoc$closeTag() # fileContent
   xmlDoc$closeTag() # fileDescription
+}
+
+.writeSoftwareList <- function(x, xmlDoc) {
+  xmlDoc$addTag("softwareList", attrs=c(count=1), close=FALSE)
+    xmlDoc$addTag("software", attrs=c(id="MALDIquantForeign",
+                    version=as.character(packageVersion("MALDIquantForeign"))))
+  xmlDoc$closeTag() # softwareList 
 }
 
