@@ -71,14 +71,37 @@
 
 .writeSourceFileList <- function(x, xmlDoc) {
   files <- unique(vapply(x, function(s)s@metaData$file, character(1)))
+  dname <- dirname(files)
+  bname <- basename(files)
+  ext <- tolower(.fileExtension(bname))
   
   if (length(files)) {
     xmlDoc$addTag("sourceFileList", attrs=c(count=length(files)), close=FALSE)
     for (i in seq(along=files)) {
       xmlDoc$addTag("sourceFile", attrs=c(
         id=paste("SF", i, sep=""),
-        location=dirname(files[i]),
-        name=basename(files[i])))
+        location=dname[i],
+        name=bname[i]), close=FALSE)
+
+      if (ext[i] == "fid") {
+        xmlDoc$addTag("cvParam", attrs=c(cvRef="MS",
+                      accession="MS:1000825", name="Bruker FID file"))
+        xmlDoc$addTag("cvParam", attrs=c(cvRef="MS",
+                      accession="MS:1000773", name="Bruker FID nativeID format"))
+      } else if (ext[i] == "mzxml") {
+        xmlDoc$addTag("cvParam", attrs=c(cvRef="MS",
+                      accession="MS:1000566", name="ISB mzXML file"))
+      } else if (ext[i] == "mzml") {
+        xmlDoc$addTag("cvParam", attrs=c(cvRef="MS",
+                      accession="MS:1000584", name="mzML file"))
+      } 
+
+      if (file.exists(files[i])) {
+        xmlDoc$addTag("cvParam", attrs=c(cvRef="MS", accession="MS:1000569",
+                        name="SHA-1", 
+                        value=digest::digest(files[i], algo="sha1", file=TRUE)))
+      }
+      xmlDoc$closeTag() # sourceFile
     }
     xmlDoc$closeTag() # sourceFileList
   }
@@ -183,3 +206,4 @@
     xmlDoc$addTag("binary", binaryData)
   xmlDoc$closeTag() # binaryDataArray
 }
+
