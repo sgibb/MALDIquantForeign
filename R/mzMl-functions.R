@@ -32,7 +32,7 @@
   .writeCvList(x, doc)
   .writeFileDescription(x, doc)
   .writeSoftwareList(x, doc)
-  #.writeInstrumentConfigurationList(x, xmlDoc)
+  .writeInstrumentConfigurationList(x, doc)
   #.writeDataProcessingList(x, xmlDoc)
   #.writeRun(x, xmlDoc)
 
@@ -73,5 +73,11 @@
     xmlDoc$addTag("software", attrs=c(id="MALDIquantForeign",
                     version=as.character(packageVersion("MALDIquantForeign"))))
   xmlDoc$closeTag() # softwareList 
+}
+
+.writeInstrumentConfigurationList <- function(x, xmlDoc) {
+  xmlDoc$addTag("instrumentConfigurationList", attrs=c(count=1), close=FALSE)
+    xmlDoc$addTag("instrumentConfiguration", attrs=c(id="IC1"))
+  xmlDoc$closeTag() # instrumentConfigurationList
 }
 
