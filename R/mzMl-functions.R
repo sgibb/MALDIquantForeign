@@ -29,7 +29,7 @@
     version="1.1.0"
     ))
 
-  .writeCvList(x, doc)
+  .writeCvList(doc)
   .writeFileDescription(x, doc)
   .writeSoftwareList(x, doc)
   .writeInstrumentConfigurationList(x, doc)
@@ -39,7 +39,7 @@
   invisible(XML::saveXML(doc$value(), file=file, encoding=encoding))
 }
 
-.writeCvList <- function(x, xmlDoc) {
+.writeCvList <- function(xmlDoc) {
   items <- list(
     ms=list(id="MS", 
       fullName="Proteomics Standards Initiative Mass Spectrometry Ontology",
@@ -64,8 +64,24 @@
                       accession="MS:1000579", name="MS1 spectrum"))
       xmlDoc$addTag("userParam", attrs=c(name="MALDIquantForeign",
                       value="MALDIquant object(s) exported to mzML"))
+      .writeSourceFileList(x, xmlDoc)
     xmlDoc$closeTag() # fileContent
   xmlDoc$closeTag() # fileDescription
+}
+
+.writeSourceFileList <- function(x, xmlDoc) {
+  files <- unique(vapply(x, function(s)metaData(s)$file, character(1)))
+  
+  if (length(files)) {
+    xmlDoc$addTag("sourceFileList", attrs=c(count=length(files)), close=FALSE)
+    for (i in seq(along=files)) {
+      xmlDoc$addTag("sourceFile", attrs=c(
+        id=paste("SF", i, sep=""),
+        location=dirname(files[i]),
+        name=basename(files[i])))
+    }
+    xmlDoc$closeTag() # sourceFileList
+  }
 }
 
 .writeSoftwareList <- function(x, xmlDoc) {
