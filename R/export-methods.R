@@ -104,6 +104,10 @@ setMethod(f="export",
     dir.create(path, showWarnings=FALSE, recursive=TRUE)  
   }
 
+  if (!file.exists(path)) {
+    stop("Directory ", sQuote(path), " doesn't exist!")
+  }
+
   if (!file.info(path)$isdir) {
     stop(sQuote(path), " is no directory!")
   }

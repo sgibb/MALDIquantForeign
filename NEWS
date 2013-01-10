@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.1.5 [2013-01-10]:
+- export,list: stop if directory doesn't exist
+
 Version 0.1.4 [2013-01-03]:
 - exportMsd tests: respect endianness
 
