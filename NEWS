@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.1.6 [2013-01-10]:
+- exportMsd: complete rewrite, write xml files manually instead of using the XML
+  package (increasing speed)
+
 Version 0.1.5 [2013-01-10]:
 - export,list: stop if directory doesn't exist
 

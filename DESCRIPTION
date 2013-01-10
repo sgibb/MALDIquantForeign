@@ -1,6 +1,6 @@
 Package: MALDIquantForeign
-Version: 0.1.4
-Date: 2013-01-03
+Version: 0.1.6
+Date: 2013-01-10
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
@@ -44,3 +44,4 @@ Collate:
     'msd-functions.R'
     'parseMzMl.R'
     'sanitize-functions.R'
+    'xml-functions.R'
