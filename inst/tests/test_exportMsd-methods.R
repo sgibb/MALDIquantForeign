@@ -61,8 +61,13 @@ test_that("exportMsd,list", {
   tmp <- tempdir()
   spectra <- list(m, m)
   peaks <- list(p, p)
-  MALDIquantForeign:::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
+  MALDIquantForeign::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
   expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4, 5)], msd[-c(4, 5)])
   expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4, 5)], msd[-c(4, 5)])
 })
 
+test_that(".createMsdTitle", {
+  f <- file(file.path(tempdir(), "test.msd"))
+  expect_true(MALDIquantForeign:::.createMsdTitle(f) == "test")
+  close(f)
+})
