@@ -1,11 +1,9 @@
 Package: MALDIquantForeign
-Version: 0.2
-Date: 2013-01-14
+Version: 0.2.1
+Date: 2013-01-26
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
-Imports:
-    MALDIquant
 Depends:
     R (>= 2.14.0),
     methods,
