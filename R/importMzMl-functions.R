@@ -18,10 +18,6 @@
 
 #' @keywords internal
 .importMzMl <- function(file, verbose=FALSE) {
-
-  if (!require(readMzXmlData)) {
-    stop("Could not load package ", sQuote("readMzXmlData"), ".")
-  }
   
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")

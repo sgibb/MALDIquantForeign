@@ -1,18 +1,19 @@
 Package: MALDIquantForeign
-Version: 0.2.1
-Date: 2013-01-26
+Version: 0.2.2
+Date: 2013-01-27
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
 Depends:
     R (>= 2.14.0),
     methods,
-    MALDIquant (>= 1.5),
-    digest,
-    XML,
+    MALDIquant (>= 1.5)
+Imports:
     base64enc,
+    digest,
     readBrukerFlexData (>= 1.5),
-    readMzXmlData (>= 2.5)
+    readMzXmlData (>= 2.5),
+    XML
 Suggests:
     testthat
 Description: This package allows to read (tab, csv, fid, mzXML, mzML) and

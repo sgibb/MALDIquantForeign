@@ -1,8 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.2 [2013-01-27]:
+- DESCRIPTION: Move base64enc, digest, readBrukerFlexData, readMzXmlData and 
+  XML to "Imports".
+
 Version 0.2.1 [2013-01-26]:
-- Remove MALDIquant from the "Imports" field.
+- DESCRIPTION: Remove MALDIquant from the "Imports" field.
 
 Version 0.2 [2013-01-14]:
 - export: fix empty filenames.
