@@ -19,7 +19,7 @@
     stop("No permissions to write into ", sQuote(file), "!")
   }
 
-  ## file handler
+  ## file handle
   f <- file(file, open="wt", encoding=encoding)
 
   ## header
@@ -44,11 +44,11 @@
     .writeXmlTag("title", text=.createMsdTitle(file), intend=2, file=file)
     .writeXmlTag("date", attrs=c(value=.sanitize(date())),
                  intend=2, file=file)
-    .writeXmlTag("operator", attrs=c(value=.sanitize(x@metaData$owner)), 
+    .writeXmlTag("operator", attrs=c(value=.sanitize(x@metaData$owner)),
                  intend=2, file=file)
     .writeXmlTag("contact", attrs=c(value=.sanitize(x@metaData$owner)),
                  intend=2, file=file)
-    .writeXmlTag("institution", 
+    .writeXmlTag("institution",
                  attrs=c(value=.sanitize(x@metaData$institution)),
                  intend=2, file=file)
     .writeXmlTag("instrument", attrs=c(value=.sanitize(x@metaData$instrument)),
@@ -86,7 +86,7 @@
 .writeMsdPeakList <- function(x, file) {
   .writeXmlTag("peaklist", close=FALSE, intend=1, file=file)
 
-  cat(paste("  <peak mz=\"", x@mass, "\" intensity=\"", x@intensity, 
+  cat(paste("  <peak mz=\"", x@mass, "\" intensity=\"", x@intensity,
             "\" baseline=\"0\" sn=\"", x@snr,
       "\"/>\n", sep=""), file=file, sep="", append=TRUE)
 
