@@ -1,8 +1,15 @@
-\name{exportMsd}
+\name{exportMsd,MassSpectrum-method}
 \alias{exportMsd}
 \alias{exportMsd,list-method}
 \alias{exportMsd,MassSpectrum-method}
 \title{Export to MSD files}
+\usage{
+  \S4method{exportMsd}{MassSpectrum}(x, file, force=FALSE,
+    peaks, \ldots)
+
+  \S4method{exportMsd}{list}(x, path, force=FALSE, peaks,
+    \ldots)
+}
 \arguments{
   \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
   object or a \code{list} of
