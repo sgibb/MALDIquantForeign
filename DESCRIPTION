@@ -44,3 +44,4 @@ Collate:
     'parseMzMl.R'
     'sanitize-functions.R'
     'xml-functions.R'
+    'mzMl-functions.R'
