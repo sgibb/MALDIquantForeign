@@ -1,8 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.3 [2013-02-06]:
+- Add missing "usage" section in export methods manual pages.
+
 Version 0.2.2 [2013-01-27]:
-- DESCRIPTION: Move base64enc, digest, readBrukerFlexData, readMzXmlData and 
+- DESCRIPTION: Move base64enc, digest, readBrukerFlexData, readMzXmlData and
   XML to "Imports".
 
 Version 0.2.1 [2013-01-26]:
@@ -11,7 +14,7 @@ Version 0.2.1 [2013-01-26]:
 Version 0.2 [2013-01-14]:
 - export: fix empty filenames.
 - export,list: stop if directory doesn't exist.
-- exportMsd: complete rewrite, write xml files manually instead of using the 
+- exportMsd: complete rewrite, write xml files manually instead of using the
   XML package (increasing speed).
 - exportMsd: fix peaks argument.
 - exportMsd tests: respect endianness.

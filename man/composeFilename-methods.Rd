@@ -1,6 +1,4 @@
-\docType{methods}
-\name{.composeFilename}
-\alias{.composeFilename}
+\name{.composeFilename,AbstractMassObject-method}
 \alias{.composeFilename,AbstractMassObject-method}
 \alias{.composeFilename,list-method}
 \title{This method creates a filename for a \code{\linkS4class{AbstractMassObject}}
