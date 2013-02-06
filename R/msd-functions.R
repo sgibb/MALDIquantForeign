@@ -1,4 +1,4 @@
-### Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This is free software: you can redistribute it and/or modify
@@ -19,35 +19,46 @@
     stop("No permissions to write into ", sQuote(file), "!")
   }
 
-  ## header
-  doc <- XML::xmlOutputDOM("mSD", attrs=c(version="2.2"))
+  ## file handler
+  f <- file(file, open="wt", encoding=encoding)
 
-  doc <- .writeMsdDescription(x, xmlDoc=doc, file=file)
-  doc <- .writeMsdSpectrum(x, xmlDoc=doc)
+  ## header
+  .writeXmlHeader(file=f, encoding=encoding)
+
+  .writeXmlTag("mSD", attrs=c(version=2.2), close=FALSE, file=f)
+
+  .writeMsdDescription(x, file=f)
+  .writeMsdSpectrum(x, file=f)
 
   if (!missing(peaks)) {
-    doc <- .writeMsdPeakList(peaks, xmlDoc=doc)
+    .writeMsdPeakList(peaks, file=f)
   }
 
-  invisible(XML::saveXML(doc$value(), file=file, encoding=encoding))
+  .writeCloseXmlTag("mSD", file=f)
+
+  invisible(close(f))
 }
 
-.writeMsdDescription <- function(x, xmlDoc, file) {
-  xmlDoc$addTag("description", close=FALSE)
-    xmlDoc$addTag("title", .sanitize(file))
-    xmlDoc$addTag("date", attrs=c(value=.sanitize(date())))
-    xmlDoc$addTag("operator", attrs=c(value=.sanitize(x@metaData$owner)))
-    xmlDoc$addTag("contact", attrs=c(value=.sanitize(x@metaData$owner)))
-    xmlDoc$addTag("institution", 
-                  attrs=c(value=.sanitize(x@metaData$institution)))
-    xmlDoc$addTag("instrument", attrs=c(value=.sanitize(x@metaData$instrument)))
-    xmlDoc$addTag("notes", .sanitize(paste(x@metaData$comments, collapse="\n")))
-  xmlDoc$closeTag() # description
-
-  return(xmlDoc)
+.writeMsdDescription <- function(x, file) {
+  .writeXmlTag("description", intend=1, close=FALSE, file=file)
+    .writeXmlTag("title", text=.createMsdTitle(file), intend=2, file=file)
+    .writeXmlTag("date", attrs=c(value=.sanitize(date())),
+                 intend=2, file=file)
+    .writeXmlTag("operator", attrs=c(value=.sanitize(x@metaData$owner)), 
+                 intend=2, file=file)
+    .writeXmlTag("contact", attrs=c(value=.sanitize(x@metaData$owner)),
+                 intend=2, file=file)
+    .writeXmlTag("institution", 
+                 attrs=c(value=.sanitize(x@metaData$institution)),
+                 intend=2, file=file)
+    .writeXmlTag("instrument", attrs=c(value=.sanitize(x@metaData$instrument)),
+                 intend=2, file=file)
+    .writeXmlTag("notes", .sanitize(paste(x@metaData$comments, collapse="\n")),
+                 intend=2, file=file)
+  .writeCloseXmlTag("description", intend=1, file=file)
 }
 
-.writeMsdSpectrum <- function(x, xmlDoc) {
+.writeMsdSpectrum <- function(x, file) {
   polarity <- paste(x@metaData$ionizationMode, x@metaData$polarity)
 
   if (length(polarity)) {
@@ -56,33 +67,32 @@
     polarity <- ""
   }
 
-  xmlDoc$addTag("spectrum", attrs=c(points=length(x),
+  .writeXmlTag("spectrum", attrs=c(points=length(x),
                                     msLevel=ifelse(is.null(x@metaData$msLevel),
                                                    1, x@metaData$msLevel),
-                                    polarity=polarity), close=FALSE)
-    xmlDoc <- .writeMsdArray(x@mass, name="mzArray", xmlDoc=xmlDoc)
-    xmlDoc <- .writeMsdArray(x@intensity, name="intArray", xmlDoc=xmlDoc)
-  xmlDoc$closeTag() # spectrum
-
-  return(xmlDoc)
+                                    polarity=polarity), close=FALSE,
+               intend=1, file=file)
+    .writeMsdArray(x@mass, name="mzArray", file=file)
+    .writeMsdArray(x@intensity, name="intArray", file=file)
+  .writeCloseXmlTag("spectrum", intend=1, file=file)
 }
 
-.writeMsdArray <- function(x, name, xmlDoc) {
-  xmlDoc$addTag(name, .base64encode(x, size=8, compressionType="gzip"),
-                attrs=c(precision="64", compression="zlib",
-                        endian=.Platform$endian))
-  return(xmlDoc)
+.writeMsdArray <- function(x, name, file) {
+  .writeXmlTag(name, text=.base64encode(x, size=8, compressionType="gzip"),
+               attrs=c(precision="64", compression="zlib",
+                       endian=.Platform$endian), intend=2, file=file)
 }
 
-.writeMsdPeakList <- function(x, xmlDoc) {
-  xmlDoc$addTag("peaklist", close=FALSE)
+.writeMsdPeakList <- function(x, file) {
+  .writeXmlTag("peaklist", close=FALSE, intend=1, file=file)
 
-  for (i in seq(along=x@mass)) {
-    xmlDoc$addTag("peak", attrs=c(mz=x@mass[i], intensity=x@intensity[i],
-                                  baseline=0, sn=x@snr[i]))
-  }
-  xmlDoc$closeTag() # peaklist
+  cat(paste("  <peak mz=\"", x@mass, "\" intensity=\"", x@intensity, 
+            "\" baseline=\"0\" sn=\"", x@snr,
+      "\"/>\n", sep=""), file=file, sep="", append=TRUE)
 
-  return(xmlDoc)
+  .writeCloseXmlTag("peaklist", intend=1, file=file)
 }
 
+.createMsdTitle <- function(file) {
+  return(.sanitize(.withoutFileExtension(basename(summary(file)$description))))
+}

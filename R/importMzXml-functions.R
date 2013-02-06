@@ -18,10 +18,6 @@
 
 #' @keywords internal
 .importMzXml <- function(file, verbose=FALSE, ...) {
-
-  if (!require(readMzXmlData)) {
-    stop("Could not load package ", sQuote("readMzXmlData"), ".")
-  }
   
   s <- readMzXmlData:::.readMzXmlFile(mzXmlFile=file, 
                                       verbose=verbose, ...)

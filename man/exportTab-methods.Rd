@@ -1,4 +1,4 @@
-\name{exportTab}
+\name{exportTab,AbstractMassObject-method}
 \alias{exportCsv}
 \alias{exportCsv,AbstractMassObject-method}
 \alias{exportCsv,list-method}
@@ -6,6 +6,17 @@
 \alias{exportTab,AbstractMassObject-method}
 \alias{exportTab,list-method}
 \title{Export to text files}
+\usage{
+  \S4method{exportTab}{AbstractMassObject}(x, file,
+    force=FALSE, \ldots)
+
+  \S4method{exportTab}{list}(x, path, force=FALSE, \ldots)
+
+  \S4method{exportCsv}{AbstractMassObject}(x, file,
+    force=FALSE, \ldots)
+
+  \S4method{exportCsv}{list}(x, path, force=FALSE, \ldots)
+}
 \arguments{
   \item{x}{a
   \code{\link[MALDIquant]{AbstractMassObject-class}} object

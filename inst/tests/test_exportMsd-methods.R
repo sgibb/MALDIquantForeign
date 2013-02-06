@@ -24,7 +24,7 @@ m <- createMassSpectrum(mass=1:5, intensity=6:10,
 p <- createMassPeaks(mass=4:5, intensity=9:10, snr=1:2)
 
 msd <- c(
-"<?xml version=\"1.0\"?>",
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>",
 "<mSD version=\"2.2\">",
 " <description>",
 "  <title>tmp.msd</title>",
@@ -61,8 +61,13 @@ test_that("exportMsd,list", {
   tmp <- tempdir()
   spectra <- list(m, m)
   peaks <- list(p, p)
-  MALDIquantForeign:::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
+  MALDIquantForeign::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
   expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4, 5)], msd[-c(4, 5)])
   expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4, 5)], msd[-c(4, 5)])
 })
 
+test_that(".createMsdTitle", {
+  f <- file(file.path(tempdir(), "test.msd"))
+  expect_true(MALDIquantForeign:::.createMsdTitle(f) == "test")
+  close(f)
+})

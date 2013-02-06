@@ -1,8 +1,15 @@
-\name{export}
+\name{export,AbstractMassObject-method}
 \alias{export}
 \alias{export,AbstractMassObject-method}
 \alias{export,list-method}
 \title{Export files}
+\usage{
+  \S4method{export}{AbstractMassObject}(x, file,
+    type="auto", force=FALSE, \ldots)
+
+  \S4method{export}{list}(x, path, type, force=FALSE,
+    \ldots)
+}
 \arguments{
   \item{x}{a
   \code{\link[MALDIquant]{AbstractMassObject-class}} object

@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -19,7 +19,7 @@
 #' Export files
 #'
 #' This function provides a general interface to export
-#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g.
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}})
 #' into different file formats.
@@ -32,12 +32,15 @@
 #'  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
 #' }
 #'
-#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
+#' @usage
+#' \S4method{export}{AbstractMassObject}(x, file, type="auto", force=FALSE, \ldots)
+#'
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a
 #'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
 #'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
-#' @param type \code{character}, file format. If \code{type} is set to 
+#' @param type \code{character}, file format. If \code{type} is set to
 #'  \dQuote{auto} the file extension is used.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
@@ -45,7 +48,7 @@
 #'
 #' @seealso
 #' \code{\link[MALDIquant]{MassPeaks-class}},
-#' \code{\link[MALDIquant]{MassSpectrum-class}} 
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
@@ -58,16 +61,17 @@
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
 #' ## export a single spectrum
-#' export(s[[1]], file="spectrum.csv") 
+#' export(s[[1]], file="spectrum.csv")
 #' ## identical to exportCsv(s[[1]], file="spectrum.csv")
 #'
 #' ## export a list of spectra
-#' export(s, path="spectra", type="csv") 
+#' export(s, path="spectra", type="csv")
 #' ## identical to exportCsv(s, path="spectra")
 #' }
 #'
-#' @aliases export,AbstractMassObject-method export,list-method
+#' @aliases export export,AbstractMassObject-method export,list-method
 #' @rdname export-methods
+#' @docType methods
 #' @export
 setMethod(f="export",
   signature=signature(x="AbstractMassObject"),
@@ -92,6 +96,8 @@ setMethod(f="export",
   }
 })
 
+#' @usage
+#' \S4method{export}{list}(x, path, type, force=FALSE, \ldots)
 #' @rdname export-methods
 #' @export
 setMethod(f="export",
@@ -101,7 +107,11 @@ setMethod(f="export",
   stopifnot(isMassObjectList(x))
 
   if (!file.exists(path) && force) {
-    dir.create(path, showWarnings=FALSE, recursive=TRUE)  
+    dir.create(path, showWarnings=FALSE, recursive=TRUE)
+  }
+
+  if (!file.exists(path)) {
+    stop("Directory ", sQuote(path), " doesn't exist!")
   }
 
   if (!file.info(path)$isdir) {
@@ -120,12 +130,12 @@ setMethod(f="export",
   } else {
     filenames <- .composeFilename(x, fileExtension=exportFormats$extension[i])
     filenames <- file.path(path, filenames)
-     
+
     optArgs <- list(...)
     peaks <- list()
 
     if (hasArg(peaks)) {
-      peaks <- optArgs$peaks 
+      peaks <- optArgs$peaks
       optArgs$peaks <- NULL
     }
 
@@ -144,8 +154,8 @@ setMethod(f="export",
 
 #' Export to text files
 #'
-#' This function exports 
-#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
+#' This function exports
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g.
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}})
 #' into different text file formats.
@@ -155,7 +165,10 @@ setMethod(f="export",
 #' with different defaults (\code{sep="\t"} in \code{exportTab} and
 #' \code{sep=","} in \code{exportCsv}).
 #'
-#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a 
+#' @usage
+#' \S4method{exportTab}{AbstractMassObject}(x, file, force=FALSE, \ldots)
+#'
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a
 #'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
@@ -180,15 +193,16 @@ setMethod(f="export",
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
 #' ## export a single spectrum
-#' exportTab(s[[1]], file="spectrum.tab") 
+#' exportTab(s[[1]], file="spectrum.tab")
 #'
 #' ## export a list of spectra and use ; as separator
-#' exportCsv(s, path="spectra", sep=";", force=TRUE) 
+#' exportCsv(s, path="spectra", sep=";", force=TRUE)
 #' }
 #'
-#' @aliases exportTab,AbstractMassObject-method exportTab,list-method
-#' exportCsv,AbstractMassObject-method exportCsv,list-method
+#' @aliases exportTab exportTab,AbstractMassObject-method exportTab,list-method
+#' exportCsv exportCsv,AbstractMassObject-method exportCsv,list-method
 #' @rdname exportTab-methods
+#' @docType methods
 #' @export
 setMethod(f="exportTab",
           signature=signature(x="AbstractMassObject"),
@@ -196,6 +210,8 @@ setMethod(f="exportTab",
   export(x, file=file, type="tab", force=force, ...)
 })
 
+#' @usage
+#' \S4method{exportTab}{list}(x, path, force=FALSE, \ldots)
 #' @rdname exportTab-methods
 #' @export
 setMethod(f="exportTab",
@@ -204,6 +220,8 @@ setMethod(f="exportTab",
   export(x, path=path, type="tab", force=force, ...)
 })
 
+#' @usage
+#' \S4method{exportCsv}{AbstractMassObject}(x, file, force=FALSE, \ldots)
 #' @rdname exportTab-methods
 #' @export
 setMethod(f="exportCsv",
@@ -212,6 +230,8 @@ setMethod(f="exportCsv",
   export(x, file=file, type="csv", force=force, ...)
 })
 
+#' @usage
+#' \S4method{exportCsv}{list}(x, path, force=FALSE, \ldots)
 #' @rdname exportTab-methods
 #' @export
 setMethod(f="exportCsv",
@@ -222,18 +242,21 @@ setMethod(f="exportCsv",
 
 #' Export to MSD files
 #'
-#' This function exports 
-#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g. 
+#' This function exports
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g.
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}})
 #' into mMass MSD files.
 #'
-#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a 
+#' @usage
+#' \S4method{exportMsd}{MassSpectrum}(x, file, force=FALSE, peaks, \ldots)
+#'
+#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
 #'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
 #'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
-#' @param peaks a \code{\link[MALDIquant]{MassPeaks-class}} object or a 
+#' @param peaks a \code{\link[MALDIquant]{MassPeaks-class}} object or a
 #'  \code{list} of \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
@@ -258,23 +281,22 @@ setMethod(f="exportCsv",
 #'           createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 #'
 #' ## export a single spectrum
-#' exportMsd(s[[1]], file="spectrum.msd") 
+#' exportMsd(s[[1]], file="spectrum.msd")
 #'
 #' ## export a single spectrum with corresponding peaks
-#' exportMsd(s[[1]], file="spectrum.msd", peaks=p[[1]]) 
+#' exportMsd(s[[1]], file="spectrum.msd", peaks=p[[1]])
 #'
 #' ## export a list of spectra with corresponding peaks
-#' exportMsd(s, path="spectra", peaks=p, force=TRUE) 
+#' exportMsd(s, path="spectra", peaks=p, force=TRUE)
 #' }
 #'
-#' @aliases exportMsd,MassSpectrum-method exportMsd,list-method
+#' @aliases exportMsd exportMsd,MassSpectrum-method exportMsd,list-method
 #' @rdname exportMsd-methods
+#' @docType methods
 #' @export
 setMethod(f="exportMsd",
           signature=signature(x="MassSpectrum"),
           definition=function(x, file, force=FALSE, peaks, ...) {
-  stopifnot(isMassSpectrum(x))
-
   if (!missing(peaks)) {
     stopifnot(isMassPeaks(peaks))
     export(x, file=file, type="msd", force=force, peaks=peaks,  ...)
@@ -283,6 +305,8 @@ setMethod(f="exportMsd",
   }
 })
 
+#' @usage
+#' \S4method{exportMsd}{list}(x, path, force=FALSE, peaks, \ldots)
 #' @rdname exportMsd-methods
 #' @export
 setMethod(f="exportMsd",

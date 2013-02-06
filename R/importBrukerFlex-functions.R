@@ -19,10 +19,6 @@
 #' @keywords internal
 .importBrukerFlex <- function(file, verbose=FALSE, ...) {
 
-  if (!require(readBrukerFlexData)) {
-    stop("Could not load package ", sQuote("readBrukerFlexData"), ".")
-  }
-  
   s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
                                               ...)
   return(list(createMassSpectrum(mass=s$spectrum$mass,
