@@ -19,7 +19,7 @@
     stop("No permissions to write into ", sQuote(file), "!")
   }
 
-  ## file handler
+  ## file handle
   f <- file(file, open="wt", encoding=encoding)
 
   ## header
@@ -44,22 +44,22 @@
     .writeXmlTag("title", text=.createMsdTitle(file), intend=2, file=file)
     .writeXmlTag("date", attrs=c(value=.sanitize(date())),
                  intend=2, file=file)
-    .writeXmlTag("operator", attrs=c(value=.sanitize(x@metaData$owner)), 
+    .writeXmlTag("operator", attrs=c(value=.sanitize(metaData(x)$owner)),
                  intend=2, file=file)
-    .writeXmlTag("contact", attrs=c(value=.sanitize(x@metaData$owner)),
+    .writeXmlTag("contact", attrs=c(value=.sanitize(metaData(x)$owner)),
                  intend=2, file=file)
-    .writeXmlTag("institution", 
-                 attrs=c(value=.sanitize(x@metaData$institution)),
+    .writeXmlTag("institution",
+                 attrs=c(value=.sanitize(metaData(x)$institution)),
                  intend=2, file=file)
-    .writeXmlTag("instrument", attrs=c(value=.sanitize(x@metaData$instrument)),
+    .writeXmlTag("instrument", attrs=c(value=.sanitize(metaData(x)$instrument)),
                  intend=2, file=file)
-    .writeXmlTag("notes", .sanitize(paste(x@metaData$comments, collapse="\n")),
+    .writeXmlTag("notes", .sanitize(paste(metaData(x)$comments, collapse="\n")),
                  intend=2, file=file)
   .writeCloseXmlTag("description", intend=1, file=file)
 }
 
 .writeMsdSpectrum <- function(x, file) {
-  polarity <- paste(x@metaData$ionizationMode, x@metaData$polarity)
+  polarity <- paste(metaData(x)$ionizationMode, metaData(x)$polarity)
 
   if (length(polarity)) {
     polarity <- ifelse(grepl(pattern="+|positive", x=polarity), "1", "-1")
@@ -68,12 +68,12 @@
   }
 
   .writeXmlTag("spectrum", attrs=c(points=length(x),
-                                    msLevel=ifelse(is.null(x@metaData$msLevel),
-                                                   1, x@metaData$msLevel),
+                                    msLevel=ifelse(is.null(metaData(x)$msLevel),
+                                                   1, metaData(x)$msLevel),
                                     polarity=polarity), close=FALSE,
                intend=1, file=file)
-    .writeMsdArray(x@mass, name="mzArray", file=file)
-    .writeMsdArray(x@intensity, name="intArray", file=file)
+    .writeMsdArray(mass(x), name="mzArray", file=file)
+    .writeMsdArray(intensity(x), name="intArray", file=file)
   .writeCloseXmlTag("spectrum", intend=1, file=file)
 }
 
@@ -86,8 +86,8 @@
 .writeMsdPeakList <- function(x, file) {
   .writeXmlTag("peaklist", close=FALSE, intend=1, file=file)
 
-  cat(paste("  <peak mz=\"", x@mass, "\" intensity=\"", x@intensity, 
-            "\" baseline=\"0\" sn=\"", x@snr,
+  cat(paste("  <peak mz=\"", mass(x), "\" intensity=\"", intensity(x),
+            "\" baseline=\"0\" sn=\"", snr(x),
       "\"/>\n", sep=""), file=file, sep="", append=TRUE)
 
   .writeCloseXmlTag("peaklist", intend=1, file=file)
