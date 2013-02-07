@@ -92,8 +92,7 @@ setMethod(f="export",
 
   onefileSupport <- exportFormats$type[exportFormats$onefile]
   isFile <- (missing(type) &&
-             tolower(.fileExtension(path)) %in% onefileSupport) ||
-             type %in% onefileSupport
+             tolower(.fileExtension(path)) %in% onefileSupport)
 
   if (isFile) {
     return(.exportToFile(x=x, file=path, type=type, force=force, ...))
