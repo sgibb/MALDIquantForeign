@@ -23,7 +23,8 @@ mzML <- c(
 "  </sourceFileList>",
 " </fileDescription>",
 " <softwareList count=\"1\">",
-"  <software id=\"MALDIquantForeign\" version=\"0.2.4\"/>",
+paste("  <software id=\"MALDIquantForeign\" version=\"",
+      packageVersion("MALDIquantForeign"), "\"/>", sep=""),
 " </softwareList>",
 " <instrumentConfigurationList count=\"1\">",
 "  <instrumentConfiguration id=\"IC0\"/>",
@@ -73,9 +74,9 @@ test_that("exportMzMl,list", {
   tmp <- tempdir()
   spectra <- list(m, m)
   MALDIquantForeign::exportMzMl(spectra, path=tmp, force=TRUE)
-  expect_equal(readLines(file.path(tmp, "TESTS.mzML")),
-               sub(pattern="id=\"tmp\"", replacement="id=\"TESTS\"", x=mzML))
   expect_equal(readLines(file.path(tmp, "TESTS_1.mzML")),
                sub(pattern="id=\"tmp\"", replacement="id=\"TESTS_1\"", x=mzML))
+  expect_equal(readLines(file.path(tmp, "TESTS_2.mzML")),
+               sub(pattern="id=\"tmp\"", replacement="id=\"TESTS_2\"", x=mzML))
 })
 
