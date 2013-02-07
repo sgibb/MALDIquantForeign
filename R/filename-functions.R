@@ -14,7 +14,7 @@
 ## See <http://www.gnu.org/licenses/>
 
 #' This function removes spaces and punctuations from filenames.
-#' 
+#'
 #' @return filename
 #'
 #' @keywords internal
@@ -26,7 +26,7 @@
 #' Determine file extension
 #'
 #' @param x \code{character}, filename.
-#' 
+#'
 #' @return \code{character}, file extension.
 #'
 #' @seealso \code{\link[MALDIquant]{MassSpectrum-class}}
@@ -59,7 +59,7 @@
 
   for (i in seq(along=l)) {
     cols <- 1:nCol[i]
-    m[i, cols] <- l[[i]] 
+    m[i, cols] <- l[[i]]
   }
 
   isIdentical <- apply(m, 2, function(co)all(co[1] == co))
@@ -83,11 +83,22 @@
                                  sep="_") {
   filenames <- .cutFilenames(.withoutFileExtension(x))
   filenames <- .cleanFilename(filenames)
-  
+
   empty <- nchar(filenames) <= 0
   filenames[empty] <- seq_along(empty)
 
-  filenames <- make.unique(filenames, sep=sep)
+  filenames <- .make.unique(filenames, sep=sep)
   return(paste(filenames, fileExtension, sep="."))
+}
+
+#' @keywords internal
+## let make unique start by 1
+.make.unique <- function(x, sep="_") {
+  u <- unique(x)
+  if (length(u) == length(x)) {
+    return(x)
+  } else {
+    return(make.unique(c(u, x), sep=sep)[-c(seq(u))])
+  }
 }
 
