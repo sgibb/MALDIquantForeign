@@ -1,28 +1,15 @@
-## Copyright 2012 Sebastian Gibb
-## <mail@sebastiangibb.de>
-##
-## This file is part of MALDIquantForeign for R and related languages.
-##
-## MALDIquantForeign is free software: you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation, either version 3 of the License, or
-## (at your option) any later version.
-##
-## MALDIquantForeign is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-##
-## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
-
-context("importTab-functions")
+context("importTab")
 
 test_that("importTab", {
   ## suppress warnings to avoid creation of Rplots.pdf
   expect_error(suppressWarnings(MALDIquantForeign:::.importTab("tmp.tmp")))
 
-  s <- MALDIquantForeign:::.importTab(file.path("data", "ascii.txt"))
+  path <- normalizePath(file.path("data", "ascii.txt"))
+  s <- MALDIquantForeign:::.importTab(path)
+
+  expect_equal(s, import(path))
+  expect_equal(s, importTxt(path))
+  expect_equal(s, import(path, type="txt"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
@@ -33,15 +20,23 @@ test_that("importCsv", {
   ## suppress warnings to avoid creation of Rplots.pdf
   expect_error(suppressWarnings(MALDIquantForeign:::.importCsv("tmp.tmp")))
 
-  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv1.csv"),
-                                      sep=",", header=TRUE)
+  path <- normalizePath(file.path("data", "csv1.csv"))
+  s <- MALDIquantForeign:::.importCsv(path, sep=",", header=TRUE)
+
+  expect_equal(s, import(path, sep=",", header=TRUE))
+  expect_equal(s, importCsv(path, sep=",", header=TRUE))
+  expect_equal(s, import(path, type="csv", sep=",", header=TRUE))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.importCsv(file.path("data", "csv1.csv"))
+  s <- MALDIquantForeign:::.importCsv(path)
+
+  expect_equal(s, import(path))
+  expect_equal(s, importCsv(path))
+  expect_equal(s, import(path, type="csv"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
