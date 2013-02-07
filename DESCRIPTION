@@ -45,3 +45,4 @@ Collate:
     'sanitize-functions.R'
     'xml-functions.R'
     'mzMl-functions.R'
+    'export-functions.R'

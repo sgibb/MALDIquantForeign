@@ -76,24 +76,7 @@
 setMethod(f="export",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file, type="auto", force=FALSE, ...) {
-
-  if (file.exists(file) && !force) {
-    stop("File already exists! Use ", sQuote("force=TRUE"), " to overwrite it.")
-  }
-
-  if (missing(type) || pmatch(tolower(type), "auto", nomatch=0,
-                              duplicates.ok=FALSE)) {
-    type <- .fileExtension(file)
-  }
-
-  i <- pmatch(tolower(type), exportFormats$type, nomatch=0, duplicates.ok=FALSE)
-
-  if (i <= 0) {
-    stop("File type ", sQuote(type), " is not supported!")
-  } else {
-    handler <- exportFormats$handler[i]
-    return(do.call(handler, list(x=x, file=file, ...)))
-  }
+  return(.exportToFile(x=x, file=file, type=type, force=force, ...))
 })
 
 #' @usage
@@ -103,53 +86,7 @@ setMethod(f="export",
 setMethod(f="export",
   signature=signature(x="list"),
   definition=function(x, path, type, force=FALSE, ...) {
-
-  stopifnot(isMassObjectList(x))
-
-  if (!file.exists(path) && force) {
-    dir.create(path, showWarnings=FALSE, recursive=TRUE)
-  }
-
-  if (!file.exists(path)) {
-    stop("Directory ", sQuote(path), " doesn't exist!")
-  }
-
-  if (!file.info(path)$isdir) {
-    stop(sQuote(path), " is no directory!")
-  }
-
-  ## stop if directory isn't writeable
-  if (file.access(path, 2) != 0) {
-    stop("No permissions to write into ", sQuote(path), "!")
-  }
-
-  i <- pmatch(tolower(type), exportFormats$type, nomatch=0, duplicates.ok=FALSE)
-
-  if (i <= 0) {
-    stop("File type ", sQuote(type), " is not supported!")
-  } else {
-    filenames <- .composeFilename(x, fileExtension=exportFormats$extension[i])
-    filenames <- file.path(path, filenames)
-
-    optArgs <- list(...)
-    peaks <- list()
-
-    if (hasArg(peaks)) {
-      peaks <- optArgs$peaks
-      optArgs$peaks <- NULL
-    }
-
-    for (i in seq(along=x)) {
-      arguments <- list(x=x[[i]], file=filenames[i], type=type, force=force)
-      arguments <- modifyList(arguments, optArgs)
-
-      if (length(peaks)) {
-        arguments$peaks <- peaks[[i]]
-      }
-      do.call(export, arguments)
-    }
-  }
-  invisible()
+  return(.exportToDir(x=x, path=path, type=type, force=FALSE, ...))
 })
 
 #' Export to text files
