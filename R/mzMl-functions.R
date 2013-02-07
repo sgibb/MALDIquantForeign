@@ -78,12 +78,13 @@
 }
 
 .writeMzMlSourceFileList <- function(x, file) {
-  files <- unique(vapply(x, function(s)metaData(s)$file, character(1)))
-  dname <- dirname(files)
-  bname <- basename(files)
-  ext <- tolower(.fileExtension(bname))
+  files <- unique(unlist(lapply(x, function(s)metaData(s)$file)))
 
   if (length(files)) {
+    dname <- dirname(files)
+    bname <- basename(files)
+    ext <- tolower(.fileExtension(bname))
+
     .writeXmlTag("sourceFileList", attrs=c(count=length(files)), intend=2,
                  close=FALSE, file=file)
     for (i in seq(along=files)) {
@@ -146,7 +147,7 @@
                    attrs=c(order=1, softwareRef="MALDIquantForeign"),
                    close=FALSE, file=file)
         .writeXmlTag("userParam", intend=4,
-                     attrs=c(name="MALDIquant object(s) exported to mzXML",
+                     attrs=c(name="MALDIquant object(s) exported to mzML",
                              value=""), file=file)
       .writeCloseXmlTag("processingMethod", intend=3, file=file)
     .writeCloseXmlTag("dataProcessing", intend=2, file=file)
