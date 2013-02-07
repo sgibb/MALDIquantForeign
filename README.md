@@ -22,4 +22,5 @@ install.packages("MALDIquantForeign")
 ## Export
 - tab, csv
 - [mMass](http://mmass.org) msd files
+- [mzML](http://psidev.info/mzml_1_0_0%20)
 
