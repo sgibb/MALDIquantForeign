@@ -37,8 +37,6 @@
 }
 
 .exportToDir <- function(x, path, type, force=FALSE, ...) {
-  stopifnot(isMassObjectList(x))
-
   if (!file.exists(path) && force) {
     dir.create(path, showWarnings=FALSE, recursive=TRUE)
   }

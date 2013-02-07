@@ -52,7 +52,7 @@
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
 #' library("MALDIquantForeign")
-#' 
+#'
 #' supportedFileFormats()
 #'
 #' @rdname supportedFileFormats-functions
@@ -65,7 +65,7 @@ supportedFileFormats <- function() {
 #' @keywords internal
 importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "mzxml", "mzml"),
                             pattern=c("^.*\\.txt$", "^.*\\.tab$",
-                                      "^.*\\.csv$", "^fid$", 
+                                      "^.*\\.csv$", "^fid$",
                                       "^.*\\.mz[Xx][Mm][Ll]$",
                                       "^.*\\.mz[Mm][Ll]$"),
                             handler=c(rep(".importTab", 2),
@@ -74,9 +74,10 @@ importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "mzxml", "mzml"),
                             stringsAsFactors=FALSE)
 
 #' @keywords internal
-exportFormats <- data.frame(type=c("tab", "csv", "msd"),
-                            extension=c("tab", "csv", "msd"),
-                            handler=c(".exportTab", ".exportCsv", 
-                                      ".exportMsd"),
+exportFormats <- data.frame(type=c("tab", "csv", "msd", "mzml"),
+                            extension=c("tab", "csv", "msd", "mzML"),
+                            onefile=c(FALSE, FALSE, FALSE, TRUE),
+                            handler=c(".exportTab", ".exportCsv",
+                                      ".exportMsd", ".exportMzMl"),
                             stringsAsFactors=FALSE)
 

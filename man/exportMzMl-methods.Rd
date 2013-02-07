@@ -1,14 +1,13 @@
-\name{exportMsd,MassSpectrum-method}
-\alias{exportMsd}
-\alias{exportMsd,list-method}
-\alias{exportMsd,MassSpectrum-method}
-\title{Export to MSD files}
+\name{exportMzMl,MassSpectrum-method}
+\alias{exportMzMl}
+\alias{exportMzMl,list-method}
+\alias{exportMzMl,MassSpectrum-method}
+\title{Export to mzML files}
 \usage{
-  \S4method{exportMsd}{MassSpectrum}(x, file, force=FALSE,
-    peaks, \ldots)
-
-  \S4method{exportMsd}{list}(x, path, force=FALSE, peaks,
+  \S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE,
     \ldots)
+
+  \S4method{exportMzMl}{list}(x, path, force=FALSE, \ldots)
 }
 \arguments{
   \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
@@ -22,10 +21,6 @@
   \code{\link[MALDIquant]{AbstractMassObject-class}} would
   be exported.}
 
-  \item{peaks}{a \code{\link[MALDIquant]{MassPeaks-class}}
-  object or a \code{list} of
-  \code{\link[MALDIquant]{MassPeaks-class}} objects.}
-
   \item{force}{\code{logical}, If \code{TRUE} the
   \code{file} would be overwritten or \code{path} would be
   created.}
@@ -38,7 +33,7 @@
   \code{\link[MALDIquant]{AbstractMassObject-class}}
   objects (e.g.
   \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[MALDIquant]{MassPeaks-class}}) into mMass MSD
+  \code{\link[MALDIquant]{MassPeaks-class}}) into mzML
   files.
 }
 \examples{
@@ -48,17 +43,12 @@ library("MALDIquantForeign")
 
 s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
-p <- list(createMassPeaks(mass=4:5, intensity=4:5, snr=1:2),
-          createMassPeaks(mass=4:5, intensity=4:5, snr=1:2))
 
 ## export a single spectrum
-exportMsd(s[[1]], file="spectrum.msd")
-
-## export a single spectrum with corresponding peaks
-exportMsd(s[[1]], file="spectrum.msd", peaks=p[[1]])
+exportMzMl(s[[1]], file="spectrum.mzML")
 
 ## export a list of spectra with corresponding peaks
-exportMsd(s, path="spectra", peaks=p, force=TRUE)
+exportMzMl(s, path="spectra.mzMl")
 }
 }
 \author{
@@ -66,7 +56,8 @@ exportMsd(s, path="spectra", peaks=p, force=TRUE)
 }
 \references{
   \url{http://strimmerlab.org/software/maldiquant/}, \cr
-  mMass homepage: \url{http://mmass.org/}
+  HUPO Proteomics Standards Inititative mzML 1.1.0
+  Specification: \url{http://www.psidev.info/mzml_1_0_0}
 }
 \seealso{
   \code{\link[MALDIquant]{MassPeaks-class}},

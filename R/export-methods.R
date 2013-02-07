@@ -86,7 +86,19 @@ setMethod(f="export",
 setMethod(f="export",
   signature=signature(x="list"),
   definition=function(x, path, type, force=FALSE, ...) {
-  return(.exportToDir(x=x, path=path, type=type, force=FALSE, ...))
+
+  stopifnot(isMassObjectList(x))
+
+  onefileSupport <- exportFormats$type[exportFormats$onefile]
+  isFile <- (missing(type) &&
+             tolower(.fileExtension(path)) %in% onefileSupport) ||
+             type %in% onefileSupport
+
+  if (isFile) {
+    return(.exportToFile(x=x, file=path, type=type, force=force, ...))
+  } else {
+    return(.exportToDir(x=x, path=path, type=type, force=force, ...))
+  }
 })
 
 #' Export to text files
@@ -205,7 +217,7 @@ setMethod(f="exportCsv",
 #'
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
-#' mMass homepage \url{http://mmass.org/}
+#' mMass homepage: \url{http://mmass.org/}
 #' @examples
 #'
 #' \dontrun{
@@ -257,5 +269,69 @@ setMethod(f="exportMsd",
   } else {
     export(x, path=path, type="msd", force=force, ...)
   }
+})
+
+#' Export to mzML files
+#'
+#' This function exports
+#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g.
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}})
+#' into mzML files.
+#'
+#' @usage
+#' \S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
+#'
+#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
+#'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' @param file \code{character}, file name.
+#' @param path \code{character}, path to directory in which the \code{list} of
+#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
+#' @param force \code{logical}, If \code{TRUE} the \code{file} would be
+#'  overwritten or \code{path} would be created.
+#' @param \ldots arguments to be passed to \code{\link[utils]{write.table}}.
+#'
+#' @seealso
+#' \code{\link[MALDIquant]{MassPeaks-class}},
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#'
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' HUPO Proteomics Standards Inititative mzML 1.1.0 Specification:
+#' \url{http://www.psidev.info/mzml_1_0_0}
+#' @examples
+#'
+#' \dontrun{
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+#'           createMassSpectrum(mass=1:5, intensity=1:5))
+#'
+#' ## export a single spectrum
+#' exportMzMl(s[[1]], file="spectrum.mzML")
+#'
+#' ## export a list of spectra with corresponding peaks
+#' exportMzMl(s, path="spectra.mzMl")
+#' }
+#'
+#' @aliases exportMzMl exportMzMl,MassSpectrum-method exportMzMl,list-method
+#' @rdname exportMzMl-methods
+#' @docType methods
+#' @export
+setMethod(f="exportMzMl",
+          signature=signature(x="MassSpectrum"),
+          definition=function(x, file, force=FALSE, ...) {
+  export(x, file=file, type="mzml", force=force, ...)
+})
+
+#' @usage
+#' \S4method{exportMzMl}{list}(x, path, force=FALSE, \ldots)
+#' @rdname exportMzMl-methods
+#' @export
+setMethod(f="exportMzMl",
+          signature=signature(x="list"),
+          definition=function(x, path, force=FALSE, ...) {
+  export(x, path=path, type="mzml", force=force, ...)
 })
 

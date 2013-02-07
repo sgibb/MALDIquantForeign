@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.4 [2013-02-07]:
+- Add basic support for mzML export.
+
 Version 0.2.3 [2013-02-06]:
 - Add missing "usage" section in export methods manual pages.
 
