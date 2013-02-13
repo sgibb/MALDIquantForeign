@@ -17,7 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.list.files <- function(path, pattern, recursive=TRUE, ignore.case=FALSE) {
+.list.files <- function(path, pattern, recursive=TRUE, ignore.case=TRUE) {
   return(normalizePath(list.files(path=path, pattern=pattern,
                                   recursive=recursive, ignore.case=ignore.case,
                                   full.names=TRUE)))
