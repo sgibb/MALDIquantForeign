@@ -16,6 +16,7 @@ install.packages("MALDIquantForeign")
 ## Import
 - tab, txt, csv
 - Bruker Daltonics *flex series files
+- Ciphergen XML files
 - [mzXML](http://tools.proteomecenter.org/wiki/index.php?title=Formats:mzXML)
 - [mzML](http://psidev.info/mzml_1_0_0%20)
 

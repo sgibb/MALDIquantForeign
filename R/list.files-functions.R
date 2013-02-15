@@ -24,10 +24,16 @@
 }
 
 #' @keywords internal
-.files <- function(path, pattern, ...) {
+.files <- function(path, pattern, ignore.case=TRUE, ...) {
   isDir <- file.info(path)$isdir
 
   files <- normalizePath(path[!isDir])
-  files <- c(files, .list.files(path=path[isDir], pattern=pattern, ...))
+
+  isMatching <- unlist(regexpr(pattern=pattern, text=basename(files),
+                               ignore.case=ignore.case)) != -1
+
+  files <- files[isMatching]
+  files <- c(files, .list.files(path=path[isDir], pattern=pattern,
+                                ignore.case=ignore.case, ...))
   return(files)
 }

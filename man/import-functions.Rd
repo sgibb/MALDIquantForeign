@@ -37,6 +37,8 @@
   \code{\link[MALDIquantForeign]{importTab}} \cr csv \tab
   \code{\link[MALDIquantForeign]{importCsv}} \cr fid \tab
   \code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
+  ciphergen \tab
+  \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
   mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
   \cr }

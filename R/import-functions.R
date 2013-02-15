@@ -28,19 +28,20 @@
 #'  tab \tab \code{\link[MALDIquantForeign]{importTab}} \cr
 #'  csv \tab \code{\link[MALDIquantForeign]{importCsv}} \cr
 #'  fid \tab \code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
+#'  ciphergen \tab \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
 #'  mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #' }
 #'
 #' \code{pattern}: Sometimes unusual file extensions are used (e.g.
-#' \code{"*.xml"} for mzXML files). In this case a specific 
-#' \code{pattern} could be defined to import files with an unusual file 
-#' extension (e.g. \code{pattern="^.*\\.xml$"} to read all \code{*.xml} 
+#' \code{"*.xml"} for mzXML files). In this case a specific
+#' \code{pattern} could be defined to import files with an unusual file
+#' extension (e.g. \code{pattern="^.*\\.xml$"} to read all \code{*.xml}
 #' files in a directory; see \code{\link[base]{regexp}} for details).
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
-#' @param type \code{character}, file format. If \code{type} is set to 
+#' @param type \code{character}, file format. If \code{type} is set to
 #'  \dQuote{auto} the file extension (if \code{path} is a directory the
 #'  most represented file extension) is used.
 #' @param pattern \code{character}, a regular expression to find files in a
@@ -51,7 +52,7 @@
 #' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
 #'  objects.
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}} 
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
@@ -67,7 +68,7 @@
 #' s <- import(exampleDirectory, type="mzXML")
 #'
 #' ## import tab delimited file with different file extension (default: *.tab)
-#' s <- import(exampleDirectory, type="tab", pattern="^.*\\.txt") 
+#' s <- import(exampleDirectory, type="tab", pattern="^.*\\.txt")
 #'
 #' ## import single mzML file
 #' s <- import(file.path(exampleDirectory, "tiny1.mzML1.1.mzML"))
@@ -88,7 +89,10 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
     stop("File type ", sQuote(type), " is not supported!")
   } else if (i == 0) {
     ## auto
-    return(.importAuto(path=path, pattern=pattern, verbose=verbose, ...))
+    if (!missing(pattern)) {
+      warning("User defined ", sQuote("pattern"), " is ignored in auto-mode.")
+    }
+    return(.importAuto(path=path, verbose=verbose, ...))
   } else {
     ## specific type
     if (missing(pattern)) {
@@ -129,7 +133,7 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 #'                                 package="MALDIquantForeign")
 #'
 #' ## import txt files
-#' s <- importTxt(exampleDirectory) 
+#' s <- importTxt(exampleDirectory)
 #'
 #' ## import csv files
 #' s <- importCsv(exampleDirectory)
@@ -178,7 +182,7 @@ importCsv <- function(path, ...) {
 #' exampleDirectory <- system.file(file.path("tests", "data"),
 #'                                 package="MALDIquantForeign")
 #'
-#' s <- importBrukerFlex(exampleDirectory) 
+#' s <- importBrukerFlex(exampleDirectory)
 #'
 #' @rdname importBrukerFlex-functions
 #' @export
@@ -215,7 +219,7 @@ importBrukerFlex <- function(path, ...) {
 #'                                 package="MALDIquantForeign")
 #'
 #' ## import
-#' s <- importMzXml(exampleDirectory) 
+#' s <- importMzXml(exampleDirectory)
 #'
 #' @rdname importMzXml-functions
 #' @export
@@ -251,11 +255,44 @@ importMzXml <- function(path, ...) {
 #'                                 package="MALDIquantForeign")
 #'
 #' ## import
-#' s <- importMzMl(exampleDirectory) 
+#' s <- importMzMl(exampleDirectory)
 #'
 #' @rdname importMzMl-functions
 #' @export
 importMzMl <- function(path, verbose=FALSE) {
   return(import(path=path, type="mzml", verbose=verbose))
+}
+
+#' Import Ciphergen XML files
+#'
+#' This function imports files in Ciphergen XML file format
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#'
+#' @param path \code{character}, path to directory or file which should be read
+#'  in.
+#' @param verbose \code{logical}, verbose output?
+#'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @examples
+#'
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' ## get example directory
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
+#'
+#' ## import
+#' s <- importCiphergenXml(exampleDirectory)
+#'
+#' @rdname importCiphergenXml-functions
+#' @export
+importCiphergenXml <- function(path, verbose=FALSE) {
+  return(import(path=path, type="ciphergen", verbose=verbose))
 }
 

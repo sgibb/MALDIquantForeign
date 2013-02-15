@@ -21,6 +21,8 @@
   \code{\link[MALDIquantForeign]{importTab}} \cr csv \tab
   \code{\link[MALDIquantForeign]{importCsv}} \cr fid \tab
   \code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
+  ciphergen \tab
+  \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
   mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
   \cr } }
@@ -30,7 +32,8 @@
   \tabular{ll}{ tab \tab
   \code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
   \code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
-  \code{\link[MALDIquantForeign]{exportMsd}} \cr } }
+  \code{\link[MALDIquantForeign]{exportMsd}} \cr mzML \tab
+  \code{\link[MALDIquantForeign]{exportMzMl}} \cr } }
 }
 \examples{
 library("MALDIquantForeign")
