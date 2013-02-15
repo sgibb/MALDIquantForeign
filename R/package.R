@@ -23,24 +23,24 @@
 #'
 #' \tabular{ll}{
 #' Package: \tab MALDIquantForeign \cr
-#' Version: \tab 0.2.5\cr
-#' Date: \tab 2013-02-07\cr
+#' Version: \tab 0.2.6\cr
+#' Date: \tab 2013-02-14\cr
 #' License: \tab GPL (>= 3)\cr
 #' URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 #' }
-#' 
+#'
 #' @docType package
 #' @name MALDIquantForeign-package
 #' @author Sebastian Gibb <\email{mail@@sebastiangibb.de}>
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @keywords package
-#' 
+#'
 #' @import MALDIquant
-#' @import readMzXmlData 
+#' @import readMzXmlData
 #' @importFrom base64enc base64encode
 #' @importFrom digest digest
 #' @importFrom readBrukerFlexData readBrukerFlexFile
-#' @importFrom XML xmlEventParse
+#' @importFrom XML xmlEventParse xmlParse xmlValue xpathApply xpathSApply
 #'
 NULL
 

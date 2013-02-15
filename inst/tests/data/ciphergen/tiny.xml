@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<spectrum>
+	<spectrumName>tiny example</spectrumName>
+	<acquisitionInfo>
+		<setting>
+			<ionSourceVoltage units="V">20000</ionSourceVoltage>
+			<digitizerRate units="Hz">2.5e+008</digitizerRate>
+		</setting>
+  </acquisitionInfo>
+	<processingParameters>
+		<massCalibration>
+			<massCalibrationEquation>Quadratic</massCalibrationEquation>
+			<massCalibrationA>24000000</massCalibrationA>
+			<massCalibrationB>0.0013</massCalibrationB>
+			<massCalibrationT0>0</massCalibrationT0>
+			<massCalibrationU>20000</massCalibrationU>
+      <massCalibrationInfo>hand made</massCalibrationInfo>
+			<spotCorrectionFactor>1</spotCorrectionFactor>
+			<spotCorrectionEnabled>false</spotCorrectionEnabled>
+		</massCalibration>
+  </processingParameters>
+	<tofData>
+		<tofDataSamples>
+    1
+    2
+    3
+    4
+    5
+		</tofDataSamples>
+	</tofData>
+</spectrum>
