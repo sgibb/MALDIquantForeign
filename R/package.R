@@ -31,7 +31,7 @@
 #'
 #' @docType package
 #' @name MALDIquantForeign-package
-#' @author Sebastian Gibb <\email{mail@@sebastiangibb.de}>
+#' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @keywords package
 #'

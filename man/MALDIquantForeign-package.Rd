@@ -14,7 +14,7 @@
   http://strimmerlab.org/software/maldiquant/\cr }
 }
 \author{
-  Sebastian Gibb <\email{mail@sebastiangibb.de}>
+  Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
   \url{http://strimmerlab.org/software/maldiquant/}
