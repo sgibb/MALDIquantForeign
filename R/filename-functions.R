@@ -94,11 +94,13 @@
 #' @keywords internal
 ## let make unique start by 1
 .make.unique <- function(x, sep="_") {
-  u <- unique(x)
-  if (length(u) == length(x)) {
-    return(x)
-  } else {
-    return(make.unique(c(u, x), sep=sep)[-c(seq(u))])
-  }
+  tmp <- lapply(split(x, x), function(y) {
+    n <- length(y)
+    if (n > 1) {
+      fmt <- paste("%s%s%0", floor(log10(n))+1, "d", sep="")
+      y <- sprintf(fmt=fmt, y, sep, 1:n)
+    }
+    return(y)
+  })
+  return(unsplit(tmp, x))
 }
-

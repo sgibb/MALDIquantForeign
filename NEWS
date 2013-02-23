@@ -5,7 +5,8 @@ Version 0.2.6 [2013-02-14]:
 - Add basic import support for Ciphergen XML files.
 
 Version 0.2.5 [2013-02-07]:
-- .make.unique: generates c("a1", "a2") instead of c("a", "a1");
+- .make.unique: generates c("a1", "a2") instead of c("a", "a1") and
+  c("a001", ...,  "a099", "a100") instead of c("a", ..., "a98", "a99");
   affected method: export,list.
 
 Version 0.2.4 [2013-02-07]:

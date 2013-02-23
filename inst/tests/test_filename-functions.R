@@ -42,5 +42,7 @@ test_that(".make.unique", {
   expect_equal(MALDIquantForeign:::.make.unique(LETTERS[1:5]), LETTERS[1:5])
   expect_equal(MALDIquantForeign:::.make.unique(rep(LETTERS[1:5], each=2)),
                paste(rep(LETTERS[1:5], each=2), 1:2, sep="_"))
+  expect_equal(MALDIquantForeign:::.make.unique(rep(LETTERS[1:2], each=10)),
+               sprintf("%s_%02d", rep(LETTERS[1:2], each=10), 1:10))
 })
 
