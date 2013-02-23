@@ -42,8 +42,10 @@
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param type \code{character}, file format. If \code{type} is set to
-#'  \dQuote{auto} the file extension (if \code{path} is a directory the
-#'  most represented file extension) is used.
+#'  \dQuote{auto} MALDIquant tries to detect the correct file type
+#'  automatically. It often depends on the file extension
+#'  (if \code{path} is a directory the most represented file extension is used;
+#'  \code{pattern} argument is ignored).
 #' @param pattern \code{character}, a regular expression to find files in a
 #'  directory (see details).
 #' @param verbose \code{logical}, verbose output?

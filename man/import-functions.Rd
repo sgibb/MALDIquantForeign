@@ -10,9 +10,11 @@
   which should be read in.}
 
   \item{type}{\code{character}, file format. If \code{type}
-  is set to \dQuote{auto} the file extension (if
-  \code{path} is a directory the most represented file
-  extension) is used.}
+  is set to \dQuote{auto} MALDIquant tries to detect the
+  correct file type automatically. It often depends on the
+  file extension (if \code{path} is a directory the most
+  represented file extension is used; \code{pattern}
+  argument is ignored).}
 
   \item{pattern}{\code{character}, a regular expression to
   find files in a directory (see details).}
