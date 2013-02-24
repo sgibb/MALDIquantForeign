@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.7 [2013-02-24]:
+- .files: returns only unique file names;
+  affected functions: all import functions.
+
 Version 0.2.6 [2013-02-14]:
 - Add basic import support for Ciphergen XML files.
 

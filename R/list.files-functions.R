@@ -35,5 +35,5 @@
   files <- files[isMatching]
   files <- c(files, .list.files(path=path[isDir], pattern=pattern,
                                 ignore.case=ignore.case, ...))
-  return(files)
+  return(unique(files))
 }
