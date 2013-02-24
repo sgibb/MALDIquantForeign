@@ -38,13 +38,20 @@
 #' MALDIquantForeign:::.fileExtension(files)
 #'
 .fileExtension <- function(x) {
-  pos <- regexpr(pattern="\\.([[:alnum:]]+)$|(/|\\\\)+[^.\\\\/]+$", text=x)
+  pos <- regexpr(pattern="(\\.tar)?\\.([[:alnum:]]+)$|(/|\\\\)+[^.\\\\/]+$",
+                 text=x)
   return(ifelse(pos > -1L, substring(x, pos+1L), x))
 }
 
 #' @keywords internal
 .withoutFileExtension <- function(x) {
-  return(sub(pattern="\\.[[:alnum:]]+\\.?(gz|bz2|xz)?$|(/|\\\\)+[^.\\\\/]+$",
+  return(sub(pattern="\\.[[:alnum:]]+?$|(/|\\\\)+[^.\\\\/]+$",
+             replacement="", x=.withoutCompressionExtension(x)))
+}
+
+#' @keywords internal
+.withoutCompressionExtension <- function(x) {
+  return(sub(pattern="\\.(zip|gz|bz2|bzip2|xz|lzma)+$",
              replacement="", x=x))
 }
 
