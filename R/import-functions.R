@@ -115,8 +115,12 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
       pattern <- importFormats$pattern[i]
     }
     handler <- importFormats$handler[i]
-    return(unlist(lapply(.files(path=path, pattern=pattern), handler,
-                         verbose=verbose, ...)))
+    s <- unlist(lapply(.files(path=path, pattern=pattern), handler,
+                       verbose=verbose, ...))
+    if (is.null(s)) {
+      stop("Import failed! Unsupported file type?")
+    }
+    return(s)
   }
 }
 
