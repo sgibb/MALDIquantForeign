@@ -33,6 +33,12 @@
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #' }
 #'
+#' \code{path}: In addition to the above mentioned file types the
+#'  following (compressed) archives are supported, too:
+#'  zip, tar, tar.gz, tar.bz2, tar.xz. The archives are uncompressed in a
+#'  temporary directory. Afterwards the \code{\link[MALDIquantForeign]{import}}
+#'  function is called (with \code{type="auto"}).
+#'
 #' \code{pattern}: Sometimes unusual file extensions are used (e.g.
 #' \code{"*.xml"} for mzXML files). In this case a specific
 #' \code{pattern} could be defined to import files with an unusual file
@@ -75,6 +81,9 @@
 #' ## import single mzML file
 #' s <- import(file.path(exampleDirectory, "tiny1.mzML1.1.mzML"))
 #'
+#' ## import gzipped csv file
+#' s <- import(file.path(exampleDirectory, "compressed", "csv1.csv.gz"))
+#'
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
@@ -86,6 +95,11 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 
   i <- pmatch(tolower(type), c("auto", importFormats$type), nomatch=0,
               duplicates.ok=FALSE)-1
+
+  if (any(.isPackedOrCompressed(path))) {
+    path <- .uncompress(path, verbose=verbose)
+    on.exit(.cleanupUncompressingTmpFiles())
+  }
 
   if (i == -1) {
     stop("File type ", sQuote(type), " is not supported!")

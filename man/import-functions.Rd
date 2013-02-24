@@ -45,6 +45,13 @@
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
   \cr }
 
+  \code{path}: In addition to the above mentioned file
+  types the following (compressed) archives are supported,
+  too: zip, tar, tar.gz, tar.bz2, tar.xz. The archives are
+  uncompressed in a temporary directory. Afterwards the
+  \code{\link[MALDIquantForeign]{import}} function is
+  called (with \code{type="auto"}).
+
   \code{pattern}: Sometimes unusual file extensions are
   used (e.g. \code{"*.xml"} for mzXML files). In this case
   a specific \code{pattern} could be defined to import
@@ -69,6 +76,9 @@ s <- import(exampleDirectory, type="tab", pattern="^.*\\\\.txt")
 
 ## import single mzML file
 s <- import(file.path(exampleDirectory, "tiny1.mzML1.1.mzML"))
+
+## import gzipped csv file
+s <- import(file.path(exampleDirectory, "compressed", "csv1.csv.gz"))
 }
 \author{
   Sebastian Gibb

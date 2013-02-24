@@ -1,5 +1,5 @@
 Package: MALDIquantForeign
-Version: 0.2.7
+Version: 0.2.8
 Date: 2013-02-24
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
@@ -49,3 +49,4 @@ Collate:
     'exportMzMl-methods.R'
     'importCiphergenXml-functions.R'
     'parseCiphergenXml.R'
+    'compression-functions.R'

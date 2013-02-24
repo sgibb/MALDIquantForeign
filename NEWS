@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.8 [2013-02-24]:
+- Add uncompression support to import zip/tar.{gz,bz2,xz}-archives.
+
 Version 0.2.7 [2013-02-24]:
 - .files: returns only unique file names;
   affected functions: all import functions.
