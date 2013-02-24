@@ -32,7 +32,7 @@ test_that(".uncompress supports single file compression by gunzip", {
 
 test_that(".uncompress supports tar compression by untar", {
   u <- list.files(MALDIquantForeign:::.uncompress(
-                    file.path("data", "compressed", "csv.tar.xz")),
+                    file.path("data", "compressed", "csv.tar.bz2")),
                   recursive=TRUE, pattern="^.*\\.csv$", full.names=TRUE)[1]
   f <- file.path("data", "csv1.csv")
   expect_identical(readLines(u), readLines(f))
