@@ -46,11 +46,11 @@ test_that(".uncompress supports zip compression by unzip", {
   expect_identical(readLines(u), readLines(f))
 })
 
-test_that(".cleanupUncompressingTmFiles works", {
+test_that(".cleanupUncompressedTmpFiles works", {
   n <- list.files(file.path(tempdir(), "MALDIquantForeign_uncompress"),
                   recursive=TRUE)
   expect_true(length(n) > 0)
-  MALDIquantForeign:::.cleanupUncompressingTmpFiles()
+  MALDIquantForeign:::.cleanupUncompressedTmpFiles()
   expect_false(file.exists(file.path(tempdir(),
                                      "MALDIquantForeign_uncompress")))
 })

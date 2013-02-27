@@ -122,7 +122,7 @@
 }
 
 #' @keywords internal
-.cleanupUncompressingTmpFiles <- function() {
+.cleanupUncompressedTmpFiles <- function() {
   unlink(file.path(tempdir(), "MALDIquantForeign_uncompress"), recursive=TRUE)
 }
 

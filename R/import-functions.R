@@ -98,7 +98,7 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
 
   if (any(.isPackedOrCompressed(path))) {
     path <- .uncompress(path, verbose=verbose)
-    on.exit(.cleanupUncompressingTmpFiles())
+    on.exit(.cleanupUncompressedTmpFiles())
   }
 
   if (i == -1) {
