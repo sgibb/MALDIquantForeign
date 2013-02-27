@@ -1,8 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.9 [2013-02-27]:
+- import: add http(s):// and ftp:// support.
+
 Version 0.2.8 [2013-02-24]:
-- Add uncompression support to import zip/tar.{gz,bz2,xz}-archives.
+- import: add uncompression support to allow import of
+  zip/tar.{gz,bz2,xz}-archives.
 
 Version 0.2.7 [2013-02-24]:
 - .files: returns only unique file names;

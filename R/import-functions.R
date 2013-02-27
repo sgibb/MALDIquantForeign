@@ -87,30 +87,44 @@
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
-  e <- file.exists(path)
 
-  if (!all(e)) {
-    stop(sQuote(path[!e]), " doesn't exist!")
+  ## download file if needed
+  isUrl <- .isUrl(path)
+
+  if (any(isUrl)) {
+    path[isUrl] <- .download(path[isUrl])
+    on.exit(.cleanupDownloadedTmpFiles())
   }
 
+  ## file exists?
+  isReadable <- file.exists(path) & file.access(path, mode=4) == 0
+
+  if (any(!isReadable)) {
+    stop(sQuote(path[!isReadable]), " doesn't exist or isn't readable!")
+  }
+
+  ## uncompress/unpack file if needed
+  isCompressed <- .isPackedOrCompressed(path)
+
+  if (any(isCompressed)) {
+    path[isCompressed] <- .uncompress(path[isCompressed], verbose=verbose)
+    on.exit(.cleanupUncompressedTmpFiles(), add=TRUE)
+  }
+
+  ## handle given file type
   i <- pmatch(tolower(type), c("auto", importFormats$type), nomatch=0,
               duplicates.ok=FALSE)-1
-
-  if (any(.isPackedOrCompressed(path))) {
-    path <- .uncompress(path, verbose=verbose)
-    on.exit(.cleanupUncompressedTmpFiles())
-  }
 
   if (i == -1) {
     stop("File type ", sQuote(type), " is not supported!")
   } else if (i == 0) {
-    ## auto
+    ## auto detect file type
     if (!missing(pattern)) {
       warning("User defined ", sQuote("pattern"), " is ignored in auto-mode.")
     }
     return(.importAuto(path=path, verbose=verbose, ...))
   } else {
-    ## specific type
+    ## user-defined file type
     if (missing(pattern)) {
       pattern <- importFormats$pattern[i]
     }
