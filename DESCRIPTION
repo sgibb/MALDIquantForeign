@@ -23,6 +23,7 @@ Description: This package allows to read (tab, csv, Bruker fid, Ciphergen XML,
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
     https://github.com/sgibb/MALDIquantForeign/
+BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes
 Collate:
     'package.R'
