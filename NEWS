@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.2.9.1 [2013-02-27]:
+- convert tar.bz2 test data into tar.gz because tar on win-builder doesn't
+  support bzip2
+
 Version 0.2.9 [2013-02-27]:
 - import: add http(s):// and ftp:// support.
 
