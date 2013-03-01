@@ -1,41 +1,21 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.2.9.1 [2013-02-27]:
-- convert tar.bz2 test data into tar.gz because tar on win-builder doesn't
-  support bzip2
-
-Version 0.2.9 [2013-02-27]:
+Version 0.3 [2013-03-01]:
+- Add basic support for mzML export.
+- Add basic import support for Ciphergen XML files.
+- Add missing "usage" section in export methods manual pages.
 - import: add http(s):// and ftp:// support.
-
-Version 0.2.8 [2013-02-24]:
 - import: add uncompression support to allow import of
   zip/tar.{gz,bz2,xz}-archives.
-
-Version 0.2.7 [2013-02-24]:
 - .files: returns only unique file names;
   affected functions: all import functions.
-
-Version 0.2.6 [2013-02-14]:
-- Add basic import support for Ciphergen XML files.
-
-Version 0.2.5 [2013-02-07]:
 - .make.unique: generates c("a1", "a2") instead of c("a", "a1") and
   c("a001", ...,  "a099", "a100") instead of c("a", ..., "a98", "a99");
   affected method: export,list.
-
-Version 0.2.4 [2013-02-07]:
-- Add basic support for mzML export.
-
-Version 0.2.3 [2013-02-06]:
-- Add missing "usage" section in export methods manual pages.
-
-Version 0.2.2 [2013-01-27]:
-- DESCRIPTION: Move base64enc, digest, readBrukerFlexData, readMzXmlData and
+- DESCRIPTION: move base64enc, digest, readBrukerFlexData, readMzXmlData and
   XML to "Imports".
-
-Version 0.2.1 [2013-01-26]:
-- DESCRIPTION: Remove MALDIquant from the "Imports" field.
+- DESCRIPTION: remove MALDIquant from the "Imports" field.
 
 Version 0.2 [2013-01-14]:
 - export: fix empty filenames.
