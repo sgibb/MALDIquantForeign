@@ -92,7 +92,7 @@ import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
   isUrl <- .isUrl(path)
 
   if (any(isUrl)) {
-    path[isUrl] <- .download(path[isUrl])
+    path[isUrl] <- .download(path[isUrl], verbose=verbose)
     on.exit(.cleanupDownloadedTmpFiles())
   }
 
