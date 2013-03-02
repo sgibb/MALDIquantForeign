@@ -2,13 +2,14 @@
 \alias{importMzMl}
 \title{Import mzML files}
 \usage{
-  importMzMl(path, verbose = FALSE)
+  importMzMl(path, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
   which should be read in.}
 
-  \item{verbose}{\code{logical}, verbose output?}
+  \item{\ldots}{arguments to be passed to
+  \code{\link[MALDIquantForeign]{import}}.}
 }
 \value{
   a \code{list} of
@@ -38,7 +39,6 @@ s <- importMzMl(exampleDirectory)
   \url{http://www.psidev.info/mzml_1_0_0\%20}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[readMzXmlData]{readMzXmlFile}}
+  \code{\link[MALDIquant]{MassSpectrum-class}}
 }
 

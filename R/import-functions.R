@@ -86,7 +86,7 @@
 #'
 #' @rdname import-functions
 #' @export
-import <- function(path, type="auto", pattern, verbose=FALSE, ...) {
+import <- function(path, type="auto", pattern, verbose=TRUE, ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -268,13 +268,13 @@ importMzXml <- function(path, ...) {
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
-#' @param verbose \code{logical}, verbose output?
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
 #'
 #' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
 #'  objects.
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}},
-#' \code{\link[readMzXmlData]{readMzXmlFile}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
 #' Definition of \code{mzML} format:
@@ -293,8 +293,8 @@ importMzXml <- function(path, ...) {
 #'
 #' @rdname importMzMl-functions
 #' @export
-importMzMl <- function(path, verbose=FALSE) {
-  return(import(path=path, type="mzml", verbose=verbose))
+importMzMl <- function(path, ...) {
+  return(import(path=path, type="mzml", ...))
 }
 
 #' Import Ciphergen XML files
@@ -304,7 +304,8 @@ importMzMl <- function(path, verbose=FALSE) {
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
-#' @param verbose \code{logical}, verbose output?
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
 #'
 #' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
 #'  objects.
@@ -326,7 +327,7 @@ importMzMl <- function(path, verbose=FALSE) {
 #'
 #' @rdname importCiphergenXml-functions
 #' @export
-importCiphergenXml <- function(path, verbose=FALSE) {
-  return(import(path=path, type="ciphergen", verbose=verbose))
+importCiphergenXml <- function(path, ...) {
+  return(import(path=path, type="ciphergen", ...))
 }
 

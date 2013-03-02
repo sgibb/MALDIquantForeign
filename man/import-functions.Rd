@@ -2,8 +2,7 @@
 \alias{import}
 \title{Import files}
 \usage{
-  import(path, type = "auto", pattern, verbose = FALSE,
-    ...)
+  import(path, type = "auto", pattern, verbose = TRUE, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file

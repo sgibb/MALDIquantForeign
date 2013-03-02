@@ -2,7 +2,8 @@ RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
 Version 0.3.1 [2013-03-02]:
-- .download:  respects "verbose" argument now (fixes #6)
+- import: change default argument verbose to TRUE.
+- .download:  respects "verbose" argument now (fixes #6).
 
 Version 0.3 [2013-03-01]:
 - Add basic support for mzML export.

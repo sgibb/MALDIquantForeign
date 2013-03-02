@@ -2,13 +2,14 @@
 \alias{importCiphergenXml}
 \title{Import Ciphergen XML files}
 \usage{
-  importCiphergenXml(path, verbose = FALSE)
+  importCiphergenXml(path, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
   which should be read in.}
 
-  \item{verbose}{\code{logical}, verbose output?}
+  \item{\ldots}{arguments to be passed to
+  \code{\link[MALDIquantForeign]{import}}.}
 }
 \value{
   a \code{list} of
