@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.3.2 [2013-03-08]:
+- Remove LICENSE file.
+
 Version 0.3.1 [2013-03-02]:
 - import: change default argument verbose to TRUE.
 - .download:  respects "verbose" argument now (fixes #6).
