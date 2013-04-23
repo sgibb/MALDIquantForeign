@@ -2,7 +2,8 @@
 \alias{import}
 \title{Import files}
 \usage{
-  import(path, type = "auto", pattern, verbose = TRUE, ...)
+  import(path, type = "auto", pattern,
+    removeEmptySpectra = TRUE, verbose = TRUE, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -17,6 +18,9 @@
 
   \item{pattern}{\code{character}, a regular expression to
   find files in a directory (see details).}
+
+  \item{removeEmptySpectra}{\code{logical}, should empty
+  spectra excluded?}
 
   \item{verbose}{\code{logical}, verbose output?}
 

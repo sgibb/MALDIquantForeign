@@ -54,6 +54,7 @@
 #'  \code{pattern} argument is ignored).
 #' @param pattern \code{character}, a regular expression to find files in a
 #'  directory (see details).
+#' @param removeEmptySpectra \code{logical}, should empty spectra excluded?
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'
@@ -86,7 +87,7 @@
 #'
 #' @rdname import-functions
 #' @export
-import <- function(path, type="auto", pattern, verbose=TRUE, ...) {
+import <- function(path, type="auto", pattern, removeEmptySpectra=TRUE, verbose=TRUE, ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -134,6 +135,18 @@ import <- function(path, type="auto", pattern, verbose=TRUE, ...) {
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
     }
+
+    if (removeEmptySpectra) {
+      emptyIdx <- MALDIquant::findEmptyMassObjects(s)
+
+      if (length(emptyIdx)) {
+        if (verbose) {
+          message("Remove ", length(emptyIdx), " empty spectra.")
+        }
+        return(s[-emptyIdx])
+      }
+    }
+
     return(s)
   }
 }
