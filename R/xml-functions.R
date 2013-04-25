@@ -19,20 +19,20 @@
  }
 
 .writeCloseXmlTag <- function(tag, intend=0, file) {
-  cat(paste(rep(" ", times=intend), sep=""), "</", tag, ">\n", 
+  cat(paste(rep(" ", times=intend), sep=""), "</", tag, ">\n",
       file=file, sep="", append=TRUE)
 }
 
-.writeXmlTag <- function(tag, text=NULL, attrs=NULL, intend=0, close=TRUE, 
+.writeXmlTag <- function(tag, text=NULL, attrs=NULL, intend=0, close=TRUE,
                          file) {
-  intend <- paste(rep(" ", times=intend), sep="") 
+  intend <- paste(rep(" ", times=intend), sep="")
 
   if (length(attrs)) {
     attrs <- paste(" ", names(attrs), "=\"", attrs, "\"", sep="")
   }
   if (length(text)) {
-    text <- paste(">", text, sep="") 
-    
+    text <- paste(">", text, sep="")
+
     if (close) {
       text <- paste(text, "</", tag, ">", sep="")
     }
