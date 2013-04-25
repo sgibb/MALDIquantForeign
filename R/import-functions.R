@@ -123,7 +123,8 @@ import <- function(path, type="auto", pattern, removeEmptySpectra=TRUE, verbose=
     if (!missing(pattern)) {
       warning("User defined ", sQuote("pattern"), " is ignored in auto-mode.")
     }
-    return(.importAuto(path=path, verbose=verbose, ...))
+    return(.importAuto(path=path, removeEmptySpectra=removeEmptySpectra,
+                       verbose=verbose, ...))
   } else {
     ## user-defined file type
     if (missing(pattern)) {
