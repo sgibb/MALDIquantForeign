@@ -234,37 +234,37 @@
     }
 
     if (.isAttrSet(attrs, "IMS:1000042", "max count of pixel x")) {
-      xml$ims$maxCountOfPixelX <<-
+      xml$metaData$ims$size["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000043", "max count of pixel y")) {
-      xml$ims$maxCountOfPixelY <<-
+      xml$metaData$ims$size["y"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000044", "max dimension x")) {
-      xml$ims$maxDimensionX <<-
+      xml$metaData$ims$dim["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000045", "max dimension y")) {
-      xml$ims$maxDimensionY <<-
+      xml$metaData$ims$dim["y"]<<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000046", "pixel size x")) {
-      xml$ims$pixelSizeX <<-
+      xml$metaData$ims$pixelSize["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000047", "pixel size y")) {
-      xml$ims$pixelSizeY <<-
+      xml$metaData$ims$pixelSize["y"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
@@ -382,13 +382,14 @@
     checkSumPos <- readMzXmlData:::.revfregexpr("<fileChecksum>", fileName) + 14
 
     if (verbose) {
-      cat("Calculating sha1-sum for ", sQuote(fileName), ": ", sep="")
+      message("Calculating sha1-sum for ", sQuote(fileName), ": ",
+              appendLF=FALSE)
     }
 
     sha1Calc <- digest::digest(fileName, algo="sha1", file=TRUE,
                                length=checkSumPos-1)
     if (verbose) {
-      cat(sha1Calc, "\n")
+      message(sha1Calc)
     }
 
     if (fileCheckSum != sha1Calc) {
