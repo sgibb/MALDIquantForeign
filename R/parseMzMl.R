@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -213,7 +213,9 @@
     ## IMS extensions
     if (.isAttrSet(attrs, "IMS:1000080", "universally unique identifier")) {
       xml$ims$uuid <<-
-        readMzXmlData:::.attributeToString(attrs, "value", required=TRUE)
+        gsub(pattern="[[:punct:]]", replacement="",
+             x=readMzXmlData:::.attributeToString(attrs, "value",
+                                                  required=TRUE))
       return()
     }
 
@@ -358,11 +360,11 @@
 
       ## clear array content
       currentArrayContent <<- character()
-
-      ## clear metaData
-      xml$spectra[[curSpecIdx]]$metaData[c("precision", "compressionType",
-                                           "currentArray")] <<- NULL
     }
+
+    ## clear metaData
+    xml$spectra[[curSpecIdx]]$metaData[c("precision", "compressionType",
+                                         "currentArray")] <<- NULL
   }
 
   .calculateFileChecksum <- function() {
