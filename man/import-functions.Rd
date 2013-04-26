@@ -46,7 +46,8 @@
   \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
   mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
-  \cr }
+  \cr imzML \tab
+  \code{\link[MALDIquantForeign]{importImzMl}} \cr }
 
   \code{path}: In addition to the above mentioned file
   types the following (compressed) archives are supported,

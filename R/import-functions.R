@@ -31,6 +31,7 @@
 #'  ciphergen \tab \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
 #'  mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
+#'  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 #' }
 #'
 #' \code{path}: In addition to the above mentioned file types the
@@ -309,6 +310,42 @@ importMzXml <- function(path, ...) {
 #' @export
 importMzMl <- function(path, ...) {
   return(import(path=path, type="mzml", ...))
+}
+
+#' Import imzML files
+#'
+#' This function imports files in imzML file format
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#'
+#' @param path \code{character}, path to directory or file which should be read
+#'  in.
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
+#'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' Definition of \code{imzML} format:
+#' \url{http://www.imzml.org/}
+#' @examples
+#'
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' ## get example directory
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
+#'
+#' ## import
+#' s <- importImzMl(exampleDirectory)
+#'
+#' @rdname importImzMl-functions
+#' @export
+importImzMl <- function(path, ...) {
+  return(import(path=path, type="imzml", ...))
 }
 
 #' Import Ciphergen XML files

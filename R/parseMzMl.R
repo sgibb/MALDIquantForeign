@@ -143,9 +143,7 @@
                                            dimnames=list(c("mass", "intensity"),
                                                          c("offset", "length",
                                                            "encodedLength")))
-      xml$spectra[[curSpecIdx]]$metaData$ims <<- list()
-      xml$spectra[[curSpecIdx]]$metaData$ims$pos <<- setNames(double(2),
-                                                              c("x", "y"))
+      xml$spectra[[curSpecIdx]]$metaData$imaging <<- list()
     }
     if (verbose) {
       message("Processing spectrum ", curSpecIdx, "/", nSpectra,
@@ -236,49 +234,49 @@
     }
 
     if (.isAttrSet(attrs, "IMS:1000042", "max count of pixel x")) {
-      xml$metaData$ims$size["x"] <<-
+      xml$metaData$imaging$size["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000043", "max count of pixel y")) {
-      xml$metaData$ims$size["y"] <<-
+      xml$metaData$imaging$size["y"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000044", "max dimension x")) {
-      xml$metaData$ims$dim["x"] <<-
+      xml$metaData$imaging$dim["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000045", "max dimension y")) {
-      xml$metaData$ims$dim["y"]<<-
+      xml$metaData$imaging$dim["y"]<<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000046", "pixel size x")) {
-      xml$metaData$ims$pixelSize["x"] <<-
+      xml$metaData$imaging$pixelSize["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000047", "pixel size y")) {
-      xml$metaData$ims$pixelSize["y"] <<-
+      xml$metaData$imaging$pixelSize["y"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000050", "position x")) {
-      xml$spectra[[curSpecIdx]]$metaData$pos["x"] <<-
+      xml$spectra[[curSpecIdx]]$metaData$imaging$pos["x"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }
 
     if (.isAttrSet(attrs, "IMS:1000051", "position y")) {
-      xml$spectra[[curSpecIdx]]$metaData$pos["y"] <<-
+      xml$spectra[[curSpecIdx]]$metaData$imaging$pos["y"] <<-
         readMzXmlData:::.attributeToDouble(attrs, "value", required=TRUE)
       return()
     }

@@ -27,10 +27,14 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
+  ibdFileName <- paste(.withoutFileExtension(file), ".ibd", sep="")
+
+  if (!file.exists(ibdFileName)) {
+    stop("File ", sQuote(ibdFileName), " doesn't exists!")
+  }
+
   ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
-
-  ibdFileName <- paste(.withoutFileExtension(file), ".ibd", sep="")
 
   ## test SHA-1
   sha1<- digest::digest(ibdFileName, algo="sha1", file=TRUE)

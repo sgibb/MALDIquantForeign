@@ -25,7 +25,8 @@
   \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
   mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
-  \cr } }
+  \cr imzML \tab
+  \code{\link[MALDIquantForeign]{importImzMl}} \cr } }
 
   \subsection{Export}{
 
