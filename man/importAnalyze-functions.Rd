@@ -1,0 +1,34 @@
+\name{importAnalyze}
+\alias{importAnalyze}
+\title{Import Analyze 7.5 files}
+\usage{
+  importAnalyze(path, ...)
+}
+\arguments{
+  \item{path}{\code{character}, path to directory or file
+  which should be read in.}
+
+  \item{\ldots}{arguments to be passed to
+  \code{\link[MALDIquantForeign]{import}}.}
+}
+\value{
+  a \code{list} of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+}
+\description{
+  This function imports files in Analyze 7.5 file format
+  into \code{\link[MALDIquant]{MassSpectrum-class}}
+  objects.
+}
+\author{
+  Sebastian Gibb
+}
+\references{
+  \url{http://strimmerlab.org/software/maldiquant/} \cr
+  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
+  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
+}
+\seealso{
+  \code{\link[MALDIquant]{MassSpectrum-class}}
+}
+

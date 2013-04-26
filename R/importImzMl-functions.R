@@ -27,23 +27,23 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
-  ibdFileName <- paste(.withoutFileExtension(file), ".ibd", sep="")
+  ibdFilename <- paste(.withoutFileExtension(file), ".ibd", sep="")
 
-  if (!file.exists(ibdFileName)) {
-    stop("File ", sQuote(ibdFileName), " doesn't exists!")
+  if (!file.exists(ibdFilename)) {
+    stop("File ", sQuote(ibdFilename), " doesn't exists!")
   }
 
   ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
 
   ## test SHA-1
-  sha1<- digest::digest(ibdFileName, algo="sha1", file=TRUE)
+  sha1<- digest::digest(ibdFilename, algo="sha1", file=TRUE)
 
   if (tolower(sha1) != tolower(s$ims$sha1)) {
     stop("SHA1 mismatch!")
   }
 
-  ibd <- file(ibdFileName, open="rb")
+  ibd <- file(ibdFilename, open="rb")
   on.exit(close(ibd))
 
   ## test UUID

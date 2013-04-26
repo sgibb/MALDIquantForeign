@@ -47,7 +47,8 @@
   mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
   \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
   \cr imzML \tab
-  \code{\link[MALDIquantForeign]{importImzMl}} \cr }
+  \code{\link[MALDIquantForeign]{importImzMl}} \cr analyze
+  \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr }
 
   \code{path}: In addition to the above mentioned file
   types the following (compressed) archives are supported,

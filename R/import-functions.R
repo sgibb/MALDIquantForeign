@@ -32,6 +32,7 @@
 #'  mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #'  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
+#'  analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr
 #' }
 #'
 #' \code{path}: In addition to the above mentioned file types the
@@ -380,5 +381,29 @@ importImzMl <- function(path, ...) {
 #' @export
 importCiphergenXml <- function(path, ...) {
   return(import(path=path, type="ciphergen", ...))
+}
+
+#' Import Analyze 7.5 files
+#'
+#' This function imports files in Analyze 7.5 file format
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#'
+#' @param path \code{character}, path to directory or file which should be read
+#'  in.
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
+#'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
+#'  objects.
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/} \cr
+#'  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
+#'  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
+#' @rdname importAnalyze-functions
+#' @export
+importAnalyze <- function(path, ...) {
+  return(import(path=path, type="analyze", ...))
 }
 

@@ -1,5 +1,5 @@
 Package: MALDIquantForeign
-Version: 0.3.4
+Version: 0.3.5
 Date: 2013-04-26
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
@@ -18,8 +18,8 @@ Imports:
 Suggests:
     testthat
 Description: This package allows to read (tab, csv, Bruker fid, Ciphergen XML,
-    mzXML, mzML) and write (tab, csv, msd, mzML) different file formats of
-    mass spectrometry data into/from MALDIquant objects.
+    mzXML, mzML, imzML, Analyze 7.5) and write (tab, csv, msd, mzML) different
+    file formats of mass spectrometry data into/from MALDIquant objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
     https://github.com/sgibb/MALDIquantForeign/
@@ -54,3 +54,5 @@ Collate:
     'compression-functions.R'
     'download-function.R'
     'importImzMl-functions.R'
+    'analyze-functions.R'
+    'importAnalyze-functions.R'
