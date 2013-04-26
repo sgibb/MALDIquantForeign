@@ -67,7 +67,7 @@
   if (s$ims$type == "processed") {
     for (i in seq(along=spectra)) {
       if (verbose) {
-        message("Reading binary data for spectrum ", i, "/", n, "...")
+        message("Reading binary data for spectrum ", i, "/", n, " ...")
       }
       m <- modifyList(s$metaData, s$spectra[[i]]$metaData)
       m$file <- file
@@ -80,7 +80,7 @@
 
     for (i in seq(along=spectra)) {
       if (verbose) {
-        message("Reading binary data for spectrum ", i, "/", n, "...")
+        message("Reading binary data for spectrum ", i, "/", n, " ...")
       }
       m <- modifyList(s$metaData, s$spectra[[i]]$metaData)
       m$file <- file
