@@ -9,7 +9,7 @@ CRAN](http://cran.r-project.org/web/packages/MALDIquantForeign/)
 
 ## Install
 
-```R
+```s
 install.packages("MALDIquantForeign")
 ```
 
@@ -19,6 +19,8 @@ install.packages("MALDIquantForeign")
 - Ciphergen XML files
 - [mzXML](http://tools.proteomecenter.org/wiki/index.php?title=Formats:mzXML)
 - [mzML](http://psidev.info/mzml_1_0_0%20)
+- [imzML](http://imzml.org)
+- [Analyze 7.5](http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm)
 
 ## Export
 - tab, csv
