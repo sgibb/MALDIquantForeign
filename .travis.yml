@@ -15,10 +15,9 @@ install:
   - mkdir -p ${R_LIBS_USER}
   - R --version
   - R -e '.libPaths(); sessionInfo()'
-  - Rscript -e 'install.packages(c("testthat", "base64enc", "digest", "downloader", "readBrukerFlexData", "readMzXmlData", "XML"), dep=TRUE, repos="http://cran.at.r-project.org")'
+  - Rscript -e 'install.packages(c("testthat", "roxygen2", "base64enc", "digest", "downloader", "readBrukerFlexData", "readMzXmlData", "XML"), dep=TRUE, repos="http://cran.at.r-project.org")'
 
 # run tests
 script:
   - make install
   - make check
-  - make testdemo
