@@ -1,4 +1,5 @@
-^Makefile$
 ^README\.md$
+^Makefile$
 ^\.git$
 ^\.gitignore$
+^\.travis.yml$
