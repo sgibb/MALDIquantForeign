@@ -7,13 +7,13 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
 Depends:
     R (>= 2.14.0),
     methods,
-    MALDIquant (>= 1.5)
+    MALDIquant (>= 1.6)
 Imports:
     base64enc,
     digest,
     downloader,
-    readBrukerFlexData (>= 1.5),
-    readMzXmlData (>= 2.5),
+    readBrukerFlexData (>= 1.6.3),
+    readMzXmlData (>= 2.6),
     XML
 Suggests:
     testthat
