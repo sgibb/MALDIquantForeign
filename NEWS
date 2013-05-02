@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.4.1 [2013-05-02]:
+- Replace all paste(..., sep="") by paste0;
+  now MALDIquantForeign depends on R 2.15.
+
 Version 0.4 [2013-04-28]:
 - Add basic import support for imzML files and Analyze 7.5 files.
 - import: add removeEmptySpectra argument; closes #7.

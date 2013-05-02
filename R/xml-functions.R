@@ -22,22 +22,22 @@
  }
 
 .writeCloseXmlTag <- function(tag, intend=0, file) {
-  cat(paste(rep(" ", times=intend), sep=""), "</", tag, ">\n",
+  cat(paste0(rep(" ", times=intend)), "</", tag, ">\n",
       file=file, sep="", append=TRUE)
 }
 
 .writeXmlTag <- function(tag, text=NULL, attrs=NULL, intend=0, close=TRUE,
                          file) {
-  intend <- paste(rep(" ", times=intend), sep="")
+  intend <- paste0(rep(" ", times=intend))
 
   if (length(attrs)) {
-    attrs <- paste(" ", names(attrs), "=\"", attrs, "\"", sep="")
+    attrs <- paste0(" ", names(attrs), "=\"", attrs, "\"")
   }
   if (length(text)) {
-    text <- paste(">", text, sep="")
+    text <- paste0(">", text)
 
     if (close) {
-      text <- paste(text, "</", tag, ">", sep="")
+      text <- paste0(text, "</", tag, ">")
     }
   } else {
     text <- ">"

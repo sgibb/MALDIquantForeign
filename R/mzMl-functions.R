@@ -92,7 +92,7 @@
                  close=FALSE, file=file)
     for (i in seq(along=files)) {
       .writeXmlTag("sourceFile", intend=3,
-                   attrs=c(id=paste("SF", i, sep=""), location=dname[i],
+                   attrs=c(id=paste0("SF", i), location=dname[i],
                            name=bname[i]), close=FALSE, file=file)
 
       if (ext[i] == "fid") {
@@ -172,7 +172,7 @@
 
   for (i in seq(along=x)) {
     .writeXmlTag("spectrum", intend=3,
-                 attrs=c(index=i-1, id=paste("scan=", i-1, sep=""),
+                 attrs=c(index=i-1, id=paste0("scan=", i-1),
                          defaultArrayLength=length(x[[i]]),
                          spotID=metaData(x[[i]])$fullName), close=FALSE,
                  file=file)

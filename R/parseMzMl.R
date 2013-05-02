@@ -321,9 +321,9 @@
 
   .text <- function(x) {
     if (openTag == "binary" && supported) {
-      currentArrayContent <<- paste(currentArrayContent, x, sep="")
+      currentArrayContent <<- paste0(currentArrayContent, x)
     } else if (openTag == "fileChecksum") {
-      fileCheckSum <<- paste(fileCheckSum, x, sep="")
+      fileCheckSum <<- paste0(fileCheckSum, x)
     }
   }
 

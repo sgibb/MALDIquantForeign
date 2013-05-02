@@ -27,7 +27,7 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
-  ibdFilename <- paste(.withoutFileExtension(file), ".ibd", sep="")
+  ibdFilename <- paste0(.withoutFileExtension(file), ".ibd")
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
@@ -47,8 +47,8 @@
   on.exit(close(ibd))
 
   ## test UUID
-  uuid <- paste(readBin(ibd, raw(), n=16, size=1, signed=TRUE, endian="little"),
-                collapse="", sep="")
+  uuid <- paste0(readBin(ibd, raw(), n=16, size=1, signed=TRUE, endian="little"),
+                 collapse="")
 
   if (tolower(uuid) != tolower(s$ims$uuid)) {
     stop("UUID mismatch!")

@@ -89,8 +89,8 @@
 .writeMsdPeakList <- function(x, file) {
   .writeXmlTag("peaklist", close=FALSE, intend=1, file=file)
 
-  cat(paste("  <peak mz=\"", mass(x), "\" intensity=\"", intensity(x),
-            "\" baseline=\"0\" sn=\"", snr(x), "\"/>\n", sep=""),
+  cat(paste0("  <peak mz=\"", mass(x), "\" intensity=\"", intensity(x),
+             "\" baseline=\"0\" sn=\"", snr(x), "\"/>\n"),
       file=file, sep="", append=TRUE)
 
   .writeCloseXmlTag("peaklist", intend=1, file=file)

@@ -18,10 +18,10 @@
 
 #' @keywords internal
 .importTab <- function(file, verbose=FALSE, ...) {
-  
+
   ## load ms file
   s <- read.table(file=file, ...)
-  
+
   return(list(createMassSpectrum(mass=s[, 1], intensity=s[, 2],
                                  metaData=list(file=file))))
 }
@@ -29,7 +29,7 @@
 #' @keywords internal
 .importCsv <- function(file, verbose=FALSE, sep=.autoSep(file),
                        header=.autoHeader(file, sep), ...) {
-  
+
   return(.importTab(file=file, verbose=verbose, sep=sep, header=header, ...))
 }
 
@@ -44,7 +44,7 @@
 #' @keywords internal
 .autoSep <- function(file, sep=c(",", ";", "\t")) {
   l <- readLines(file, n=1)
-  pattern <- paste(".+", sep, ".+", sep="")
+  pattern <- paste0(".+", sep, ".+")
   i <- vapply(pattern, function(x) {
     g <- gregexpr(pattern=x, text=l)[[1]]
     return(all(g > 0) & length(g) == 1)

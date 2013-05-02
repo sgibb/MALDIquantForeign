@@ -40,12 +40,12 @@
                  "massCalibrationT0",
                  "massCalibrationInfo",
                  "spotCorrectionFactor")
-  xpath <- paste("//spectrum/",
-                 c("spectrumName",
-                   paste("acquisitionInfo/setting/", listNames[2:3], sep=""),
-                   paste("processingParameters/massCalibration/",
-                         listNames[-c(1:3)], sep="")),
-                 "/text()", sep="")
+  xpath <- paste0("//spectrum/",
+                  c("spectrumName",
+                    paste0("acquisitionInfo/setting/", listNames[2:3]),
+                    paste0("processingParameters/massCalibration/",
+                           listNames[-c(1:3)])),
+                 "/text()")
 
   doc <- xmlParse(file, ...)
   metaData <- XML::xpathApply(doc=doc, path=xpath, fun=XML::xmlValue)

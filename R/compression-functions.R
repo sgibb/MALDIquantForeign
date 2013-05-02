@@ -61,7 +61,7 @@
 # unpack and return tmp filename
 .unpacking <- function(filename, destdir, fun, verbose=FALSE, ...) {
   if (missing(destdir)) {
-    pattern <- paste(.withoutFileExtension(basename(filename)), "_", sep="")
+    pattern <- paste0(.withoutFileExtension(basename(filename)), "_")
     destdir <- file.path(tempdir(), "MALDIquantForeign_uncompress",
                          tempfile(pattern=pattern, tmpdir=""))
   }
@@ -94,10 +94,9 @@
       dir.create(tmpdir, showWarnings=FALSE, recursive=TRUE)
     }
 
-    pattern <- paste(.withoutFileExtension(basename(filename)), "_", sep="")
-    fileext <- paste(".",
-                     .fileExtension(.withoutCompressionExtension(filename)),
-                     sep="")
+    pattern <- paste0(.withoutFileExtension(basename(filename)), "_")
+    fileext <- paste0(".",
+                      .fileExtension(.withoutCompressionExtension(filename)))
     destfile <- tempfile(pattern=pattern, tmpdir=tmpdir, fileext=fileext)
   }
 
