@@ -14,6 +14,6 @@ test_that("importBrukerFlex", {
   expect_equal(intensity(s[[1]]), 1:5)
   expect_equal(basename(metaData(s[[1]])$file), "fid")
   expect_equal(metaData(s[[1]])$laserShots, 100)
-  expect_equal(metaData(s[[1]])$comments, paste("TESTSAMPLE", 1:4, sep=""))
+  expect_equal(metaData(s[[1]])$comments, paste0("TESTSAMPLE", 1:4))
 })
 
