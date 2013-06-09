@@ -41,7 +41,8 @@
   }
 
   for (i in seq(along=url)) {
-    r <- downloader::download(url=url[i], destfile=destfile[i], quiet=!verbose, ...)
+    r <- downloader::download(url=url[i], destfile=destfile[i], quiet=!verbose,
+                              mode="wb", ...)
     if (r != 0) {
       warning("Download of ", url[i], " failed!")
     }
