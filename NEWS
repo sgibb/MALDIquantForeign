@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.4.2 [2013-06-09]:
+- import*: add excludePattern argument to avoid import of specific files;
+  closes #8.
+
 Version 0.4.1 [2013-05-02]:
 - Replace all paste(..., sep="") by paste0;
   now MALDIquantForeign depends on R 2.15.

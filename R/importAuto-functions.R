@@ -17,9 +17,11 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importAuto <- function(path, removeEmptySpectra=TRUE, verbose=FALSE, ...) {
+.importAuto <- function(path, excludePattern=NULL,
+                        removeEmptySpectra=TRUE, verbose=FALSE, ...) {
 
-  files <- lapply(importFormats$pattern, .files, path=path)
+  files <- lapply(importFormats$pattern, .files, path=path,
+                  excludePattern=excludePattern)
   names(files) <- importFormats$type
 
   ## test xml files for ciphergen format

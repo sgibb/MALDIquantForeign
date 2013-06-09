@@ -17,14 +17,22 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.list.files <- function(path, pattern, recursive=TRUE, ignore.case=TRUE) {
-  return(normalizePath(list.files(path=path, pattern=pattern,
-                                  recursive=recursive, ignore.case=ignore.case,
-                                  full.names=TRUE)))
+.list.files <- function(path, pattern, excludePattern=NULL, recursive=TRUE,
+                        ignore.case=TRUE) {
+  files <- list.files(path=path, pattern=pattern, recursive=recursive,
+                      ignore.case=ignore.case, full.names=TRUE)
+
+  if (!is.null(excludePattern)) {
+    isExcluded <- grepl(pattern=excludePattern, x=files,
+                        ignore.case=ignore.case)
+    files <- files[!isExcluded]
+  }
+
+  return(normalizePath(files))
 }
 
 #' @keywords internal
-.files <- function(path, pattern, ignore.case=TRUE, ...) {
+.files <- function(path, pattern, excludePattern=NULL, ignore.case=TRUE, ...) {
   isDir <- file.info(path)$isdir
 
   files <- normalizePath(path[!isDir])
@@ -34,6 +42,8 @@
 
   files <- files[isMatching]
   files <- c(files, .list.files(path=path[isDir], pattern=pattern,
+                                excludePattern=excludePattern,
                                 ignore.case=ignore.case, ...))
   return(unique(files))
 }
+

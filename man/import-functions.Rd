@@ -3,7 +3,8 @@
 \title{Import files}
 \usage{
   import(path, type = "auto", pattern,
-    removeEmptySpectra = TRUE, verbose = TRUE, ...)
+    excludePattern = NULL, removeEmptySpectra = TRUE,
+    verbose = TRUE, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -18,6 +19,10 @@
 
   \item{pattern}{\code{character}, a regular expression to
   find files in a directory (see details).}
+
+  \item{excludePattern}{\code{character}, a regular
+  expression to exclude files in a directory (see
+  details).}
 
   \item{removeEmptySpectra}{\code{logical}, should empty
   spectra excluded?}
@@ -64,6 +69,12 @@
   \code{pattern="^.*\\.xml$"} to read all \code{*.xml}
   files in a directory; see \code{\link[base]{regexp}} for
   details).
+
+  \code{excludePattern}: Sometimes some files should be
+  excluded. E.g. to ignore additional aquired Bruker LIFT
+  spectra (MALDI-TOF/TOF; which are not support, yet) you
+  could use
+  \code{excludePattern="([[:digit:]\\.]+)LIFT[\\\\/]1SRef"}.
 }
 \examples{
 library("MALDIquant")

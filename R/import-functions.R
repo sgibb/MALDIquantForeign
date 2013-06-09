@@ -47,6 +47,11 @@
 #' extension (e.g. \code{pattern="^.*\\.xml$"} to read all \code{*.xml}
 #' files in a directory; see \code{\link[base]{regexp}} for details).
 #'
+#' \code{excludePattern}: Sometimes some files should be excluded. E.g.
+#' to ignore additional aquired Bruker LIFT spectra
+#' (MALDI-TOF/TOF; which are not support, yet) you could use
+#' \code{excludePattern="([[:digit:]\\.]+)LIFT[\\\\/]1SRef"}.
+#'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param type \code{character}, file format. If \code{type} is set to
@@ -56,6 +61,8 @@
 #'  \code{pattern} argument is ignored).
 #' @param pattern \code{character}, a regular expression to find files in a
 #'  directory (see details).
+#' @param excludePattern \code{character}, a regular expression to exclude
+#'  files in a directory (see details).
 #' @param removeEmptySpectra \code{logical}, should empty spectra excluded?
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
@@ -89,7 +96,8 @@
 #'
 #' @rdname import-functions
 #' @export
-import <- function(path, type="auto", pattern, removeEmptySpectra=TRUE, verbose=TRUE, ...) {
+import <- function(path, type="auto", pattern, excludePattern=NULL,
+                   removeEmptySpectra=TRUE, verbose=TRUE, ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -125,16 +133,18 @@ import <- function(path, type="auto", pattern, removeEmptySpectra=TRUE, verbose=
     if (!missing(pattern)) {
       warning("User defined ", sQuote("pattern"), " is ignored in auto-mode.")
     }
-    return(.importAuto(path=path, removeEmptySpectra=removeEmptySpectra,
-                       verbose=verbose, ...))
+    return(.importAuto(path=path, excludePattern=excludePattern,
+                       removeEmptySpectra=removeEmptySpectra, verbose=verbose,
+                       ...))
   } else {
     ## user-defined file type
     if (missing(pattern)) {
       pattern <- importFormats$pattern[i]
     }
     handler <- importFormats$handler[i]
-    s <- unlist(lapply(.files(path=path, pattern=pattern), handler,
-                       verbose=verbose, ...))
+    s <- unlist(lapply(.files(path=path, pattern=pattern,
+                              excludePattern=excludePattern),
+                       handler, verbose=verbose, ...))
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
     }
