@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.4.3 [2013-08-29]:
+- Add import("methods") to NAMESPACE (fixes #9).
+
 Version 0.4.2 [2013-06-09]:
 - import*: add excludePattern argument to avoid import of specific files;
   closes #8.

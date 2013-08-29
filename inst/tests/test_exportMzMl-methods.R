@@ -68,6 +68,9 @@ test_that("exportMzMl", {
   tmp <- tempdir()
   MALDIquantForeign:::.exportMzMl(m, file=file.path(tmp, "tmp.mzML"))
   expect_equal(readLines(file.path(tmp, "tmp.mzML")), mzML)
+  g <- readLines(file.path(tmp, "tmp.mzML"))
+  print(mzML[mzML!=g])
+  print(g[mzML!=g])
 })
 
 test_that("exportMzMl,list", {
