@@ -1,19 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.4.4 [2013-09-06]:
-- Fix totalIonCurrent test cases.
-
-Version 0.4.3 [2013-08-29]:
-- Add import("methods") to NAMESPACE (fixes #9).
-
-Version 0.4.2 [2013-06-09]:
-- import*: add excludePattern argument to avoid import of specific files;
+Version 0.5 [2013-09-08]:
+- import*: add "excludePattern" argument to avoid import of specific files;
   closes #8.
-
-Version 0.4.1 [2013-05-02]:
-- Replace all paste(..., sep="") by paste0;
-  now MALDIquantForeign depends on R 2.15.
+- Fix totalIonCurrent test case.
+- Add import("methods") to NAMESPACE (fixes #9).
+- Update dependencies; now MALDIquantForeign depends on R 3.0.0.
+- Replace all paste(..., sep="") by paste0.
 
 Version 0.4 [2013-04-28]:
 - Add basic import support for imzML files and Analyze 7.5 files.

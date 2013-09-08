@@ -23,8 +23,8 @@
 #'
 #' \tabular{ll}{
 #' Package: \tab MALDIquantForeign \cr
-#' Version: \tab 0.4.4\cr
-#' Date: \tab 2013-09-06\cr
+#' Version: \tab 0.5\cr
+#' Date: \tab 2013-09-08\cr
 #' License: \tab GPL (>= 3)\cr
 #' URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 #' }
