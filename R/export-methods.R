@@ -88,7 +88,7 @@ setMethod(f="export",
   signature=signature(x="list"),
   definition=function(x, path, type, force=FALSE, ...) {
 
-  stopifnot(isMassObjectList(x))
+  stopifnot(MALDIquant:::.isMassObjectList(x))
 
   onefileSupport <- exportFormats$type[exportFormats$onefile]
   isFile <- (missing(type) &&

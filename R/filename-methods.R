@@ -52,7 +52,7 @@ setMethod(f=".composeFilename",
   signature=signature(x="list"),
   definition=function(x, fileExtension="csv") {
 
-  stopifnot(isMassObjectList(x))
+  stopifnot(MALDIquant:::.isMassObjectList(x))
 
   filenames <- unlist(lapply(x, .composeFilename, fileExtension=fileExtension))
 
