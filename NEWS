@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.1 [2013-09-09]:
+- Replace MALDIquant:::isMassSpectrum by MALDIquant::isMassSpectrum.
+
 Version 0.5 [2013-09-08]:
 - import*: add "excludePattern" argument to avoid import of specific files;
   closes #8.

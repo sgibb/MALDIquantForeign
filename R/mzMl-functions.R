@@ -214,7 +214,7 @@
 }
 
 .writeMzMlBinaryDataArrayList <- function(x, file) {
-  count <- ifelse(MALDIquant:::isMassSpectrum(x), 2, 3)
+  count <- ifelse(MALDIquant::isMassSpectrum(x), 2, 3)
   .writeXmlTag("binaryDataArrayList", attrs=c(count=count), intend=4,
                close=FALSE, file=file)
   .writeMzMlBinaryData(mass(x), file=file, c(cvRef="MS", accession="MS:1000514",
