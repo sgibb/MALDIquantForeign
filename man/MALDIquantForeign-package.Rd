@@ -3,13 +3,12 @@
 \alias{MALDIquantForeign-package}
 \title{Import/Export routines for MALDIquant}
 \description{
-  This package allows to read and write different file
-  formats of mass spectrometry data into/from MALDIquant
-  objects.
+  This package reads and writes different file formats of
+  mass spectrometry data into/from MALDIquant objects.
 }
 \details{
   \tabular{ll}{ Package: \tab MALDIquantForeign \cr
-  Version: \tab 0.5.1\cr Date: \tab 2013-09-18\cr License:
+  Version: \tab 0.5.2\cr Date: \tab 2013-09-20\cr License:
   \tab GPL (>= 3)\cr URL: \tab
   http://strimmerlab.org/software/maldiquant/\cr }
 }
