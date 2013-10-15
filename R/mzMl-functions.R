@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-.writeMzMlDocument <- function(x, file, id,  encoding="utf-8") {
+.writeMzMlDocument <- function(x, file, id, encoding="utf-8") {
   ## stop if file isn't writeable
   if (file.exists(file) && file.access(file, 2) != 0) {
     stop("No permissions to write into ", sQuote(file), "!")

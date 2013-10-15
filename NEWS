@@ -1,8 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.3 [2013-10-15]:
+- export: fix one file export;
+  additional affected functions: `exportMzMl`.
+
 Version 0.5.2 [2013-09-20]:
-- fix spelling error in the DESCRIPTION file.
+- Fix spelling error in the DESCRIPTION file.
 
 Version 0.5.1 [2013-09-18]:
 - Replace MALDIquant:::isMassSpectrum by MALDIquant::isMassSpectrum.
