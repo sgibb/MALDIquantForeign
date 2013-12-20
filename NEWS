@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.4 [2013-12-20]:
+- INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
+  CRAN policy; close #10.
+
 Version 0.5.3 [2013-10-15]:
 - export: fix one file export;
   additional affected functions: `exportMzMl`.

@@ -1,6 +1,6 @@
 Package: MALDIquantForeign
-Version: 0.5.3
-Date: 2013-10-15
+Version: 0.5.4
+Date: 2013-12-20
 Title: Import/Export routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
@@ -16,7 +16,7 @@ Imports:
     readMzXmlData (>= 2.7),
     XML
 Suggests:
-    testthat
+    testthat (>= 0.8)
 Description: This package reads (tab, csv, Bruker fid, Ciphergen XML,
     mzXML, mzML, imzML, Analyze 7.5) and writes (tab, csv, msd, mzML) different
     file formats of mass spectrometry data into/from MALDIquant objects.
