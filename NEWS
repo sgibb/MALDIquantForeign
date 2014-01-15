@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.5 [2014-01-15]:
+- .parseMzML: fix assignment operation. Before all metaData of spectra were
+  overwritten by the metaData of the last spectrum (affected only mzML files with
+  more than one spectrum).
+
 Version 0.5.4 [2014-01-15]:
 - Regenerate man pages with new 'roxygen2' (3.0.0).
 

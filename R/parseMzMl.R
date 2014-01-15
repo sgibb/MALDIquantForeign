@@ -123,7 +123,7 @@
 
   ## mzML/run/spectrumList/spectrum
   spectrum <- function(name, attrs) {
-    openTag <- name
+    openTag <<- name
     curSpecIdx <<- curSpecIdx + 1
 
     supported <<- TRUE
