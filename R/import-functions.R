@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -64,6 +64,10 @@
 #' @param excludePattern \code{character}, a regular expression to exclude
 #'  files in a directory (see details).
 #' @param removeEmptySpectra \code{logical}, should empty spectra excluded?
+#' @param centroided \code{logical}, if \code{centroided=TRUE} a list of
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects is returned otherwise
+#' a list of \code{\link[MALDIquant]{MassSpectrum-class}} objects. If
+#' \code{centroided=NA} \code{import} tries to guess the correct value.
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'
@@ -97,7 +101,7 @@
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, excludePattern=NULL,
-                   removeEmptySpectra=TRUE, verbose=TRUE, ...) {
+                   removeEmptySpectra=TRUE, centroided=NA, verbose=TRUE, ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -134,8 +138,8 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
       warning("User defined ", sQuote("pattern"), " is ignored in auto-mode.")
     }
     return(.importAuto(path=path, excludePattern=excludePattern,
-                       removeEmptySpectra=removeEmptySpectra, verbose=verbose,
-                       ...))
+                       removeEmptySpectra=removeEmptySpectra,
+                       centroided=centroided, verbose=verbose, ...))
   } else {
     ## user-defined file type
     if (missing(pattern)) {
@@ -144,7 +148,7 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
     handler <- importFormats$handler[i]
     s <- unlist(lapply(.files(path=path, pattern=pattern,
                               excludePattern=excludePattern),
-                       handler, verbose=verbose, ...))
+                       handler, centroided=centroided, verbose=verbose, ...))
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
     }

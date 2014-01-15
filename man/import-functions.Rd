@@ -3,7 +3,7 @@
 \title{Import files}
 \usage{
 import(path, type = "auto", pattern, excludePattern = NULL,
-  removeEmptySpectra = TRUE, verbose = TRUE, ...)
+  removeEmptySpectra = TRUE, centroided = NA, verbose = TRUE, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -25,6 +25,14 @@ import(path, type = "auto", pattern, excludePattern = NULL,
 
   \item{removeEmptySpectra}{\code{logical}, should empty
   spectra excluded?}
+
+  \item{centroided}{\code{logical}, if
+  \code{centroided=TRUE} a list of
+  \code{\link[MALDIquant]{MassPeaks-class}} objects is
+  returned otherwise a list of
+  \code{\link[MALDIquant]{MassSpectrum-class}} objects. If
+  \code{centroided=NA} \code{import} tries to guess the
+  correct value.}
 
   \item{verbose}{\code{logical}, verbose output?}
 

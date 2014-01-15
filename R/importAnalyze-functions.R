@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -18,7 +18,7 @@
 
 #' @keywords internal
 
-.importAnalyze <- function(file, verbose=FALSE) {
+.importAnalyze <- function(file, centroided=NA, verbose=FALSE) {
   baseFilename <- .withoutFileExtension(file)
   header <- .readAnalyzeHdr(file, verbose=verbose)
   intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
@@ -31,11 +31,12 @@
   for (x in 1:header$nx) {
     for (y in 1:header$ny) {
       l[[(x-1)*header$ny+y]] <-
-        createMassSpectrum(mass=mass, intensity=intensity[, x, y],
-                           metaData=list(file=file,
+        .createMassObject(data=list(mass=mass, intensity=intensity[, x, y]),
+                          metaData=list(file=file,
                                          imaging=list(pos=c(x=x, y=y),
                                                       pixelSize=c(x=header$xd,
-                                                                  y=header$yd))))
+                                                                  y=header$yd))),
+                          centroided=centroided)
     }
   }
   return(l)

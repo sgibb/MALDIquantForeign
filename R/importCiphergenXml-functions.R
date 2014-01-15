@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,7 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importCiphergenXml <- function(file, verbose=FALSE) {
+.importCiphergenXml <- function(file, centroided=NA, verbose=FALSE) {
 
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
@@ -30,8 +30,7 @@
   ## read file
   s <- .parseCiphergenXml(file=file)
 
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
+  return(list(.createMassObject(data=s$spectrum, metaData=s$metaData,
+                                centroided=centroided)))
 }
 

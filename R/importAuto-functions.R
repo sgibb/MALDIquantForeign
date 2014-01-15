@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -18,7 +18,8 @@
 
 #' @keywords internal
 .importAuto <- function(path, excludePattern=NULL,
-                        removeEmptySpectra=TRUE, verbose=FALSE, ...) {
+                        removeEmptySpectra=TRUE, centroided=NA, verbose=FALSE,
+                        ...) {
 
   files <- lapply(importFormats$pattern, .files, path=path,
                   excludePattern=excludePattern)
@@ -41,7 +42,8 @@
 
   return(import(path=files[[m]], type=importFormats$type[m],
          pattern=importFormats$pattern[m],
-         removeEmptySpectra=removeEmptySpectra, verbose=verbose, ...))
+         removeEmptySpectra=removeEmptySpectra, centroided=centroided,
+         verbose=verbose, ...))
 }
 
 #' @keywords internal

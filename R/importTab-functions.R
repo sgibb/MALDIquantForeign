@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,13 +17,14 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importTab <- function(file, verbose=FALSE, ...) {
+.importTab <- function(file, centroided=NA, verbose=FALSE, ...) {
 
   ## load ms file
   s <- read.table(file=file, ...)
 
-  return(list(createMassSpectrum(mass=s[, 1], intensity=s[, 2],
-                                 metaData=list(file=file))))
+  return(list(.createMassObject(list(mass=s[, 1], intensity=s[, 2]),
+                                 metaData=list(file=file),
+                                 centroided=centroided)))
 }
 
 #' @keywords internal

@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.6 [2014-01-15]:
+- import: add argument "centroided" to allow import of centroided spectra as
+  MassPeaks objects;
+  affected functions: all import* functions.
+
 Version 0.5.5 [2014-01-15]:
 - .parseMzML: fix assignment operation. Before all metaData of spectra were
   overwritten by the metaData of the last spectrum (affected only mzML files with
