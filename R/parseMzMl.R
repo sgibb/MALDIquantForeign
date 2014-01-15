@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -177,7 +177,7 @@
 
     ## centroid data
     if (.isAttrSet(attrs, "MS:1000127", "centroid spectrum")) {
-      warning("centroid data are not supported!")
+      .setCvValue(1, "centroided")
       return()
     }
 
@@ -205,6 +205,9 @@
       return()
     } else if (.isAttrSet(attrs, "MS:1000515", "intensity array")) {
       .setCvValue("intensity", "currentArray")
+      return()
+    } else if (.isAttrSet(attrs, "MS:1000517", "signal to noise array")) {
+      .setCvValue("snr", "currentArray")
       return()
     }
 
