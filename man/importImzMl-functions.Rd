@@ -2,7 +2,7 @@
 \alias{importImzMl}
 \title{Import imzML files}
 \usage{
-  importImzMl(path, ...)
+importImzMl(path, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -12,12 +12,12 @@
   \code{\link[MALDIquantForeign]{import}}.}
 }
 \value{
-  a \code{list} of
-  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+a \code{list} of
+\code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \description{
-  This function imports files in imzML file format into
-  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+This function imports files in imzML file format into
+\code{\link[MALDIquant]{MassSpectrum-class}} objects.
 }
 \examples{
 library("MALDIquant")
@@ -31,14 +31,14 @@ exampleDirectory <- system.file(file.path("tests", "data"),
 s <- importImzMl(exampleDirectory)
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}, \cr
-  Definition of \code{imzML} format:
-  \url{http://www.imzml.org/}
+\url{http://strimmerlab.org/software/maldiquant/}, \cr
+Definition of \code{imzML} format:
+\url{http://www.imzml.org/}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}}
 }
 

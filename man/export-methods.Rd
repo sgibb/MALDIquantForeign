@@ -1,14 +1,13 @@
+\docType{methods}
 \name{export,AbstractMassObject-method}
 \alias{export}
 \alias{export,AbstractMassObject-method}
 \alias{export,list-method}
 \title{Export files}
 \usage{
-  \S4method{export}{AbstractMassObject}(x, file,
-    type="auto", force=FALSE, \ldots)
+\S4method{export}{AbstractMassObject}(x, file, type="auto", force=FALSE, \ldots)
 
-  \S4method{export}{list}(x, path, type, force=FALSE,
-    \ldots)
+\S4method{export}{list}(x, path, type, force=FALSE, \ldots)
 }
 \arguments{
   \item{x}{a
@@ -35,19 +34,18 @@
   functions.}
 }
 \description{
-  This function provides a general interface to export
-  \code{\link[MALDIquant]{AbstractMassObject-class}}
-  objects (e.g.
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[MALDIquant]{MassPeaks-class}}) into different
-  file formats.
+This function provides a general interface to export
+\code{\link[MALDIquant]{AbstractMassObject-class}} objects
+(e.g. \code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}) into different
+file formats.
 }
 \details{
-  Specific export functions: \tabular{ll}{ tab \tab
-  \code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
-  \code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
-  \code{\link[MALDIquantForeign]{exportMsd}} \cr mzML \tab
-  \code{\link[MALDIquantForeign]{exportMzMl}} \cr }
+Specific export functions: \tabular{ll}{ tab \tab
+\code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
+\code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
+\code{\link[MALDIquantForeign]{exportMsd}} \cr mzML \tab
+\code{\link[MALDIquantForeign]{exportMzMl}} \cr }
 }
 \examples{
 \dontrun{
@@ -67,13 +65,13 @@ export(s, path="spectra", type="csv")
 }
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}
+\url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassPeaks-class}},
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassPeaks-class}},
+\code{\link[MALDIquant]{MassSpectrum-class}}
 }
 

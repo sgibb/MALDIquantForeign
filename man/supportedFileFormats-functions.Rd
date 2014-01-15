@@ -2,41 +2,40 @@
 \alias{supportedFileFormats}
 \title{Supported file formats}
 \usage{
-  supportedFileFormats()
+supportedFileFormats()
 }
 \value{
-  a \code{list} with two named elements (\code{import} and
-  \code{export}) containing a \code{character} vector of
-  supported file types.
+a \code{list} with two named elements (\code{import} and
+\code{export}) containing a \code{character} vector of
+supported file types.
 }
 \description{
-  This function prints all file formats supported by
-  \code{\link{MALDIquantForeign-package}}.
+This function prints all file formats supported by
+\code{\link{MALDIquantForeign-package}}.
 }
 \details{
-  \subsection{Import}{
+\subsection{Import}{
 
-  \tabular{ll}{ txt \tab
-  \code{\link[MALDIquantForeign]{importTxt}} \cr tab \tab
-  \code{\link[MALDIquantForeign]{importTab}} \cr csv \tab
-  \code{\link[MALDIquantForeign]{importCsv}} \cr fid \tab
-  \code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
-  ciphergen \tab
-  \code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
-  mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}}
-  \cr mzML \tab \code{\link[MALDIquantForeign]{importMzMl}}
-  \cr imzML \tab
-  \code{\link[MALDIquantForeign]{importImzMl}} \cr analyze
-  \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr }
-  }
+\tabular{ll}{ txt \tab
+\code{\link[MALDIquantForeign]{importTxt}} \cr tab \tab
+\code{\link[MALDIquantForeign]{importTab}} \cr csv \tab
+\code{\link[MALDIquantForeign]{importCsv}} \cr fid \tab
+\code{\link[MALDIquantForeign]{importBrukerFlex}} \cr
+ciphergen \tab
+\code{\link[MALDIquantForeign]{importCiphergenXml}} \cr
+mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
+mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
+imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
+analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}}
+\cr } }
 
-  \subsection{Export}{
+\subsection{Export}{
 
-  \tabular{ll}{ tab \tab
-  \code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
-  \code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
-  \code{\link[MALDIquantForeign]{exportMsd}} \cr mzML \tab
-  \code{\link[MALDIquantForeign]{exportMzMl}} \cr } }
+\tabular{ll}{ tab \tab
+\code{\link[MALDIquantForeign]{exportTab}} \cr csv \tab
+\code{\link[MALDIquantForeign]{exportCsv}} \cr msd \tab
+\code{\link[MALDIquantForeign]{exportMsd}} \cr mzML \tab
+\code{\link[MALDIquantForeign]{exportMzMl}} \cr } }
 }
 \examples{
 library("MALDIquantForeign")
@@ -44,13 +43,13 @@ library("MALDIquantForeign")
 supportedFileFormats()
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}
+\url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-  \code{\link[MALDIquantForeign]{export}},
-  \code{\link[MALDIquantForeign]{import}}
+\code{\link[MALDIquantForeign]{export}},
+\code{\link[MALDIquantForeign]{import}}
 }
 

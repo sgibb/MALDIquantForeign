@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.4 [2014-01-15]:
+- Regenerate man pages with new 'roxygen2' (3.0.0).
+
 Version 0.5.3 [2013-10-15]:
 - export: fix one file export;
   additional affected functions: `exportMzMl`.

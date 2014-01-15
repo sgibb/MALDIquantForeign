@@ -1,3 +1,4 @@
+\docType{methods}
 \name{exportTab,AbstractMassObject-method}
 \alias{exportCsv}
 \alias{exportCsv,AbstractMassObject-method}
@@ -7,15 +8,13 @@
 \alias{exportTab,list-method}
 \title{Export to text files}
 \usage{
-  \S4method{exportTab}{AbstractMassObject}(x, file,
-    force=FALSE, \ldots)
+\S4method{exportTab}{AbstractMassObject}(x, file, force=FALSE, \ldots)
 
-  \S4method{exportTab}{list}(x, path, force=FALSE, \ldots)
+\S4method{exportTab}{list}(x, path, force=FALSE, \ldots)
 
-  \S4method{exportCsv}{AbstractMassObject}(x, file,
-    force=FALSE, \ldots)
+\S4method{exportCsv}{AbstractMassObject}(x, file, force=FALSE, \ldots)
 
-  \S4method{exportCsv}{list}(x, path, force=FALSE, \ldots)
+\S4method{exportCsv}{list}(x, path, force=FALSE, \ldots)
 }
 \arguments{
   \item{x}{a
@@ -39,18 +38,17 @@
   \code{\link[utils]{write.table}}.}
 }
 \description{
-  This function exports
-  \code{\link[MALDIquant]{AbstractMassObject-class}}
-  objects (e.g.
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[MALDIquant]{MassPeaks-class}}) into different
-  text file formats.
+This function exports
+\code{\link[MALDIquant]{AbstractMassObject-class}} objects
+(e.g. \code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}) into different
+text file formats.
 }
 \details{
-  \code{exportTab} and \code{exportCsv} use
-  \code{\link[utils]{write.table}} with different defaults
-  (\code{sep="\t"} in \code{exportTab} and \code{sep=","}
-  in \code{exportCsv}).
+\code{exportTab} and \code{exportCsv} use
+\code{\link[utils]{write.table}} with different defaults
+(\code{sep="\t"} in \code{exportTab} and \code{sep=","} in
+\code{exportCsv}).
 }
 \examples{
 \dontrun{
@@ -68,14 +66,14 @@ exportCsv(s, path="spectra", sep=";", force=TRUE)
 }
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}
+\url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassPeaks-class}},
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[utils]{write.table}}
+\code{\link[MALDIquant]{MassPeaks-class}},
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[utils]{write.table}}
 }
 
