@@ -39,16 +39,25 @@
                               centroided=NA,
                               massRange=c(0, Inf),
                               minIntensity=0) {
+
+  m <- createMassSpectrum(mass=data$mass, intensity=data$intensity,
+                          metaData=metaData)
+
+  ## trim AbstractMass object
+  m <- trim(m, massRange)
+  m <- m[which(m@intensity >= minIntensity)]
+
   if (is.na(centroided)) {
     if (!is.null(metaData$centroided)) {
       centroided <- as.logical(as.numeric(metaData$centroided))
     } else if (!is.null(metaData$dataProcessing$centroided)) {
       centroided <- as.logical(as.numeric(metaData$dataProcessing$centroided))
     } else {
-      centroided <- .isCentroided(data$mass)
+      centroided <- !isRegular(m)
     }
   }
 
+  ## create a MassPeaks object for centroided data
   if (centroided) {
     if (is.null(data$snr)) {
       m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
@@ -57,20 +66,8 @@
       m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
                            snr=data$snr, metaData=metaData)
     }
-  } else {
-    m <- createMassSpectrum(mass=data$mass, intensity=data$intensity,
-                            metaData=metaData)
   }
 
-  ## trim AbstractMass object
-  m <- trim(m, massRange)
-  m <- m[which(m@intensity >= minIntensity)]
-
   return(m)
-}
-
-## use MALDIquant's irregularScore to guess centroided/profile
-.isCentroided <- function(mass, threshold=1e-3) {
-  return(MALDIquant:::.irregularScore(mass) > threshold)
 }
 
