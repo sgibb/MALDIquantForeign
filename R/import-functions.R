@@ -104,7 +104,8 @@
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, excludePattern=NULL,
-                   removeEmptySpectra=TRUE, centroided=NA, verbose=TRUE, ...) {
+                   removeEmptySpectra=TRUE, centroided=NA, massRange=c(0, Inf),
+                   minIntensity=0, verbose=TRUE, ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -142,7 +143,8 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
     }
     return(.importAuto(path=path, excludePattern=excludePattern,
                        removeEmptySpectra=removeEmptySpectra,
-                       centroided=centroided, verbose=verbose, ...))
+                       centroided=centroided, massRange=massRange,
+                       minIntensity=minIntensity, verbose=verbose, ...))
   } else {
     ## user-defined file type
     if (missing(pattern)) {
@@ -151,7 +153,8 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
     handler <- importFormats$handler[i]
     s <- unlist(lapply(.files(path=path, pattern=pattern,
                               excludePattern=excludePattern),
-                       handler, centroided=centroided, verbose=verbose, ...))
+                       handler, centroided=centroided, massRange=massRange,
+                       minIntensity=minIntensity, verbose=verbose, ...))
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
     }

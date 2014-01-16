@@ -3,7 +3,8 @@
 \title{Import files}
 \usage{
 import(path, type = "auto", pattern, excludePattern = NULL,
-  removeEmptySpectra = TRUE, centroided = NA, verbose = TRUE, ...)
+  removeEmptySpectra = TRUE, centroided = NA, massRange = c(0, Inf),
+  minIntensity = 0, verbose = TRUE, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -33,6 +34,12 @@ import(path, type = "auto", pattern, excludePattern = NULL,
   \code{\link[MALDIquant]{MassSpectrum-class}} objects. If
   \code{centroided=NA} \code{import} tries to guess the
   correct value.}
+
+  \item{massRange}{\code{double}, limits of mass import
+  (left/minimal mass, right/maximal mass).}
+
+  \item{minIntensity}{\code{double}, minimal intensity to
+  import.}
 
   \item{verbose}{\code{logical}, verbose output?}
 
