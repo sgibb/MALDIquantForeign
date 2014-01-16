@@ -17,7 +17,8 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importCiphergenXml <- function(file, centroided=NA, verbose=FALSE) {
+.importCiphergenXml <- function(file, centroided=NA, massRange=c(0, Inf),
+                                minIntensity=0, verbose=FALSE) {
 
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
@@ -31,6 +32,7 @@
   s <- .parseCiphergenXml(file=file)
 
   return(list(.createMassObject(data=s$spectrum, metaData=s$metaData,
-                                centroided=centroided)))
+                                centroided=centroided, massRange=massRange,
+                                minIntensity=minIntensity)))
 }
 

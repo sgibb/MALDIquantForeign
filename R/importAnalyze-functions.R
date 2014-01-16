@@ -18,7 +18,8 @@
 
 #' @keywords internal
 
-.importAnalyze <- function(file, centroided=NA, verbose=FALSE) {
+.importAnalyze <- function(file, centroided=NA, massRange=c(0, Inf),
+                           minIntensity=0, verbose=FALSE) {
   baseFilename <- .withoutFileExtension(file)
   header <- .readAnalyzeHdr(file, verbose=verbose)
   intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
@@ -36,7 +37,8 @@
                                          imaging=list(pos=c(x=x, y=y),
                                                       pixelSize=c(x=header$xd,
                                                                   y=header$yd))),
-                          centroided=centroided)
+                          centroided=centroided, massRange=massRange,
+                          minIntensity=minIntensity)
     }
   }
   return(l)

@@ -18,7 +18,9 @@
 
 #' @keywords internal
 .importAuto <- function(path, excludePattern=NULL,
-                        removeEmptySpectra=TRUE, centroided=NA, verbose=FALSE,
+                        removeEmptySpectra=TRUE, centroided=NA,
+                        massRange=c(0, Inf), minIntensity=0,
+                        verbose=FALSE,
                         ...) {
 
   files <- lapply(importFormats$pattern, .files, path=path,
@@ -43,7 +45,7 @@
   return(import(path=files[[m]], type=importFormats$type[m],
          pattern=importFormats$pattern[m],
          removeEmptySpectra=removeEmptySpectra, centroided=centroided,
-         verbose=verbose, ...))
+         massRange=massRange, minIntensity=minIntensity, verbose=verbose, ...))
 }
 
 #' @keywords internal

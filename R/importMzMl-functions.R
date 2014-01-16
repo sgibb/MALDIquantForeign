@@ -17,7 +17,8 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importMzMl <- function(file, centroided=NA, verbose=FALSE) {
+.importMzMl <- function(file, centroided=NA, massRange=c(0, Inf),
+                        minIntensity=0, verbose=FALSE) {
 
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
@@ -33,7 +34,8 @@
   l <- lapply(s$spectra, function(x, globalS=s) {
     m <- modifyList(s$metaData, x$metaData)
     m$file <- file
-    return(.createMassObject(data=x, metaData=m, centroided=centroided))
+    return(.createMassObject(data=x, metaData=m, centroided=centroided,
+                             massRange=massRange, minIntensity=minIntensity))
   })
 
   return(l)

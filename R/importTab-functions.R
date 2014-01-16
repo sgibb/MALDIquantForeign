@@ -17,21 +17,27 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importTab <- function(file, centroided=NA, verbose=FALSE, ...) {
+.importTab <- function(file, centroided=NA, massRange=c(0, Inf),
+                       minIntensity=0, verbose=FALSE, ...) {
 
   ## load ms file
   s <- read.table(file=file, ...)
 
   return(list(.createMassObject(list(mass=s[, 1], intensity=s[, 2]),
                                  metaData=list(file=file),
-                                 centroided=centroided)))
+                                 centroided=centroided,
+                                 massRange=massRange,
+                                 minIntensity=minIntensity)))
 }
 
 #' @keywords internal
 .importCsv <- function(file, verbose=FALSE, sep=.autoSep(file),
-                       header=.autoHeader(file, sep), ...) {
+                       header=.autoHeader(file, sep), centroided=NA,
+                       massRange=c(0, Inf), minIntensity=0, ...) {
 
-  return(.importTab(file=file, verbose=verbose, sep=sep, header=header, ...))
+  return(.importTab(file=file, centroided=centroided, massRange=massRange,
+                    minIntensity=minIntensity, verbose=verbose, sep=sep,
+                    header=header, ...))
 }
 
 #' @keywords internal

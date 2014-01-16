@@ -68,6 +68,9 @@
 #' \code{\link[MALDIquant]{MassPeaks-class}} objects is returned otherwise
 #' a list of \code{\link[MALDIquant]{MassSpectrum-class}} objects. If
 #' \code{centroided=NA} \code{import} tries to guess the correct value.
+#' @param massRange \code{double}, limits of mass import (left/minimal mass,
+#' right/maximal mass).
+#' @param minIntensity \code{double}, minimal intensity to import.
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'

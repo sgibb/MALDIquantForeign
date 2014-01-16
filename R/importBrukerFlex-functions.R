@@ -17,11 +17,13 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importBrukerFlex <- function(file, centroided=NA, verbose=FALSE, ...) {
+.importBrukerFlex <- function(file, centroided=NA, massRange=c(0, Inf),
+                              minIntensity=0, verbose=FALSE, ...) {
 
   s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
                                               ...)
   return(list(.createMassObject(data=s$spectrum, metaData=s$metaData,
-                                centroided=centroided)))
+                                centroided=centroided, massRange=massRange,
+                                minIntensity=minIntensity)))
 }
 
