@@ -25,6 +25,9 @@
 #' @param metaData \code{list}, metaData
 #' @param centroided \code{logical}, centroided
 #'  (if TRUE => MassPeaks, if FALSE => MassSpectrum, if NA => try to guess)
+#' @param massRange \code{double}, length == 2, trim spectrum to
+#'  \code{massRange}.
+#' @param minIntensity \code{double}, minimal intensity
 #'
 #' @return Returns a MassSpectrum or a MassPeaks object.
 #'
@@ -32,7 +35,10 @@
 #' @rdname createMassObject
 #' @keywords internal
 #'
-.createMassObject <- function(data, metaData, centroided=NA) {
+.createMassObject <- function(data, metaData=list(),
+                              centroided=NA,
+                              massRange=c(0, Inf),
+                              minIntensity=0) {
   if (is.na(centroided)) {
     if (!is.null(metaData$centroided)) {
       centroided <- as.logical(as.numeric(metaData$centroided))
@@ -45,16 +51,22 @@
 
   if (centroided) {
     if (is.null(data$snr)) {
-      return(createMassPeaks(mass=data$mass, intensity=data$intensity,
-                             metaData=metaData))
+      m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
+                           metaData=metaData)
     } else {
-      return(createMassPeaks(mass=data$mass, intensity=data$intensity,
-                             snr=data$snr, metaData=metaData))
+      m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
+                           snr=data$snr, metaData=metaData)
     }
   } else {
-    return(createMassSpectrum(mass=data$mass, intensity=data$intensity,
-                              metaData=metaData))
+    m <- createMassSpectrum(mass=data$mass, intensity=data$intensity,
+                            metaData=metaData)
   }
+
+  ## trim AbstractMass object
+  m <- trim(m, massRange)
+  m <- m[which(m@intensity >= minIntensity)]
+
+  return(m)
 }
 
 ## use MALDIquant's irregularScore to guess centroided/profile

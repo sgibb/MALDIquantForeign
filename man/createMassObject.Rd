@@ -2,7 +2,8 @@
 \alias{.createMassObject}
 \title{Create a MassSpectrum or a MassPeaks object.}
 \usage{
-.createMassObject(data, metaData, centroided = NA)
+.createMassObject(data, metaData = list(), centroided = NA,
+  massRange = c(0, Inf), minIntensity = 0)
 }
 \arguments{
   \item{data}{\code{list}, spectrum data with elements
@@ -13,6 +14,11 @@
   \item{centroided}{\code{logical}, centroided (if TRUE =>
   MassPeaks, if FALSE => MassSpectrum, if NA => try to
   guess)}
+
+  \item{massRange}{\code{double}, length == 2, trim
+  spectrum to \code{massRange}.}
+
+  \item{minIntensity}{\code{double}, minimal intensity}
 }
 \value{
 Returns a MassSpectrum or a MassPeaks object.
