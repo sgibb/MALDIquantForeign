@@ -40,12 +40,14 @@
                               massRange=c(0, Inf),
                               minIntensity=0) {
 
-  m <- createMassSpectrum(mass=data$mass, intensity=data$intensity,
-                          metaData=metaData)
-
   ## trim AbstractMass object
-  m <- trim(m, massRange)
-  m <- m[which(m@intensity >= minIntensity)]
+  massRange <- MALDIquant:::.reorderRange(massRange)
+
+  i <- which(massRange[1] <= data$mass & data$mass <= massRange[2] &
+             data$intensity >= minIntensity)
+
+  m <- createMassSpectrum(mass=data$mass[i], intensity=data$intensity[i],
+                          metaData=metaData)
 
   if (is.na(centroided)) {
     if (!is.null(metaData$centroided)) {
@@ -60,11 +62,11 @@
   ## create a MassPeaks object for centroided data
   if (centroided) {
     if (is.null(data$snr)) {
-      m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
+      m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
                            metaData=metaData)
     } else {
-      m <- createMassPeaks(mass=data$mass, intensity=data$intensity,
-                           snr=data$snr, metaData=metaData)
+      m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
+                           snr=data$snr[i], metaData=metaData)
     }
   }
 
