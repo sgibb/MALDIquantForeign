@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.9 [2014-01-23]:
+- Add "skip" argument to `.importCsv`, `.importTab`, `.autoSep` and
+  `.autoHeader` to allow skipping first lines;
+  affected functions: `import`, `importTxt`, `importTab`, `importCsv`
+- `.importTab`: use `.autoSep` and `.autoHeader`
+  (before they were used only by `.importCsv`);
+  affected functions: import, importTxt, importTab
+
 Version 0.5.8 [2014-01-17]:
 - importAnalyze: add support for ABSiex Analyze 7.5 files.
   Thanks to Pietro Franceschi for reporting this bug/odd behaviour.
