@@ -26,6 +26,7 @@
                                                 metaData=x$metaData,
                                                 centroided=centroided,
                                                 massRange=massRange,
-                                                minIntensity=minIntensity)))
+                                                minIntensity=minIntensity,
+                                                verbose=verbose)))
 }
 

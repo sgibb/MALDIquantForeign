@@ -77,7 +77,8 @@
       spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
                                         metaData=m, centroided=centroided,
                                         massRange=massRange,
-                                        minIntensity=minIntensity)
+                                        minIntensity=minIntensity,
+                                        verbose=verbose)
     }
   } else {
     mass <- .readValues(ibd, s$ims$ibd[[1]], "mass")
@@ -92,7 +93,8 @@
       spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
                                         metaData=m, centroided=centroided,
                                         massRange=massRange,
-                                        minIntensity=minIntensity)
+                                        minIntensity=minIntensity,
+                                        verbose=verbose)
     }
   }
 

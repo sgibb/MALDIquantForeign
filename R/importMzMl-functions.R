@@ -35,7 +35,8 @@
     m <- modifyList(s$metaData, x$metaData)
     m$file <- file
     return(.createMassObject(data=x, metaData=m, centroided=centroided,
-                             massRange=massRange, minIntensity=minIntensity))
+                             massRange=massRange, minIntensity=minIntensity,
+                             verbose=verbose))
   })
 
   return(l)

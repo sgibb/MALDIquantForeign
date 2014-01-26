@@ -3,7 +3,7 @@
 \title{Create a MassSpectrum or a MassPeaks object.}
 \usage{
 .createMassObject(data, metaData = list(), centroided = NA,
-  massRange = c(0, Inf), minIntensity = 0)
+  massRange = c(0, Inf), minIntensity = 0, verbose = FALSE)
 }
 \arguments{
   \item{data}{\code{list}, spectrum data with elements
@@ -19,6 +19,8 @@
   spectrum to \code{massRange}.}
 
   \item{minIntensity}{\code{double}, minimal intensity}
+
+  \item{verbose}{\code{logical}, verbose output?}
 }
 \value{
 Returns a MassSpectrum or a MassPeaks object.

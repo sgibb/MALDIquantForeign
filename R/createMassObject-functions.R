@@ -28,6 +28,7 @@
 #' @param massRange \code{double}, length == 2, trim spectrum to
 #'  \code{massRange}.
 #' @param minIntensity \code{double}, minimal intensity
+#' @param verbose \code{logical}, verbose output?
 #'
 #' @return Returns a MassSpectrum or a MassPeaks object.
 #'
@@ -38,7 +39,8 @@
 .createMassObject <- function(data, metaData=list(),
                               centroided=NA,
                               massRange=c(0, Inf),
-                              minIntensity=0) {
+                              minIntensity=0,
+                              verbose=FALSE) {
 
   ## trim AbstractMass object
   massRange <- MALDIquant:::.reorderRange(massRange)
@@ -56,6 +58,10 @@
       centroided <- as.logical(as.numeric(metaData$dataProcessing$centroided))
     } else {
       centroided <- !isRegular(m)
+    }
+
+    if (centroided && verbose) {
+      message("Centroided data detected. Creating a MassPeaks object.")
     }
   }
 

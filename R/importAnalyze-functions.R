@@ -38,7 +38,7 @@
                                                       pixelSize=c(x=header$xd,
                                                                   y=header$yd))),
                           centroided=centroided, massRange=massRange,
-                          minIntensity=minIntensity)
+                          minIntensity=minIntensity, verbose=verbose)
     }
   }
   return(l)

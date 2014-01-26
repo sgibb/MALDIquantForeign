@@ -33,6 +33,6 @@
 
   return(list(.createMassObject(data=s$spectrum, metaData=s$metaData,
                                 centroided=centroided, massRange=massRange,
-                                minIntensity=minIntensity)))
+                                minIntensity=minIntensity, verbose=verbose)))
 }
 

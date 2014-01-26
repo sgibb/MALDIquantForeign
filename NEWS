@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.10 [2014-01-26]:
+- Add "verbose" argument to `.createMassObject` to inform about centroided
+  spectra;
+  affected functions: all import* functions.
+
 Version 0.5.9 [2014-01-23]:
 - Add "skip" argument to `.importCsv`, `.importTab`, `.autoSep` and
   `.autoHeader` to allow skipping first lines;
