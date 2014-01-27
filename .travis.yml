@@ -10,7 +10,7 @@ before_install:
 
 install:
   # install RNetCDF dependencies
-  - ./travis-tool.sh install_aptget libudunits2-dev
+  - ./travis-tool.sh install_aptget libudunits2-dev libnetcdf-dev
   - ./travis-tool.sh install_deps
 
 script:
