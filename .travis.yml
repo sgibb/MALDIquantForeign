@@ -10,6 +10,8 @@ before_install:
 
 install:
   - ./travis-tool.sh install_deps
+  # install suggested packages
+  - ./travis-tool.sh install_r RNetCDF
 
 script:
   - ./travis-tool.sh run_tests
