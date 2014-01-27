@@ -9,9 +9,9 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
-  - ./travis-tool.sh install_deps
   # install RNetCDF dependencies
   - ./travis-tool.sh install_aptget libudunits2-dev
+  - ./travis-tool.sh install_deps
 
 script:
   - ./travis-tool.sh run_tests
