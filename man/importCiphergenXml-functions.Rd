@@ -13,11 +13,14 @@ importCiphergenXml(path, ...)
 }
 \value{
 a \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
 This function imports files in Ciphergen XML file format
-into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+into \code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \examples{
 library("MALDIquant")
@@ -37,6 +40,7 @@ Sebastian Gibb
 \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-\code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}
 }
 

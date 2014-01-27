@@ -27,7 +27,8 @@ mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
 mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}}
-\cr } }
+\cr cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
+} }
 
 \subsection{Export}{
 

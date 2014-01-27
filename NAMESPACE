@@ -1,6 +1,7 @@
 export(import)
 export(importAnalyze)
 export(importBrukerFlex)
+export(importCdf)
 export(importCiphergenXml)
 export(importCsv)
 export(importImzMl)

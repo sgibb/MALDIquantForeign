@@ -13,11 +13,14 @@ importMzXml(path, ...)
 }
 \value{
 a \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
 This function imports files in mzXML file format into
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \examples{
 library("MALDIquant")
@@ -40,6 +43,7 @@ Definition of \code{mzXML} format:
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}},
 \code{\link[readMzXmlData]{readMzXmlFile}}
 }
 

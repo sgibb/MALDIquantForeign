@@ -19,7 +19,8 @@
 #' Import files
 #'
 #' This function provides a general interface to import different file formats
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @details
 #' Specific import functions:
@@ -33,6 +34,7 @@
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #'  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 #'  analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr
+#'  cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
 #' }
 #'
 #' \code{path}: In addition to the above mentioned file types the
@@ -74,10 +76,12 @@
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
@@ -177,7 +181,8 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
 #' Import text files
 #'
 #' This function imports different text file formats
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' \code{importTab}, \code{importTxt} and \code{importCsv} use
 #' \code{\link[utils]{read.table}} with different defaults.
@@ -186,10 +191,12 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
 #'  in.
 #' @param \ldots arguments to be passed to \code{\link[utils]{read.table}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[utils]{read.table}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
@@ -229,17 +236,20 @@ importCsv <- function(path, ...) {
 #' Import Bruker Daltonics *flex files
 #'
 #' This function imports files in Bruker Daltonics *flex-series file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[readBrukerFlexData]{readBrukerFlexFile}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[readBrukerFlexData]{readBrukerFlexFile}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
@@ -263,17 +273,20 @@ importBrukerFlex <- function(path, ...) {
 #' Import mzXML files
 #'
 #' This function imports files in mzXML file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[readMzXmlData]{readMzXmlFile}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[readMzXmlData]{readMzXmlFile}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
@@ -300,17 +313,20 @@ importMzXml <- function(path, ...) {
 #' Import mzML files
 #'
 #' This function imports files in mzML file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
 #' Definition of \code{mzML} format:
@@ -336,17 +352,20 @@ importMzMl <- function(path, ...) {
 #' Import imzML files
 #'
 #' This function imports files in imzML file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
 #' Definition of \code{imzML} format:
@@ -372,17 +391,20 @@ importImzMl <- function(path, ...) {
 #' Import Ciphergen XML files
 #'
 #' This function imports files in Ciphergen XML file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
@@ -406,17 +428,20 @@ importCiphergenXml <- function(path, ...) {
 #' Import Analyze 7.5 files
 #'
 #' This function imports files in Analyze 7.5 file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
-#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}}
-#'  objects.
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
 #' @seealso
-#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/} \cr
 #'  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
@@ -425,5 +450,43 @@ importCiphergenXml <- function(path, ...) {
 #' @export
 importAnalyze <- function(path, ...) {
   return(import(path=path, type="analyze", ...))
+}
+
+#' Import CDF files
+#'
+#' This function imports files in NetCDF file format
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.\cr
+#' Please note that the \emph{RNetCDF} is needed.
+#'
+#' @param path \code{character}, path to directory or file which should be read
+#'  in.
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
+#'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @examples
+#'
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' ## get example directory
+#' exampleDirectory <- system.file(file.path("tests", "data"),
+#'                                 package="MALDIquantForeign")
+#'
+#' ## import
+#' s <- importCdf(exampleDirectory)
+#'
+#' @rdname importCdf-functions
+#' @export
+importCdf <- function(path, ...) {
+  return(import(path=path, type="cdf", ...))
 }
 

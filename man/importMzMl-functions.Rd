@@ -13,11 +13,14 @@ importMzMl(path, ...)
 }
 \value{
 a \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
 This function imports files in mzML file format into
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \examples{
 library("MALDIquant")
@@ -39,6 +42,7 @@ Definition of \code{mzML} format:
 \url{http://www.psidev.info/mzml_1_0_0\%20}
 }
 \seealso{
-\code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}
 }
 

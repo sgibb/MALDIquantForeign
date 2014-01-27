@@ -48,12 +48,15 @@ import(path, type = "auto", pattern, excludePattern = NULL,
 }
 \value{
 a \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
 This function provides a general interface to import
 different file formats into
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \details{
 Specific import functions: \tabular{ll}{ txt \tab
@@ -67,7 +70,8 @@ mzXML \tab \code{\link[MALDIquantForeign]{importMzXml}} \cr
 mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}}
-\cr }
+\cr cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
+}
 
 \code{path}: In addition to the above mentioned file types
 the following (compressed) archives are supported, too:
@@ -117,6 +121,7 @@ Sebastian Gibb
 \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-\code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}
 }
 

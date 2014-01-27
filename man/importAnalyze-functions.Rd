@@ -13,11 +13,14 @@ importAnalyze(path, ...)
 }
 \value{
 a \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
 This function imports files in Analyze 7.5 file format into
-\code{\link[MALDIquant]{MassSpectrum-class}} objects.
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \author{
 Sebastian Gibb
@@ -28,6 +31,7 @@ Sebastian Gibb
 \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
 }
 \seealso{
-\code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}
 }
 

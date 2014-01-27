@@ -1,4 +1,4 @@
-context("importNetCdf")
+context("importCdf")
 
 ## create NetCDF test file
 #
@@ -6,7 +6,7 @@ context("importNetCdf")
 #nc <- create.nc("tiny.cdf")
 #
 #dim.def.nc(nc, "scan_number", 2)
-#dim.def.nc(nc, "point_number", 5, unlim=TRUE)
+#dim.def.nc(nc, "point_number", 10, unlim=TRUE)
 #
 #var.def.nc(nc, "scan_index", "NC_INT", "scan_number")
 #var.def.nc(nc, "point_count", "NC_INT", "scan_number")
@@ -27,9 +27,9 @@ context("importNetCdf")
 #close.nc(nc)
 #
 
-test_that("importNetCdf", {
+test_that("importCdf", {
   ## suppress warnings to avoid creation of Rplots.pdf
-  expect_error(suppressWarnings(MALDIquantForeign:::.importNetCdf("tmp.tmp")))
+  expect_error(suppressWarnings(MALDIquantForeign:::.importCdf("tmp.tmp")))
 
   path <- normalizePath(file.path("data", "tiny.cdf"))
 
@@ -41,11 +41,11 @@ test_that("importNetCdf", {
                                              retentionTime=2, scanIndex=5)))
 
 
-  s <- MALDIquantForeign:::.importNetCdf(path)
+  s <- MALDIquantForeign:::.importCdf(path)
 
   expect_equal(s, import(path))
-  expect_equal(s, importNetCdf(path))
-  expect_equal(s, import(path, type="netcdf"))
+  expect_equal(s, importCdf(path))
+  expect_equal(s, import(path, type="cdf"))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 11:15)

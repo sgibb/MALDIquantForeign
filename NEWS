@@ -1,8 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.12 [2014-01-27]:
+- Add CDF support: add user visible `importCdf` and integrate CDF file importer
+  into `import`.
+
 Version 0.5.11 [2014-01-27]:
-- Add `.importNetCdf".
+- Add `.importCdf".
 - Add Pietro Franceschi as contributor.
 
 Version 0.5.10 [2014-01-26]:

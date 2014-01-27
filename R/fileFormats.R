@@ -33,6 +33,7 @@
 #'  mzML \tab \code{\link[MALDIquantForeign]{importMzMl}} \cr
 #'  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 #'  analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr
+#'  cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
 #' }
 #' }
 #'
@@ -68,17 +69,17 @@ supportedFileFormats <- function() {
 
 #' @keywords internal
 importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "ciphergen",
-                                   "mzxml", "mzml", "imzml", "analyze"),
+                                   "mzxml", "mzml", "imzml", "analyze", "cdf"),
                             pattern=c("^.*\\.txt$", "^.*\\.tab$",
                                       "^.*\\.csv$", "^fid$",
                                       "^.*\\.xml$", "^.*\\.mzXML$",
                                       "^.*\\.mzML$", "^.*\\.imzML$",
-                                      "^.*\\.hdr$"),
+                                      "^.*\\.hdr$", "^.*\\.cdf$"),
                             handler=c(rep(".importTab", 2),
                                       ".importCsv", ".importBrukerFlex",
                                       ".importCiphergenXml", ".importMzXml",
                                       ".importMzMl", ".importImzMl",
-                                      ".importAnalyze"),
+                                      ".importAnalyze", ".importCdf"),
                             stringsAsFactors=FALSE)
 
 #' @keywords internal
