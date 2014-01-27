@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.5.11 [2014-01-27]:
+- Add `.importNetCdf".
+- Add Pietro Franceschi as contributor.
+
 Version 0.5.10 [2014-01-26]:
 - Add "verbose" argument to `.createMassObject` to inform about centroided
   spectra;
