@@ -28,28 +28,33 @@ context("importCdf")
 #
 
 test_that("importCdf", {
-  ## suppress warnings to avoid creation of Rplots.pdf
-  expect_error(suppressWarnings(MALDIquantForeign:::.importCdf("tmp.tmp")))
-
   path <- normalizePath(file.path("data", "tiny.cdf"))
 
-  r <- list(createMassSpectrum(mass=1:5, intensity=11:15,
-                               metaData=list(file=path, number=1,
-                                             retentionTime=1, scanIndex=0)),
-            createMassSpectrum(mass=6:10, intensity=16:20,
-                               metaData=list(file=path, number=2,
-                                             retentionTime=2, scanIndex=5)))
+  if (suppressWarnings(require("RNetCDF", quietly=TRUE))) {
+    ## suppress warnings to avoid creation of Rplots.pdf
+    expect_error(suppressWarnings(MALDIquantForeign:::.importCdf("tmp.tmp")))
+
+    r <- list(createMassSpectrum(mass=1:5, intensity=11:15,
+                                 metaData=list(file=path, number=1,
+                                               retentionTime=1, scanIndex=0)),
+              createMassSpectrum(mass=6:10, intensity=16:20,
+                                 metaData=list(file=path, number=2,
+                                               retentionTime=2, scanIndex=5)))
 
 
-  s <- MALDIquantForeign:::.importCdf(path)
+    s <- MALDIquantForeign:::.importCdf(path)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importCdf(path))
-  expect_equal(s, import(path, type="cdf"))
+    expect_equal(s, import(path))
+    expect_equal(s, importCdf(path))
+    expect_equal(s, import(path, type="cdf"))
 
-  expect_equal(mass(s[[1]]), 1:5)
-  expect_equal(intensity(s[[1]]), 11:15)
-  expect_equal(basename(metaData(s[[1]])$file), "tiny.cdf")
-  expect_equal(s, r)
+    expect_equal(mass(s[[1]]), 1:5)
+    expect_equal(intensity(s[[1]]), 11:15)
+    expect_equal(basename(metaData(s[[1]])$file), "tiny.cdf")
+    expect_equal(s, r)
+  } else {
+    expect_error(suppressWarnings(MALDIquantForeign:::.importCdf(path)),
+                 "install.packages")
+  }
 })
 
