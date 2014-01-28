@@ -21,6 +21,7 @@ install.packages("MALDIquantForeign")
 - [mzML](http://psidev.info/mzml_1_0_0%20)
 - [imzML](http://imzml.org)
 - [Analyze 7.5](http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm)
+- CDF (via the [RNetCDF](http://cran.r-project.org/web/packages/RNetCDF/index.html))
 
 ## Export
 - tab, csv
