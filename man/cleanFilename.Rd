@@ -2,14 +2,14 @@
 \alias{.cleanFilename}
 \title{This function removes spaces and punctuations from filenames.}
 \usage{
-  .cleanFilename(x)
+.cleanFilename(x)
 }
 \value{
-  filename
+filename
 }
 \description{
-  This function removes spaces and punctuations from
-  filenames.
+This function removes spaces and punctuations from
+filenames.
 }
 \keyword{internal}
 

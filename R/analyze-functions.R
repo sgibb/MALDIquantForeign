@@ -23,7 +23,11 @@
     stop(sQuote(filename), " isn't readable.")
   }
 
-  if (file.info(filename)$size != 348) {
+  size <- file.info(filename)$size
+
+  ## Analyze 7.5 header must be of size 348; ABSciex files are a little bit
+  ## larger (384)
+  if (size != 348 && size != 384) {
     stop(sQuote(filename), " is no ANALYZE header file.")
   }
 
@@ -34,8 +38,10 @@
   f <- file(filename, open="rb")
 
   ## first 4 bytes have to be 348 in little endian mode
-  endian <- ifelse(readBin(f, integer(), n=1, size=4, endian="little") ==
-                          348, "little", "big")
+  ## (384 for ABSciex)
+  endian <- ifelse(readBin(f, integer(), n=1, size=4, endian="little") %in%
+                   c(348, 384), "little", "big")
+
   ## skip unused entries
   seek(f, where=38)
   regular <- readChar(f, nchars=1, useBytes=TRUE)

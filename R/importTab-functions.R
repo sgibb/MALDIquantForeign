@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,43 +17,56 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importTab <- function(file, verbose=FALSE, ...) {
-
+.importTab <- function(file, centroided=NA, massRange=c(0L, Inf),
+                       minIntensity=0L, skip=0L,
+                       sep=.autoSep(file, skip=skip),
+                       header=.autoHeader(file, sep=sep, skip=skip),
+                       verbose=FALSE, ...) {
   ## load ms file
-  s <- read.table(file=file, ...)
+  s <- read.table(file=file, header=header, sep=sep, skip=skip,
+                  stringsAsFactors=FALSE, ...)
 
-  return(list(createMassSpectrum(mass=s[, 1], intensity=s[, 2],
-                                 metaData=list(file=file))))
+  return(list(.createMassObject(list(mass=s[, 1L], intensity=s[, 2L]),
+                                 metaData=list(file=file),
+                                 centroided=centroided,
+                                 massRange=massRange,
+                                 minIntensity=minIntensity,
+                                 verbose=verbose)))
 }
 
 #' @keywords internal
-.importCsv <- function(file, verbose=FALSE, sep=.autoSep(file),
-                       header=.autoHeader(file, sep), ...) {
+.importCsv <- function(file, centroided=NA, massRange=c(0L, Inf),
+                       minIntensity=0L, skip=0L,
+                       sep=.autoSep(file, skip=skip),
+                       header=.autoHeader(file, sep=sep, skip=skip),
+                       verbose=FALSE, ...) {
 
-  return(.importTab(file=file, verbose=verbose, sep=sep, header=header, ...))
+  return(.importTab(file=file, centroided=centroided, massRange=massRange,
+                    minIntensity=minIntensity, skip=skip, sep=sep,
+                    header=header, verbose=verbose, ...))
 }
 
 #' @keywords internal
-.autoHeader <- function(file, sep="\t") {
-  l <- readLines(file, n=1)
+.autoHeader <- function(file, sep="\t", skip=0L) {
+  l <- tail(readLines(file, n=skip+1L), 1L)
   l <- gsub(pattern='[\\\\"]*', replacement="", x=l)
-  l <- strsplit(l, split=sep)[[1]][1]
+  l <- strsplit(l, split=sep)[[1L]][1L]
   return(!is.numeric(type.convert(l, as.is=TRUE)))
 }
 
 #' @keywords internal
-.autoSep <- function(file, sep=c(",", ";", "\t")) {
-  l <- readLines(file, n=1)
+.autoSep <- function(file, sep=c(",", ";", "\t", " "), skip=0L) {
+  l <- tail(readLines(file, n=skip+1L), 1L)
   pattern <- paste0(".+", sep, ".+")
   i <- vapply(pattern, function(x) {
-    g <- gregexpr(pattern=x, text=l)[[1]]
-    return(all(g > 0) & length(g) == 1)
-  }, logical(1))
+    g <- gregexpr(pattern=x, text=l)[[1L]]
+    return(all(g > 0L) & length(g) == 1L)
+  }, logical(1L))
 
   if (any(i)) {
-    return(sep[i])
+    return(sep[which(i)[1L]])  ## return only first match
   } else {
-    return(sep[1])
+    return(sep[1L])
   }
 }
 

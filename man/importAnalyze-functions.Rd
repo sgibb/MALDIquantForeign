@@ -2,7 +2,7 @@
 \alias{importAnalyze}
 \title{Import Analyze 7.5 files}
 \usage{
-  importAnalyze(path, ...)
+importAnalyze(path, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -12,23 +12,26 @@
   \code{\link[MALDIquantForeign]{import}}.}
 }
 \value{
-  a \code{list} of
-  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+a \code{list} of
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
-  This function imports files in Analyze 7.5 file format
-  into \code{\link[MALDIquant]{MassSpectrum-class}}
-  objects.
+This function imports files in Analyze 7.5 file format into
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/} \cr
-  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
-  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
+\url{http://strimmerlab.org/software/maldiquant/} \cr
+\url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
+\url{http://eeg.sourceforge.net/ANALYZE75.pdf}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}
 }
 

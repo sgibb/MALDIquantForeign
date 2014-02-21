@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,7 +17,8 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importImzMl <- function(file, verbose=FALSE) {
+.importImzMl <- function(file, centroided=NA, massRange=c(0, Inf),
+                         minIntensity=0, verbose=FALSE) {
 
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
@@ -73,7 +74,11 @@
       m$file <- file
       mass <- .readValues(ibd, s$ims$ibd[[i]], "mass")
       intensity <- .readValues(ibd, s$ims$ibd[[i]], "intensity")
-      spectra[[i]] <- createMassSpectrum(mass=mass, intensity=intensity, metaData=m)
+      spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
+                                        metaData=m, centroided=centroided,
+                                        massRange=massRange,
+                                        minIntensity=minIntensity,
+                                        verbose=verbose)
     }
   } else {
     mass <- .readValues(ibd, s$ims$ibd[[1]], "mass")
@@ -85,7 +90,11 @@
       m <- modifyList(s$metaData, s$spectra[[i]]$metaData)
       m$file <- file
       intensity <- .readValues(ibd, s$ims$ibd[[i]], "intensity")
-      spectra[[i]] <- createMassSpectrum(mass=mass, intensity=intensity, metaData=m)
+      spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
+                                        metaData=m, centroided=centroided,
+                                        massRange=massRange,
+                                        minIntensity=minIntensity,
+                                        verbose=verbose)
     }
   }
 

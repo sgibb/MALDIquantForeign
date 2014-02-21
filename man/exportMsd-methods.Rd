@@ -1,14 +1,13 @@
+\docType{methods}
 \name{exportMsd,MassSpectrum-method}
 \alias{exportMsd}
-\alias{exportMsd,list-method}
 \alias{exportMsd,MassSpectrum-method}
+\alias{exportMsd,list-method}
 \title{Export to MSD files}
 \usage{
-  \S4method{exportMsd}{MassSpectrum}(x, file, force=FALSE,
-    peaks, \ldots)
+\S4method{exportMsd}{MassSpectrum}(x, file, force=FALSE, peaks, \ldots)
 
-  \S4method{exportMsd}{list}(x, path, force=FALSE, peaks,
-    \ldots)
+\S4method{exportMsd}{list}(x, path, force=FALSE, peaks, \ldots)
 }
 \arguments{
   \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
@@ -34,12 +33,11 @@
   \code{\link[utils]{write.table}}.}
 }
 \description{
-  This function exports
-  \code{\link[MALDIquant]{AbstractMassObject-class}}
-  objects (e.g.
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[MALDIquant]{MassPeaks-class}}) into mMass MSD
-  files.
+This function exports
+\code{\link[MALDIquant]{AbstractMassObject-class}} objects
+(e.g. \code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}) into mMass MSD
+files.
 }
 \examples{
 \dontrun{
@@ -62,14 +60,14 @@ exportMsd(s, path="spectra", peaks=p, force=TRUE)
 }
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}, \cr
-  mMass homepage: \url{http://mmass.org/}
+\url{http://strimmerlab.org/software/maldiquant/}, \cr
+mMass homepage: \url{http://mmass.org/}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassPeaks-class}},
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassPeaks-class}},
+\code{\link[MALDIquant]{MassSpectrum-class}}
 }
 

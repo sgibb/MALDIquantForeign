@@ -2,16 +2,16 @@
 \alias{.fileExtension}
 \title{Determine file extension}
 \usage{
-  .fileExtension(x)
+.fileExtension(x)
 }
 \arguments{
   \item{x}{\code{character}, filename.}
 }
 \value{
-  \code{character}, file extension.
+\code{character}, file extension.
 }
 \description{
-  Determine file extension
+Determine file extension
 }
 \examples{
 library("MALDIquantForeign")
@@ -19,7 +19,7 @@ files <- c("/home/foo/bar.txt", "foobar.pdf")
 MALDIquantForeign:::.fileExtension(files)
 }
 \seealso{
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassSpectrum-class}}
 }
 \keyword{internal}
 

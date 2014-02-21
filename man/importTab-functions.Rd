@@ -4,11 +4,11 @@
 \alias{importTxt}
 \title{Import text files}
 \usage{
-  importTxt(path, ...)
+importTxt(path, ...)
 
-  importTab(path, ...)
+importTab(path, ...)
 
-  importCsv(path, ...)
+importCsv(path, ...)
 }
 \arguments{
   \item{path}{\code{character}, path to directory or file
@@ -18,17 +18,19 @@
   \code{\link[utils]{read.table}}.}
 }
 \value{
-  a \code{list} of
-  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+a \code{list} of
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects
+(depending on the \code{centroided} argument).
 }
 \description{
-  This function imports different text file formats into
-  \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+This function imports different text file formats into
+\code{\link[MALDIquant]{MassSpectrum-class}} or
+\code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \details{
-  \code{importTab}, \code{importTxt} and \code{importCsv}
-  use \code{\link[utils]{read.table}} with different
-  defaults.
+\code{importTab}, \code{importTxt} and \code{importCsv} use
+\code{\link[utils]{read.table}} with different defaults.
 }
 \examples{
 library("MALDIquant")
@@ -45,13 +47,14 @@ s <- importTxt(exampleDirectory)
 s <- importCsv(exampleDirectory)
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}
+\url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[utils]{read.table}}
+\code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}},
+\code{\link[utils]{read.table}}
 }
 

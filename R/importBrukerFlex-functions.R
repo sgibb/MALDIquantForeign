@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,12 +17,13 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importBrukerFlex <- function(file, verbose=FALSE, ...) {
+.importBrukerFlex <- function(file, centroided=NA, massRange=c(0, Inf),
+                              minIntensity=0, verbose=FALSE, ...) {
 
   s <- readBrukerFlexData::readBrukerFlexFile(fidFile=file, verbose=verbose,
                                               ...)
-  return(list(createMassSpectrum(mass=s$spectrum$mass,
-                                 intensity=s$spectrum$intensity,
-                                 metaData=s$metaData)))
+  return(list(.createMassObject(data=s$spectrum, metaData=s$metaData,
+                                centroided=centroided, massRange=massRange,
+                                minIntensity=minIntensity, verbose=verbose)))
 }
 

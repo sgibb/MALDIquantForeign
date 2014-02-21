@@ -17,12 +17,16 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importMzXml <- function(file, verbose=FALSE, ...) {
-  
-  s <- readMzXmlData:::.readMzXmlFile(mzXmlFile=file, 
+.importMzXml <- function(file, centroided=NA, massRange=c(0, Inf),
+                         minIntensity=0, verbose=FALSE, ...) {
+
+  l <- readMzXmlData:::.readMzXmlFile(mzXmlFile=file,
                                       verbose=verbose, ...)
-  return(lapply(s, function(x)createMassSpectrum(mass=x$spectrum$mass,
-                                                 intensity=x$spectrum$intensity,
-                                                 metaData=x$metaData)))
+  return(lapply(l, function(x).createMassObject(data=x$spectrum,
+                                                metaData=x$metaData,
+                                                centroided=centroided,
+                                                massRange=massRange,
+                                                minIntensity=minIntensity,
+                                                verbose=verbose)))
 }
 

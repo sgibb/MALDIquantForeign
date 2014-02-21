@@ -1,63 +1,150 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.5.4 [2013-12-20]:
+Version 0.6.1 [2014-02-21]:
 - INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
   CRAN policy; close #10.
 
-Version 0.5.3 [2013-10-15]:
-- export: fix one file export;
+
+CHANGES IN MALDIquantForeign VERSION 0.6 [2014-01-28]:
+------------------------------------------------------
+
+NEW FEATURES
+
+* Add basic import support for CDF files [contributed by Pietro Franceschi];
+  new function: `importCdf`.
+* `import`: add arguments "massRange" and "minIntensity" to limit import range;
+  affected functions: all `import*` functions.
+* `import`: add argument "centroided" to allow import of centroided spectra as
+  MassPeaks objects;
+  affected functions: all `import*` functions.
+
+IMPROVEMENTS
+
+* Add "skip" argument to `.importCsv`, `.importTab`, `.autoSep` and
+  `.autoHeader` to allow skipping first lines;
+  affected functions: `import`, `importTxt`, `importTab`, `importCsv`
+
+BUG FIXES
+
+* `importAnalyze`: add support for ABSiex Analyze 7.5 files.
+  Thanks to Pietro Franceschi for reporting this bug/odd behaviour.
+* `.importTab`: use `.autoSep` and `.autoHeader`
+  (before they were used only by `.importCsv`);
+  affected functions: `import`, `importTxt`, `importTab`
+* `.parseMzML`: fix assignment operation. Before all metaData of spectra were
+  overwritten by the metaData of the last spectrum (affected only mzML files with
+  more than one spectrum).
+  affected functions: `importMzML`
+* `export`: fix one file export;
   additional affected functions: `exportMzMl`.
 
-Version 0.5.2 [2013-09-20]:
-- Fix spelling error in the DESCRIPTION file.
+INTERNAL CHANGES
 
-Version 0.5.1 [2013-09-18]:
-- Replace MALDIquant:::isMassSpectrum by MALDIquant::isMassSpectrum.
-- Replace deprecated function isMassObjectList.
+* Regenerate man pages with new 'roxygen2' (3.0.0).
 
-Version 0.5 [2013-09-08]:
-- import*: add "excludePattern" argument to avoid import of specific files;
+
+CHANGES IN MALDIquantForeign VERSION 0.5.1 [2013-09-18]:
+--------------------------------------------------------
+
+BUG FIXES
+
+* Replace MALDIquant:::isMassSpectrum by MALDIquant::isMassSpectrum.
+* Replace deprecated function isMassObjectList.
+
+
+CHANGES IN MALDIquantForeign VERSION 0.5 [2013-09-08]:
+------------------------------------------------------
+
+IMPROVEMENTS
+
+* `import*`: add "excludePattern" argument to avoid import of specific files;
   closes #8.
-- Fix totalIonCurrent test case.
-- Add import("methods") to NAMESPACE (fixes #9).
-- Update dependencies; now MALDIquantForeign depends on R 3.0.0.
-- Replace all paste(..., sep="") by paste0.
 
-Version 0.4 [2013-04-28]:
-- Add basic import support for imzML files and Analyze 7.5 files.
-- import: add removeEmptySpectra argument; closes #7.
-- import: change default argument verbose to TRUE.
-- .download: respects "verbose" argument now (fixes #6).
-- Remove LICENSE file.
+BUGFIXES
 
-Version 0.3 [2013-03-01]:
-- Add basic support for mzML export.
-- Add basic import support for Ciphergen XML files.
-- Add missing "usage" section in export methods manual pages.
-- import: add http(s):// and ftp:// support.
-- import: add uncompression support to allow import of
+* Fix "totalIonCurrent" test case.
+* Add import("methods") to NAMESPACE (fixes #9).
+
+INTERNAL CHANGES
+
+* Update dependencies; now MALDIquantForeign depends on R 3.0.0.
+* Replace all paste(..., sep="") by paste0.
+
+
+CHANGES IN MALDIquantForeign VERSION 0.4 [2013-04-28]:
+------------------------------------------------------
+
+NEW FEATURES
+
+* Add basic import support for imzML files and Analyze 7.5 files.
+
+IMPROVEMENTS
+
+* `import`: add "removeEmptySpectra" argument; closes #7.
+
+MODIFICATIONS
+
+* `import`: change default argument "verbose" to TRUE.
+
+BUGFIXES
+
+* `.download`: respects "verbose" argument now (fixes #6).
+
+INTERNAL CHANGES
+
+* Remove LICENSE file.
+
+
+CHANGES IN MALDIquantForeign VERSION 0.3 [2013-03-01]:
+------------------------------------------------------
+
+NEW FEATURES
+
+* Add basic support for mzML export.
+* Add basic import support for Ciphergen XML files.
+* `import`: add http(s):// and ftp:// support.
+* `import`: add uncompression support to allow import of
   zip/tar.{gz,bz2,xz}-archives.
-- .files: returns only unique file names;
+
+BUGFIXES
+
+* Add missing "usage" section in `export` methods manual pages.
+* `.files`: returns only unique file names;
   affected functions: all import functions.
-- .make.unique: generates c("a1", "a2") instead of c("a", "a1") and
+
+INTERNAL CHANGES
+
+* `.make.unique`: generates c("a1", "a2") instead of c("a", "a1") and
   c("a001", ...,  "a099", "a100") instead of c("a", ..., "a98", "a99");
-  affected method: export,list.
-- DESCRIPTION: move base64enc, digest, readBrukerFlexData, readMzXmlData and
+  affected method: `export,list`.
+* DESCRIPTION: move base64enc, digest, readBrukerFlexData, readMzXmlData and
   XML to "Imports".
-- DESCRIPTION: remove MALDIquant from the "Imports" field.
+* DESCRIPTION: remove MALDIquant from the "Imports" field.
 
-Version 0.2 [2013-01-14]:
-- export: fix empty filenames.
-- export,list: stop if directory doesn't exist.
-- exportMsd: complete rewrite, write xml files manually instead of using the
+
+CHANGES IN MALDIquantForeign VERSION 0.2 [2013-01-14]:
+------------------------------------------------------
+
+IMPROVEMENTS
+
+* `exportMsd`: complete rewrite, write xml files manually instead of using the
   XML package (increasing speed).
-- exportMsd: fix peaks argument.
-- exportMsd tests: respect endianness.
-- import: respect verbose argument in import(type=auto).
 
-Version 0.1 [2012-12-10]:
-- First public release.
-- Supported file formats:
-  - Import: tab, txt, csv, Bruker Daltonics *flex files, mzXML, mzML
-  - Export: tab, csv, msd
+BUGFIXES
+
+* `export`: fix empty filenames.
+* `export,list`: stop if directory doesn't exist.
+* `exportMsd`: fix peaks argument.
+* `exportMsd` tests: respect endianness.
+* `import`: respect verbose argument in `import(type="auto")`.
+
+
+CHANGES IN MALDIquantForeign VERSION 0.1 [2012-12-10]:
+------------------------------------------------------
+
+* First public release.
+* Supported file formats:
+  * Import: tab, txt, csv, Bruker Daltonics *flex files, mzXML, mzML
+  * Export: tab, csv, msd
+

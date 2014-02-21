@@ -1,13 +1,13 @@
+\docType{methods}
 \name{exportMzMl,MassSpectrum-method}
 \alias{exportMzMl}
-\alias{exportMzMl,list-method}
 \alias{exportMzMl,MassSpectrum-method}
+\alias{exportMzMl,list-method}
 \title{Export to mzML files}
 \usage{
-  \S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE,
-    \ldots)
+\S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
 
-  \S4method{exportMzMl}{list}(x, path, force=FALSE, \ldots)
+\S4method{exportMzMl}{list}(x, path, force=FALSE, \ldots)
 }
 \arguments{
   \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}}
@@ -29,12 +29,10 @@
   \code{\link[utils]{write.table}}.}
 }
 \description{
-  This function exports
-  \code{\link[MALDIquant]{AbstractMassObject-class}}
-  objects (e.g.
-  \code{\link[MALDIquant]{MassSpectrum-class}},
-  \code{\link[MALDIquant]{MassPeaks-class}}) into mzML
-  files.
+This function exports
+\code{\link[MALDIquant]{AbstractMassObject-class}} objects
+(e.g. \code{\link[MALDIquant]{MassSpectrum-class}},
+\code{\link[MALDIquant]{MassPeaks-class}}) into mzML files.
 }
 \examples{
 \dontrun{
@@ -52,15 +50,15 @@ exportMzMl(s, path="spectra.mzMl")
 }
 }
 \author{
-  Sebastian Gibb
+Sebastian Gibb
 }
 \references{
-  \url{http://strimmerlab.org/software/maldiquant/}, \cr
-  HUPO Proteomics Standards Inititative mzML 1.1.0
-  Specification: \url{http://www.psidev.info/mzml_1_0_0}
+\url{http://strimmerlab.org/software/maldiquant/}, \cr HUPO
+Proteomics Standards Inititative mzML 1.1.0 Specification:
+\url{http://www.psidev.info/mzml_1_0_0}
 }
 \seealso{
-  \code{\link[MALDIquant]{MassPeaks-class}},
-  \code{\link[MALDIquant]{MassSpectrum-class}}
+\code{\link[MALDIquant]{MassPeaks-class}},
+\code{\link[MALDIquant]{MassSpectrum-class}}
 }
 
