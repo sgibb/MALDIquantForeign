@@ -3,7 +3,8 @@ context("importCiphergenXml")
 test_that("importCiphergenXml", {
   expect_error(MALDIquantForeign:::.importCiphergenXml("tmp.tmp"))
 
-  path <- file.path("data", "ciphergen", "tiny.xml")
+  path <- system.file(file.path("exampledata", "ciphergen", "tiny.xml"),
+                      package="MALDIquantForeign")
   s <- MALDIquantForeign:::.importCiphergenXml(path)
 
   expect_equal(s, import(path))

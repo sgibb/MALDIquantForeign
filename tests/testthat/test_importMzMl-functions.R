@@ -3,7 +3,9 @@ context("importMzMl")
 test_that("importMzMl", {
   expect_error(MALDIquantForeign:::.importMzMl("tmp.tmp"))
 
-  path <- normalizePath(file.path("data", "tiny1.mzML1.1.mzML"))
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny1.mzML1.1.mzML"), 
+    package="MALDIquantForeign"))
   s <- MALDIquantForeign:::.importMzMl(path)
 
   expect_equal(s, import(path))
@@ -24,7 +26,9 @@ test_that("importMzMl", {
 test_that("importMzMl compressed", {
   expect_error(MALDIquantForeign:::.importMzMl("tmp.tmp"))
 
-  path <- normalizePath(file.path("data", "tiny1-compressed.mzML1.1.mzML"))
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny1-compressed.mzML1.1.mzML"), 
+    package="MALDIquantForeign"))
   s <- MALDIquantForeign:::.importMzMl(path)
 
   expect_equal(s, import(path))
@@ -45,7 +49,9 @@ test_that("importMzMl compressed", {
 test_that("importMzMl centroided", {
   expect_error(MALDIquantForeign:::.importMzMl("tmp.tmp"))
 
-  path <- normalizePath(file.path("data", "tiny1-centroided.mzML1.1.mzML"))
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny1-centroided.mzML1.1.mzML"), 
+    package="MALDIquantForeign"))
   p <- MALDIquantForeign:::.importMzMl(path)
 
   expect_equal(p, import(path))
@@ -64,7 +70,9 @@ test_that("importMzMl centroided", {
   expect_equal(basename(metaData(p[[2]])$file), "tiny1-centroided.mzML1.1.mzML")
 
   ## overwrite default arguments
-  path <- normalizePath(file.path("data", "tiny1.mzML1.1.mzML"))
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny1.mzML1.1.mzML"), 
+    package="MALDIquantForeign"))
   expect_true(all(sapply(MALDIquantForeign:::.importMzMl(path, centroided=TRUE),
                          isMassPeaks)))
 })

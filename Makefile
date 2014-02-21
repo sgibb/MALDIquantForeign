@@ -5,7 +5,7 @@ PACKAGE_NAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 PACKAGE_VERSION := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 SRC := $(shell basename $(PWD))
 LOCALDIR := .local
-TESTDIR := $(PACKAGE_NAME)/inst/tests
+TESTDIR := $(PACKAGE_NAME)/tests
 
 .PHONY: clean check build install remove local_install local_remove test
 

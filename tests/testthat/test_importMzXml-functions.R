@@ -3,7 +3,8 @@ context("importMzXml")
 test_that("importMzXml", {
   expect_error(MALDIquantForeign:::.importMzXml("tmp.tmp"))
 
-  path <- file.path("data", "tiny1.mzXML3.0.mzXML")
+  path <- system.file(file.path("exampledata", "tiny1.mzXML3.0.mzXML"),
+                      package="MALDIquantForeign")
   s <- MALDIquantForeign:::.importMzXml(path)
 
   expect_equal(s, import(path))
@@ -19,7 +20,8 @@ test_that("importMzXml", {
 test_that("importMzXml compressed", {
   expect_error(MALDIquantForeign:::.importMzXml("tmp.tmp"))
 
-  path <- file.path("data", "tiny1-compressed.mzXML3.0.mzXML")
+  path <- system.file(file.path("exampledata", "tiny1-compressed.mzXML3.0.mzXML"),
+                      package="MALDIquantForeign")
   s <- MALDIquantForeign:::.importMzXml(path)
 
   expect_equal(s, import(path))
@@ -36,7 +38,8 @@ test_that("importMzXml compressed", {
 test_that("importMzXml centroided", {
   expect_error(MALDIquantForeign:::.importMzXml("tmp.tmp"))
 
-  path <- file.path("data", "tiny1-centroided.mzXML3.0.mzXML")
+  path <- system.file(file.path("exampledata", "tiny1-centroided.mzXML3.0.mzXML"),
+                      package="MALDIquantForeign")
   p <- MALDIquantForeign:::.importMzXml(path)
 
   expect_equal(p, import(path))

@@ -3,7 +3,9 @@ context("importBrukerFlex")
 test_that("importBrukerFlex", {
   expect_error(MALDIquantForeign:::.importBrukerFlex("tmp.tmp"))
 
-  path <- file.path("data", "brukerflex", "0_A1", "1", "1SLin", "fid")
+  path <- system.file(
+    file.path("exampledata", "brukerflex", "0_A1", "1", "1SLin", "fid"), 
+    package="MALDIquantForeign")
   s <- MALDIquantForeign:::.importBrukerFlex(path)
 
   expect_equal(s, import(path))

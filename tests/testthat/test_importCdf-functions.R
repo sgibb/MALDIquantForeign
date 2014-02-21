@@ -28,7 +28,8 @@ context("importCdf")
 #
 
 test_that("importCdf", {
-  path <- normalizePath(file.path("data", "tiny.cdf"))
+  path <- normalizePath(system.file(file.path("exampledata", "tiny.cdf"), 
+                                    package="MALDIquantForeign"))
 
   if (suppressWarnings(require("RNetCDF", quietly=TRUE))) {
     ## suppress warnings to avoid creation of Rplots.pdf

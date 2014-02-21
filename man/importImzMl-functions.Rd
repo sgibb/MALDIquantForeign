@@ -27,8 +27,7 @@ library("MALDIquant")
 library("MALDIquantForeign")
 
 ## get example directory
-exampleDirectory <- system.file(file.path("tests", "data"),
-                                package="MALDIquantForeign")
+exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 
 ## import
 s <- importImzMl(exampleDirectory)
