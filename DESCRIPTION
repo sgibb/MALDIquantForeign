@@ -18,7 +18,7 @@ Imports:
     readMzXmlData (>= 2.7),
     XML
 Suggests:
-    testthat (>= 0.8)
+    testthat (>= 0.8),
     RNetCDF (>= 1.6.1)
 Description: This package reads (tab, csv, Bruker fid, Ciphergen XML,
     mzXML, mzML, imzML, Analyze 7.5, CDF) and writes (tab, csv, msd, mzML)
