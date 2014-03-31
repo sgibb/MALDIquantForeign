@@ -1,8 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.6.3 [2014-03-31]:
+- add basic vignette.
+
 Version 0.6.2 [2014-02-21]:
-- INTERNAL: fix path of exampledata (needed because the test scripts moved to 
+- INTERNAL: fix path of exampledata (needed because the test scripts moved to
   tests).
 
 Version 0.6.1 [2014-02-21]:

@@ -1,0 +1,193 @@
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{MALDIquant: Quantitative Analysis of Mass Spectrometry Data}
+%\VignetteKeywords{Bioinformatics, Proteomics, Mass Spectrometry}
+%\VignettePackage{MALDIquant}
+
+\documentclass[12pt]{article}
+
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{bibentry}       % inline bibentries
+\nobibliography*            % no special bibliography for bibentry
+
+\newcommand{\R}{\texttt{R}}
+\newcommand{\CRAN}{\texttt{CRAN}}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\texttt{#1}}}
+\newcommand{\Mq}{\Rpackage{MALDIquant}}
+\newcommand{\MqF}{\Rpackage{MALDIquantForeign}}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+
+\title{\MqF{}: Import/Export routines for \Mq{}}
+
+\author{
+  Sebastian Gibb%
+  \thanks{\email{mail@sebastiangibb.de}}
+}
+\date{\today}
+
+\begin{document}
+
+<<setup, include=FALSE, cache=FALSE>>=
+library("knitr")
+opts_chunk$set(tidy.opts=list(width.cutoff=45), tidy=FALSE, fig.align="center",
+               fig.height=4.25, comment=NA, prompt=TRUE)
+@
+<<env, echo=FALSE>>=
+suppressPackageStartupMessages(library("MALDIquant"))
+suppressPackageStartupMessages(library("MALDIquantForeign"))
+@
+
+\maketitle
+
+\begin{abstract}
+  \MqF{} provides routines for importing/exporting different file formats
+  into/from \Mq{}.\\
+  This vignette describes the usage of the \MqF{} package.
+\end{abstract}
+
+\clearpage
+
+\tableofcontents
+
+\section*{Foreword}
+
+\MqF{} is free and open source software for the \R{} \citep{RPROJECT}
+environment and under active development.
+If you use it, please support the project by citing it in publications:
+
+\begin{quote}
+  \bibentry{MALDIquant}
+\end{quote}
+
+If you have any questions, bugs, or suggestions do not hesitate to contact
+me (\email{mail@sebastiangibb.de}). \\
+Please visit \url{http://strimmerlab.org/software/maldiquant/}.
+
+\section{Introduction}
+
+\Mq{} should be device and platform independent. That's why it has not any
+import/export functions. \\
+\MqF{} fills this gap and provides import/export routines for various file
+formats:
+<<fileformats>>=
+supportedFileFormats()
+@
+
+\section{Setup}
+
+After starting \R{} we could install \Mq{} and \MqF{}
+directly from \CRAN{} using \Rfunction{install.packages}:
+<<mqsetup, eval=FALSE>>=
+install.packages(c("MALDIquant", "MALDIquantForeign"))
+@
+Before we can use \Mq{} and \MqF{} we have to load the packages.
+<<mqlibrary, eval=FALSE>>=
+library("MALDIquant")
+library("MALDIquantForeign")
+@
+
+\section{Import}
+
+\MqF{} provides an \Rfunction{import} function that tries to auto-detect the
+correct file type. Because this would never be perfect \MqF{} offers also many
+\Rfunction{import*} functions like \Rfunction{importBrukerFlex},
+\Rfunction{importMzMl}, etc. Please see the manual page of \Rfunction{import}
+for a complete list (\Rfunction{?import}).\\
+
+First we try to import some example data in Bruker Daltonics *flex-series file
+format using the \Rfunction{import} function.
+
+<<import>>=
+## get the example directory
+exampleDirectory <- system.file("exampledata",
+                                package="MALDIquantForeign")
+
+spectra <- import(file.path(exampleDirectory,
+                            "brukerflex"),
+                  verbose=FALSE)
+spectra[[1]]
+@
+Next we use the \Rfunction{importBrukerFlex} function (the result is the same as
+above).
+<<importbrukerflex>>=
+spectra <- importBrukerFlex(file.path(exampleDirectory,
+                                      "brukerflex"),
+                            verbose=FALSE)
+spectra[[1]]
+@
+\MqF{} supports compressed files, too (\emph{zip}, \emph{tar.\{bz2, gz,xz\}}).
+<<importcsvcompressed>>=
+spectra <- importCsv(file.path(exampleDirectory, "compressed",
+                               "csv.tar.gz"), verbose=FALSE)
+spectra[[1]]
+
+spectra <- importCsv(file.path(exampleDirectory, "compressed",
+                               "csv.zip"), verbose=FALSE)
+spectra[[1]]
+@
+Remote files are supported as well.
+<<importremote>>=
+githubUrl <- paste0("https://raw.github.com/sgibb/",
+                    "MALDIquantForeign/master/",
+                    "inst/exampledata/tiny1.mzML1.1.mzML")
+spectra <- import(githubUrl, verbose=FALSE)
+spectra[[1]]
+
+spectra <- importMzMl(githubUrl, verbose=FALSE)
+spectra[[1]]
+@
+
+\section{Export}
+
+The export routines in \MqF{} are very similar to the import routines. Please
+see manual page of \Rfunction{export} for a complete list of supported
+export routines (\Rfunction{?export}).
+
+First we create a simple list of \Robject{MassSpectrum} objects using
+\Rfunction{createMassSpectrum}.
+<<masspectrum>>=
+spectra <- list(
+  createMassSpectrum(mass=1:5, intensity=1:5),
+  createMassSpectrum(mass=1:5, intensity=6:10))
+@
+Now we want to export the first spectrum into a CSV file.
+<<export1, eval=FALSE>>=
+export(spectra[[1]], file="spectrum1.csv")
+@
+Exporting every file by hand is cumbersome. We want to export the whole list of
+spectra. Instead of \Robject{file} we use \Robject{path} now to specify a
+directory. Please note that we have to add the file type/format information now
+(we can use the \Robject{type} argument or the corresponding \Rfunction{export*}
+function).
+<<exportpath, eval=TRUE, echo=FALSE>>=
+## force=TRUE creates the path if it does not exist
+## (or overwrites it)
+export(spectra, type="csv", path="spectra", force=TRUE)
+list.files("spectra")
+@
+<<exportpatheval, eval=TRUE, echo=FALSE>>=
+path <- file.path(tempdir(), "spectra")
+export(spectra, type="csv", path=path, force=TRUE)
+list.files(path)
+@
+
+\section{Analyse Mass Spectrometry Data}
+
+Please have a look at the corresponding vignette shipped with \Mq{} and the
+\Mq{} website: \url{http://strimmerlab.org/software/maldiquant/}.
+<<mqvignette, eval=FALSE>>=
+vignette(topic="MALDIquant", package="MALDIquant")
+@
+
+\section{Session Information}
+<<sessioninfo, echo=FALSE, results="asis">>=
+toLatex(sessionInfo(), locale=FALSE)
+@
+
+\bibliographystyle{apalike}
+\bibliography{MALDIquantForeign}
+
+\end{document}
