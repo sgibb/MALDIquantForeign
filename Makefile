@@ -7,11 +7,11 @@ SRC := $(shell basename $(PWD))
 LOCALDIR := .local
 TESTDIR := $(PACKAGE_NAME)/tests
 
-.PHONY: clean check build install remove local_install local_remove test
+.PHONY: clean check build install remove local_install local_remove test clean_vignette
 
 all: clean check build
 
-roxygen: 
+roxygen:
 	cd .. ;\
 	$(R_BIN) -q -e "library(\"roxygen2\")" \
 				      -e "roxygenize(\"$(PACKAGE_NAME)\")"
@@ -23,11 +23,11 @@ build: roxygen
 install: build
 	cd .. ;\
 	$(R_BIN) CMD INSTALL $(PACKAGE_NAME)_$(PACKAGE_VERSION).tar.gz
-	
+
 remove:
 	$(R_BIN) CMD REMOVE $(PACKAGE_NAME)
 
-local_install: local_remove 
+local_install: local_remove
 	cd .. ;\
 	mkdir $(LOCALDIR) ;\
 	$(R_BIN) CMD INSTALL --library=$(LOCALDIR) $(PACKAGE_NAME)
@@ -50,8 +50,17 @@ win-builder: check
 	cd .. ;\
 	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(PACKAGE_NAME)_$(PACKAGE_VERSION).tar.gz
 
-clean: local_remove
+clean: local_remove clean_vignette
 	cd .. ;\
 	$(RM) -rf $(PACKAGE_NAME).Rcheck/ \
 	$(RM) -rf $(PACKAGE_NAME)_*.tar.gz
+
+vignette:
+	cd vignettes ;\
+	$(R_BIN) --vanilla -e "library(knitr); knit2pdf(\"MALDIquantForeign.Rnw\");"
+
+clean_vignette:
+	cd vignettes ;\
+	$(RM) *.aux *.bbl *.blg *.log *.out *.pdf *.tex *.toc ;\
+	$(RM) -r figure
 
