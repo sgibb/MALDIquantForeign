@@ -13,7 +13,7 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
-  install RNetCDF dependencies and pgf for the vignette
+  # install RNetCDF dependencies and pgf for the vignette
   - ./travis-tool.sh install_aptget libudunits2-dev libnetcdf-dev pgf
   - ./travis-tool.sh install_deps
 
