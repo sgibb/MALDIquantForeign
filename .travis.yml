@@ -3,14 +3,18 @@
 
 language: c
 
+env:
+  global:
+    - R_BUILD_ARGS=" " R_CHECK_ARGS="--as-cran" BOOTSTRAP_LATEX="1" WARNINGS_ARE_ERRORS="1"
+
 before_install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
 
 install:
-  # install RNetCDF dependencies
-  - ./travis-tool.sh install_aptget libudunits2-dev libnetcdf-dev
+  install RNetCDF dependencies and pgf for the vignette
+  - ./travis-tool.sh install_aptget libudunits2-dev libnetcdf-dev pgf
   - ./travis-tool.sh install_deps
 
 script:
