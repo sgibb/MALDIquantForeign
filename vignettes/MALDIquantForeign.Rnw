@@ -162,16 +162,11 @@ spectra. Instead of \Robject{file} we use \Robject{path} now to specify a
 directory. Please note that we have to add the file type/format information now
 (we can use the \Robject{type} argument or the corresponding \Rfunction{export*}
 function).
-<<exportpath, eval=TRUE, echo=FALSE>>=
+<<exportpath, eval=TRUE>>=
 ## force=TRUE creates the path if it does not exist
 ## (or overwrites it)
 export(spectra, type="csv", path="spectra", force=TRUE)
 list.files("spectra")
-@
-<<exportpatheval, eval=TRUE, echo=FALSE>>=
-path <- file.path(tempdir(), "spectra")
-export(spectra, type="csv", path=path, force=TRUE)
-list.files(path)
 @
 
 \section{Analyse Mass Spectrometry Data}
