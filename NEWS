@@ -1,16 +1,20 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.6.3 [2014-03-31]:
-- add basic vignette.
+CHANGES IN MALDIquantForeign VERSION 0.7 [2014-04-11]:
+------------------------------------------------------
 
-Version 0.6.2 [2014-02-21]:
-- INTERNAL: fix path of exampledata (needed because the test scripts moved to
-  tests).
+IMPROVEMENTS
 
-Version 0.6.1 [2014-02-21]:
-- INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
+* Add vignette.
+
+INTERNAL CHANGES
+
+* Move tests into tests/testthat to adapt to testthat 0.8 and new
   CRAN policy; close #10.
+
+* Fix path of exampledata (needed because the test scripts moved to
+  tests).
 
 
 CHANGES IN MALDIquantForeign VERSION 0.6 [2014-01-28]:
