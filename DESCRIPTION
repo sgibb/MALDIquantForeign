@@ -30,3 +30,4 @@ URL: http://strimmerlab.org/software/maldiquant/
     https://github.com/sgibb/MALDIquantForeign/
 BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes
+VignetteBuilder: knitr
