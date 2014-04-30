@@ -30,4 +30,4 @@ install.packages("MALDIquantForeign")
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.png?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
+[![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
