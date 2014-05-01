@@ -2,8 +2,14 @@ RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
 
+Version 0.7.2 [2014-05-01]:
+- Vignette: Don't evaluate remote import example to avoid build failures on
+  CRAN.
+- Manual page `importCdf`: check availability of RNetCDF to avoid build failures
+  on CRAN.
+
 Version 0.7.1 [2014-04-12]:
-- Fix VignetteIndexEntry.
+- Vignette: Fix VignetteIndexEntry.
 
 
 CHANGES IN MALDIquantForeign VERSION 0.7 [2014-04-11]:
