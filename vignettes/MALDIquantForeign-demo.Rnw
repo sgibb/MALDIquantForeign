@@ -1,7 +1,7 @@
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{MALDIquantForeign: Import/Export routines for MALDIquant}
 %\VignetteKeywords{Bioinformatics, Proteomics, Mass Spectrometry}
-%\VignettePackage{MALDIquant}
+%\VignettePackage{MALDIquantForeign}
 
 \documentclass[12pt]{article}
 
@@ -184,6 +184,6 @@ toLatex(sessionInfo(), locale=FALSE)
 @
 
 \bibliographystyle{apalike}
-\bibliography{MALDIquantForeign}
+\bibliography{bibliography}
 
 \end{document}
