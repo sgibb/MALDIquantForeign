@@ -53,7 +53,7 @@
 
   ## skip unused entries
   seek(f, where=40)
-  ## 2 == number of intesity, 3 == ncol (x), 4, nrow (y)
+  ## 2 == number of intesity, 3 == ncol (x), 4 == nrow (y)
   dimensions <- readBin(f, integer(), n=8, size=2, endian=endian)
   ni <- dimensions[2]
   nx <- dimensions[3]
@@ -99,7 +99,7 @@
   }
 
   f <- file(filename, open="rb")
-  i <- readBin(f, what=header$what, n=header$ni*header$nx*header$ny*header$size,
+  i <- readBin(f, what=header$what, n=header$ni*header$nx*header$ny,
                size=header$size, signed=header$signed, endian=header$endian)
   dim(i) <- c(header$ni, header$nx, header$ny)
   close(f)
@@ -118,7 +118,7 @@
   }
 
   f <- file(filename, open="rb")
-  m <- readBin(f, what=double(), n=header$ni*4, size=4, signed=TRUE,
+  m <- readBin(f, what=double(), n=header$ni, size=4, signed=TRUE,
                endian=header$endian)
   close(f)
 
