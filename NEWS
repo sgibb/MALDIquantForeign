@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.7.3 [2014-06-11]:
+- `importAnalyze`: circumvent the limit of 32747 intensity values that is
+  specified in the official Analyze 7.5 format.
+  Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
 
 Version 0.7.2 [2014-05-01]:
 - Vignette: Don't evaluate remote import example to avoid build failures on

@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -55,7 +55,8 @@
   seek(f, where=40)
   ## 2 == number of intesity, 3 == ncol (x), 4 == nrow (y)
   dimensions <- readBin(f, integer(), n=8, size=2, endian=endian)
-  ni <- dimensions[2]
+  ## We use the size of the t2m file. See .readAnalyzeIntensity for details.
+  #ni <- dimensions[2]
   nx <- dimensions[3]
   ny <- dimensions[4]
 
@@ -84,12 +85,12 @@
 
   close(f)
 
-  return(list(ni=ni, nx=nx, ny=ny, xd=xd, yd=yd,
+  return(list(nx=nx, ny=ny, xd=xd, yd=yd,
               endian=endian, what=what, signed=signed, size=size))
 }
 
 ## Analyze 7.5 img file
-.readAnalyzeIntensity <- function(filename, header, verbose=FALSE) {
+.readAnalyzeIntensity <- function(filename, header, ni, verbose=FALSE) {
   if (!file.exists(filename)) {
     stop(sQuote(filename), " isn't readable.")
   }
@@ -99,9 +100,15 @@
   }
 
   f <- file(filename, open="rb")
-  i <- readBin(f, what=header$what, n=header$ni*header$nx*header$ny,
+  ## header$ni should contain the number of intensity values
+  ## because the format specification uses int16 for header$ni it is limited to
+  ## 32767 intensity values.
+  ## We use the size of the t2m file divided by 4 to find the correct number to
+  ## circumvent this size limit.
+  ## Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
+  i <- readBin(f, what=header$what, n=ni*header$nx*header$ny,
                size=header$size, signed=header$signed, endian=header$endian)
-  dim(i) <- c(header$ni, header$nx, header$ny)
+  dim(i) <- c(ni, header$nx, header$ny)
   close(f)
 
   return(i)
@@ -117,9 +124,9 @@
     message("Reading mass values from ", sQuote(filename), " ...")
   }
 
+  n <- file.info(filename)$size/4
   f <- file(filename, open="rb")
-  m <- readBin(f, what=double(), n=header$ni, size=4, signed=TRUE,
-               endian=header$endian)
+  m <- readBin(f, what=double(), n=n, size=4, signed=TRUE, endian=header$endian)
   close(f)
 
   return(m)

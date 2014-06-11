@@ -22,10 +22,12 @@
                            minIntensity=0, verbose=FALSE) {
   baseFilename <- .withoutFileExtension(file)
   header <- .readAnalyzeHdr(file, verbose=verbose)
-  intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
-                                     header, verbose=verbose)
-  mass <- .readAnalyzeMass(paste(baseFilename, "t2m", sep="."), header,
+  mass <- .readAnalyzeMass(paste(baseFilename, "t2m", sep="."),
+                           header=header,
                            verbose=verbose)
+  intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
+                                     header=header, ni=length(mass),
+                                     verbose=verbose)
 
   l <- vector(mode="list", length=header$nx*header$ny)
 
