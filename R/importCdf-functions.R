@@ -22,7 +22,7 @@
 
 ## original code written by Pietro Franceschi
 ## modified for MALDIquantForeign by Sebastian Gibb
-.importCdf <- function(file, centroided=NA, massRange=c(0, Inf),
+.importCdf <- function(file, centroided=FALSE, massRange=c(0, Inf),
                           minIntensity=0, verbose=FALSE) {
   if (!require("RNetCDF")) {
         stop("For netCDF support the ", sQuote("RNetCDF"),

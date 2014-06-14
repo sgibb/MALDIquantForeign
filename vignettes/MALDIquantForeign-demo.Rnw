@@ -128,16 +128,18 @@ spectra <- importCsv(file.path(exampleDirectory, "compressed",
                                "csv.zip"), verbose=FALSE)
 spectra[[1]]
 @
-Remote files are supported as well. Please note that the data are
-filtered and have irregulare intervals between the \textit{m/z} values. That's
-why \Rfunction{import} assumes centroided data (peaks). To force
-\Rfunction{import} to produce \Robject{MassSpectrum} objects we set the argument
-\Robject{centroided=FALSE}.\\
-Data are taken from \citet{Tan2006}.
+Remote files are supported as well. Data are taken from \citet{Tan2006}.
 <<importremote, eval=FALSE>>=
 spectra <- import(paste0("http://www.meb.ki.se/",
                          "~yudpaw/papers/spikein_xml.zip"),
                   centroided=FALSE, verbose=TRUE)
+@
+If you want to read peak lists (centroided data) instead of spectra data you
+have to set \Rfunction{centroided=TRUE}.
+<<centroided>>=
+peaks <- import(file.path(exampleDirectory, "ascii.txt"),
+                centroided=TRUE, verbose=FALSE)
+peaks
 @
 
 \section{Export}

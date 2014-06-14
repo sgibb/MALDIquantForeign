@@ -17,7 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importCiphergenXml <- function(file, centroided=NA, massRange=c(0, Inf),
+.importCiphergenXml <- function(file, centroided=FALSE, massRange=c(0, Inf),
                                 minIntensity=0, verbose=FALSE) {
 
   if (verbose) {

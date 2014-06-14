@@ -17,7 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importMzMl <- function(file, centroided=NA, massRange=c(0, Inf),
+.importMzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                         minIntensity=0, verbose=FALSE) {
 
   if (verbose) {

@@ -18,7 +18,7 @@
 
 #' @keywords internal
 
-.importAnalyze <- function(file, centroided=NA, massRange=c(0, Inf),
+.importAnalyze <- function(file, centroided=FALSE, massRange=c(0, Inf),
                            minIntensity=0, verbose=FALSE) {
   baseFilename <- .withoutFileExtension(file)
   header <- .readAnalyzeHdr(file, verbose=verbose)

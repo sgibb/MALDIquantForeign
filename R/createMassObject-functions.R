@@ -24,7 +24,7 @@
 #' @param data \code{list}, spectrum data with elements mass, intensity, snr
 #' @param metaData \code{list}, metaData
 #' @param centroided \code{logical}, centroided
-#'  (if TRUE => MassPeaks, if FALSE => MassSpectrum, if NA => try to guess)
+#'  (if TRUE => MassPeaks, if FALSE => MassSpectrum)
 #' @param massRange \code{double}, length == 2, trim spectrum to
 #'  \code{massRange}.
 #' @param minIntensity \code{double}, minimal intensity
@@ -37,43 +37,50 @@
 #' @keywords internal
 #'
 .createMassObject <- function(data, metaData=list(),
-                              centroided=NA,
+                              centroided=FALSE,
                               massRange=c(0, Inf),
                               minIntensity=0,
                               verbose=FALSE) {
 
-  ## trim AbstractMass object
-  massRange <- MALDIquant:::.reorderRange(massRange)
+  if (!is.null(metaData$centroided) ||
+      !is.null(metaData$dataProcessing$centroided)) {
+    isCentroided <-
+      isTRUE(as.logical(as.numeric(metaData$centroided))) |
+      isTRUE(as.logical(as.numeric(metaData$dataProcessing$centroided)))
 
-  i <- which(massRange[1] <= data$mass & data$mass <= massRange[2] &
-             data$intensity >= minIntensity)
-
-  m <- createMassSpectrum(mass=data$mass[i], intensity=data$intensity[i],
-                          metaData=metaData)
-
-  if (is.na(centroided)) {
-    if (!is.null(metaData$centroided)) {
-      centroided <- as.logical(as.numeric(metaData$centroided))
-    } else if (!is.null(metaData$dataProcessing$centroided)) {
-      centroided <- as.logical(as.numeric(metaData$dataProcessing$centroided))
-    } else {
-      centroided <- !isRegular(m)
-    }
-
-    if (centroided && verbose) {
-      message("Centroided data detected. Creating a MassPeaks object.")
+    if (isCentroided != centroided) {
+      warning("According to the metadata information the imported data are ",
+              ifelse(isCentroided, "", "not "), "centroided, ",
+              "but they are treated as ",
+              ifelse(centroided, "centroided (MassPeaks)",
+                     "profile (MassSpectrum)"), " data. Maybe you want to use ",
+              sQuote(paste0("centroided=", as.character(isCentroided))),
+              ". See ", sQuote("?import"), " for details.", immediate.=TRUE)
     }
   }
 
+  if (centroided && verbose) {
+    message("Assume centroided data and creating a MassPeaks object.")
+  }
+
+  ## trim AbstractMass object
+  massRange <- MALDIquant:::.reorderRange(massRange)
+
+  ## we don't use MALDIquant::trim here because we want to filter on the
+  ## intensity as well
+  i <- which(massRange[1] <= data$mass & data$mass <= massRange[2] &
+             data$intensity >= minIntensity)
+
   ## create a MassPeaks object for centroided data
-  if (centroided) {
-    if (is.null(data$snr)) {
-      m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
-                           metaData=metaData)
-    } else {
-      m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
-                           snr=data$snr[i], metaData=metaData)
-    }
+  if (centroided & is.null(data$snr)) {
+    m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
+                         metaData=metaData)
+  } else if (centroided & !is.null(data$snr)) {
+    m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
+                         snr=data$snr[i], metaData=metaData)
+  } else {
+    m <- createMassSpectrum(mass=data$mass[i], intensity=data$intensity[i],
+                            metaData=metaData)
   }
 
   return(m)

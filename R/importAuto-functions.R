@@ -18,7 +18,7 @@
 
 #' @keywords internal
 .importAuto <- function(path, excludePattern=NULL,
-                        removeEmptySpectra=TRUE, centroided=NA,
+                        removeEmptySpectra=TRUE, centroided=FALSE,
                         massRange=c(0, Inf), minIntensity=0,
                         verbose=FALSE,
                         ...) {

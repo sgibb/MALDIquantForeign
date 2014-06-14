@@ -17,7 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.importTab <- function(file, centroided=NA, massRange=c(0L, Inf),
+.importTab <- function(file, centroided=FALSE, massRange=c(0L, Inf),
                        minIntensity=0L, skip=0L,
                        sep=.autoSep(file, skip=skip),
                        header=.autoHeader(file, sep=sep, skip=skip),
@@ -35,7 +35,7 @@
 }
 
 #' @keywords internal
-.importCsv <- function(file, centroided=NA, massRange=c(0L, Inf),
+.importCsv <- function(file, centroided=FALSE, massRange=c(0L, Inf),
                        minIntensity=0L, skip=0L,
                        sep=.autoSep(file, skip=skip),
                        header=.autoHeader(file, sep=sep, skip=skip),

@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.7.5 [2014-06-14]:
+- `import`: set argument `centroided=FALSE` as default (was `NA` before). The
+  automatically determination of profile/centroided data was too error prone.
+  Now we read everything as profile data (use `centroided=TRUE` to read
+  centroided data);
+  affected functions: all `import` functions (e.g. `importBrukerFlex`,
+  `importMzMl` ...).
+
 Version 0.7.4 [2014-06-11]:
 - Vignette: Rename output file from MALDIquantForeign.pdf to
   MALDIquantForeign-demo.pdf.

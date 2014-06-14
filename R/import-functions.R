@@ -66,10 +66,11 @@
 #' @param excludePattern \code{character}, a regular expression to exclude
 #'  files in a directory (see details).
 #' @param removeEmptySpectra \code{logical}, should empty spectra excluded?
-#' @param centroided \code{logical}, if \code{centroided=TRUE} a list of
-#' \code{\link[MALDIquant]{MassPeaks-class}} objects is returned otherwise
-#' a list of \code{\link[MALDIquant]{MassSpectrum-class}} objects. If
-#' \code{centroided=NA} \code{import} tries to guess the correct value.
+#' @param centroided \code{logical}, if \code{centroided=FALSE} (default)
+#' the data are treated as not centroided and a list of
+#' \code{\link[MALDIquant]{MassSpectrum-class}} objects is returned. Use
+#' \code{centroided=TRUE} to assume centroided data and get a list of
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #' @param massRange \code{double}, limits of mass import (left/minimal mass,
 #' right/maximal mass).
 #' @param minIntensity \code{double}, minimal intensity to import.
@@ -107,7 +108,7 @@
 #' @rdname import-functions
 #' @export
 import <- function(path, type="auto", pattern, excludePattern=NULL,
-                   removeEmptySpectra=TRUE, centroided=NA, massRange=c(0, Inf),
+                   removeEmptySpectra=TRUE, centroided=FALSE, massRange=c(0, Inf),
                    minIntensity=0, verbose=TRUE, ...) {
 
   ## download file if needed

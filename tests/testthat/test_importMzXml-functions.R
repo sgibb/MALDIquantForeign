@@ -40,11 +40,11 @@ test_that("importMzXml centroided", {
 
   path <- system.file(file.path("exampledata", "tiny1-centroided.mzXML3.0.mzXML"),
                       package="MALDIquantForeign")
-  p <- MALDIquantForeign:::.importMzXml(path)
+  p <- MALDIquantForeign:::.importMzXml(path, centroided=TRUE)
 
-  expect_equal(p, import(path))
-  expect_equal(p, importMzXml(path))
-  expect_equal(p, import(path, type="mzXML"))
+  expect_equal(p, import(path, centroided=TRUE))
+  expect_equal(p, importMzXml(path, centroided=TRUE))
+  expect_equal(p, import(path, type="mzXML", centroided=TRUE))
 
   expect_true(isMassPeaks(p[[1]]))
   expect_equal(mass(p[[1]]), 1:5)
