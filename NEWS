@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.7.6 [2014-06-14]:
+- Vignette: Rename output file from MALDIquantForeign-demo.pdf to
+  MALDIquantForeign-intro.pdf.
+
 Version 0.7.5 [2014-06-14]:
 - `import`: set argument `centroided=FALSE` as default (was `NA` before). The
   automatically determination of profile/centroided data was too error prone.
