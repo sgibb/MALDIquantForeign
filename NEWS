@@ -1,35 +1,34 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.7.6 [2014-06-14]:
-- Vignette: Rename output file from MALDIquantForeign-demo.pdf to
-  MALDIquantForeign-intro.pdf.
 
-Version 0.7.5 [2014-06-14]:
-- `import`: set argument `centroided=FALSE` as default (was `NA` before). The
+CHANGES IN MALDIquantForeign VERSION 0.8 [2014-06-16]:
+------------------------------------------------------
+
+MODIFICATIONS
+
+* `import`: set argument `centroided=FALSE` as default (was `NA` before). The
   automatically determination of profile/centroided data was too error prone.
   Now we read everything as profile data (use `centroided=TRUE` to read
   centroided data);
   affected functions: all `import` functions (e.g. `importBrukerFlex`,
   `importMzMl` ...).
 
-Version 0.7.4 [2014-06-11]:
-- Vignette: Rename output file from MALDIquantForeign.pdf to
-  MALDIquantForeign-demo.pdf.
+IMPROVEMENTS
 
-Version 0.7.3 [2014-06-11]:
-- `importAnalyze`: circumvent the limit of 32747 intensity values that is
+* `importAnalyze`: circumvent the limit of 32747 intensity values that is
   specified in the official Analyze 7.5 format.
   Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
 
-Version 0.7.2 [2014-05-01]:
-- Vignette: Don't evaluate remote import example to avoid build failures on
-  CRAN.
-- Manual page `importCdf`: check availability of RNetCDF to avoid build failures
-  on CRAN.
+INTERNAL CHANGES
 
-Version 0.7.1 [2014-04-12]:
-- Vignette: Fix VignetteIndexEntry.
+* Fix VignetteIndexEntry.
+* Rename vignette output file from MALDIquantForeign.pdf to
+  MALDIquantForeign-intro.pdf.
+* Check availability of the "RNetCDF" package in the `importCdf` man page to
+  avoid build failures on CRAN.
+* Don't evaluate the remote import example in the vignette to avoid build
+  failures on CRAN.
 
 
 CHANGES IN MALDIquantForeign VERSION 0.7 [2014-04-11]:
