@@ -220,9 +220,15 @@
       return()
     }
 
+    if (.isAttrSet(attrs, "IMS:1000090", "ibd MD5")) {
+      xml$ims$md5 <<-
+        readMzXmlData:::.attributeToString(attrs, "value")
+      return()
+    }
+
     if (.isAttrSet(attrs, "IMS:1000091", "ibd SHA-1")) {
       xml$ims$sha1 <<-
-        readMzXmlData:::.attributeToString(attrs, "value", required=TRUE)
+        readMzXmlData:::.attributeToString(attrs, "value")
       return()
     }
 
@@ -384,22 +390,8 @@
     ## 14 == nchar("<fileChecksum>")
     checkSumPos <- readMzXmlData:::.revfregexpr("<fileChecksum>", fileName) + 14
 
-    if (verbose) {
-      message("Calculating sha1-sum for ", sQuote(fileName), ": ",
-              appendLF=FALSE)
-    }
-
-    sha1Calc <- digest::digest(fileName, algo="sha1", file=TRUE,
-                               length=checkSumPos-1)
-    if (verbose) {
-      message(sha1Calc)
-    }
-
-    if (fileCheckSum != sha1Calc) {
-      warning("Stored and calculated Sha-1 sums do not match ",
-               "(stored ", sQuote(fileCheckSum), " calculated ",
-                sQuote(sha1Calc), ")!")
-    }
+    .testChecksum(fileName, fileCheckSum, algo="sha1", length=checkSumPos-1,
+                  verbose=verbose)
   }
 
   ## return statement (please call getData())

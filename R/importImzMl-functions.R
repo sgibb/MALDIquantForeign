@@ -37,11 +37,14 @@
   ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
 
-  ## test SHA-1
-  sha1<- digest::digest(ibdFilename, algo="sha1", file=TRUE)
-
-  if (tolower(sha1) != tolower(s$ims$sha1)) {
-    stop("SHA1 mismatch!")
+  ## test checksums
+  if (!is.null(s$ims$md5)) {
+    .testChecksum(ibdFilename, s$ims$md5, algo="md5", verbose=verbose)
+  } else if (!is.null(s$ims$sha1)) {
+    .testChecksum(ibdFilename, s$ims$sha1, algo="sha1", verbose=verbose)
+  } else {
+    stop("At least one checksum (SHA-1 or MD5) for the idb file ",
+         "must be provided in the imzML file.")
   }
 
   ibd <- file(ibdFilename, open="rb")

@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.8.1 [2014-07-05]:
+- Add MD5 checksum support for imzML files. Thanks to Ken Frankel
+  <kafrankel@gmail.com> for reporting this problem.
+
 
 CHANGES IN MALDIquantForeign VERSION 0.8 [2014-06-16]:
 ------------------------------------------------------
