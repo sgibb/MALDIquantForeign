@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.8.2 [2014-07-12]:
+- `importAnalyze`: use `as.double` after reading the image dimensions to avoid
+  integer overflows in vector allocations. Thanks to Ken Frankel
+  <kafrankel@gmail.com> for reporting this problem.
+
 Version 0.8.1 [2014-07-05]:
 - Add MD5 checksum support for imzML files. Thanks to Ken Frankel
   <kafrankel@gmail.com> for reporting this problem.

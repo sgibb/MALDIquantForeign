@@ -53,8 +53,12 @@
 
   ## skip unused entries
   seek(f, where=40)
-  ## 2 == number of intesity, 3 == ncol (x), 4 == nrow (y)
-  dimensions <- readBin(f, integer(), n=8, size=2, endian=endian)
+  ## 2 == number of intensity, 3 == ncol (x), 4 == nrow (y)
+  ## use as.double() here to avoid integer overflows in calculations like nx*ny
+  ## later
+  ## Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
+  dimensions <- as.double(readBin(f, integer(), n=8, size=2, endian=endian))
+
   ## We use the size of the t2m file. See .readAnalyzeIntensity for details.
   #ni <- dimensions[2]
   nx <- dimensions[3]
