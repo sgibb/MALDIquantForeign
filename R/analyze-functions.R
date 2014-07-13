@@ -36,6 +36,7 @@
   }
 
   f <- file(filename, open="rb")
+  on.exit(close(f))
 
   ## first 4 bytes have to be 348 in little endian mode
   ## (384 for ABSciex)
@@ -87,8 +88,6 @@
   xd <- pixdim[2]
   yd <- pixdim[3]
 
-  close(f)
-
   return(list(nx=nx, ny=ny, xd=xd, yd=yd,
               endian=endian, what=what, signed=signed, size=size))
 }
@@ -108,6 +107,7 @@
   skip <- skip*header$size
 
   f <- file(filename, open="rb")
+  on.exit(close(f))
   ## header$ni should contain the number of intensity values
   ## because the format specification uses int16 for header$ni it is limited to
   ## 32767 intensity values.
@@ -129,7 +129,6 @@
       seek(f, where=seek(f)+skip[2])
     }
   }
-  close(f)
 
   return(i)
 }
@@ -146,8 +145,8 @@
 
   n <- file.info(filename)$size/4
   f <- file(filename, open="rb")
+  on.exit(close(f))
   m <- readBin(f, what="double", n=n, size=4, signed=TRUE, endian=header$endian)
-  close(f)
 
   return(m)
 }
