@@ -25,8 +25,16 @@
   mass <- .readAnalyzeMass(paste(baseFilename, "t2m", sep="."),
                            header=header,
                            verbose=verbose)
+
+  massRange <- MALDIquant:::.reorderRange(massRange)
+  massIdx <- which(massRange[1] <= mass & mass <= massRange[2])
+  skip <- c(massIdx[1]-1, length(mass)-massIdx[length(massIdx)])
+  mass <- mass[massIdx]
+
   intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
-                                     header=header, ni=length(mass),
+                                     header=header,
+                                     ni=length(mass),
+                                     skip=skip,
                                      verbose=verbose)
 
   l <- vector(mode="list", length=header$nx*header$ny)

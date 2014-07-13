@@ -94,7 +94,8 @@
 }
 
 ## Analyze 7.5 img file
-.readAnalyzeIntensity <- function(filename, header, ni, verbose=FALSE) {
+.readAnalyzeIntensity <- function(filename, header, ni, skip=c(0, 0),
+                                  verbose=FALSE) {
   if (!file.exists(filename)) {
     stop(sQuote(filename), " isn't readable.")
   }
@@ -103,6 +104,9 @@
     message("Reading intensity values from ", sQuote(filename), " ...")
   }
 
+  stopifnot(length(skip) == 2)
+  skip <- skip*header$size
+
   f <- file(filename, open="rb")
   ## header$ni should contain the number of intensity values
   ## because the format specification uses int16 for header$ni it is limited to
@@ -110,9 +114,21 @@
   ## We use the size of the t2m file divided by 4 to find the correct number to
   ## circumvent this size limit.
   ## Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
-  i <- readBin(f, what=header$what, n=ni*header$nx*header$ny,
-               size=header$size, signed=header$signed, endian=header$endian)
+  i <- vector(mode=header$what, length=ni*header$nx*header$ny)
   dim(i) <- c(ni, header$nx, header$ny)
+
+  for (y in 1:header$ny) {
+    for (x in 1:header$nx) {
+      ## CAUTION: seek on Windows is possibly buggy; see ?seek for details.
+      ## If there are any bug reports on Windows we maybe have to ignore "skip"
+      ## on Windows (which would disable the mass range/memory saving feature
+      ## completely).
+      seek(f, where=seek(f)+skip[1])
+      i[, x, y] <- readBin(f, what=header$what, n=ni, size=header$size,
+                           signed=header$signed, endian=header$endian)
+      seek(f, where=seek(f)+skip[2])
+    }
+  }
   close(f)
 
   return(i)

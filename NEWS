@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.8.3 [2014-07-13]:
+- `.readAnalyzeIntensity`: allow to specify a mass range of interest to reduce
+  memory usage while importing Analyze files;
+  affected functions: `import`, `importAnalyze`
+
 Version 0.8.2 [2014-07-12]:
 - `importAnalyze`: use `as.double` after reading the image dimensions to avoid
   integer overflows in vector allocations. Thanks to Ken Frankel
