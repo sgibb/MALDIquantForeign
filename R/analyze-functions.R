@@ -39,7 +39,7 @@
 
   ## first 4 bytes have to be 348 in little endian mode
   ## (384 for ABSciex)
-  endian <- ifelse(readBin(f, integer(), n=1, size=4, endian="little") %in%
+  endian <- ifelse(readBin(f, "integer", n=1, size=4, endian="little") %in%
                    c(348, 384), "little", "big")
 
   ## skip unused entries
@@ -57,7 +57,7 @@
   ## use as.double() here to avoid integer overflows in calculations like nx*ny
   ## later
   ## Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
-  dimensions <- as.double(readBin(f, integer(), n=8, size=2, endian=endian))
+  dimensions <- as.double(readBin(f, "integer", n=8, size=2, endian=endian))
 
   ## We use the size of the t2m file. See .readAnalyzeIntensity for details.
   #ni <- dimensions[2]
@@ -66,15 +66,15 @@
 
   ## skip unused entries
   seek(f, where=70)
-  datatype <- readBin(f, integer(), n=1, size=2, endian=endian)
-  bitpix <- readBin(f, integer(), n=1, size=2, endian=endian)
+  datatype <- readBin(f, "integer", n=1, size=2, endian=endian)
+  bitpix <- readBin(f, "integer", n=1, size=2, endian=endian)
 
   if (datatype %in% c(2, 4, 8)) {
-    what <- integer()
+    what <- "integer"
   } else if (datatype %in% c(16, 32, 64)) {
-    what <- double()
+    what <- "double"
   } else {
-    what <- raw()
+    what <- "raw"
   }
 
   signed <- datatype == 2
@@ -82,7 +82,7 @@
 
   ## skip unused entries
   seek(f, where=76)
-  pixdim <- readBin(f, double(), n=8, size=4, endian=endian)
+  pixdim <- readBin(f, "double", n=8, size=4, endian=endian)
   ## pixelwidth in mm
   xd <- pixdim[2]
   yd <- pixdim[3]
@@ -130,7 +130,7 @@
 
   n <- file.info(filename)$size/4
   f <- file(filename, open="rb")
-  m <- readBin(f, what=double(), n=n, size=4, signed=TRUE, endian=header$endian)
+  m <- readBin(f, what="double", n=n, size=4, signed=TRUE, endian=header$endian)
   close(f)
 
   return(m)
