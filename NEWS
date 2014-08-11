@@ -1,19 +1,21 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.8.3 [2014-07-13]:
-- `.readAnalyzeIntensity`: allow to specify a mass range of interest to reduce
+
+CHANGES IN MALDIquantForeign VERSION 0.9 [2014-08-11]:
+------------------------------------------------------
+
+IMPROVEMENTS
+
+* `.readAnalyzeIntensity`: allow to specify a mass range of interest to reduce
   memory usage while importing Analyze files;
   affected functions: `import`, `importAnalyze`
-
-Version 0.8.2 [2014-07-12]:
-- `importAnalyze`: use `as.double` after reading the image dimensions to avoid
-  integer overflows in vector allocations. Thanks to Ken Frankel
-  <kafrankel@gmail.com> for reporting this problem.
-
-Version 0.8.1 [2014-07-05]:
-- Add MD5 checksum support for imzML files. Thanks to Ken Frankel
-  <kafrankel@gmail.com> for reporting this problem.
+* `importAnalyze`: use `as.double` after reading the image dimensions to avoid
+  integer overflows in vector allocations (the Analyze 7.5 format specification
+  limits the dimensions to integer).
+  Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
+* `importImzMl`: add MD5 checksum support for imzML files.
+  Thanks to Ken Frankel <kafrankel@gmail.com> for reporting this problem.
 
 
 CHANGES IN MALDIquantForeign VERSION 0.8 [2014-06-16]:
@@ -88,8 +90,8 @@ BUG FIXES
   (before they were used only by `.importCsv`);
   affected functions: `import`, `importTxt`, `importTab`
 * `.parseMzML`: fix assignment operation. Before all metaData of spectra were
-  overwritten by the metaData of the last spectrum (affected only mzML files with
-  more than one spectrum).
+  overwritten by the metaData of the last spectrum (affected only mzML files
+  with more than one spectrum).
   affected functions: `importMzML`
 * `export`: fix one file export;
   additional affected functions: `exportMzMl`.
