@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.2 [2014-09-18 Thu]:
+
+- `.importImzMl`: if the imzML file doesn't contain any checksum for its
+  corresponding idb file a warning is thrown (before it was an error);
+  affected functions: `import`, `importImzMl`.
+
 Version 0.9.1 [2014-08-17 Sun]:
 
 - rezip gzip'ed files using `gzip -n` to avoid lintian's

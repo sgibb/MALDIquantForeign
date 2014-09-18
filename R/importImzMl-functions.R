@@ -43,8 +43,8 @@
   } else if (!is.null(s$ims$sha1)) {
     .testChecksum(ibdFilename, s$ims$sha1, algo="sha1", verbose=verbose)
   } else {
-    stop("At least one checksum (SHA-1 or MD5) for the idb file ",
-         "must be provided in the imzML file.")
+    warning("At least one checksum (SHA-1 or MD5) for the idb file ",
+            "must be provided in the imzML file.")
   }
 
   ibd <- file(ibdFilename, open="rb")
