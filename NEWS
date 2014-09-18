@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.3 [2014-09-18 Thu]:
+
+- `.importImzMl`: if the imzML file doesn't contain any UUID a warning is thrown
+  instead of an error;
+  affected functions: `import`, `importImzMl`.
+
 Version 0.9.2 [2014-09-18 Thu]:
 
 - `.importImzMl`: if the imzML file doesn't contain any checksum for its

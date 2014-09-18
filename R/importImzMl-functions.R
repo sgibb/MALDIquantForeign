@@ -51,11 +51,14 @@
   on.exit(close(ibd))
 
   ## test UUID
-  uuid <- paste0(readBin(ibd, raw(), n=16, size=1, signed=TRUE, endian="little"),
-                 collapse="")
+  uuid <- paste0(readBin(ibd, raw(), n=16, size=1, signed=TRUE, endian=
+                         "little"), collapse="")
 
-  if (tolower(uuid) != tolower(s$ims$uuid)) {
-    stop("UUID mismatch!")
+  if (is.null(s$ims$uuid)) {
+    warning("There is not any UUID in ", sQuote(file), "!")
+  } else if (tolower(uuid) != tolower(s$ims$uuid)) {
+    warning("The UUID in ", sQuote(file) , " and ", sQuote(ibdFilename),
+            "do not match!")
   }
 
   n <- length(s$ims$ibd)
