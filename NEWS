@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.4 [2015-01-05 Mon]:
+
+- Replace `require` by `requireNamespace` as suggested by "Writing R
+  Extensions".
+
 Version 0.9.3 [2014-09-18 Thu]:
 
 - `.importImzMl`: if the imzML file doesn't contain any UUID a warning is thrown
@@ -15,7 +20,7 @@ Version 0.9.2 [2014-09-18 Thu]:
 
 Version 0.9.1 [2014-08-17 Sun]:
 
-- rezip gzip'ed files using `gzip -n` to avoid lintian's
+- Rezip gzip'ed files using `gzip -n` to avoid lintian's
   package-contains-timestamped-gzip warning; see
   https://wiki.debian.org/ReproducibleBuilds for details.
 

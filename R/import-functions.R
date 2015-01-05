@@ -475,7 +475,7 @@ importAnalyze <- function(path, ...) {
 #' exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 #'
 #' ## import
-#' if (require("RNetCDF")) {
+#' if (requireNamespace("RNetCDF", quietly=TRUE)) {
 #'   s <- importCdf(exampleDirectory)
 #' } else {
 #'   message("You have to install the RNetCDF package to use importCdf.")

@@ -24,7 +24,7 @@
 ## modified for MALDIquantForeign by Sebastian Gibb
 .importCdf <- function(file, centroided=FALSE, massRange=c(0, Inf),
                           minIntensity=0, verbose=FALSE) {
-  if (!require("RNetCDF")) {
+  if (!requireNamespace("RNetCDF", quietly=TRUE)) {
         stop("For netCDF support the ", sQuote("RNetCDF"),
              " package is needed. \n",
              "Please install ", sQuote("RNetCDF"),
