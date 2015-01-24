@@ -13,6 +13,7 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
+  - ./travis-tool.sh github_package jimhester/covr
   # install RNetCDF dependencies and pgf for the vignette
   - ./travis-tool.sh install_aptget libudunits2-dev libnetcdf-dev pgf
   - ./travis-tool.sh install_deps
@@ -20,7 +21,10 @@ install:
 script:
   - ./travis-tool.sh run_tests
 
-on_failure:
+after_success:
+  - Rscript -e 'library(covr);coveralls()'
+
+after_failure:
   - ./travis-tool.sh dump_logs
 
 notifications:
