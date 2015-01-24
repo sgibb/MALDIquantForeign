@@ -1,4 +1,8 @@
 # MALDIquantForeign
+[![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
+[![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquantForeign/badge.svg)](https://coveralls.io/r/sgibb/MALDIquantForeign)
+
+[MALDIquantForeign on CRAN](http://cran.r-project.org/web/packages/MALDIquantForeign/)
 
 ## Description
 
@@ -28,6 +32,3 @@ install.packages("MALDIquantForeign")
 - [mMass](http://mmass.org) msd files
 - [mzML](http://psidev.info/mzml_1_0_0%20)
 
-## Build status
-
-[![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
