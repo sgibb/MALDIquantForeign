@@ -2,8 +2,6 @@
 [![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
 [![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquantForeign/badge.svg)](https://coveralls.io/r/sgibb/MALDIquantForeign)
 
-[MALDIquantForeign on CRAN](http://cran.r-project.org/web/packages/MALDIquantForeign/)
-
 ## Description
 
 Import/Export routines for [MALDIquant](http://strimmerlab.org/software/maldiquant/)
