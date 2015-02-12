@@ -4,7 +4,7 @@ test_that("importImzMl continuous", {
   expect_error(MALDIquantForeign:::.importImzMl("tmp.tmp"))
 
   path <- normalizePath(system.file(
-    file.path("exampledata", "tiny_continuous.imzML"), 
+    file.path("exampledata", "tiny_continuous.imzML"),
     package="MALDIquantForeign"))
   s <- MALDIquantForeign:::.importImzMl(path)
 
@@ -21,9 +21,9 @@ test_that("importImzMl continuous", {
   expect_equal(basename(metaData(s[[2]])$file), "tiny_continuous.imzML")
 })
 
-test_that("importMzMl processed", {
+test_that("importImzMl processed", {
   path <- normalizePath(system.file(
-    file.path("exampledata", "tiny_processed.imzML"), 
+    file.path("exampledata", "tiny_processed.imzML"),
     package="MALDIquantForeign"))
   s <- MALDIquantForeign:::.importImzMl(path)
 
