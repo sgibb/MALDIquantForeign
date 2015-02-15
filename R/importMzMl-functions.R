@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .importMzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                         minIntensity=0, verbose=FALSE) {
 
@@ -29,14 +28,12 @@
   ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
 
-  l <- lapply(s$spectra, function(x, globalS=s) {
+  lapply(s$spectra, function(x, globalS=s) {
     m <- modifyList(s$metaData, x$metaData)
     m$file <- file
     return(.createMassObject(data=x, metaData=m, centroided=centroided,
                              massRange=massRange, minIntensity=minIntensity,
                              verbose=verbose))
   })
-
-  return(l)
 }
 

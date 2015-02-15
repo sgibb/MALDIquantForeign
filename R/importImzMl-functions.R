@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .importImzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                          minIntensity=0, coordinates=NULL,
                          verbose=FALSE) {

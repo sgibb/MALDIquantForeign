@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .list.files <- function(path, pattern, excludePattern=NULL, recursive=TRUE,
                         ignore.case=TRUE) {
   files <- list.files(path=path, pattern=pattern, recursive=recursive,
@@ -28,10 +27,9 @@
     files <- files[!isExcluded]
   }
 
-  return(normalizePath(files))
+  normalizePath(files)
 }
 
-#' @keywords internal
 .files <- function(path, pattern, excludePattern=NULL, ignore.case=TRUE, ...) {
   isDir <- file.info(path)$isdir
 
@@ -44,6 +42,6 @@
   files <- c(files, .list.files(path=path[isDir], pattern=pattern,
                                 excludePattern=excludePattern,
                                 ignore.case=ignore.case, ...))
-  return(unique(files))
+  unique(files)
 }
 

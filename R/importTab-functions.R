@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .importTab <- function(file, centroided=FALSE, massRange=c(0L, Inf),
                        minIntensity=0L, skip=0L,
                        sep=.autoSep(file, skip=skip),
@@ -26,35 +25,32 @@
   s <- read.table(file=file, header=header, sep=sep, skip=skip,
                   stringsAsFactors=FALSE, ...)
 
-  return(list(.createMassObject(list(mass=s[, 1L], intensity=s[, 2L]),
-                                 metaData=list(file=file),
-                                 centroided=centroided,
-                                 massRange=massRange,
-                                 minIntensity=minIntensity,
-                                 verbose=verbose)))
+  list(.createMassObject(list(mass=s[, 1L], intensity=s[, 2L]),
+                         metaData=list(file=file),
+                         centroided=centroided,
+                         massRange=massRange,
+                         minIntensity=minIntensity,
+                         verbose=verbose))
 }
 
-#' @keywords internal
 .importCsv <- function(file, centroided=FALSE, massRange=c(0L, Inf),
                        minIntensity=0L, skip=0L,
                        sep=.autoSep(file, skip=skip),
                        header=.autoHeader(file, sep=sep, skip=skip),
                        verbose=FALSE, ...) {
 
-  return(.importTab(file=file, centroided=centroided, massRange=massRange,
-                    minIntensity=minIntensity, skip=skip, sep=sep,
-                    header=header, verbose=verbose, ...))
+  .importTab(file=file, centroided=centroided, massRange=massRange,
+             minIntensity=minIntensity, skip=skip, sep=sep,
+             header=header, verbose=verbose, ...)
 }
 
-#' @keywords internal
 .autoHeader <- function(file, sep="\t", skip=0L) {
   l <- tail(readLines(file, n=skip+1L), 1L)
   l <- gsub(pattern='[\\\\"]*', replacement="", x=l)
   l <- strsplit(l, split=sep)[[1L]][1L]
-  return(!is.numeric(type.convert(l, as.is=TRUE)))
+  !is.numeric(type.convert(l, as.is=TRUE))
 }
 
-#' @keywords internal
 .autoSep <- function(file, sep=c(",", ";", "\t", " "), skip=0L) {
   l <- tail(readLines(file, n=skip+1L), 1L)
   pattern <- paste0(".+", sep, ".+")

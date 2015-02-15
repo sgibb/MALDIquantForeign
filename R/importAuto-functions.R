@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .importAuto <- function(path, excludePattern=NULL,
                         removeEmptySpectra=TRUE, centroided=FALSE,
                         massRange=c(0, Inf), minIntensity=0,
@@ -41,13 +40,12 @@
   .msg(verbose,
        n[m], " files of type=", sQuote(importFormats$type[m]), " found.")
 
-  return(import(path=files[[m]], type=importFormats$type[m],
+  import(path=files[[m]], type=importFormats$type[m],
          pattern=importFormats$pattern[m],
          removeEmptySpectra=removeEmptySpectra, centroided=centroided,
-         massRange=massRange, minIntensity=minIntensity, verbose=verbose, ...))
+         massRange=massRange, minIntensity=minIntensity, verbose=verbose, ...)
 }
 
-#' @keywords internal
 # test xml for ciphergen format
 # returns files in ciphergen xml format
 .testCiphergenXml <- function(files) {
@@ -56,6 +54,6 @@
   p <- lapply(l, grepl, pattern="<spectrum>|<fileVersion>|<spectrumName>")
   s <- vapply(p, sum, integer(1))
   isCiphergen <- s >= 2
-  return(files[isCiphergen])
+  files[isCiphergen]
 }
 

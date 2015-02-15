@@ -16,8 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
-
 .importAnalyze <- function(file, centroided=FALSE, massRange=c(0, Inf),
                            minIntensity=0, verbose=FALSE) {
   baseFilename <- .withoutFileExtension(file)
@@ -51,6 +49,6 @@
                           minIntensity=minIntensity, verbose=verbose)
     }
   }
-  return(l)
+  l
 }
 

@@ -35,6 +35,7 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @rdname createMassObject
 #' @keywords internal
+#' @noRd
 #'
 .createMassObject <- function(data, metaData=list(),
                               centroided=FALSE,
@@ -59,9 +60,8 @@
     }
   }
 
-  if (centroided && verbose) {
-    message("Assume centroided data and creating a MassPeaks object.")
-  }
+  .msg(centroided & verbose,
+       "Assume centroided data and creating a MassPeaks object.")
 
   ## trim AbstractMass object
   massRange <- MALDIquant:::.reorderRange(massRange)
@@ -83,6 +83,6 @@
                             metaData=metaData)
   }
 
-  return(m)
+  m
 }
 

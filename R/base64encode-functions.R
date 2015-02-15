@@ -17,24 +17,24 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' Converts double to base64 character.
-#' 
+#'
 #' This function converts a \code{double} vector to a base64 encoded
 #' \code{character} vector.
-#' 
+#'
 #' @param x \code{double}, vector
 #' @param size \code{integer}, number of bytes per element in the byte stream
 #'  (see \code{size} in \code{\link[base]{writeBin}}).
 #' @param endian \code{character}, the endian-ness
 #'  (see \code{endian} in \code{\link[base]{writeBin}}).
-#' @param compressionType \code{character}, type of compression to use for 
-#'  compression of \code{x} (see \code{type} in 
+#' @param compressionType \code{character}, type of compression to use for
+#'  compression of \code{x} (see \code{type} in
 #'  \code{\link[base]{memCompress}}.
 #' @return Vector of type \code{character}.
 #' @rdname base64-encode
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @seealso \code{\link[base64enc]{base64encode}} from \pkg{base64enc} package
 #' @keywords internal
-#
+#'
 .base64encode <- function(x, size, endian=.Platform$endian,
                           compressionType=c("none", "gzip")) {
   x <- writeBin(as.double(x), con=raw(), size=size, endian=endian)
@@ -43,6 +43,6 @@
                                several.ok=FALSE)
   x <- memCompress(from=x, type=compressionType)
 
-  return(base64enc::base64encode(x))
+  base64enc::base64encode(x)
 }
 

@@ -26,15 +26,15 @@
 #' @return Returns a list with metadata and spectra.
 #'
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
-#' @rdname parseMzMl
 #' @keywords internal
+#' @noRd
 #'
 .parseMzMl <- function(file, verbose=FALSE, ...) {
-  return(XML::xmlEventParse(file=file,
-                            handlers=.mzMlHandlers(fileName=file,
-                                                   verbose=verbose),
-                            addContext=FALSE, useTagName=TRUE, useDotNames=TRUE,
-                            ...)$getData())
+  XML::xmlEventParse(file=file,
+                     handlers=.mzMlHandlers(fileName=file,
+                                            verbose=verbose),
+                     addContext=FALSE, useTagName=TRUE, useDotNames=TRUE,
+                     ...)$getData()
 }
 
 #' Parse mzML files.
@@ -52,8 +52,8 @@
 #' @references
 #' Definition of \code{mzML} format:
 #' \url{http://www.psidev.info/mzml_1_0_0}
-#' @rdname mzMlHandlers
 #' @keywords internal
+#' @noRd
 #'
 .mzMlHandlers <- function(fileName, verbose=FALSE) {
   ## define local variables

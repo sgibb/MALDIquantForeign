@@ -16,14 +16,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' This function removes spaces and punctuations from filenames.
-#'
-#' @return filename
-#'
-#' @keywords internal
-#' @rdname cleanFilename
 .cleanFilename <- function(x) {
-  return(gsub(pattern="([[:punct:]]|[[:space:]])+", replacement="_", x=x))
+  gsub(pattern="([[:punct:]]|[[:space:]])+", replacement="_", x=x)
 }
 
 #' Determine file extension
@@ -34,7 +28,7 @@
 #'
 #' @seealso \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @keywords internal
-#' @rdname fileExtension
+#' @noRd
 #' @examples
 #' library("MALDIquantForeign")
 #' files <- c("/home/foo/bar.txt", "foobar.pdf")
@@ -43,22 +37,18 @@
 .fileExtension <- function(x) {
   pos <- regexpr(pattern="(\\.tar)?\\.([[:alnum:]]+)$|(/|\\\\)+[^.\\\\/]+$",
                  text=x)
-  return(ifelse(pos > -1L, substring(x, pos+1L), x))
+  ifelse(pos > -1L, substring(x, pos+1L), x)
 }
 
-#' @keywords internal
 .withoutFileExtension <- function(x) {
-  return(sub(pattern="\\.[[:alnum:]]+?$|(/|\\\\)+[^.\\\\/]+$",
-             replacement="", x=.withoutCompressionExtension(x)))
+  sub(pattern="\\.[[:alnum:]]+?$|(/|\\\\)+[^.\\\\/]+$",
+      replacement="", x=.withoutCompressionExtension(x))
 }
 
-#' @keywords internal
 .withoutCompressionExtension <- function(x) {
-  return(sub(pattern="\\.(zip|gz|bz2|bzip2|xz|lzma)+$",
-             replacement="", x=x))
+  sub(pattern="\\.(zip|gz|bz2|bzip2|xz|lzma)+$", replacement="", x=x)
 }
 
-#' @keywords internal
 .cutFilenames <- function(x) {
   l <- strsplit(x, split=.Platform$file.sep, fixed=TRUE)
 
@@ -85,10 +75,9 @@
     filenames <- basename(x)
   }
 
-  return(filenames)
+  filenames
 }
 
-#' @keywords internal
 .uniqueBaseFilenames <- function(x, fileExtension="csv",
                                  sep="_") {
   filenames <- .cutFilenames(.withoutFileExtension(x))
@@ -98,10 +87,9 @@
   filenames[empty] <- seq_along(empty)
 
   filenames <- .make.unique(filenames, sep=sep)
-  return(paste(filenames, fileExtension, sep="."))
+  paste(filenames, fileExtension, sep=".")
 }
 
-#' @keywords internal
 ## let make unique start by 1
 .make.unique <- function(x, sep="_") {
   tmp <- lapply(split(x, x), function(y) {
@@ -112,5 +100,6 @@
     }
     return(y)
   })
-  return(unsplit(tmp, x))
+  unsplit(tmp, x)
 }
+

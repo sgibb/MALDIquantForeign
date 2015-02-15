@@ -16,11 +16,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' @keywords internal
 .sanitize <- function(x) {
   x <- gsub(pattern="&", replacement="&amp;", x=x)
   x <- gsub(pattern="<", replacement="&lt;", x=x)
   x <- gsub(pattern=">", replacement="&gt;", x=x)
-  return(x)
+  x
 }
 

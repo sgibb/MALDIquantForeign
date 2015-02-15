@@ -24,11 +24,11 @@
 #' @return filename
 #'
 #' @seealso \code{\linkS4class{AbstractMassObject}}
-#' @keywords internal
 #' @aliases .composeFilename,AbstractMassObject-method
 #' @aliases .composeFilename,list-method
 #' @docType methods
-#' @rdname composeFilename-methods
+#' @keywords internal
+#' @noRd
 setMethod(f=".composeFilename",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, fileExtension="csv") {

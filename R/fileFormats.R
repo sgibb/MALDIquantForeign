@@ -67,7 +67,6 @@ supportedFileFormats <- function() {
               export=exportFormats$type))
 }
 
-#' @keywords internal
 importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "ciphergen",
                                    "mzxml", "mzml", "imzml", "analyze", "cdf"),
                             pattern=c("^.*\\.txt$", "^.*\\.tab$",
@@ -82,7 +81,6 @@ importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "ciphergen",
                                       ".importAnalyze", ".importCdf"),
                             stringsAsFactors=FALSE)
 
-#' @keywords internal
 exportFormats <- data.frame(type=c("tab", "csv", "msd", "mzml"),
                             extension=c("tab", "csv", "msd", "mzML"),
                             onefile=c(FALSE, FALSE, FALSE, TRUE),

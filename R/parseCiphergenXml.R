@@ -26,8 +26,8 @@
 #' @return Returns a list with metadata and spectra.
 #'
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
-#' @rdname parseCiphergenXml
 #' @keywords internal
+#' @noRd
 #'
 .parseCiphergenXml <- function(file, ...) {
 
@@ -71,5 +71,5 @@
             (sign(tof) * metaData$massCalibrationA * tof*tof +
              metaData$massCalibrationB)
 
-  return(list(spectrum=list(mass=mass, intensity=intensity), metaData=metaData))
+  list(spectrum=list(mass=mass, intensity=intensity), metaData=metaData)
 }

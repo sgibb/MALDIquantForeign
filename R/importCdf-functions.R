@@ -19,6 +19,7 @@
 #' @author Pietro Franceschi \email{pietro.franceschi@@fmach.it}, Sebastian Gibb
 #' \email{mail@@sebastiangibb.de}
 #' @keywords internal
+#' @noRd
 
 ## original code written by Pietro Franceschi
 ## modified for MALDIquantForeign by Sebastian Gibb
@@ -58,6 +59,6 @@
                                 minIntensity=minIntensity, verbose=verbose)
   }
 
-  return(l)
+  l
 }
 
