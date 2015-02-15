@@ -386,8 +386,8 @@ importMzMl <- function(path, ...) {
 #'
 #' @rdname importImzMl-functions
 #' @export
-importImzMl <- function(path, ...) {
-  return(import(path=path, type="imzml", ...))
+importImzMl <- function(path, coordinates=NULL, ...) {
+  return(import(path=path, type="imzml", coordinates=coordinates, ...))
 }
 
 #' Import Ciphergen XML files
