@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.5 [2015-02-15 Sun]:
+- `.importImzMl`: add "coordinates" argument to access specific spectra by
+  their x, y coordinates within an imzML file; closes #14;
+  affected functions: `import`, `importImzMl`.
+  Thanks to Heath Patterson <heath.patterson@umontreal.ca> for this idea.
+
 Version 0.9.4 [2015-01-05 Mon]:
 
 - Replace `require` by `requireNamespace` as suggested by "Writing R

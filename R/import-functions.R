@@ -1,4 +1,4 @@
-## Copyright 2012-2014 Sebastian Gibb
+## Copyright 2012-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -353,6 +353,9 @@ importMzMl <- function(path, ...) {
 #'
 #' @param path \code{character}, path to directory or file which should be read
 #'  in.
+#' @param coordinates \code{matrix}, 2 column matrix that contains the x- and
+#'  y-coordinates for spectra that should be imported. Other spectra would be
+#'  ignored.
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
@@ -375,7 +378,11 @@ importMzMl <- function(path, ...) {
 #' exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 #'
 #' ## import
-#' s <- importImzMl(exampleDirectory)
+#' s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"))
+#'
+#' ## import only spectra for pixel 1,1 and 2,1
+#' s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"),
+#'                  coordinates = cbind(1:2, c(1, 1)))
 #'
 #' @rdname importImzMl-functions
 #' @export

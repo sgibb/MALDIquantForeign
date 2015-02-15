@@ -1,4 +1,4 @@
-## Copyright 2013-2014 Sebastian Gibb
+## Copyright 2013-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -18,7 +18,8 @@
 
 #' @keywords internal
 .importImzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
-                         minIntensity=0, verbose=FALSE) {
+                         minIntensity=0, coordinates=NULL,
+                         verbose=FALSE) {
 
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
@@ -32,6 +33,13 @@
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
+  }
+
+  isCoordinatesMatrix <- is.matrix(coordinates) && ncol(coordinates) == 2L
+
+  if (!is.null(coordinates) && !isCoordinatesMatrix) {
+    stop("The ", sQuote("coordinates"),
+         " argument has to be a matrix with two columns (x and y position)!")
   }
 
   ## read file
@@ -61,49 +69,60 @@
             "do not match!")
   }
 
-  n <- length(s$ims$ibd)
-  spectra <- vector(mode="list", length=n)
-
-  .readValues <- function(file, x, column) {
+  .readValues <- function(file, x, column, isSeekNeeded) {
+    if (isSeekNeeded) {
+      ## WARNING: we know that `seek` is discouraged on some platforms,
+      ## namely Windows. See `?seek` for details.
+      seek(file, where=x[column, "offset"])
+    }
     n <- x[column, "length"]
     e <- x[column, "encodedLength"]
     return(readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little"))
   }
 
-  ## read mass and intensity values
-  if (s$ims$type == "processed") {
-    for (i in seq(along=spectra)) {
-      if (verbose) {
-        message("Reading binary data for spectrum ", i, "/", n, " ...")
-      }
-      m <- modifyList(s$metaData, s$spectra[[i]]$metaData)
-      m$file <- file
-      mass <- .readValues(ibd, s$ims$ibd[[i]], "mass")
-      intensity <- .readValues(ibd, s$ims$ibd[[i]], "intensity")
-      spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
-                                        metaData=m, centroided=centroided,
-                                        massRange=massRange,
-                                        minIntensity=minIntensity,
-                                        verbose=verbose)
-    }
-  } else {
-    mass <- .readValues(ibd, s$ims$ibd[[1]], "mass")
+  sel <- seq_along(s$ims$ibd)
 
-    for (i in seq(along=spectra)) {
-      if (verbose) {
-        message("Reading binary data for spectrum ", i, "/", n, " ...")
-      }
-      m <- modifyList(s$metaData, s$spectra[[i]]$metaData)
-      m$file <- file
-      intensity <- .readValues(ibd, s$ims$ibd[[i]], "intensity")
-      spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
-                                        metaData=m, centroided=centroided,
-                                        massRange=massRange,
-                                        minIntensity=minIntensity,
-                                        verbose=verbose)
+  if (isCoordinatesMatrix) {
+    pos <- do.call(rbind, lapply(s$spectra, function(x)x$metaData$imaging$pos))
+    sel <- match(paste(coordinates[, 1L], coordinates[, 2L], sep=":"),
+                 paste(pos[, 1L], pos[, 2L], sep=":"))
+    if (anyNA(sel)) {
+      warning("The following rows contain invalid coordinates: ",
+              paste(which(is.na(sel)), collapse=", "))
+
+      sel <- sel[!is.na(sel)]
     }
   }
 
-  return(spectra)
+  n <- length(sel)
+  spectra <- vector(mode="list", length=n)
+
+  isProcessed <- s$ims$type == "processed"
+
+  if (!isProcessed) {
+    mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isCoordinatesMatrix)
+  }
+
+  ## read mass and intensity values
+  for (i in seq(along=sel)) {
+    if (verbose) {
+      message("Reading binary data for spectrum ", i, "/", n, " ...")
+    }
+
+    m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
+    m$file <- file
+
+    if (isProcessed) {
+      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isCoordinatesMatrix)
+    }
+    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isCoordinatesMatrix)
+    spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
+                                           metaData=m, centroided=centroided,
+                                           massRange=massRange,
+                                           minIntensity=minIntensity,
+                                           verbose=verbose)
+  }
+
+  spectra
 }
 

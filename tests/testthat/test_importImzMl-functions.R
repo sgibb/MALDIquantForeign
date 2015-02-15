@@ -40,3 +40,20 @@ test_that("importImzMl processed", {
   expect_equal(basename(metaData(s[[2]])$file), "tiny_processed.imzML")
 })
 
+test_that("importImzMl coordinates", {
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny_continuous.imzML"),
+    package="MALDIquantForeign"))
+  s <- MALDIquantForeign:::.importImzMl(path)
+
+  expect_equal(s, importImzMl(path, coordinates=cbind(1:2, c(1, 1))))
+  expect_equal(s[1], importImzMl(path, coordinates=cbind(1, 1)))
+  expect_equal(s[[2]], importImzMl(path, coordinates=cbind(2, 1))[[1]])
+
+  expect_error(importImzMl(path, coordinates=3),
+               "The .*coordinates.* argument has to be a matrix with two columns")
+  expect_warning(importImzMl(path, coordinates=cbind(1:3, 2:0)),
+                 "The following rows contain invalid coordinates: 1, 3")
+})
+
+
