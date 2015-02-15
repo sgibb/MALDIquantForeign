@@ -69,9 +69,7 @@
   funName <- deparse(substitute(fun))
   fun <- as.function(fun)
 
-  if (verbose) {
-    message(funName, " ", filename, " to ", destdir, ".")
-  }
+  .msg(verbose, funName, " ", filename, " to ", destdir, ".")
 
   unpacked <- fun(filename, exdir=destdir, ...)
   if (length(unpacked)) {
@@ -100,9 +98,7 @@
     destfile <- tempfile(pattern=pattern, tmpdir=tmpdir, fileext=fileext)
   }
 
-  if (verbose) {
-    message("gunzip ", filename, " to ", destfile, ".")
-  }
+  .msg(verbose, "gunzip ", filename, " to ", destfile, ".")
 
   fi <- gzfile(filename, open="rb")
   on.exit(close(fi))

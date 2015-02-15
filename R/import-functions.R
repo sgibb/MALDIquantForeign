@@ -167,9 +167,7 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
       emptyIdx <- MALDIquant::findEmptyMassObjects(s)
 
       if (length(emptyIdx)) {
-        if (verbose) {
-          message("Remove ", length(emptyIdx), " empty spectra.")
-        }
+        .msg(verbose, "Remove ", length(emptyIdx), " empty spectra.")
         return(s[-emptyIdx])
       }
     }

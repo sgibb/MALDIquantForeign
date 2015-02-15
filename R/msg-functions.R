@@ -1,4 +1,4 @@
-## Copyright 2014 Sebastian Gibb
+## Copyright 2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,23 +17,10 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 #' @keywords internal
-.testChecksum <- function(file, target, algo="sda1", ..., verbose=FALSE) {
-
-  .msg(verbose, "Calculating ", algo, "-sum for ", sQuote(file), ": ",
-       appendLF=FALSE)
-
-  fileChecksum <- tolower(digest::digest(file, algo=algo, file=TRUE, ...))
-  target <- tolower(target)
-
-  .msg(verbose, fileChecksum)
-
-  if (fileChecksum != target) {
-    warning("Stored and calculated ", algo, " sums do not match ",
-            "(stored: ", sQuote(target), ", calculated: ",
-            sQuote(fileChecksum), ")!")
-    return(FALSE)
+#' @noRd
+.msg <- function(verbose, ...) {
+  if (verbose) {
+    message(...)
   }
-
-  return(TRUE)
 }
 

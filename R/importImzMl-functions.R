@@ -21,9 +21,7 @@
                          minIntensity=0, coordinates=NULL,
                          verbose=FALSE) {
 
-  if (verbose) {
-    message("Reading spectrum from ", sQuote(file), " ...")
-  }
+  .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
 
   if (!file.exists(file)) {
     stop("File ", sQuote(file), " doesn't exists!")
@@ -105,9 +103,7 @@
 
   ## read mass and intensity values
   for (i in seq(along=sel)) {
-    if (verbose) {
-      message("Reading binary data for spectrum ", i, "/", n, " ...")
-    }
+    .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
 
     m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
     m$file <- file

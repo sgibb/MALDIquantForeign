@@ -31,9 +31,7 @@
     stop(sQuote(filename), " is no ANALYZE header file.")
   }
 
-  if (verbose) {
-    message("Extracting header information from ", sQuote(filename), " ...")
-  }
+  .msg(verbose, "Extracting header information from ", sQuote(filename), " ...")
 
   f <- file(filename, open="rb")
   on.exit(close(f))
@@ -99,9 +97,7 @@
     stop(sQuote(filename), " isn't readable.")
   }
 
-  if (verbose) {
-    message("Reading intensity values from ", sQuote(filename), " ...")
-  }
+  .msg(verbose, "Reading intensity values from ", sQuote(filename), " ...")
 
   stopifnot(length(skip) == 2)
   skip <- skip*header$size
@@ -139,9 +135,7 @@
     stop(sQuote(filename), " isn't readable.")
   }
 
-  if (verbose) {
-    message("Reading mass values from ", sQuote(filename), " ...")
-  }
+  .msg(verbose, "Reading mass values from ", sQuote(filename), " ...")
 
   n <- file.info(filename)$size/4
   f <- file(filename, open="rb")

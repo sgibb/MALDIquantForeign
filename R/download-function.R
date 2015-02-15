@@ -36,9 +36,7 @@
                                            fileext=fileext))
   }
 
-  if (verbose) {
-    message("Downloading ", url , " to ", destfile, ".")
-  }
+  .msg(verbose, "Downloading ", url , " to ", destfile, ".")
 
   for (i in seq(along=url)) {
     r <- downloader::download(url=url[i], destfile=destfile[i], quiet=!verbose,

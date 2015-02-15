@@ -38,9 +38,8 @@
 
   m <- which.max(n)
 
-  if (verbose) {
-    message(n[m], " files of type=", sQuote(importFormats$type[m]), " found.")
-  }
+  .msg(verbose,
+       n[m], " files of type=", sQuote(importFormats$type[m]), " found.")
 
   return(import(path=files[[m]], type=importFormats$type[m],
          pattern=importFormats$pattern[m],

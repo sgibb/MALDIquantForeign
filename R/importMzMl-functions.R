@@ -20,9 +20,7 @@
 .importMzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                         minIntensity=0, verbose=FALSE) {
 
-  if (verbose) {
-    message("Reading spectrum from ", sQuote(file), " ...")
-  }
+  .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
 
   if (!file.exists(file)) {
     stop("File ", sQuote(file), " doesn't exists!")
