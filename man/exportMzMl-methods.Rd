@@ -21,7 +21,9 @@
 overwritten or \code{path} would be created.}
 
 \item{path}{\code{character}, path to directory in which the \code{list} of
-\code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.}
+\code{\link[MALDIquant]{AbstractMassObject-class}} would be exported. If
+\code{path} is a single filename all spectra will be exported to a single
+mzML file.}
 
 \item{\ldots}{arguments to be passed to \code{\link[utils]{write.table}}.}
 }
@@ -44,7 +46,7 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
 exportMzMl(s[[1]], file="spectrum.mzML")
 
 ## export a list of spectra with corresponding peaks
-exportMzMl(s, path="spectra.mzMl")
+exportMzMl(s, path="spectra.mzML")
 }
 }
 \author{

@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.6 [2015-03-23 Mon]:
+- `exportMzMl`: improve documentation of the "path" argument.
+
 Version 0.9.5 [2015-02-15 Sun]:
 - `.importImzMl`: add "coordinates" argument to access specific spectra by
   their x, y coordinates within an imzML file; closes #14;

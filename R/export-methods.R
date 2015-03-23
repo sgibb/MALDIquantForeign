@@ -286,7 +286,9 @@ setMethod(f="exportMsd",
 #'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
-#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported.
+#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported. If
+#'  \code{path} is a single filename all spectra will be exported to a single
+#'  mzML file.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
 #' @param \ldots arguments to be passed to \code{\link[utils]{write.table}}.
@@ -312,7 +314,7 @@ setMethod(f="exportMsd",
 #' exportMzMl(s[[1]], file="spectrum.mzML")
 #'
 #' ## export a list of spectra with corresponding peaks
-#' exportMzMl(s, path="spectra.mzMl")
+#' exportMzMl(s, path="spectra.mzML")
 #' }
 #'
 #' @aliases exportMzMl exportMzMl,MassSpectrum-method exportMzMl,list-method
