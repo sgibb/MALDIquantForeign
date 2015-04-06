@@ -64,6 +64,8 @@
   } else if (tolower(uuid) != tolower(s$ims$uuid)) {
     warning("The UUID in ", sQuote(file) , " and ", sQuote(ibdFilename),
             "do not match!")
+  } else if (!.isUuidV4(uuid)) {
+    warning("The UUID: ", uuid, " is not valid!")
   }
 
   .readValues <- function(file, x, column, isSeekNeeded) {
