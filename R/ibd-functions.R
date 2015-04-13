@@ -33,3 +33,22 @@
   }
 }
 
+.ibdOffsets <- function(x, processed=TRUE, encodedLengthSize=8L) {
+  ## start at 16 (16 bytes for UUID)
+  n <- rep(unlist(lapply(x, length)), each=2L)
+  encodedLength <- n * encodedLengthSize
+
+  if (processed) {
+    offsets <- cumsum(c(16L, encodedLength[-length(n)]))
+  } else {
+    sel <- seq(from=2L, to=length(n), by=2L)
+    offsets <- rep.int(16L, length(n))
+    offsets[sel] <- 16L + cumsum(encodedLength[sel])
+  }
+
+  matrix(c(offsets, n, encodedLength), nrow=length(n),
+         dimnames=list(paste(c("mass", "intensity"),
+                             rep(seq_along(x), each=2L),
+                             sep="."),
+                       c("offset", "length", "encodedLength")))
+}
