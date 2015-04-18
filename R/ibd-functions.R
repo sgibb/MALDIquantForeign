@@ -26,10 +26,10 @@
   writeBin(uuid, con=ibd, size=1L, endian="little")
 
   for (i in seq(along=x)) {
-      if (processed || i == 1L) {
-        writeBin(as.double(x[[i]]@mass), con=ibd, size=8L, endian="little")
-      }
-      writeBin(as.double(x[[i]]@intensity), con=ibd, size=8L, endian="little")
+    if (processed || i == 1L) {
+      writeBin(as.double(x[[i]]@mass), con=ibd, size=8L, endian="little")
+    }
+    writeBin(as.double(x[[i]]@intensity), con=ibd, size=8L, endian="little")
   }
 }
 
