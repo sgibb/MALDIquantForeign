@@ -18,9 +18,8 @@
 
 .importAnalyze <- function(file, centroided=FALSE, massRange=c(0, Inf),
                            minIntensity=0, verbose=FALSE) {
-  baseFilename <- .withoutFileExtension(file)
   header <- .readAnalyzeHdr(file, verbose=verbose)
-  mass <- .readAnalyzeMass(paste(baseFilename, "t2m", sep="."),
+  mass <- .readAnalyzeMass(.changeFileExtension(file, "t2m"),
                            header=header,
                            verbose=verbose)
 
@@ -29,7 +28,7 @@
   skip <- c(massIdx[1]-1, length(mass)-massIdx[length(massIdx)])
   mass <- mass[massIdx]
 
-  intensity <- .readAnalyzeIntensity(paste(baseFilename, "img", sep="."),
+  intensity <- .readAnalyzeIntensity(.changeFileExtension(file, "img"),
                                      header=header,
                                      ni=length(mass),
                                      skip=skip,

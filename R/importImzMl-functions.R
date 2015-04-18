@@ -26,7 +26,7 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
-  ibdFilename <- paste0(.withoutFileExtension(file), ".ibd")
+  ibdFilename <- .changeFileExtension(file, "ibd")
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
