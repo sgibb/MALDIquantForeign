@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -16,11 +16,13 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-.writeMzMlDocument <- function(x, file, id, encoding="utf-8") {
+.writeMzMlDocument <- function(x, file, id, encoding="utf-8", imsArgs=list()) {
   ## stop if file isn't writeable
   if (file.exists(file) && file.access(file, 2) != 0) {
     stop("No permissions to write into ", sQuote(file), "!")
   }
+
+  isIms <- length(imsArgs)
 
   ## file handle
   f <- file(file, open="wt", encoding=encoding)
@@ -35,19 +37,22 @@
                         deparse(substitute(x)), id)),
     version="1.1.0"), close=FALSE, file=f)
 
-  .writeMzMlCvList(file=f)
-  .writeMzMlFileDescription(x, file=f)
+  .writeMzMlCvList(file=f, isIms=isIms)
+  .writeMzMlFileDescription(x, file=f, isIms=isIms, imsArgs=imsArgs)
   .writeMzMlSoftwareList(x, file=f)
+  if (isIms) {
+    .writeImzMlScanSettings(x, file=f)
+  }
   .writeMzMlInstrumentConfigurationList(x, file=f)
   .writeMzMlDataProcessingList(x, file=f)
-  .writeMzMlRun(x, file=f)
+  .writeMzMlRun(x, file=f, isIms=isIms)
 
   .writeCloseXmlTag("mzML", file=f)
 
   invisible(close(f))
 }
 
-.writeMzMlCvList <- function(file) {
+.writeMzMlCvList <- function(file, isIms=FALSE) {
   items <- list(
     ms=list(id="MS",
       fullName="Proteomics Standards Initiative Mass Spectrometry Ontology",
@@ -58,6 +63,13 @@
       version="12:10:2012",
       URI="http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo"))
 
+  if (isIms) {
+    items$imzml <- list(id="IMS",
+                        fullName="Imaging MS Ontology",
+                        version="0.9.1",
+                        URI="http://www.maldi-msi.org/download/imzml/imagingMS.obo")
+  }
+
   .writeXmlTag("cvList", attrs=c(count=2), intend=1, close=FALSE, file=file)
   for (i in seq(along=items)) {
     .writeXmlTag("cv", attrs=items[[i]], intend=2, file=file)
@@ -65,12 +77,34 @@
   .writeCloseXmlTag("cvList", intend=1, file=file)
 }
 
-.writeMzMlFileDescription <- function(x, file) {
+.writeMzMlFileDescription <- function(x, file, isIms=FALSE, imsArgs) {
   .writeXmlTag("fileDescription", intend=1, close=FALSE, file=file)
     .writeXmlTag("fileContent", intend=2, close=FALSE, file=file)
       .writeXmlTag("cvParam", intend=3,
                    attrs=c(cvRef="MS", accession="MS:1000579",
                            name="MS1 spectrum"), file=file)
+      if (isIms) {
+        .writeXmlTag("cvParam", intend=3,
+                     attrs=c(cvRef="IMS", accession="IMS:1000080",
+                             name="universally unique identifier",
+                             value=paste0("{", imsArgs$uuid, "}")),
+                     file=file)
+        .writeXmlTag("cvParam", intend=3,
+                     attrs=c(cvRef="IMS", accession="IMS:1000091",
+                             name="ibd SHA-1", value=imsArgs$sha1),
+                     file=file)
+
+        if (imsArgs$processed) {
+          .writeXmlTag("cvParam", intend=3,
+                       attrs=c(cvRef="IMS", accession="IMS:1000031",
+                               name="processed"), file=file)
+        } else {
+          .writeXmlTag("cvParam", intend=3,
+                       attrs=c(cvRef="IMS", accession="IMS:1000030",
+                               name="continuous"), file=file)
+        }
+      }
+
       .writeXmlTag("userParam", intend=3,
                    attrs=c(name="MALDIquantForeign",
                            value="MALDIquant object(s) exported to mzML"),
@@ -157,28 +191,31 @@
   .writeCloseXmlTag("dataProcessingList", intend=1, file=file)
 }
 
-.writeMzMlRun <- function(x, file) {
+.writeMzMlRun <- function(x, file, isIms=FALSE) {
   .writeXmlTag("run", attrs=c(id="run0",
                               defaultInstrumentConfigurationRef="IC0"),
                 intend=1, close=FALSE, file=file)
-  .writeMzMlSpectrumList(x, file=file)
+  .writeMzMlSpectrumList(x, file=file, isIms=isIms)
   .writeCloseXmlTag("run", intend=1, file=file)
 }
 
-.writeMzMlSpectrumList <- function(x, file) {
+.writeMzMlSpectrumList <- function(x, file, isIms=FALSE) {
   .writeXmlTag("spectrumList",
                attrs=c(count=length(x), defaultDataProcessingRef="export"),
                intend=2, close=FALSE, file=file)
 
   for (i in seq(along=x)) {
+    id <- ifelse(is.null(metaData(x[[i]])$id), paste0("scan=", i-1L),
+                         metaData(x[[i]])$id)
+
     .writeXmlTag("spectrum", intend=3,
-                 attrs=c(index=i-1, id=paste0("scan=", i-1),
-                         defaultArrayLength=length(x[[i]]),
+                 attrs=c(index=i-1, id=id, defaultArrayLength=length(x[[i]]),
                          spotID=metaData(x[[i]])$fullName), close=FALSE,
                  file=file)
 
       msLevel <- ifelse(is.null(metaData(x[[i]])$msLevel), 1,
                         metaData(x[[i]])$msLevel)
+
       .writeXmlTag("cvParam", intend=4, attrs=c(cvRef="MS",
                      accession="MS:1000511", name="ms level", value=msLevel),
                    file=file)
@@ -206,7 +243,12 @@
                    file=file)
     }
 
-    .writeMzMlBinaryDataArrayList(x[[i]], file=file)
+    if (isIms) {
+      .writeImzMlScanList(x[[i]], file=file)
+      .writeImzMlBinaryDataArrayList(x[[i]], file=file)
+    } else {
+      .writeMzMlBinaryDataArrayList(x[[i]], file=file)
+    }
 
     .writeCloseXmlTag("spectrum", intend=3, file=file)
   }
@@ -249,6 +291,92 @@
       .writeXmlTag("cvParam", attrs=additionalAttrs, intend=6, file=file)
     }
     .writeXmlTag("binary", text=binaryData, intend=6, file=file)
+  .writeCloseXmlTag("binaryDataArray", intend=5, file=file)
+}
+
+.writeImzMlScanSettings <- function(x, file) {
+  .writeXmlTag("scanSettingsList", attrs=c(count=1), intend=4, close=FALSE,
+               file=file)
+    .writeXmlTag("scanSettings", attrs=c(id="scansetting1"), intend=5,
+                 close=FALSE, file=file)
+
+    accession <- paste("IMS", 1000042:1000043, sep=":")
+    name <- paste("max count of pixel", c("x", "y"))
+    value <- unname(metaData(x[[1L]])$imaging$size)
+
+    for (i in seq(along=accession)) {
+      .writeXmlTag("cvParam", intend=6, file=file,
+                   attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
+                           value=value[i]))
+    }
+
+    accession <- paste("IMS", 1000044:1000047, sep=":")
+    name <- c(paste("max dimension", c("x", "y")),
+              paste("pixel size", c("x", "y")))
+    value <- unname(c(metaData(x[[1L]])$imaging$dim,
+                      metaData(x[[1L]])$imaging$pixelSize))
+
+    for (i in seq(along=accession)) {
+      .writeXmlTag("cvParam", intend=6, file=file,
+                   attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
+                           value=value[i],
+                           unitCvRef="UO", unitAccession="UO:0000017",
+                           unitName="micrometer"))
+    }
+    .writeCloseXmlTag("scanSettings", intend=5, file=file)
+  .writeCloseXmlTag("scanSettingsList", intend=4, file=file)
+}
+
+.writeImzMlScanList <- function(x, file) {
+  .writeXmlTag("scanList", attrs=c(count=1), intend=4, close=FALSE, file=file)
+    .writeXmlTag("scan", intend=5, close=FALSE, file=file)
+    accession <- paste("IMS", 1000050:1000051, sep=":")
+    name <- paste("position", c("x", "y"))
+    value <- unname(metaData(x)$imaging$pos)
+
+    for (i in seq(along=accession)) {
+      .writeXmlTag("cvParam", intend=6, file=file,
+                   attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
+                           value=value[i]))
+    }
+    .writeCloseXmlTag("scan", intend=5, file=file)
+  .writeCloseXmlTag("scanList", intend=4, file=file)
+
+}
+
+.writeImzMlBinaryDataArrayList <- function(x, file) {
+  .writeXmlTag("binaryDataArrayList", attrs=c(count=2), intend=4, close=FALSE,
+               file=file)
+  .writeImzMlBinaryData(metaData(x)$imaging$offsets["mass",], file=file,
+                        c(cvRef="MS", accession="MS:1000514",
+                          name="m/z array", unitCvRef="MS",
+                          unitAccession="MS:1000040", unitName="m/z"))
+
+  .writeImzMlBinaryData(metaData(x)$imaging$offsets["intensity",], file=file,
+                        c(cvRef="MS", accession="MS:1000515",
+                          name="intensity array", unitCvRef="MS",
+                          unitAccession="MS:1000131",
+                          unitName="number of counts"))
+  .writeCloseXmlTag("binaryDataArrayList", intend=4, file=file)
+}
+
+.writeImzMlBinaryData <- function(x, file, additionalAttrs) {
+  .writeXmlTag("binaryDataArray", attrs=c(encodedLength=0), intend=5,
+               close=FALSE, file=file)
+    if (!missing(additionalAttrs)) {
+      .writeXmlTag("cvParam", attrs=additionalAttrs, intend=6, file=file)
+    }
+
+    accession <- paste("IMS", 1000101:1000104, sep=":")
+    name <- paste("external", c("data", "offset", "array length", "encoded length"))
+    value <- c("true", unname(x))
+
+    for (i in seq(along=accession)) {
+      .writeXmlTag("cvParam", intend=6, file=file,
+                   attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
+                           value=value[i]))
+    }
+    .writeXmlTag("binary", intend=6, file=file)
   .writeCloseXmlTag("binaryDataArray", intend=5, file=file)
 }
 

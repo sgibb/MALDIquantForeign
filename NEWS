@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.7 [2015-04-18 Mon]:
+- Add basic export support for imzML files.
+
 Version 0.9.6 [2015-03-23 Mon]:
 - `exportMzMl`: improve documentation of the "path" argument.
 

@@ -274,10 +274,7 @@ setMethod(f="exportMsd",
 #' Export to mzML files
 #'
 #' This function exports
-#' \code{\link[MALDIquant]{AbstractMassObject-class}} objects (e.g.
-#' \code{\link[MALDIquant]{MassSpectrum-class}},
-#' \code{\link[MALDIquant]{MassPeaks-class}})
-#' into mzML files.
+#' \code{\link[MALDIquant]{MassSpectrum-class}} objects into mzML files.
 #'
 #' @usage
 #' \S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
@@ -286,15 +283,14 @@ setMethod(f="exportMsd",
 #'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
-#'  \code{\link[MALDIquant]{AbstractMassObject-class}} would be exported. If
+#'  \code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
 #'  \code{path} is a single filename all spectra will be exported to a single
 #'  mzML file.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
-#' @param \ldots arguments to be passed to \code{\link[utils]{write.table}}.
+#' @param \ldots arguments to be passed to internal functions.
 #'
 #' @seealso
-#' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[MALDIquant]{MassSpectrum-class}}
 #'
 #' @author Sebastian Gibb
@@ -313,7 +309,7 @@ setMethod(f="exportMsd",
 #' ## export a single spectrum
 #' exportMzMl(s[[1]], file="spectrum.mzML")
 #'
-#' ## export a list of spectra with corresponding peaks
+#' ## export a list of spectra
 #' exportMzMl(s, path="spectra.mzML")
 #' }
 #'
@@ -335,5 +331,73 @@ setMethod(f="exportMzMl",
           signature=signature(x="list"),
           definition=function(x, path, force=FALSE, ...) {
   export(x, path=path, type="mzml", force=force, ...)
+})
+
+#' Export to imzML files
+#'
+#' This function exports
+#' \code{\link[MALDIquant]{MassSpectrum-class}} objects into imzML files.
+#'
+#' @usage
+#' \S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
+#'
+#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
+#'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' @param file \code{character}, file name.
+#' @param path \code{character}, path to directory in which the \code{list} of
+#'  \code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
+#'  \code{path} is a single filename all spectra will be exported to a single
+#'  imzML file.
+#' @param force \code{logical}, If \code{TRUE} the \code{file} would be
+#'  overwritten or \code{path} would be created.
+#' @param \ldots arguments to be passed to internal functions.
+#'
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}}
+#'
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#'
+#' Schramm T, Hester A, Klinkert I, Both J-P, Heeren RMA, Brunelle A,
+#' Laprévote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Römpp A
+#' (2012)\cr
+#' imzML - A common data format for the flexible exchange and processing of mass
+#' spectrometry imaging data. \cr
+#' Journal of Proteomics 75 (16):5106-5110. \cr
+#' \url{http://dx.doi.org/10.1016/j.jprot.2012.07.026}
+#' @examples
+#'
+#' \dontrun{
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' ## get example directory
+#' exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
+#'
+#' ## import
+#' s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"))
+#
+#' ## export a list of spectra
+#' exportImzMl(s, file="continuous.imzML")
+#' }
+#'
+#' @aliases exportImzMl exportImzMl,MassSpectrum-method exportImzMl,list-method
+#' @rdname exportImzMl-methods
+#' @docType methods
+#' @export
+setMethod(f="exportImzMl",
+          signature=signature(x="MassSpectrum"),
+          definition=function(x, file, force=FALSE, ...) {
+  export(x, file=file, type="imzml", force=force, ...)
+})
+
+#' @usage
+#' \S4method{exportImzMl}{list}(x, path, force=FALSE, \ldots)
+#' @rdname exportImzMl-methods
+#' @export
+setMethod(f="exportImzMl",
+          signature=signature(x="list"),
+          definition=function(x, path, force=FALSE, ...) {
+  export(x, path=path, type="imzml", force=force, ...)
 })
 
