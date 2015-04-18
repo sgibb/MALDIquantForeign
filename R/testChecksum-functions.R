@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-.testChecksum <- function(file, target, algo="sda1", ..., verbose=FALSE) {
+.testChecksum <- function(file, target, algo="sha1", ..., verbose=FALSE) {
 
   .msg(verbose, "Calculating ", algo, "-sum for ", sQuote(file), ": ",
        appendLF=FALSE)
