@@ -47,8 +47,17 @@
   }
 
   matrix(c(offsets, n, encodedLength), nrow=length(n),
-         dimnames=list(paste(c("mass", "intensity"),
-                             rep(seq_along(x), each=2L),
-                             sep="."),
+         dimnames=list(rep(c("mass", "intensity"), times=length(x)),
                        c("offset", "length", "encodedLength")))
+}
+
+.addIbdOffsets <- function(x, processed=TRUE, encodedLengthSize=8L) {
+  offsets <- .ibdOffsets(x, processed=processed,
+                         encodedLengthSize=encodedLengthSize)
+  i <- split(1:nrow(offsets), rep(1:length(x), each=2L))
+  for (j in seq(along=x)) {
+    #x@metaData <- modifyList(x@metaData, list(imaging=list(offsets=offsets[i[[j]],])))
+    x[[j]]@metaData$imaging$offsets=offsets[i[[j]],]
+  }
+  x
 }
