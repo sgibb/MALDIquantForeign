@@ -28,7 +28,7 @@ context("importCdf")
 #
 
 test_that("importCdf", {
-  path <- normalizePath(system.file(file.path("exampledata", "tiny.cdf"), 
+  path <- normalizePath(system.file(file.path("exampledata", "tiny.cdf"),
                                     package="MALDIquantForeign"))
 
   if (suppressWarnings(require("RNetCDF", quietly=TRUE))) {
@@ -42,12 +42,11 @@ test_that("importCdf", {
                                  metaData=list(file=path, number=2,
                                                retentionTime=2, scanIndex=5)))
 
+    s <- MALDIquantForeign:::.importCdf(path, verbose=FALSE)
 
-    s <- MALDIquantForeign:::.importCdf(path)
-
-    expect_equal(s, import(path))
-    expect_equal(s, importCdf(path))
-    expect_equal(s, import(path, type="cdf"))
+    expect_equal(s, import(path, verbose=FALSE))
+    expect_equal(s, importCdf(path, verbose=FALSE))
+    expect_equal(s, import(path, type="cdf", verbose=FALSE))
 
     expect_equal(mass(s[[1]]), 1:5)
     expect_equal(intensity(s[[1]]), 11:15)

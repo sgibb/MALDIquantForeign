@@ -4,13 +4,13 @@ test_that("importBrukerFlex", {
   expect_error(MALDIquantForeign:::.importBrukerFlex("tmp.tmp"))
 
   path <- system.file(
-    file.path("exampledata", "brukerflex", "0_A1", "1", "1SLin", "fid"), 
+    file.path("exampledata", "brukerflex", "0_A1", "1", "1SLin", "fid"),
     package="MALDIquantForeign")
-  s <- MALDIquantForeign:::.importBrukerFlex(path)
+  s <- MALDIquantForeign:::.importBrukerFlex(path, verbose=FALSE)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importBrukerFlex(path))
-  expect_equal(s, import(path, type="fid"))
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importBrukerFlex(path, verbose=FALSE))
+  expect_equal(s, import(path, type="fid", verbose=FALSE))
 
   expect_equal(trunc(mass(s[[1]])), 226:230)
   expect_equal(intensity(s[[1]]), 1:5)

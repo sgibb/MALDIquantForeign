@@ -6,11 +6,12 @@ test_that("importMzMl", {
   path <- normalizePath(system.file(
     file.path("exampledata", "tiny1.mzML1.1.mzML"),
     package="MALDIquantForeign"))
-  s <- MALDIquantForeign:::.importMzMl(path)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importMzMl(path))
-  expect_equal(s, import(path, type="mzML"))
+  s <- MALDIquantForeign:::.importMzMl(path, verbose=FALSE)
+
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importMzMl(path, verbose=FALSE))
+  expect_equal(s, import(path, type="mzML", verbose=FALSE))
 
   expect_true(isMassSpectrum(s[[1]]))
   expect_equal(mass(s[[1]]), 1:5)
@@ -29,11 +30,12 @@ test_that("importMzMl compressed", {
   path <- normalizePath(system.file(
     file.path("exampledata", "tiny1-compressed.mzML1.1.mzML"),
     package="MALDIquantForeign"))
-  s <- MALDIquantForeign:::.importMzMl(path)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importMzMl(path))
-  expect_equal(s, import(path, type="mzML"))
+  s <- MALDIquantForeign:::.importMzMl(path, verbose=FALSE)
+
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importMzMl(path, verbose=FALSE))
+  expect_equal(s, import(path, type="mzML", verbose=FALSE))
 
   expect_true(isMassSpectrum(s[[1]]))
   expect_equal(mass(s[[1]]), 1:5)
@@ -52,11 +54,12 @@ test_that("importMzMl centroided", {
   path <- normalizePath(system.file(
     file.path("exampledata", "tiny1-centroided.mzML1.1.mzML"),
     package="MALDIquantForeign"))
-  p <- MALDIquantForeign:::.importMzMl(path, centroided=TRUE)
 
-  expect_equal(p, import(path, centroided=TRUE))
-  expect_equal(p, importMzMl(path, centroided=TRUE))
-  expect_equal(p, import(path, type="mzML", centroided=TRUE))
+  p <- MALDIquantForeign:::.importMzMl(path, centroided=TRUE, verbose=FALSE)
+
+  expect_equal(p, import(path, centroided=TRUE, verbose=FALSE))
+  expect_equal(p, importMzMl(path, centroided=TRUE, verbose=FALSE))
+  expect_equal(p, import(path, type="mzML", centroided=TRUE, verbose=FALSE))
 
   expect_true(isMassPeaks(p[[1]]))
   expect_equal(mass(p[[1]]), 1:5)

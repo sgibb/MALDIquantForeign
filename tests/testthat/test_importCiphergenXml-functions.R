@@ -5,11 +5,12 @@ test_that("importCiphergenXml", {
 
   path <- system.file(file.path("exampledata", "ciphergen", "tiny.xml"),
                       package="MALDIquantForeign")
-  s <- MALDIquantForeign:::.importCiphergenXml(path)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importCiphergenXml(path))
-  expect_equal(s, import(path, type="ciph"))
+  s <- MALDIquantForeign:::.importCiphergenXml(path, verbose=FALSE)
+
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importCiphergenXml(path, verbose=FALSE))
+  expect_equal(s, import(path, type="ciph", verbose=FALSE))
 
   expect_equal(trunc(mass(s[[1]])), rep(26, 5))
   expect_false(all(mass(s[[1]])[1] == mass(s[[1]])))

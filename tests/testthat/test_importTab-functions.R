@@ -6,11 +6,12 @@ test_that("importTab", {
 
   path <- normalizePath(system.file(file.path("exampledata", "ascii.txt"),
                                     package="MALDIquantForeign"))
-  s <- MALDIquantForeign:::.importTab(path)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importTxt(path))
-  expect_equal(s, import(path, type="txt"))
+  s <- MALDIquantForeign:::.importTab(path, verbose=FALSE)
+
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importTxt(path, verbose=FALSE))
+  expect_equal(s, import(path, type="txt", verbose=FALSE))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
@@ -23,22 +24,23 @@ test_that("importCsv", {
 
   path <- normalizePath(system.file(file.path("exampledata", "csv1.csv"),
                                     package="MALDIquantForeign"))
-  s <- MALDIquantForeign:::.importCsv(path, sep=",", header=TRUE)
 
-  expect_equal(s, import(path, sep=",", header=TRUE))
-  expect_equal(s, importCsv(path, sep=",", header=TRUE))
-  expect_equal(s, import(path, type="csv", sep=",", header=TRUE))
+  s <- MALDIquantForeign:::.importCsv(path, sep=",", header=TRUE, verbose=FALSE)
+
+  expect_equal(s, import(path, sep=",", header=TRUE, verbose=FALSE))
+  expect_equal(s, importCsv(path, sep=",", header=TRUE, verbose=FALSE))
+  expect_equal(s, import(path, type="csv", sep=",", header=TRUE, verbose=FALSE))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "csv1.csv")
 
   ## auto header
-  s <- MALDIquantForeign:::.importCsv(path)
+  s <- MALDIquantForeign:::.importCsv(path, verbose=FALSE)
 
-  expect_equal(s, import(path))
-  expect_equal(s, importCsv(path))
-  expect_equal(s, import(path, type="csv"))
+  expect_equal(s, import(path, verbose=FALSE))
+  expect_equal(s, importCsv(path, verbose=FALSE))
+  expect_equal(s, import(path, type="csv", verbose=FALSE))
 
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
