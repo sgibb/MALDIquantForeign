@@ -64,8 +64,8 @@
 #' @rdname supportedFileFormats-functions
 #' @export
 supportedFileFormats <- function() {
-  return(list(import=importFormats$type,
-              export=exportFormats$type))
+  list(import=importFormats$type,
+       export=exportFormats$type)
 }
 
 importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "ciphergen",

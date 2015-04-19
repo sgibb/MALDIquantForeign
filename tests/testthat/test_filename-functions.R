@@ -39,6 +39,18 @@ test_that(".cutFilenames", {
                    c("foo.bar", "foo.bar"))
 })
 
+test_that(".composeFilenames", {
+  s <- createMassSpectrum(mass=1:5, intensity=1:5,
+                          metaData=list(file="/foo/bar.txt"))
+  expect_identical(MALDIquantForeign:::.composeFilename(s), "/foo/bar.csv")
+  expect_identical(MALDIquantForeign:::.composeFilename(s, fileExtension="xml"),
+                   "/foo/bar.xml")
+  metaData(s) <- list(fullName="foo")
+  expect_identical(MALDIquantForeign:::.composeFilename(s), "foo.csv")
+  metaData(s) <- list(fullName=c("foo", "bar"))
+  expect_identical(MALDIquantForeign:::.composeFilename(s), "foo_bar.csv")
+})
+
 test_that(".uniqueBaseFilenames", {
   expect_identical(MALDIquantForeign:::.uniqueBaseFilenames(
                      c("/home/user/foo.bar", "/home/user/foo.bar"),
