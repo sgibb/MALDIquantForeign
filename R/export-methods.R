@@ -29,6 +29,7 @@
 #' \tabular{ll}{
 #'  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
 #'  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
+#'  imzML \tab \code{\link[MALDIquantForeign]{exportImzMl}} \cr
 #'  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
 #'  mzML \tab \code{\link[MALDIquantForeign]{exportMzMl}} \cr
 #' }
@@ -383,7 +384,7 @@ setMethod(f="exportMzMl",
 #'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
 #' ## export a list of spectra
-#' exportImzMl(s, file="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
+#' exportImzMl(s, path="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
 #' }
 #'
 #' @aliases exportImzMl exportImzMl,MassSpectrum-method exportImzMl,list-method

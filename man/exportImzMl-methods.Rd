@@ -51,7 +51,7 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
           createMassSpectrum(mass=1:5, intensity=1:5))
 
 ## export a list of spectra
-exportImzMl(s, file="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
+exportImzMl(s, path="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
 }
 }
 \author{

@@ -40,6 +40,7 @@ Specific export functions:
 \tabular{ll}{
  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
+ imzML \tab \code{\link[MALDIquantForeign]{exportImzMl}} \cr
  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
  mzML \tab \code{\link[MALDIquantForeign]{exportMzMl}} \cr
 }
