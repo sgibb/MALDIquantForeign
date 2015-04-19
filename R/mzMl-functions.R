@@ -295,9 +295,9 @@
 }
 
 .writeImzMlScanSettings <- function(x, file) {
-  .writeXmlTag("scanSettingsList", attrs=c(count=1), intend=4, close=FALSE,
+  .writeXmlTag("scanSettingsList", attrs=c(count=1), intend=1, close=FALSE,
                file=file)
-    .writeXmlTag("scanSettings", attrs=c(id="scansetting1"), intend=5,
+    .writeXmlTag("scanSettings", attrs=c(id="scansetting1"), intend=2,
                  close=FALSE, file=file)
 
     accession <- paste("IMS", 1000042:1000043, sep=":")
@@ -305,7 +305,7 @@
     value <- unname(metaData(x[[1L]])$imaging$size)
 
     for (i in seq(along=accession)) {
-      .writeXmlTag("cvParam", intend=6, file=file,
+      .writeXmlTag("cvParam", intend=3, file=file,
                    attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
                            value=value[i]))
     }
@@ -317,14 +317,14 @@
                       metaData(x[[1L]])$imaging$pixelSize))
 
     for (i in seq(along=accession)) {
-      .writeXmlTag("cvParam", intend=6, file=file,
+      .writeXmlTag("cvParam", intend=3, file=file,
                    attrs=c(cvRef="IMS", accession=accession[i], name=name[i],
                            value=value[i],
                            unitCvRef="UO", unitAccession="UO:0000017",
                            unitName="micrometer"))
     }
-    .writeCloseXmlTag("scanSettings", intend=5, file=file)
-  .writeCloseXmlTag("scanSettingsList", intend=4, file=file)
+    .writeCloseXmlTag("scanSettings", intend=2, file=file)
+  .writeCloseXmlTag("scanSettingsList", intend=1, file=file)
 }
 
 .writeImzMlScanList <- function(x, file) {
@@ -341,7 +341,6 @@
     }
     .writeCloseXmlTag("scan", intend=5, file=file)
   .writeCloseXmlTag("scanList", intend=4, file=file)
-
 }
 
 .writeImzMlBinaryDataArrayList <- function(x, file) {

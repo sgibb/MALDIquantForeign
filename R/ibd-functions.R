@@ -56,8 +56,7 @@
                          encodedLengthSize=encodedLengthSize)
   i <- split(1:nrow(offsets), rep(1:length(x), each=2L))
   for (j in seq(along=x)) {
-    #x@metaData <- modifyList(x@metaData, list(imaging=list(offsets=offsets[i[[j]],])))
-    x[[j]]@metaData$imaging$offsets=offsets[i[[j]],]
+    x[[j]]@metaData$imaging$offsets <- offsets[i[[j]],]
   }
   x
 }

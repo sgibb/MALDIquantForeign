@@ -350,6 +350,14 @@ setMethod(f="exportMzMl",
 #'  imzML file.
 #' @param force \code{logical}, If \code{TRUE} the \code{file} would be
 #'  overwritten or \code{path} would be created.
+#' @param processed \code{logical}, If \code{TRUE} (default) the spectra will
+#' be saved in processed mode (means mass and intensity is stored for each
+#' spectra separately in contrast to continuous mode where the mass is stored
+#' only for one spectrum).
+#' @param coordinates \code{matrix}, 2 column matrix that contains the x- and
+#'  y-coordinates for the spectra.
+#' @param pixelSize \code{numeric}, a vector of length 2 that contains the x and
+#' y pixel size in micrometers (default: \code{c(100, 100)}).
 #' @param \ldots arguments to be passed to internal functions.
 #'
 #' @seealso
@@ -371,14 +379,11 @@ setMethod(f="exportMzMl",
 #' library("MALDIquant")
 #' library("MALDIquantForeign")
 #'
-#' ## get example directory
-#' exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
+#' s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
+#'           createMassSpectrum(mass=1:5, intensity=1:5))
 #'
-#' ## import
-#' s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"))
-#
 #' ## export a list of spectra
-#' exportImzMl(s, file="continuous.imzML")
+#' exportImzMl(s, file="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
 #' }
 #'
 #' @aliases exportImzMl exportImzMl,MassSpectrum-method exportImzMl,list-method
