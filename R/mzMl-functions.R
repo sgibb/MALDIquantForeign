@@ -366,6 +366,10 @@
       .writeXmlTag("cvParam", attrs=additionalAttrs, intend=6, file=file)
     }
 
+    .writeXmlTag("cvParam", intend=6, file=file,
+                 attrs=c(cvRef="MS", accession="MS:1000523",
+                         name="64-bit float"))
+
     accession <- paste("IMS", 1000101:1000104, sep=":")
     name <- paste("external", c("data", "offset", "array length", "encoded length"))
     value <- c("true", unname(x))
