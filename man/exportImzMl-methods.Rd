@@ -7,9 +7,11 @@
 \alias{exportImzMl,list-method}
 \title{Export to imzML files}
 \usage{
-\S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
+\S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, processed=TRUE,
+coordinates=NULL, pixelSize=c(100, 100), \ldots)
 
-\S4method{exportImzMl}{list}(x, path, force=FALSE, \ldots)
+\S4method{exportImzMl}{list}(x, path, force=FALSE, processed=TRUE,
+coordinates=NULL, pixelSize=c(100, 100), \ldots)
 }
 \arguments{
 \item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
@@ -19,11 +21,6 @@
 
 \item{force}{\code{logical}, If \code{TRUE} the \code{file} would be
 overwritten or \code{path} would be created.}
-
-\item{path}{\code{character}, path to directory in which the \code{list} of
-\code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
-\code{path} is a single filename all spectra will be exported to a single
-imzML file.}
 
 \item{processed}{\code{logical}, If \code{TRUE} (default) the spectra will
 be saved in processed mode (means mass and intensity is stored for each
@@ -35,6 +32,11 @@ y-coordinates for the spectra.}
 
 \item{pixelSize}{\code{numeric}, a vector of length 2 that contains the x and
 y pixel size in micrometers (default: \code{c(100, 100)}).}
+
+\item{path}{\code{character}, path to directory in which the \code{list} of
+\code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
+\code{path} is a single filename all spectra will be exported to a single
+imzML file.}
 
 \item{\ldots}{arguments to be passed to internal functions.}
 }
@@ -61,10 +63,10 @@ Sebastian Gibb
 \url{http://strimmerlab.org/software/maldiquant/}
 
 Schramm T, Hester A, Klinkert I, Both J-P, Heeren RMA, Brunelle A,
-Laprévote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Römpp A
+Laprevote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Roempp A
 (2012)\cr
 imzML - A common data format for the flexible exchange and processing of mass
-spectrometry imaging data. \cr
+spectrometry imaging data.\cr
 Journal of Proteomics 75 (16):5106-5110. \cr
 \url{http://dx.doi.org/10.1016/j.jprot.2012.07.026}
 }

@@ -340,7 +340,8 @@ setMethod(f="exportMzMl",
 #' \code{\link[MALDIquant]{MassSpectrum-class}} objects into imzML files.
 #'
 #' @usage
-#' \S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
+#' \S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, processed=TRUE,
+#' coordinates=NULL, pixelSize=c(100, 100), \ldots)
 #'
 #' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
 #'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
@@ -368,10 +369,10 @@ setMethod(f="exportMzMl",
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #'
 #' Schramm T, Hester A, Klinkert I, Both J-P, Heeren RMA, Brunelle A,
-#' Laprévote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Römpp A
+#' Laprevote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Roempp A
 #' (2012)\cr
 #' imzML - A common data format for the flexible exchange and processing of mass
-#' spectrometry imaging data. \cr
+#' spectrometry imaging data.\cr
 #' Journal of Proteomics 75 (16):5106-5110. \cr
 #' \url{http://dx.doi.org/10.1016/j.jprot.2012.07.026}
 #' @examples
@@ -393,17 +394,24 @@ setMethod(f="exportMzMl",
 #' @export
 setMethod(f="exportImzMl",
           signature=signature(x="MassSpectrum"),
-          definition=function(x, file, force=FALSE, ...) {
-  export(x, file=file, type="imzml", force=force, ...)
+          definition=function(x, file, force=FALSE,
+                              processed=TRUE, coordinates=NULL,
+                              pixelSize=c(100, 100), ...) {
+  export(x, file=file, type="imzml", force=force,
+         processed=processed, coordinates=coordinates, pixelSize=pixelSize, ...)
 })
 
 #' @usage
-#' \S4method{exportImzMl}{list}(x, path, force=FALSE, \ldots)
+#' \S4method{exportImzMl}{list}(x, path, force=FALSE, processed=TRUE,
+#' coordinates=NULL, pixelSize=c(100, 100), \ldots)
 #' @rdname exportImzMl-methods
 #' @export
 setMethod(f="exportImzMl",
           signature=signature(x="list"),
-          definition=function(x, path, force=FALSE, ...) {
-  export(x, path=path, type="imzml", force=force, ...)
+          definition=function(x, path, force=FALSE,
+                              processed=TRUE, coordinates=NULL,
+                              pixelSize=c(100, 100), ...) {
+  export(x, path=path, type="imzml", force=force,
+         processed=processed, coordinates=coordinates, pixelSize=pixelSize, ...)
 })
 
