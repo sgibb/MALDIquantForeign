@@ -1,7 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.9.7 [2015-04-18 Mon]:
+Version 0.9.8 [2015-04-19 Sun]:
+- Replace old imzML example files in inst/exampledata.
+
+Version 0.9.7 [2015-04-18 Sat]:
 - Add basic export support for imzML files.
 
 Version 0.9.6 [2015-03-23 Mon]:

@@ -27,6 +27,9 @@ setMethod(f=".exportImzMl",
   signature=signature(x="list"),
   definition=function(x, file, id=.withoutFileExtension(basename(file)),
                       processed=TRUE, ...) {
+  if (hasArg(path)) {
+    file <- path
+  }
 
   .writeImzMlDocument(x=x, file=file, id=id, processed=processed, ...)
 })

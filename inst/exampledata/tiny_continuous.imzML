@@ -7,8 +7,8 @@
   </cvList>
   <fileDescription>
     <fileContent>
-      <cvParam cvRef="IMS" accession="IMS:1000080" name="universally unique identifier" value="{12345678-1234-1234-1234-1234567890AB}"/>
-      <cvParam cvRef="IMS" accession="IMS:1000091" name="ibd SHA-1" value="4BC51B13C4ECB016156DB2866D22A101B6BADC56"/>
+      <cvParam cvRef="IMS" accession="IMS:1000080" name="universally unique identifier" value="{12345678-90ab-4cde-af12-34567890abcd}"/>
+      <cvParam cvRef="IMS" accession="IMS:1000091" name="ibd SHA-1" value="0b177e720cd69eea21f3bdf9f7d2111d09c81aca"/>
       <cvParam cvRef="IMS" accession="IMS:1000030" name="continuous" value=""/>
     </fileContent>
   </fileDescription>
