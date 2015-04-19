@@ -9,6 +9,7 @@ test_that("supportedFileFormats", {
                        "cdf"),
             export = c("tab", "csv",
                        "msd",
-                       "mzml"))
+                       "mzml",
+                       "imzml"))
   expect_identical(supportedFileFormats(), r)
 })
