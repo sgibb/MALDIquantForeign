@@ -1,13 +1,14 @@
 # MALDIquantForeign
 [![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
 [![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquantForeign/badge.svg)](https://coveralls.io/r/sgibb/MALDIquantForeign)
+[![metacran version](http://www.r-pkg.org/badges/version/MALDIquantForeign)](http://cran.r-project.org/web/packages/MALDIquantForeign/index.html)
 
 ## Description
 
 Import/Export routines for [MALDIquant](http://strimmerlab.org/software/maldiquant/)
 
 [MALDIquantForeign on
-CRAN](http://cran.r-project.org/web/packages/MALDIquantForeign/)
+CRAN](http://cran.r-project.org/web/packages/MALDIquantForeign/index.html)
 
 ## Install
 
