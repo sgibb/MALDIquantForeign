@@ -41,6 +41,7 @@
   .writeMzMlFileDescription(x, file=f, isIms=isIms, imsArgs=imsArgs)
   .writeMzMlSoftwareList(x, file=f)
   if (isIms) {
+    .writeImzMlReferenceableParamGroups(x, file=f)
     .writeImzMlScanSettings(x, file=f)
   }
   .writeMzMlInstrumentConfigurationList(x, file=f)
@@ -294,6 +295,48 @@
   .writeCloseXmlTag("binaryDataArray", intend=5, file=file)
 }
 
+.writeImzMlReferenceableParamGroups <- function(x, file) {
+  .writeXmlTag("referenceableParamGroupList", attrs=c(count=2), intend=1,
+               close=FALSE, file=file)
+
+    .writeXmlTag("referenceableParamGroup", attrs=c(id="mzArray"), intend=2,
+                 close=FALSE, file=file)
+
+      .writeXmlTag("cvParam", intend=3, file=file,
+                   attrs=c(cvRef="MS", accession="MS:1000514",
+                           name="m/z array", unitCvRef="MS",
+                           unitAccession="MS:1000040", unitName="m/z"))
+
+      ref <- c("MS", "MS", "IMS")
+      accession <- paste(ref, c(1000576, 1000523, 1000101), sep=":")
+      name <- c("no compression", "64-bit float", "external data")
+      value <- c("", "", "true")
+
+      for (i in seq(along=accession)) {
+        .writeXmlTag("cvParam", intend=3, file=file,
+                     attrs=c(cvRef=ref[i], accession=accession[i], name=name[i],
+                             value=value[i]))
+      }
+
+    .writeCloseXmlTag("referenceableParamGroup", intend=2, file=file)
+
+    .writeXmlTag("referenceableParamGroup", attrs=c(id="intensityArray"),
+                intend=2, close=FALSE, file=file)
+
+      .writeXmlTag("cvParam", intend=3, file=file,
+                   attrs=c(cvRef="MS", accession="MS:1000515",
+                           name="intensity array", unitCvRef="MS",
+                           unitAccession="MS:1000131"))
+
+      for (i in seq(along=accession)) {
+        .writeXmlTag("cvParam", intend=3, file=file,
+                     attrs=c(cvRef=ref[i], accession=accession[i], name=name[i],
+                             value=value[i]))
+      }
+    .writeCloseXmlTag("referenceableParamGroup", intend=2, file=file)
+  .writeCloseXmlTag("referenceableParamGroupList", intend=1, file=file)
+}
+
 .writeImzMlScanSettings <- function(x, file) {
   .writeXmlTag("scanSettingsList", attrs=c(count=1), intend=1, close=FALSE,
                file=file)
@@ -347,32 +390,22 @@
   .writeXmlTag("binaryDataArrayList", attrs=c(count=2), intend=4, close=FALSE,
                file=file)
   .writeImzMlBinaryData(metaData(x)$imaging$offsets["mass",], file=file,
-                        c(cvRef="MS", accession="MS:1000514",
-                          name="m/z array", unitCvRef="MS",
-                          unitAccession="MS:1000040", unitName="m/z"))
-
+                        ref="mzArray")
   .writeImzMlBinaryData(metaData(x)$imaging$offsets["intensity",], file=file,
-                        c(cvRef="MS", accession="MS:1000515",
-                          name="intensity array", unitCvRef="MS",
-                          unitAccession="MS:1000131",
-                          unitName="number of counts"))
+                        ref="intensityArray")
   .writeCloseXmlTag("binaryDataArrayList", intend=4, file=file)
 }
 
-.writeImzMlBinaryData <- function(x, file, additionalAttrs) {
+.writeImzMlBinaryData <- function(x, file, ref) {
   .writeXmlTag("binaryDataArray", attrs=c(encodedLength=0), intend=5,
                close=FALSE, file=file)
-    if (!missing(additionalAttrs)) {
-      .writeXmlTag("cvParam", attrs=additionalAttrs, intend=6, file=file)
-    }
 
-    .writeXmlTag("cvParam", intend=6, file=file,
-                 attrs=c(cvRef="MS", accession="MS:1000523",
-                         name="64-bit float"))
+    .writeXmlTag("referenceableParamGroupRef", attrs=c(ref=ref),
+                 intend=6, file=file)
 
-    accession <- paste("IMS", 1000101:1000104, sep=":")
-    name <- paste("external", c("data", "offset", "array length", "encoded length"))
-    value <- c("true", unname(x))
+    accession <- paste("IMS", 1000102:1000104, sep=":")
+    name <- paste("external", c("offset", "array length", "encoded length"))
+    value <- unname(x)
 
     for (i in seq(along=accession)) {
       .writeXmlTag("cvParam", intend=6, file=file,

@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.9 [2015-05-03 Sun]:
+- Use referencableParamGroup for mzArray/intensityArray.
+
 Version 0.9.8 [2015-04-19 Sun]:
 - Replace old imzML example files in inst/exampledata.
 
