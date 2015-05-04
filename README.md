@@ -1,6 +1,6 @@
 # MALDIquantForeign
 [![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
-[![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquantForeign/badge.svg)](https://coveralls.io/r/sgibb/MALDIquantForeign)
+[![codecov.io](https://codecov.io/github/sgibb/MALDIquantForeign/coverage.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquantForeign/?branch=master)
 [![metacran version](http://www.r-pkg.org/badges/version/MALDIquantForeign)](http://cran.r-project.org/web/packages/MALDIquantForeign/index.html)
 
 ## Description
