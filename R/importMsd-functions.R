@@ -27,9 +27,10 @@
 
   ## read file
   s <- .parseMsd(file=file, verbose=verbose)
+  s$metaData$file <- file
 
-  .createMassObject(data=s$spectrum, metaData=s$metaData, centroided=centroided,
-                    massRange=massRange, minIntensity=minIntensity,
-                    verbose=verbose)
+  list(.createMassObject(data=s$spectrum, metaData=s$metaData,
+                         centroided=centroided, massRange=massRange,
+                         minIntensity=minIntensity, verbose=verbose))
 }
 
