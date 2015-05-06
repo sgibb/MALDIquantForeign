@@ -42,6 +42,7 @@
 #' \tabular{ll}{
 #'  tab \tab \code{\link[MALDIquantForeign]{exportTab}} \cr
 #'  csv \tab \code{\link[MALDIquantForeign]{exportCsv}} \cr
+#'  imzML \tab \code{\link[MALDIquantForeign]{exportImzMl}} \cr
 #'  msd \tab \code{\link[MALDIquantForeign]{exportMsd}} \cr
 #'  mzML \tab \code{\link[MALDIquantForeign]{exportMzMl}} \cr
 #' }
@@ -81,10 +82,11 @@ importFormats <- data.frame(type=c("txt", "tab", "csv", "fid", "ciphergen",
                                       ".importAnalyze", ".importCdf"),
                             stringsAsFactors=FALSE)
 
-exportFormats <- data.frame(type=c("tab", "csv", "msd", "mzml"),
-                            extension=c("tab", "csv", "msd", "mzML"),
-                            onefile=c(FALSE, FALSE, FALSE, TRUE),
+exportFormats <- data.frame(type=c("tab", "csv", "msd", "mzml", "imzml"),
+                            extension=c("tab", "csv", "msd", "mzML", "imzML"),
+                            onefile=c(FALSE, FALSE, FALSE, TRUE, TRUE),
                             handler=c(".exportTab", ".exportCsv",
-                                      ".exportMsd", ".exportMzMl"),
+                                      ".exportMsd", ".exportMzMl",
+                                      ".exportImzMl"),
                             stringsAsFactors=FALSE)
 

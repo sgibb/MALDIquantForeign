@@ -1,4 +1,4 @@
-## Copyright 2014 Sebastian Gibb
+## Copyright 2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -16,23 +16,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-.testChecksum <- function(file, target, algo="sha1", ..., verbose=FALSE) {
+setMethod(f=".exportImzMl",
+  signature=signature(x="MassSpectrum"),
+  definition=function(x, file, id=.withoutFileExtension(basename(file)),
+                      processed=TRUE, ...) {
+  .writeImzMlDocument(x=x, file=file, id=id, processed=processed, ...)
+})
 
-  .msg(verbose, "Calculating ", algo, "-sum for ", sQuote(file), ": ",
-       appendLF=FALSE)
-
-  fileChecksum <- tolower(digest::digest(file, algo=algo, file=TRUE, ...))
-  target <- tolower(target)
-
-  .msg(verbose, fileChecksum)
-
-  if (fileChecksum != target) {
-    warning("Stored and calculated ", algo, " sums do not match ",
-            "(stored: ", sQuote(target), ", calculated: ",
-            sQuote(fileChecksum), ")!")
-    return(FALSE)
+setMethod(f=".exportImzMl",
+  signature=signature(x="list"),
+  definition=function(x, file, id=.withoutFileExtension(basename(file)),
+                      processed=TRUE, ...) {
+  if (hasArg(path)) {
+    file <- path
   }
 
-  return(TRUE)
-}
-
+  .writeImzMlDocument(x=x, file=file, id=id, processed=processed, ...)
+})

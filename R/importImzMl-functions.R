@@ -26,31 +26,13 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
-  ibdFilename <- paste0(.withoutFileExtension(file), ".ibd")
+  ibdFilename <- .changeFileExtension(file, "ibd")
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
   }
 
-  isCoordinatesMatrix <- is.matrix(coordinates) && ncol(coordinates) == 2L
-
-  if (!is.null(coordinates) && !isCoordinatesMatrix) {
-    stop("The ", sQuote("coordinates"),
-         " argument has to be a matrix with two columns (x and y position)!")
-  }
-
-  ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
-
-  ## test checksums
-  if (!is.null(s$ims$md5)) {
-    .testChecksum(ibdFilename, s$ims$md5, algo="md5", verbose=verbose)
-  } else if (!is.null(s$ims$sha1)) {
-    .testChecksum(ibdFilename, s$ims$sha1, algo="sha1", verbose=verbose)
-  } else {
-    warning("At least one checksum (SHA-1 or MD5) for the idb file ",
-            "must be provided in the imzML file.")
-  }
 
   ibd <- file(ibdFilename, open="rb")
   on.exit(close(ibd))
@@ -64,6 +46,39 @@
   } else if (tolower(uuid) != tolower(s$ims$uuid)) {
     warning("The UUID in ", sQuote(file) , " and ", sQuote(ibdFilename),
             "do not match!")
+  } else if (!.isUuidV4(uuid)) {
+    warning("The UUID: ", uuid, " is not valid!")
+  }
+
+  ## test checksums
+  if (!is.null(s$ims$md5)) {
+    .testChecksum(ibdFilename, s$ims$md5, algo="md5", verbose=verbose)
+  } else if (!is.null(s$ims$sha1)) {
+    .testChecksum(ibdFilename, s$ims$sha1, algo="sha1", verbose=verbose)
+  } else {
+    warning("At least one checksum (SHA-1 or MD5) for the idb file ",
+            "should be provided in the imzML file.")
+  }
+
+  sel <- seq_along(s$ims$ibd)
+
+  isCoordinatesMatrix <- is.matrix(coordinates) && ncol(coordinates) == 2L
+
+  if (!is.null(coordinates) && !isCoordinatesMatrix) {
+    stop("The ", sQuote("coordinates"),
+         " argument has to be a matrix with two columns (x and y position)!")
+  }
+
+  if (isCoordinatesMatrix) {
+    pos <- do.call(rbind, lapply(s$spectra, function(x)x$metaData$imaging$pos))
+    sel <- match(paste(coordinates[, 1L], coordinates[, 2L], sep=":"),
+                 paste(pos[, 1L], pos[, 2L], sep=":"))
+    if (anyNA(sel)) {
+      warning("The following rows contain invalid coordinates: ",
+              paste(which(is.na(sel)), collapse=", "))
+
+      sel <- sort(sel[!is.na(sel)])
+    }
   }
 
   .readValues <- function(file, x, column, isSeekNeeded) {
@@ -77,27 +92,14 @@
     return(readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little"))
   }
 
-  sel <- seq_along(s$ims$ibd)
-
-  if (isCoordinatesMatrix) {
-    pos <- do.call(rbind, lapply(s$spectra, function(x)x$metaData$imaging$pos))
-    sel <- match(paste(coordinates[, 1L], coordinates[, 2L], sep=":"),
-                 paste(pos[, 1L], pos[, 2L], sep=":"))
-    if (anyNA(sel)) {
-      warning("The following rows contain invalid coordinates: ",
-              paste(which(is.na(sel)), collapse=", "))
-
-      sel <- sel[!is.na(sel)]
-    }
-  }
-
   n <- length(sel)
   spectra <- vector(mode="list", length=n)
 
   isProcessed <- s$ims$type == "processed"
+  isSeekNeeded <- length(s$ims$ibd) > length(sel)
 
   if (!isProcessed) {
-    mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isCoordinatesMatrix)
+    mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isSeekNeeded)
   }
 
   ## read mass and intensity values
@@ -108,9 +110,9 @@
     m$file <- file
 
     if (isProcessed) {
-      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isCoordinatesMatrix)
+      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
     }
-    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isCoordinatesMatrix)
+    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
     spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
                                            metaData=m, centroided=centroided,
                                            massRange=massRange,

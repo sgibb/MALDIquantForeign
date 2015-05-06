@@ -49,6 +49,10 @@
   sub(pattern="\\.(zip|gz|bz2|bzip2|xz|lzma)+$", replacement="", x=x)
 }
 
+.changeFileExtension <- function(x, newExtension) {
+  paste(.withoutFileExtension(x), newExtension, sep=".")
+}
+
 .cutFilenames <- function(x) {
   l <- strsplit(x, split=.Platform$file.sep, fixed=TRUE)
 

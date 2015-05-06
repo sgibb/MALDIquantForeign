@@ -231,7 +231,7 @@
       return()
     }
 
-    if (.isAttrSet(attrs, "IMS:1000032", "processed")) {
+    if (.isAttrSet(attrs, "IMS:1000031", "processed")) {
       xml$ims$type <<- "processed"
       return()
     }

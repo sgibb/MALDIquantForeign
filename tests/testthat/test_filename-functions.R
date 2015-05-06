@@ -22,6 +22,13 @@ test_that("path without extension is returned", {
                    c("~", "/home/user/xyz", "/tmp/bar"))
 })
 
+test_that("file extension is changed", {
+  expect_identical(MALDIquantForeign:::.changeFileExtension(
+                      c("/home/user/xyz.tar.gz", "/tmp/bar.txt"),
+                      c("txt", "csv")),
+                   c("/home/user/xyz.txt", "/tmp/bar.csv"))
+})
+
 test_that(".cutFilenames", {
   expect_identical(MALDIquantForeign:::.cutFilenames(
                      c("/home/user/foo.bar", "/home/user/xyz.tar.gz")),
