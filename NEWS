@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.10 [2015-05-06 Wed]:
+- Add msd importer `importMsd`.
+
 Version 0.9.9 [2015-05-03 Sun]:
 - Use referencableParamGroup for mzArray/intensityArray.
 
