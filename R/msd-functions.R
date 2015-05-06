@@ -45,7 +45,7 @@
 .writeMsdDescription <- function(x, file) {
   .writeXmlTag("description", intend=1, close=FALSE, file=file)
     .writeXmlTag("title", text=.createMsdTitle(file), intend=2, file=file)
-    .writeXmlTag("date", attrs=c(value=.sanitize(date())),
+    .writeXmlTag("date", attrs=c(value=.sanitize(metaData(x)$acquisitionDate)),
                  intend=2, file=file)
     .writeXmlTag("operator", attrs=c(value=.sanitize(metaData(x)$owner)),
                  intend=2, file=file)
@@ -97,5 +97,5 @@
 }
 
 .createMsdTitle <- function(file) {
-  return(.sanitize(.withoutFileExtension(basename(summary(file)$description))))
+  .sanitize(.withoutFileExtension(basename(summary(file)$description)))
 }

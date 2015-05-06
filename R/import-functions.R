@@ -35,6 +35,7 @@
 #'  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
 #'  analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr
 #'  cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
+#'  msd \tab \code{\link[MALDIquantForeign]{importMsd}} \cr
 #' }
 #'
 #' \code{path}: In addition to the above mentioned file types the
@@ -490,5 +491,42 @@ importAnalyze <- function(path, ...) {
 #' @export
 importCdf <- function(path, ...) {
   return(import(path=path, type="cdf", ...))
+}
+
+#' Import MSD files
+#'
+#' This function imports files in mMass MSD file format
+#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects.
+#'
+#' @param path \code{character}, path to directory or file which should be read
+#'  in.
+#' @param \ldots arguments to be passed to
+#' \code{\link[MALDIquantForeign]{import}}.
+#'
+#' @return a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' \code{\link[MALDIquant]{MassPeaks-class}} objects (depending on the
+#' \code{centroided} argument).
+#' @seealso
+#' \code{\link[MALDIquant]{MassSpectrum-class}},
+#' \code{\link[MALDIquant]{MassPeaks-class}}
+#' @author Sebastian Gibb
+#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' mMass homepage: \url{http://mmass.org/}
+#' @examples
+#'
+#' library("MALDIquant")
+#' library("MALDIquantForeign")
+#'
+#' ## get example directory
+#' exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
+#'
+#' ## import
+#' s <- importMsd(exampleDirectory)
+#'
+#' @rdname importMsd-functions
+#' @export
+importMsd <- function(path, ...) {
+  return(import(path=path, type="msd", ...))
 }
 

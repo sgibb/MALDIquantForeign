@@ -64,6 +64,7 @@ Specific import functions:
  imzML \tab \code{\link[MALDIquantForeign]{importImzMl}} \cr
  analyze \tab \code{\link[MALDIquantForeign]{importAnalyze}} \cr
  cdf \tab \code{\link[MALDIquantForeign]{importCdf}} \cr
+ msd \tab \code{\link[MALDIquantForeign]{importMsd}} \cr
 }
 
 \code{path}: In addition to the above mentioned file types the
