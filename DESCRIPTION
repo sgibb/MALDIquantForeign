@@ -9,9 +9,9 @@ Depends: R (>= 3.0.0), methods, MALDIquant (>= 1.8)
 Imports: base64enc, digest, downloader, readBrukerFlexData (>= 1.7),
         readMzXmlData (>= 2.7), XML
 Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)
-Description: This package reads (tab, csv, Bruker fid, Ciphergen XML,
-        mzXML, mzML, imzML, Analyze 7.5, CDF) and writes (tab, csv,
-        msd, mzML) different file formats of mass spectrometry data
+Description: Functions for reading (tab, csv, Bruker fid, Ciphergen XML,
+        mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and writing (tab, csv,
+        mMass MSD, mzML) different file formats of mass spectrometry data
         into/from MALDIquant objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
