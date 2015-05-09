@@ -30,6 +30,9 @@ test_that(".uncompress supports single file compression by gunzip", {
   f <- system.file(file.path("exampledata", "csv1.csv"),
                    package="MALDIquantForeign")
   expect_identical(readLines(u), readLines(f))
+  expect_identical(MALDIquantForeign:::.uncompress("foobar.txt"), "foobar.txt")
+  expect_error(MALDIquantForeign:::.uncompress("foobar.gz"),
+               ".*foobar.gz.* doesn't exist!")
 })
 
 test_that(".uncompress supports tar compression by untar", {
@@ -49,9 +52,11 @@ test_that(".uncompress supports zip compression by unzip", {
                       file.path("exampledata", "compressed", "csv.zip"),
                       package="MALDIquantForeign")),
                   recursive=TRUE, pattern="^.*\\.csv$", full.names=TRUE)[1]
-  f <- system.file(file.path("exampledata", "csv1.csv"), 
+  f <- system.file(file.path("exampledata", "csv1.csv"),
                    package="MALDIquantForeign")
   expect_identical(readLines(u), readLines(f))
+  expect_error(MALDIquantForeign:::.uncompress("foobar.zip"),
+               "unzip failed!")
 })
 
 test_that(".cleanupUncompressedTmpFiles works", {
@@ -65,7 +70,7 @@ test_that(".cleanupUncompressedTmpFiles works", {
 
 test_that("typical auto import", {
   f <- normalizePath(system.file(
-    file.path("exampledata", "compressed", "csv1.csv.gz"), 
+    file.path("exampledata", "compressed", "csv1.csv.gz"),
                      package="MALDIquantForeign"))
   s <- createMassSpectrum(mass=1:5, intensity=6:10)
   i <- import(f)[[1]]

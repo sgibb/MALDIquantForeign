@@ -61,11 +61,10 @@
   .msg(verbose, funName, " ", filename, " to ", destdir, ".")
 
   unpacked <- fun(filename, exdir=destdir, ...)
-  if (length(unpacked)) {
-    return(destdir)
-  } else {
+  if (!length(unpacked)) {
     stop(funName, " failed!")
   }
+  destdir
 }
 
 # gunzip and return tmp filename
