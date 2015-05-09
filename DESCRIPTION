@@ -11,7 +11,7 @@ Imports: base64enc, digest, downloader, readBrukerFlexData (>= 1.7),
 Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)
 Description: Functions for reading (tab, csv, Bruker fid, Ciphergen XML,
         mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and writing (tab, csv,
-        mMass MSD, mzML) different file formats of mass spectrometry data
+        mMass MSD, mzML, imzML) different file formats of mass spectrometry data
         into/from MALDIquant objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
