@@ -41,12 +41,10 @@
     size <- apply(coordinates, 2, max)
     dimension <- size * pixelSize
 
-    for (i in seq(along=x)) {
-      x[[i]]@metaData$imaging <- list(size=size,
-                                      dim=dimension,
-                                      pixelSize=pixelSize,
-                                      pos=coordinates[i, ])
-    }
+    x[[1L]]@metaData$imaging <- list(size=size,
+                                     dim=dimension,
+                                     pixelSize=pixelSize)
+    coordinates(x) <- coordinates
   }
 
   ibdFile <- .changeFileExtension(file, "ibd")
