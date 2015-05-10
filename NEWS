@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.11 [2015-05-10 Wed]:
+- Use MALDIquant's new `coordinates` method.
+
 Version 0.9.10 [2015-05-06 Wed]:
 - Add msd importer `importMsd`.
 
