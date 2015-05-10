@@ -80,4 +80,3 @@ test_that("exportMzMl,list", {
   expect_equal(readLines(file.path(tmp, "TESTS_2.mzML")),
                sub(pattern="id=\"tmp\"", replacement="id=\"TESTS_2\"", x=mzML))
 })
-

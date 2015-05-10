@@ -78,4 +78,3 @@ test_that("importMzMl centroided", {
   expect_true(all(sapply(MALDIquantForeign:::.importMzMl(path, centroided=TRUE),
                          isMassPeaks)))
 })
-

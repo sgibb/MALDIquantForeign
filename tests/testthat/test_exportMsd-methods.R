@@ -53,4 +53,3 @@ test_that(".createMsdTitle", {
   expect_true(MALDIquantForeign:::.createMsdTitle(f) == "test")
   close(f)
 })
-

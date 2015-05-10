@@ -29,4 +29,3 @@ setMethod(f=".exportMzMl",
 
   return(.writeMzMlDocument(x=x, file=file, id=id, ...))
 })
-

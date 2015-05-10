@@ -17,4 +17,3 @@ test_that("testChecksum-functions", {
   expect_warning(MALDIquantForeign:::.testChecksum(f, "12345", algo="md5"),
                  "Stored and calculated md5 sums do not match")
 })
-

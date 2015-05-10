@@ -79,4 +79,3 @@ test_that("typical auto import", {
   expect_false(file.exists(file.path(tempdir(),
                                      "MALDIquantForeign_uncompress")))
 })
-

@@ -414,4 +414,3 @@ setMethod(f="exportImzMl",
   export(x, path=path, type="imzml", force=force,
          processed=processed, coordinates=coordinates, pixelSize=pixelSize, ...)
 })
-

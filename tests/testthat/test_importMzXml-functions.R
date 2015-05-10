@@ -55,4 +55,3 @@ test_that("importMzXml centroided", {
   expect_equal(basename(metaData(p[[1]])$file),
                "tiny1-centroided.mzXML3.0.mzXML")
 })
-

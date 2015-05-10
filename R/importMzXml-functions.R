@@ -28,4 +28,3 @@
                                          minIntensity=minIntensity,
                                          verbose=verbose))
 }
-

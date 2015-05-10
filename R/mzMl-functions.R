@@ -415,4 +415,3 @@
     .writeXmlTag("binary", intend=6, file=file)
   .writeCloseXmlTag("binaryDataArray", intend=5, file=file)
 }
-

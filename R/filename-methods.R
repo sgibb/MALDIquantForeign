@@ -58,4 +58,3 @@ setMethod(f=".composeFilename",
 
   .uniqueBaseFilenames(filenames, fileExtension)
 })
-

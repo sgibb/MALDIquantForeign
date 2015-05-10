@@ -18,4 +18,3 @@ test_that("importCiphergenXml", {
   expect_equal(basename(metaData(s[[1]])$file), "tiny.xml")
   expect_equal(metaData(s[[1]])$name, "tiny example")
 })
-

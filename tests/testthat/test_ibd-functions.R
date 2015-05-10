@@ -38,4 +38,3 @@ test_that(".addIbdOffsets", {
   expect_identical(MALDIquantForeign:::.addIbdOffsets(s, processed=TRUE), rp)
   expect_identical(MALDIquantForeign:::.addIbdOffsets(s, processed=FALSE), rc)
 })
-

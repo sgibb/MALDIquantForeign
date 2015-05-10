@@ -44,4 +44,3 @@
                                 ignore.case=ignore.case, ...))
   unique(files)
 }
-

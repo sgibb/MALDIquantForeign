@@ -25,4 +25,3 @@
                          centroided=centroided, massRange=massRange,
                          minIntensity=minIntensity, verbose=verbose))
 }
-

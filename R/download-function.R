@@ -48,4 +48,3 @@
 .cleanupDownloadedTmpFiles <- function() {
   unlink(file.path(tempdir(), "MALDIquantForeign_download"), recursive=TRUE)
 }
-

@@ -21,4 +21,3 @@ setMethod(f=".exportMsd",
   definition=function(x, file, peaks, ...) {
   return(.writeMsdDocument(x=x, file=file, peaks=peaks, ...))
 })
-

@@ -30,4 +30,3 @@ setMethod(f=".exportCsv",
   return(.exportTab(x, file=file, sep=sep, row.names=row.names,
                     col.names=col.names, ...))
 })
-

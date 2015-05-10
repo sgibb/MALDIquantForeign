@@ -92,4 +92,3 @@ exportFormats <- data.frame(type=c("tab", "csv", "msd", "mzml", "imzml"),
                                       ".exportMsd", ".exportMzMl",
                                       ".exportImzMl"),
                             stringsAsFactors=FALSE)
-

@@ -13,4 +13,3 @@ test_that("list.files-functions", {
                    file.path(path, c("tiny1-centroided.mzML1.1.mzML",
                                      "tiny1-compressed.mzML1.1.mzML")))
 })
-

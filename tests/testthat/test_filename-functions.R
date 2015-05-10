@@ -64,4 +64,3 @@ test_that(".make.unique", {
   expect_equal(MALDIquantForeign:::.make.unique(rep(LETTERS[1:2], each=10)),
                sprintf("%s_%02d", rep(LETTERS[1:2], each=10), 1:10))
 })
-

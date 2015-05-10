@@ -250,4 +250,3 @@ CHANGES IN MALDIquantForeign VERSION 0.1 [2012-12-10]:
 * Supported file formats:
   * Import: tab, txt, csv, Bruker Daltonics *flex files, mzXML, mzML
   * Export: tab, csv, msd
-

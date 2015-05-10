@@ -20,4 +20,3 @@ test_that(".isUuidV4", {
                                                "3858f62230ac4c919f300c664312c63f")),
                c(FALSE, TRUE))
 })
-

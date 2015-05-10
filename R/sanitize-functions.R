@@ -22,4 +22,3 @@
   x <- gsub(pattern=">", replacement="&gt;", x=x)
   x
 }
-

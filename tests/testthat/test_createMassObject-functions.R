@@ -31,4 +31,3 @@ test_that(".createMassObject", {
   expect_equal(intensity(MALDIquantForeign:::.createMassObject(
       list(mass=1:10, intensity=1:10), minIntensity=5)), 5:10)
 })
-

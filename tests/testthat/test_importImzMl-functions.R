@@ -62,4 +62,3 @@ test_that("importImzMl coordinates", {
                  "The following rows contain invalid coordinates: 1, 3")
 })
 
-

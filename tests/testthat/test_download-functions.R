@@ -7,4 +7,3 @@ test_that(".isUrl", {
   expect_identical(MALDIquantForeign:::.isUrl(url),
                    c(rep(TRUE, 3), rep(FALSE, 3)))
 })
-

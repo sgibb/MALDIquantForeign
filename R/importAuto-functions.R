@@ -56,4 +56,3 @@
   isCiphergen <- s >= 2
   files[isCiphergen]
 }
-

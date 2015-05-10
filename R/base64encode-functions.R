@@ -45,4 +45,3 @@
 
   base64enc::base64encode(x)
 }
-

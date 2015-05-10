@@ -23,4 +23,3 @@ test_that("exportCsv", {
   colnames(r) <- c("mass", "intensity")
   expect_equal(read.csv(temp), r)
 })
-

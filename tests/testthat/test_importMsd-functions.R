@@ -18,4 +18,3 @@ test_that("importMsd", {
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "tiny1.msd")
 })
-
