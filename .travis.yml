@@ -8,6 +8,7 @@ apt_packages:
 
 r_github_packages:
   - jimhester/covr
+  - sgibb/MALDIquant
 
 r_binary_packages:
   - testthat
