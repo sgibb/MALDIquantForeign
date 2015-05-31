@@ -1,6 +1,6 @@
 # MALDIquantForeign
 [![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
-[![codecov.io](https://codecov.io/github/sgibb/MALDIquantForeign/coverage.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquantForeign/?branch=master)
+[![codecov.io](https://img.shields.io/codecov/c/github/sgibb/MALDIquantForeign.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquantForeign/?branch=master)
 [![license](http://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![metacran version](http://www.r-pkg.org/badges/version/MALDIquantForeign)](http://cran.r-project.org/web/packages/MALDIquantForeign/index.html)
 [![metacran downloads](http://cranlogs.r-pkg.org/badges/MALDIquantForeign?color=brightgreen)](http://cran.r-project.org/web/packages/MALDIquantForeign/index.html)
