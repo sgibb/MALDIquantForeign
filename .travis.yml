@@ -6,7 +6,6 @@ apt_packages:
 - libnetcdf-dev
 r_github_packages:
 - jimhester/covr
-- eddelbuettel/drat
 - sgibb/MALDIquant
 r_binary_packages:
 - testthat
@@ -16,11 +15,7 @@ r_binary_packages:
 - digest
 after_success:
 - Rscript -e 'library(covr);codecov();coveralls()'
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
 notifications:
   email:
     on_success: change
     on_failure: change
-env:
-  global:
-    secure: PoR7jZND7+j1a7KVSVe6n3mx4rvasSVDYOEYvmIzahgfKy6msoqjkzM+lYuBBTSLyTs8B+Hhjs+QZV5XbxlFJS8sQ8lW3+SOCXLryLBeuHUgSmICA8XM9oHowTeGQdt4x6h1nW7FLb/5/R2MOckCa9hCvs54Apq/N8WvOleFO3s=
