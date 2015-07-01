@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.12 [2015-07-01 Wed]:
+- Import non-base functions/methods.
+
 Version 0.9.11 [2015-05-10 Wed]:
 - Use MALDIquant's new `coordinates` method.
 

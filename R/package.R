@@ -40,6 +40,9 @@
 #' @importFrom digest digest
 #' @importFrom downloader download
 #' @importFrom readBrukerFlexData readBrukerFlexFile
+#' @importFrom stats na.omit runif
+#' @importFrom utils modifyList packageVersion read.table tail type.convert
+#' untar unzip
 #' @importFrom XML xmlEventParse xmlParse xmlValue xpathApply xpathSApply
 #'
 NULL
