@@ -92,13 +92,23 @@ setMethod(f="export",
   stopifnot(MALDIquant:::.isMassObjectList(x))
 
   onefileSupport <- exportFormats$type[exportFormats$onefile]
+
+  dots <- list(...)
+
+  if (missing(path) && !is.null(dots$file)) {
+    path <- dots$file
+    dots$file <- NULL
+  }
+
   isFile <- !isTRUE(file.info(path)$isdir) &&
             tolower(.fileExtension(path)) %in% onefileSupport
 
   if (isFile) {
-    return(.exportToFile(x=x, file=path, type=type, force=force, ...))
+    do.call(.exportToFile, modifyList(list(x=x, file=path, type=type, force=force),
+                                      dots))
   } else {
-    return(.exportToDir(x=x, path=path, type=type, force=force, ...))
+    do.call(.exportToDir, modifyList(list(x=x, path=path, type=type, force=force),
+                                     dots))
   }
 })
 
