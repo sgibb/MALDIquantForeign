@@ -110,7 +110,7 @@
 #' @export
 import <- function(path, type="auto", pattern, excludePattern=NULL,
                    removeEmptySpectra=TRUE, centroided=FALSE, massRange=c(0, Inf),
-                   minIntensity=0, verbose=TRUE, ...) {
+                   minIntensity=0, verbose=interactive(), ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
