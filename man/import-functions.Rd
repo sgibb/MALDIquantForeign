@@ -6,7 +6,7 @@
 \usage{
 import(path, type = "auto", pattern, excludePattern = NULL,
   removeEmptySpectra = TRUE, centroided = FALSE, massRange = c(0, Inf),
-  minIntensity = 0, verbose = TRUE, ...)
+  minIntensity = 0, verbose = interactive(), ...)
 }
 \arguments{
 \item{path}{\code{character}, path to directory or file which should be read
