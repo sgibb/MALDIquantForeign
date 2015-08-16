@@ -14,7 +14,7 @@ test_that(".download", {
   urls <- c("https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/ascii.txt",
             "https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/csv1.csv")
 
-  tmpdir <- file.path(tempdir(), "MALDIquantForeign_download")
+  tmpdir <- tempdir()
 
   ascii <- data.frame(V1=1:5, V2=6:10)
   csv <- data.frame(mass=1:5, intensity=6:10)
@@ -26,8 +26,11 @@ test_that(".download", {
   expect_identical(read.table(MALDIquantForeign:::.download(urls[1])),
                    ascii)
 
-  expect_true(all(grepl("^a\\.txt$|^ascii_.*\\.txt$|^csv1_.*\\.csv$",
-                        list.files(tmpdir))))
+  expect_true(all(grepl(paste("^a\\.txt$",
+                              "^MALDIquantForeign_download/ascii_.*\\.txt$",
+                              "^MALDIquantForeign_download/csv1_.*\\.csv$",
+                              sep="|"),
+                        list.files(tmpdir, recursive=TRUE))))
 
   files <- MALDIquantForeign:::.download(urls)
 
