@@ -7,3 +7,36 @@ test_that(".isUrl", {
   expect_identical(MALDIquantForeign:::.isUrl(url),
                    c(rep(TRUE, 3), rep(FALSE, 3)))
 })
+
+test_that(".download", {
+  skip_on_cran()
+
+  urls <- c("https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/ascii.txt",
+            "https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/csv1.csv")
+
+  tmpdir <- file.path(tempdir(), "MALDIquantForeign_download")
+
+  ascii <- data.frame(V1=1:5, V2=6:10)
+  csv <- data.frame(mass=1:5, intensity=6:10)
+
+  expect_identical(read.table(
+                   MALDIquantForeign:::.download(urls[1],
+                                                 file.path(tmpdir, "a.txt"))),
+                   ascii)
+  expect_identical(read.table(MALDIquantForeign:::.download(urls[1])),
+                   ascii)
+
+  expect_true(all(grepl("^a\\.txt$|^ascii_.*\\.txt$|^csv1_.*\\.csv$",
+                        list.files(tmpdir))))
+
+  files <- MALDIquantForeign:::.download(urls)
+
+  expect_identical(list(read.table(files[1]), read.csv(files[2])),
+                   list(ascii, csv))
+
+  expect_message(MALDIquantForeign:::.download(urls[1],
+                                               file.path(tmpdir, "a.txt"),
+                                               verbose=TRUE),
+                 paste0("Downloading ", urls[1], " to ",
+                        file.path(tmpdir, "a.txt"), "\\."))
+})

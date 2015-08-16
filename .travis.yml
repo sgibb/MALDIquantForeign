@@ -1,4 +1,7 @@
 language: r
+env:
+  global:
+    - NOT_CRAN="true"
 warnings_are_errors: true
 apt_packages:
 - pgf
