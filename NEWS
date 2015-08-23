@@ -1,7 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.9.12 [2015-07-20 Mon]:
+Version 0.9.14 [2015-08-23 Sun]:
+- Remove dependency: downloader. Since R 3.2.2 https is supported on all
+  platforms by base::download.file.
+
+Version 0.9.13 [2015-07-20 Mon]:
 - Use "verbose = interactive()" in `import`.
 
 Version 0.9.12 [2015-07-01 Wed]:

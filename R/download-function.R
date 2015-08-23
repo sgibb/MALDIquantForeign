@@ -36,8 +36,8 @@
        paste0(destfile, collapse=", "), ".")
 
   for (i in seq(along=url)) {
-    if (!downloader::download(url=url[i], destfile=destfile[i], quiet=!verbose,
-                              mode="wb", ...)) {
+    if (download.file(url=url[i], destfile=destfile[i], quiet=!verbose,
+                      mode="wb", ...)) {
       warning("Download of ", url[i], " failed!")
     }
   }
