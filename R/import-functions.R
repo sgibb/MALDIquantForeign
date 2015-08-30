@@ -156,10 +156,12 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
       pattern <- importFormats$pattern[i]
     }
     handler <- importFormats$handler[i]
-    s <- unlist(lapply(.files(path=path, pattern=pattern,
-                              excludePattern=excludePattern),
-                       handler, centroided=centroided, massRange=massRange,
-                       minIntensity=minIntensity, verbose=verbose, ...))
+    s <- unlist(MALDIquant:::.lapply(.files(path=path, pattern=pattern,
+                                            excludePattern=excludePattern),
+                                     handler, centroided=centroided,
+                                     massRange=massRange,
+                                     minIntensity=minIntensity,
+                                     verbose=verbose, ...))
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
     }
