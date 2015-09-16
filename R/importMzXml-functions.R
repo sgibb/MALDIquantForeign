@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -17,11 +17,14 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 .importMzXml <- function(file, centroided=FALSE, massRange=c(0, Inf),
-                         minIntensity=0, verbose=FALSE, ...) {
+                         minIntensity=0, backend=c("default", "mzR"),
+                         verbose=FALSE, ...) {
 
   l <- readMzXmlData:::.readMzXmlFile(mzXmlFile=file,
                                       verbose=verbose, ...)
-  lapply(l, function(x).createMassObject(data=x$spectrum,
+  lapply(l, function(x).createMassObject(mass=x$spectrum$mass,
+                                         intensity=x$spectrum$intensity,
+                                         snr=x$spectrum$snr,
                                          metaData=x$metaData,
                                          centroided=centroided,
                                          massRange=massRange,

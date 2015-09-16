@@ -25,7 +25,7 @@
   s <- read.table(file=file, header=header, sep=sep, skip=skip,
                   stringsAsFactors=FALSE, ...)
 
-  list(.createMassObject(list(mass=s[, 1L], intensity=s[, 2L]),
+  list(.createMassObject(mass=s[, 1L], intensity=s[, 2L],
                          metaData=list(file=file),
                          centroided=centroided,
                          massRange=massRange,

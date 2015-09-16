@@ -25,14 +25,14 @@
     stop("File ", sQuote(file), " doesn't exists!")
   }
 
-  ## read file
   s <- .parseMzMl(file=file, verbose=verbose)
 
   lapply(s$spectra, function(x, globalS=s) {
     m <- modifyList(s$metaData, x$metaData)
     m$file <- file
-    return(.createMassObject(data=x, metaData=m, centroided=centroided,
-                             massRange=massRange, minIntensity=minIntensity,
-                             verbose=verbose))
+    .createMassObject(mass=x$mass, intensity=x$intensity, snr=x$snr,
+                      metaData=m, centroided=centroided,
+                      massRange=massRange, minIntensity=minIntensity,
+                      verbose=verbose)
   })
 }

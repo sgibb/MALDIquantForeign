@@ -1,4 +1,4 @@
-## Copyright 2014 Sebastian Gibb
+## Copyright 2014-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -21,7 +21,9 @@
 #' This function creates a MassSpectrum or MassPeaks object (depending on the
 #' centroided argument).
 #'
-#' @param data \code{list}, spectrum data with elements mass, intensity, snr
+#' @param mass mass data
+#' @param intensity intensity data
+#' @param snr snr data
 #' @param metaData \code{list}, metaData
 #' @param centroided \code{logical}, centroided
 #'  (if TRUE => MassPeaks, if FALSE => MassSpectrum)
@@ -37,7 +39,7 @@
 #' @keywords internal
 #' @noRd
 #'
-.createMassObject <- function(data, metaData=list(),
+.createMassObject <- function(mass, intensity, snr=NULL, metaData=list(),
                               centroided=FALSE,
                               massRange=c(0, Inf),
                               minIntensity=0,
@@ -68,20 +70,20 @@
 
   ## we don't use MALDIquant::trim here because we want to filter on the
   ## intensity as well
-  i <- which(massRange[1] <= data$mass & data$mass <= massRange[2] &
-             data$intensity >= minIntensity)
+  i <- which(massRange[1L] <= mass & mass <= massRange[2L] &
+             intensity >= minIntensity)
 
-  ## create a MassPeaks object for centroided data
-  if (centroided & is.null(data$snr)) {
-    m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
-                         metaData=metaData)
-  } else if (centroided & !is.null(data$snr)) {
-    m <- createMassPeaks(mass=data$mass[i], intensity=data$intensity[i],
-                         snr=data$snr[i], metaData=metaData)
-  } else {
-    m <- createMassSpectrum(mass=data$mass[i], intensity=data$intensity[i],
-                            metaData=metaData)
+  if (is.null(snr)) {
+    snr <- rep.int(NA_real_, length(i))
   }
 
+  ## create a MassPeaks object for centroided data
+  if (centroided) {
+    m <- createMassPeaks(mass=mass[i], intensity=intensity[i],
+                         snr=snr[i], metaData=metaData)
+  } else {
+    m <- createMassSpectrum(mass=mass[i], intensity=intensity[i],
+                            metaData=metaData)
+  }
   m
 }
