@@ -39,10 +39,10 @@
   for (x in 1:header$nx) {
     for (y in 1:header$ny) {
       l[[(x-1)*header$ny+y]] <-
-        .createMassObject(data=list(mass=mass, intensity=intensity[, x, y]),
+        .createMassObject(mass=mass, intensity=intensity[, x, y],
                           metaData=list(file=file,
-                                         imaging=list(pos=c(x=x, y=y),
-                                                      pixelSize=c(x=header$xd,
+                                        imaging=list(pos=c(x=x, y=y),
+                                                     pixelSize=c(x=header$xd,
                                                                   y=header$yd))),
                           centroided=centroided, massRange=massRange,
                           minIntensity=minIntensity, verbose=verbose)

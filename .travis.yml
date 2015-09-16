@@ -7,8 +7,9 @@ apt_packages:
 - pgf
 - libudunits2-dev
 - libnetcdf-dev
+r_packages:
+- covr
 r_github_packages:
-- jimhester/covr
 - sgibb/MALDIquant
 r_binary_packages:
 - testthat

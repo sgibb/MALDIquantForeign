@@ -50,7 +50,7 @@
     intensity <- as.double(RNetCDF::var.get.nc(nc, variable="intensity_values",
                                                start=scanIndex[i]+1L,
                                                count=scanLength[i]))
-    l[[i]] <- .createMassObject(data=list(mass=mass, intensity=intensity),
+    l[[i]] <- .createMassObject(mass=mass, intensity=intensity,
                                 metaData=list(file=file,
                                               number=i,
                                               retentionTime=retentionTime[i],
@@ -58,6 +58,5 @@
                                 centroided=centroided, massRange=massRange,
                                 minIntensity=minIntensity, verbose=verbose)
   }
-
   l
 }

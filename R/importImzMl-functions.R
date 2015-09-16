@@ -113,12 +113,11 @@
       mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
     }
     intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
-    spectra[[i]] <- .createMassObject(list(mass=mass, intensity=intensity),
-                                           metaData=m, centroided=centroided,
-                                           massRange=massRange,
-                                           minIntensity=minIntensity,
-                                           verbose=verbose)
+    spectra[[i]] <- .createMassObject(mass=mass, intensity=intensity,
+                                      metaData=m, centroided=centroided,
+                                      massRange=massRange,
+                                      minIntensity=minIntensity,
+                                      verbose=verbose)
   }
-
   spectra
 }
