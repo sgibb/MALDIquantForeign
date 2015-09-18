@@ -17,8 +17,7 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 .importMzXml <- function(file, centroided=FALSE, massRange=c(0, Inf),
-                         minIntensity=0, backend=c("default", "mzR"),
-                         verbose=FALSE, ...) {
+                         minIntensity=0, verbose=FALSE, ...) {
 
   l <- readMzXmlData:::.readMzXmlFile(mzXmlFile=file,
                                       verbose=verbose, ...)

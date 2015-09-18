@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.9.15 [2015-09-18 Fri]:
+- Add parallel support on unix-based platforms using the parallel package.
+  All `import*` functions support the "mc.cores" argument (default is 1, means
+  no parallel import). Please read also `?"MALDIquantForeign-parallel"`.
+
 Version 0.9.14 [2015-08-23 Sun]:
 - Remove dependency: downloader. Since R 3.2.2 https is supported on all
   platforms by base::download.file.

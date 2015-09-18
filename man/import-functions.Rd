@@ -6,7 +6,7 @@
 \usage{
 import(path, type = "auto", pattern, excludePattern = NULL,
   removeEmptySpectra = TRUE, centroided = FALSE, massRange = c(0, Inf),
-  minIntensity = 0, verbose = interactive(), ...)
+  minIntensity = 0, mc.cores = 1L, verbose = interactive(), ...)
 }
 \arguments{
 \item{path}{\code{character}, path to directory or file which should be read
@@ -36,6 +36,10 @@ the data are treated as not centroided and a list of
 right/maximal mass).}
 
 \item{minIntensity}{\code{double}, minimal intensity to import.}
+
+\item{mc.cores}{number of cores to use (default 1; only unix-based platforms
+are supported, see
+\code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}} for details).}
 
 \item{verbose}{\code{logical}, verbose output?}
 
@@ -112,5 +116,6 @@ Sebastian Gibb
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
+\code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}}
 }
 

@@ -75,6 +75,9 @@
 #' @param massRange \code{double}, limits of mass import (left/minimal mass,
 #' right/maximal mass).
 #' @param minIntensity \code{double}, minimal intensity to import.
+#' @param mc.cores number of cores to use (default 1; only unix-based platforms
+#' are supported, see
+#' \code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}} for details).
 #' @param verbose \code{logical}, verbose output?
 #' @param \ldots arguments to be passed to specific import functions.
 #'
@@ -84,6 +87,7 @@
 #' @seealso
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
+#' \code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}}
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @examples
@@ -110,7 +114,7 @@
 #' @export
 import <- function(path, type="auto", pattern, excludePattern=NULL,
                    removeEmptySpectra=TRUE, centroided=FALSE, massRange=c(0, Inf),
-                   minIntensity=0, verbose=interactive(), ...) {
+                   minIntensity=0, mc.cores=1L, verbose=interactive(), ...) {
 
   ## download file if needed
   isUrl <- .isUrl(path)
@@ -155,12 +159,13 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
     if (missing(pattern)) {
       pattern <- importFormats$pattern[i]
     }
-    handler <- importFormats$handler[i]
+    handler <- get(importFormats$handler[i], mode="function")
     s <- unlist(MALDIquant:::.lapply(.files(path=path, pattern=pattern,
                                             excludePattern=excludePattern),
                                      handler, centroided=centroided,
                                      massRange=massRange,
                                      minIntensity=minIntensity,
+                                     mc.cores=mc.cores,
                                      verbose=verbose, ...))
     if (is.null(s)) {
       stop("Import failed! Unsupported file type?")
