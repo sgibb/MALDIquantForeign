@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -16,31 +16,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-.importMzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
-                        minIntensity=0, backend=c("default", "mzR"), verbose=FALSE) {
-
-  .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
-
-  if (!file.exists(file)) {
-    stop("File ", sQuote(file), " doesn't exists!")
+.openMSfile <- function(file, verbose) {
+  if (!requireNamespace("mzR", quietly=TRUE)) {
+    stop("For \'backend=\"mzR\"\' the mzR package from ",
+         "http://bioconductor.org/packages/mzR/ is needed. ",
+         "Use \'backend=\"default\"\' instead.")
   }
 
-  backend <- match.arg(backend)
-
-  if (backend == "mzR") {
-    if (requireNamespace("mzR")) {
-      return(.openMSfile(file, verbose))
-    } else {
-      warning("Could not load mzR. Using default backend.")
-    }
-  }
-  s <- .parseMzMl(file=file, verbose=verbose)
-
-  lapply(s$spectra, function(x, globalS=s) {
-    m <- modifyList(s$metaData, x$metaData)
+  s <- openMSfile(file=file, verbose=verbose)
+  lapply(seq_along(s), function(i) {
+    m <- header(s, scan=i)
     m$file <- file
-    .createMassObject(mass=x$mass, intensity=x$intensity, snr=x$snr,
-                      metaData=m, centroided=centroided,
+    p <- peaks(s, scan=i)
+    .createMassObject(mass=p[, 1L], intensity=p[, 2L], metaData=m,
+                      centroided=centroided,
                       massRange=massRange, minIntensity=minIntensity,
                       verbose=verbose)
   })

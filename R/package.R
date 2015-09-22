@@ -43,5 +43,6 @@
 #' @importFrom utils download.file modifyList packageVersion read.table tail
 #' type.convert untar unzip
 #' @importFrom XML xmlEventParse xmlParse xmlValue xpathApply xpathSApply
+#' @importFrom mzR openMSfile
 #'
 NULL

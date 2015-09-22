@@ -78,3 +78,25 @@ test_that("importMzMl centroided", {
   expect_true(all(sapply(MALDIquantForeign:::.importMzMl(path, centroided=TRUE),
                          isMassPeaks)))
 })
+
+test_that("importMzMl mzR", {
+  path <- normalizePath(system.file(
+    file.path("exampledata", "tiny1-centroided.mzML1.1.mzML"),
+    package="MALDIquantForeign"))
+
+  p <- MALDIquantForeign:::.importMzMl(path, centroided=TRUE, backend="mzR", verbose=FALSE)
+
+  expect_equal(p, import(path, centroided=TRUE, backend="mzR", verbose=FALSE))
+  expect_equal(p, importMzMl(path, centroided=TRUE, backend="mzR", verbose=FALSE))
+  expect_equal(p, import(path, type="mzML", centroided=TRUE, backend="mzR", verbose=FALSE))
+
+  expect_true(isMassPeaks(p[[1]]))
+  expect_equal(mass(p[[1]]), 1:5)
+  expect_equal(intensity(p[[1]]), 6:10)
+  expect_equal(basename(metaData(p[[1]])$file), "tiny1-centroided.mzML1.1.mzML")
+
+  expect_true(isMassPeaks(p[[2]]))
+  expect_equal(mass(p[[2]]), 1:5)
+  expect_equal(intensity(p[[2]]), 10:6)
+  expect_equal(basename(metaData(p[[2]])$file), "tiny1-centroided.mzML1.1.mzML")
+})
