@@ -1,67 +1,46 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.9.15 [2015-09-18 Fri]:
-- Add parallel support on unix-based platforms using the parallel package.
+
+CHANGES IN MALDIquantForeign VERSION 0.10 [2015-10-31]:
+-------------------------------------------------------
+
+IMPROVEMENTS
+
+* Add parallel support on unix-based platforms using the parallel package.
   All `import*` functions support the "mc.cores" argument (default is 1, means
   no parallel import). Please read also `?"MALDIquantForeign-parallel"`.
-
-Version 0.9.14 [2015-08-23 Sun]:
-- Remove dependency: downloader. Since R 3.2.2 https is supported on all
-  platforms by base::download.file.
-
-Version 0.9.13 [2015-07-20 Mon]:
-- Use "verbose = interactive()" in `import`.
-
-Version 0.9.12 [2015-07-01 Wed]:
-- Import non-base functions/methods.
-
-Version 0.9.11 [2015-05-10 Wed]:
-- Use MALDIquant's new `coordinates` method.
-
-Version 0.9.10 [2015-05-06 Wed]:
-- Add msd importer `importMsd`.
-
-Version 0.9.9 [2015-05-03 Sun]:
-- Use referencableParamGroup for mzArray/intensityArray.
-
-Version 0.9.8 [2015-04-19 Sun]:
-- Replace old imzML example files in inst/exampledata.
-
-Version 0.9.7 [2015-04-18 Sat]:
-- Add basic export support for imzML files.
-
-Version 0.9.6 [2015-03-23 Mon]:
-- `exportMzMl`: improve documentation of the "path" argument.
-
-Version 0.9.5 [2015-02-15 Sun]:
-- `.importImzMl`: add "coordinates" argument to access specific spectra by
+* Add importer for .msd (mMass) files: `importMsd`.
+* Add basic export support for imzML files: `exportImzMl`.
+* `.importImzMl`: add "coordinates" argument to access specific spectra by
   their x, y coordinates within an imzML file; closes #14;
   affected functions: `import`, `importImzMl`.
   Thanks to Heath Patterson <heath.patterson@umontreal.ca> for this idea.
 
-Version 0.9.4 [2015-01-05 Mon]:
+MODIFICATIONS
 
-- Replace `require` by `requireNamespace` as suggested by "Writing R
-  Extensions".
-
-Version 0.9.3 [2014-09-18 Thu]:
-
-- `.importImzMl`: if the imzML file doesn't contain any UUID a warning is thrown
+* Remove dependency "downloader". Since R 3.2.2 https is supported on all
+  platforms by `base::download.file`.
+* Use "verbose = interactive()" in `import`.
+* Replace old imzML example files in inst/exampledata.
+* `exportMzMl`: improve documentation of the "path" argument.
+* `.importImzMl`: if the imzML file doesn't contain any UUID a warning is thrown
   instead of an error;
   affected functions: `import`, `importImzMl`.
-
-Version 0.9.2 [2014-09-18 Thu]:
-
-- `.importImzMl`: if the imzML file doesn't contain any checksum for its
+* `.importImzMl`: if the imzML file doesn't contain any checksum for its
   corresponding idb file a warning is thrown (before it was an error);
   affected functions: `import`, `importImzMl`.
 
-Version 0.9.1 [2014-08-17 Sun]:
+INTERNAL CHANGES
 
-- Rezip gzip'ed files using `gzip -n` to avoid lintian's
+* Import non-base functions/methods via NAMESPACE.
+* Use MALDIquant's new `coordinates` method.
+* Replace `require` by `requireNamespace` as suggested by "Writing R
+  Extensions".
+* Rezip gzip'ed files using `gzip -n` to avoid lintian's
   package-contains-timestamped-gzip warning; see
   https://wiki.debian.org/ReproducibleBuilds for details.
+
 
 CHANGES IN MALDIquantForeign VERSION 0.9 [2014-08-11]:
 ------------------------------------------------------
