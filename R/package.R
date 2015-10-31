@@ -41,7 +41,7 @@
 #' @importFrom readBrukerFlexData readBrukerFlexFile
 #' @importFrom stats na.omit runif
 #' @importFrom utils download.file modifyList packageVersion read.table tail
-#' type.convert untar unzip
+#' type.convert write.table untar unzip
 #' @importFrom XML xmlEventParse xmlParse xmlValue xpathApply xpathSApply
 #'
 NULL
