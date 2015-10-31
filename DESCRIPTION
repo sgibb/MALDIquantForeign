@@ -5,17 +5,28 @@ Title: Import/Export Routines for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de"), person("Pietro", "Franceschi",
         role=c("ctb"), email="pietro.franceschi@fmach.it"))
-Depends: R (>= 3.2.2), methods, MALDIquant (>= 1.11.7)
-Imports: base64enc, digest, readBrukerFlexData (>= 1.7), readMzXmlData
-        (>= 2.7), XML
-Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)
+Depends:
+    R (>= 3.2.2),
+    methods,
+    MALDIquant (>= 1.11.7)
+Imports:
+    base64enc,
+    digest,
+    readBrukerFlexData (>= 1.7),
+    readMzXmlData (>= 2.7),
+    XML
+Suggests:
+    knitr,
+    testthat (>= 0.8),
+    RNetCDF (>= 1.6.1)
 Description: Functions for reading (tab, csv, Bruker fid, Ciphergen
-        XML, mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and
-        writing (tab, csv, mMass MSD, mzML, imzML) different file
-        formats of mass spectrometry data into/from MALDIquant objects.
+    XML, mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and
+    writing (tab, csv, mMass MSD, mzML, imzML) different file
+    formats of mass spectrometry data into/from MALDIquant objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
-        https://github.com/sgibb/MALDIquantForeign/
+    https://github.com/sgibb/MALDIquantForeign/
 BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
+RoxygenNote: 5.0.0.9000

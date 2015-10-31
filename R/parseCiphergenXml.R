@@ -28,7 +28,6 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @keywords internal
 #' @noRd
-#'
 .parseCiphergenXml <- function(file, ...) {
 
   ## metaData

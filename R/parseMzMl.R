@@ -28,7 +28,6 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @keywords internal
 #' @noRd
-#'
 .parseMzMl <- function(file, verbose=FALSE, ...) {
   XML::xmlEventParse(file=file,
                      handlers=.mzMlHandlers(fileName=file,
@@ -54,7 +53,6 @@
 #' \url{http://www.psidev.info/mzml_1_0_0}
 #' @keywords internal
 #' @noRd
-#'
 .mzMlHandlers <- function(fileName, verbose=FALSE) {
   ## define local variables
 

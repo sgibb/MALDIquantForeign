@@ -28,7 +28,6 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @keywords internal
 #' @noRd
-#'
 .parseMsd <- function(file, verbose=FALSE, ...) {
   XML::xmlEventParse(file=file,
                      handlers=.msdHandlers(fileName=file,
@@ -50,7 +49,6 @@
 #' @references mMass homepage: \url{http://mmass.org/}
 #' @keywords internal
 #' @noRd
-#'
 .msdHandlers <- function(fileName, verbose=FALSE) {
   ## define local variables
 

@@ -38,7 +38,6 @@
 #' @rdname createMassObject
 #' @keywords internal
 #' @noRd
-#'
 .createMassObject <- function(mass, intensity, snr=NULL, metaData=list(),
                               centroided=FALSE,
                               massRange=c(0, Inf),
