@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.10.1 [2015-11-01 Sun]:
+INTERNAL CHANGES
+- Rezip inst/compressed/csv.tar.gz using `gzip -n` to avoid lintian's
+  package-contains-timestamped-gzip warning; see
+  https://wiki.debian.org/ReproducibleBuilds for details.
+
 
 CHANGES IN MALDIquantForeign VERSION 0.10 [2015-10-31]:
 -------------------------------------------------------
