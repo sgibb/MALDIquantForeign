@@ -10,6 +10,7 @@ test_that(".isUrl", {
 
 test_that(".download", {
   skip_on_cran()
+  skip_on_travis()
 
   urls <- c("https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/ascii.txt",
             "https://raw.githubusercontent.com/sgibb/MALDIquantForeign/master/inst/exampledata/csv1.csv")
