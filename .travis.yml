@@ -7,8 +7,6 @@ apt_packages:
 - pgf
 - libudunits2-dev
 - libnetcdf-dev
-r_packages:
-- covr
 r_github_packages:
 - sgibb/MALDIquant
 r_binary_packages:
@@ -17,6 +15,7 @@ r_binary_packages:
 - XML
 - base64enc
 - digest
+- covr
 after_success:
 - Rscript -e 'library(covr);codecov()'
 notifications:
