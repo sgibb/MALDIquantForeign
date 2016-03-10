@@ -1,24 +1,22 @@
 language: r
+sudo: false
 cache: packages
-env:
-  global:
-    - NOT_CRAN="true"
 warnings_are_errors: true
-apt_packages:
-- pgf
-- libudunits2-dev
-- libnetcdf-dev
-r_github_packages:
-- sgibb/MALDIquant
-r_binary_packages:
-- covr
+
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
+      - libnetcdf-dev
 after_success:
-- Rscript -e 'library(covr);codecov()'
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+- Rscript -e 'covr::codecov()'
+
 r:
 #  - oldrel
   - release
   - devel
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
