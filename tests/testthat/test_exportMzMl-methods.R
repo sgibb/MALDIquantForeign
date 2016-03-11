@@ -2,6 +2,7 @@ context("exportMzMl")
 
 m <- createMassSpectrum(mass=1:5, intensity=6:10,
                         metaData=list(name="TEST", file="TESTS/fid"))
+tmp <- tempdir()
 
 mzML <- c(
 "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
@@ -64,15 +65,19 @@ paste0("  <software id=\"MALDIquantForeign\" version=\"",
 " </run>",
 "</mzML>")
 
-test_that("exportMzMl", {
-  tmp <- tempdir()
-  MALDIquantForeign:::.exportMzMl(m, file=file.path(tmp, "tmp.mzML"))
-  expect_equal(readLines(file.path(tmp, "tmp.mzML")), mzML)
-  g <- readLines(file.path(tmp, "tmp.mzML"))
+test_that(".exportMzMl", {
+  MALDIquantForeign:::.exportMzMl(m, file=file.path(tmp, "m.mzML"))
+  expect_equal(readLines(file.path(tmp, "m.mzML")),
+               sub(pattern="id=\"tmp\"", replacement="id=\"m\"", x=mzML))
+})
+
+test_that("exportMzMl,MassSpectrum", {
+  MALDIquantForeign:::exportMzMl(m, file=file.path(tmp, "ms.mzML"))
+  expect_equal(readLines(file.path(tmp, "ms.mzML")),
+               sub(pattern="id=\"tmp\"", replacement="id=\"ms\"", x=mzML))
 })
 
 test_that("exportMzMl,list", {
-  tmp <- tempdir()
   spectra <- list(m, m)
   MALDIquantForeign::exportMzMl(spectra, path=tmp, force=TRUE)
   expect_equal(readLines(file.path(tmp, "TESTS_1.mzML")),

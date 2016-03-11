@@ -1,5 +1,7 @@
 context("exportImzMl")
 
+tmp <- tempdir()
+
 imzML <- c(
 "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
 "<mzML xmlns=\"http://psi.hupo.org/ms/mzml\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://psi.hupo.org/ms/mzml http://psidev.info/files/ms/mzML/xsd/mzML1.1.0.xsd\" id=\"tmp\" version=\"1.1.0\">",
@@ -97,20 +99,31 @@ paste0("  <software id=\"MALDIquantForeign\" version=\"",
 " </run>",
 "</mzML>")
 
-test_that("exportImzMl", {
-  tmp <- tempdir()
+test_that(".exportImzMl", {
   m <- createMassSpectrum(mass=1:5, intensity=6:10,
                           metaData=list(name="TEST", file="TESTS/fid"))
 
   expect_error(MALDIquantForeign:::.exportImzMl(m,
-                 file=file.path(tmp, "tmp.imzML")),
+                                                file=file.path(tmp, "m.imzML")),
                "The spectra contain no imaging information.")
-  MALDIquantForeign:::.exportImzMl(m, file=file.path(tmp, "tmp.imzML"), coordinates=cbind(1, 1), uuid="12345678-90ab-4cde-af12-34567890abcd")
-  expect_equal(readLines(file.path(tmp, "tmp.imzML")), imzML)
+  MALDIquantForeign:::.exportImzMl(m, file=file.path(tmp, "m.imzML"), coordinates=cbind(1, 1), uuid="12345678-90ab-4cde-af12-34567890abcd")
+  expect_equal(readLines(file.path(tmp, "m.imzML")),
+               sub(pattern="id=\"tmp\"", replacement="id=\"m\"", x=imzML))
+})
+
+test_that("exportImzMl,MassSpectrum", {
+  m <- createMassSpectrum(mass=1:5, intensity=6:10,
+                          metaData=list(name="TEST", file="TESTS/fid"))
+
+  expect_error(MALDIquantForeign::exportImzMl(m,
+                                              file=file.path(tmp, "ms.imzML")),
+               "The spectra contain no imaging information.")
+  MALDIquantForeign::exportImzMl(m, file=file.path(tmp, "ms.imzML"), coordinates=cbind(1, 1), uuid="12345678-90ab-4cde-af12-34567890abcd")
+  expect_equal(readLines(file.path(tmp, "ms.imzML")),
+               sub(pattern="id=\"tmp\"", replacement="id=\"ms\"", x=imzML))
 })
 
 test_that("exportImzMl,list", {
-  tmp <- tempdir()
   m <- createMassSpectrum(mass=1:5, intensity=6:10,
                           metaData=list(name="TEST", file="TESTS/fid",
                                         imaging=list(pos=c(1, 1),

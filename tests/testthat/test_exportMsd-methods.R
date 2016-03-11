@@ -5,6 +5,8 @@ m <- createMassSpectrum(mass=1:5, intensity=6:10,
                                       instrument="INSTRUMENT"))
 p <- createMassPeaks(mass=4:5, intensity=9:10, snr=1:2)
 
+tmp <- tempdir()
+
 msd <- c(
 "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
 "<mSD version=\"2.2\">",
@@ -33,19 +35,27 @@ if (.Platform$endian == "big") {
     "  <intArray precision=\"64\" compression=\"zlib\" endian=\"big\">eJxzkGAAAwcZKK0ApZWgtAqEBgArDgHb</intArray>")
 }
 
-test_that("exportMsd", {
-  tmp <- tempdir()
-  MALDIquantForeign:::.exportMsd(m, file=file.path(tmp, "tmp.msd"), peaks=p)
-  expect_equal(readLines(file.path(tmp, "tmp.msd"))[-c(4, 5)], msd[-c(4, 5)])
+test_that(".exportMsd", {
+  MALDIquantForeign:::.exportMsd(m, file=file.path(tmp, "m.msd"), peaks=p)
+  expect_equal(readLines(file.path(tmp, "m.msd"))[-c(4:5)], msd[-c(4:5)])
+})
+
+test_that("exportMsd,MassSpectrum", {
+  MALDIquantForeign::exportMsd(m, file=file.path(tmp, "msp.msd"), peaks=p)
+  expect_equal(readLines(file.path(tmp, "msp.msd"))[-c(4:5)], msd[-c(4:5)])
+  MALDIquantForeign::exportMsd(m, file=file.path(tmp, "ms.msd"))
+  expect_equal(readLines(file.path(tmp, "ms.msd"))[-c(4:5)], msd[-c(4:5, 16:19)])
 })
 
 test_that("exportMsd,list", {
-  tmp <- tempdir()
   spectra <- list(m, m)
   peaks <- list(p, p)
   MALDIquantForeign::exportMsd(spectra, path=tmp, force=TRUE, peaks=peaks)
-  expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4, 5)], msd[-c(4, 5)])
-  expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4, 5)], msd[-c(4, 5)])
+  expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4:5)], msd[-c(4:5)])
+  expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4:5)], msd[-c(4:5)])
+  MALDIquantForeign::exportMsd(spectra, path=tmp, force=TRUE)
+  expect_equal(readLines(file.path(tmp, "1.msd"))[-c(4:5)], msd[-c(4:5, 16:19)])
+  expect_equal(readLines(file.path(tmp, "2.msd"))[-c(4:5)], msd[-c(4:5, 16:19)])
 })
 
 test_that(".createMsdTitle", {
