@@ -3,10 +3,10 @@
 \docType{package}
 \name{MALDIquantForeign-package}
 \alias{MALDIquantForeign-package}
-\title{Import/Export routines for MALDIquant}
+\title{Import/Export routines for \sQuote{MALDIquant}}
 \description{
 This package reads and writes different file formats of mass
-spectrometry data into/from MALDIquant objects.
+spectrometry data into/from \sQuote{MALDIquant} objects.
 }
 \details{
 \tabular{ll}{

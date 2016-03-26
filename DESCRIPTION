@@ -1,7 +1,7 @@
 Package: MALDIquantForeign
-Version: 0.10.1
-Date: 2015-11-01
-Title: Import/Export Routines for MALDIquant
+Version: 0.10.2
+Date: 2016-03-26
+Title: Import/Export Routines for 'MALDIquant'
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de"), person("Pietro", "Franceschi",
         role=c("ctb"), email="pietro.franceschi@fmach.it"))
@@ -12,11 +12,12 @@ Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)
 Description: Functions for reading (tab, csv, Bruker fid, Ciphergen
         XML, mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and
         writing (tab, csv, mMass MSD, mzML, imzML) different file
-        formats of mass spectrometry data into/from MALDIquant objects.
+        formats of mass spectrometry data into/from 'MALDIquant'
+        objects.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
         https://github.com/sgibb/MALDIquantForeign/
 BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
-RoxygenNote: 5.0.0.9000
+RoxygenNote: 5.0.1

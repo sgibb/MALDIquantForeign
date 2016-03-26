@@ -16,10 +16,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
-#' Import/Export routines for MALDIquant
+#' Import/Export routines for \sQuote{MALDIquant}
 #'
 #' This package reads and writes different file formats of mass
-#' spectrometry data into/from MALDIquant objects.
+#' spectrometry data into/from \sQuote{MALDIquant} objects.
 #'
 #' \tabular{ll}{
 #' Package: \tab MALDIquantForeign \cr

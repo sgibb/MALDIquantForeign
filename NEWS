@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.10.2 [2016-03-26 Sat]:
+INTERNAL CHANGES
+- Put MALDIquant into single quotes in the DESCRIPTION file.
+
 Version 0.10.1 [2015-11-01 Sun]:
 INTERNAL CHANGES
 - Rezip inst/compressed/csv.tar.gz using `gzip -n` to avoid lintian's
