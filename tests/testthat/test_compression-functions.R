@@ -55,7 +55,7 @@ test_that(".uncompress supports zip compression by unzip", {
   f <- system.file(file.path("exampledata", "csv1.csv"),
                    package="MALDIquantForeign")
   expect_identical(readLines(u), readLines(f))
-  expect_error(MALDIquantForeign:::.uncompress("foobar.zip"),
+  expect_error(suppressWarnings(MALDIquantForeign:::.uncompress("foobar.zip")),
                "unzip failed!")
 })
 
