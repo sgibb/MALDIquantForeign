@@ -43,9 +43,7 @@ setMethod(f=".composeFilename",
     filename <- .withoutFileExtension(metaData(x)$file[1])
   }
 
-  filename <- paste(filename, fileExtension, sep=".")
-
-  return(filename)
+  paste(filename, fileExtension, sep=".")
 })
 
 setMethod(f=".composeFilename",

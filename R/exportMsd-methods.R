@@ -19,5 +19,5 @@
 setMethod(f=".exportMsd",
   signature=signature(x="MassSpectrum"),
   definition=function(x, file, peaks, ...) {
-  return(.writeMsdDocument(x=x, file=file, peaks=peaks, ...))
+  .writeMsdDocument(x=x, file=file, peaks=peaks, ...)
 })

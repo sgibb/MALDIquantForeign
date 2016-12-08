@@ -33,5 +33,5 @@
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }

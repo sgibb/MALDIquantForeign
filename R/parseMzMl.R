@@ -385,15 +385,15 @@
   }
 
   ## return statement (please call getData())
-  return(list(getData=function() {return(xml)},
-              mzML=mzML,
-              referenceableParamGroup=referenceableParamGroup,
-              referenceableParamGroupRef=referenceableParamGroupRef,
-              spectrumList=spectrumList,
-              spectrum=spectrum,
-              chromatogram=chromatogram,
-              cvParam=cvParam,
-              .startElement=.startElement,
-              .endElement=.endElement,
-              .text=.text))
+  list(getData=function() {return(xml)},
+       mzML=mzML,
+       referenceableParamGroup=referenceableParamGroup,
+       referenceableParamGroupRef=referenceableParamGroupRef,
+       spectrumList=spectrumList,
+       spectrum=spectrum,
+       chromatogram=chromatogram,
+       cvParam=cvParam,
+       .startElement=.startElement,
+       .endElement=.endElement,
+       .text=.text)
 }

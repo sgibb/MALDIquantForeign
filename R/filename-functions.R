@@ -102,7 +102,7 @@
       fmt <- paste0("%s%s%0", floor(log10(n))+1, "d")
       y <- sprintf(fmt=fmt, y, sep, 1:n)
     }
-    return(y)
+    y
   })
   unsplit(tmp, x)
 }

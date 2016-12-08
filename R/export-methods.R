@@ -78,7 +78,7 @@
 setMethod(f="export",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file, type="auto", force=FALSE, ...) {
-  return(.exportToFile(x=x, file=file, type=type, force=force, ...))
+  .exportToFile(x=x, file=file, type=type, force=force, ...)
 })
 
 #' @usage

@@ -19,14 +19,14 @@
 setMethod(f=".exportTab",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file="", row.names=FALSE, col.names=FALSE, ...) {
-  return(write.table(as.matrix(x), file=file,
-                     row.names=row.names, col.names=col.names, ... ))
+  write.table(as.matrix(x), file=file,
+              row.names=row.names, col.names=col.names, ... )
 })
 
 setMethod(f=".exportCsv",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file="", sep=",", row.names=FALSE, col.names=TRUE,
                       ...) {
-  return(.exportTab(x, file=file, sep=sep, row.names=row.names,
-                    col.names=col.names, ...))
+  .exportTab(x, file=file, sep=sep,
+             row.names=row.names, col.names=col.names, ...)
 })

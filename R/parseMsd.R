@@ -132,14 +132,14 @@
   }
 
   ## return statement (please call getData())
-  return(list(getData=function() {return(xml)},
-              mSD=mSD,
-              date=date,
-              institution=institution,
-              instrument=institution,
-              spectrum=spectrum,
-              mzArray=mzArray,
-              intArray=mzArray,
-              .endElement=.endElement,
-              .text=.text))
+  list(getData=function() {return(xml)},
+       mSD=mSD,
+       date=date,
+       institution=institution,
+       instrument=institution,
+       spectrum=spectrum,
+       mzArray=mzArray,
+       intArray=mzArray,
+       .endElement=.endElement,
+       .text=.text)
 }

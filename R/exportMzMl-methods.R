@@ -20,12 +20,12 @@ setMethod(f=".exportMzMl",
   signature=signature(x="MassSpectrum"),
   definition=function(x, file, id=.withoutFileExtension(basename(file)), ...) {
 
-  return(.writeMzMlDocument(x=list(x), file=file, id=id, ...))
+  .writeMzMlDocument(x=list(x), file=file, id=id, ...)
 })
 
 setMethod(f=".exportMzMl",
   signature=signature(x="list"),
   definition=function(x, file, id=.withoutFileExtension(basename(file)), ...) {
 
-  return(.writeMzMlDocument(x=x, file=file, id=id, ...))
+  .writeMzMlDocument(x=x, file=file, id=id, ...)
 })

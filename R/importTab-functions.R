@@ -56,7 +56,7 @@
   pattern <- paste0(".+", sep, ".+")
   i <- vapply(pattern, function(x) {
     g <- gregexpr(pattern=x, text=l)[[1L]]
-    return(all(g > 0L) & length(g) == 1L)
+    all(g > 0L) & length(g) == 1L
   }, logical(1L))
 
   if (any(i)) {

@@ -19,6 +19,5 @@
 .sanitize <- function(x) {
   x <- gsub(pattern="&", replacement="&amp;", x=x)
   x <- gsub(pattern="<", replacement="&lt;", x=x)
-  x <- gsub(pattern=">", replacement="&gt;", x=x)
-  x
+  gsub(pattern=">", replacement="&gt;", x=x)
 }

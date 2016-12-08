@@ -86,8 +86,8 @@
   xd <- pixdim[2]
   yd <- pixdim[3]
 
-  return(list(nx=nx, ny=ny, xd=xd, yd=yd,
-              endian=endian, what=what, signed=signed, size=size))
+  list(nx=nx, ny=ny, xd=xd, yd=yd,
+       endian=endian, what=what, signed=signed, size=size)
 }
 
 ## Analyze 7.5 img file
@@ -126,7 +126,7 @@
     }
   }
 
-  return(i)
+  i
 }
 
 ## Analyze 7.5 t2m file
@@ -140,7 +140,5 @@
   n <- file.info(filename)$size/4
   f <- file(filename, open="rb")
   on.exit(close(f))
-  m <- readBin(f, what="double", n=n, size=4, signed=TRUE, endian=header$endian)
-
-  return(m)
+  readBin(f, what="double", n=n, size=4, signed=TRUE, endian=header$endian)
 }

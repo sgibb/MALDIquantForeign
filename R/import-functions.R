@@ -223,19 +223,19 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
 #' @rdname importTab-functions
 #' @export
 importTxt <- function(path, ...) {
-  return(import(path=path, type="txt", ...))
+  import(path=path, type="txt", ...)
 }
 
 #' @rdname importTab-functions
 #' @export
 importTab <- function(path, ...) {
-  return(import(path=path, type="tab", ...))
+  import(path=path, type="tab", ...)
 }
 
 #' @rdname importTab-functions
 #' @export
 importCsv <- function(path, ...) {
-  return(import(path=path, type="csv", ...))
+  import(path=path, type="csv", ...)
 }
 
 #' Import Bruker Daltonics *flex files
@@ -271,7 +271,7 @@ importCsv <- function(path, ...) {
 #' @rdname importBrukerFlex-functions
 #' @export
 importBrukerFlex <- function(path, ...) {
-  return(import(path=path, type="fid", ...))
+  import(path=path, type="fid", ...)
 }
 
 #' Import mzXML files
@@ -310,7 +310,7 @@ importBrukerFlex <- function(path, ...) {
 #' @rdname importMzXml-functions
 #' @export
 importMzXml <- function(path, ...) {
-  return(import(path=path, type="mzxml", ...))
+  import(path=path, type="mzxml", ...)
 }
 
 #' Import mzML files
@@ -348,7 +348,7 @@ importMzXml <- function(path, ...) {
 #' @rdname importMzMl-functions
 #' @export
 importMzMl <- function(path, ...) {
-  return(import(path=path, type="mzml", ...))
+  import(path=path, type="mzml", ...)
 }
 
 #' Import imzML files
@@ -393,7 +393,7 @@ importMzMl <- function(path, ...) {
 #' @rdname importImzMl-functions
 #' @export
 importImzMl <- function(path, coordinates=NULL, ...) {
-  return(import(path=path, type="imzml", coordinates=coordinates, ...))
+  import(path=path, type="imzml", coordinates=coordinates, ...)
 }
 
 #' Import Ciphergen XML files
@@ -429,7 +429,7 @@ importImzMl <- function(path, coordinates=NULL, ...) {
 #' @rdname importCiphergenXml-functions
 #' @export
 importCiphergenXml <- function(path, ...) {
-  return(import(path=path, type="ciphergen", ...))
+  import(path=path, type="ciphergen", ...)
 }
 
 #' Import Analyze 7.5 files
@@ -456,7 +456,7 @@ importCiphergenXml <- function(path, ...) {
 #' @rdname importAnalyze-functions
 #' @export
 importAnalyze <- function(path, ...) {
-  return(import(path=path, type="analyze", ...))
+  import(path=path, type="analyze", ...)
 }
 
 #' Import CDF files
@@ -497,7 +497,7 @@ importAnalyze <- function(path, ...) {
 #' @rdname importCdf-functions
 #' @export
 importCdf <- function(path, ...) {
-  return(import(path=path, type="cdf", ...))
+  import(path=path, type="cdf", ...)
 }
 
 #' Import MSD files
@@ -534,5 +534,5 @@ importCdf <- function(path, ...) {
 #' @rdname importMsd-functions
 #' @export
 importMsd <- function(path, ...) {
-  return(import(path=path, type="msd", ...))
+  import(path=path, type="msd", ...)
 }

@@ -89,7 +89,7 @@
     }
     n <- x[column, "length"]
     e <- x[column, "encodedLength"]
-    return(readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little"))
+    readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")
   }
 
   n <- length(sel)
