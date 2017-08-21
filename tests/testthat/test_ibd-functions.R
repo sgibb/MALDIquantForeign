@@ -10,17 +10,17 @@ continuous<- matrix(c(16L, 56L, 16L, 96L, rep.int(5L, 4L),
 dimnames(processed) <- dimnames(continuous) <-
   list(rep(c("mass", "intensity"), 2), c("offset", "length", "encodedLength"))
 
-test_that(".writeIbd", {
+#test_that(".writeIbd", {
   #uuid <- "3858f622-30ac-4c91-9f30-0c664312c63f"
   #file <- tempfile()
   #MALDIquantForeign:::.writeIbd(filename=file, uuid=uuid)
-})
+#})
 
 test_that(".ibdOffsets", {
-  expect_identical(MALDIquantForeign:::.ibdOffsets(s, processed=TRUE),
-                   processed)
-  expect_identical(MALDIquantForeign:::.ibdOffsets(s, processed=FALSE),
-                   continuous)
+  expect_equal(MALDIquantForeign:::.ibdOffsets(s, processed=TRUE),
+               processed)
+  expect_equal(MALDIquantForeign:::.ibdOffsets(s, processed=FALSE),
+               continuous)
 })
 
 test_that(".addIbdOffsets", {
@@ -35,6 +35,6 @@ test_that(".addIbdOffsets", {
              createMassSpectrum(mass=1:5, intensity=6:10,
                                 metaData=list(imaging=list(offsets=continuous[3:4,]))))
 
-  expect_identical(MALDIquantForeign:::.addIbdOffsets(s, processed=TRUE), rp)
-  expect_identical(MALDIquantForeign:::.addIbdOffsets(s, processed=FALSE), rc)
+  expect_equal(MALDIquantForeign:::.addIbdOffsets(s, processed=TRUE), rp)
+  expect_equal(MALDIquantForeign:::.addIbdOffsets(s, processed=FALSE), rc)
 })

@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+Version 0.10.3 [2017-08-21 Mon]:
+BUGFIX
+- Fix integer overflow in `.ibdOffsets`; see issue #22.
+
 Version 0.10.2 [2016-03-26 Sat]:
 INTERNAL CHANGES
 - Put MALDIquant into single quotes in the DESCRIPTION file.
