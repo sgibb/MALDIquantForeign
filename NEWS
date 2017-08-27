@@ -1,9 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-Version 0.10.3 [2017-08-21 Mon]:
+
+Version 0.10.3 [2017-08-27 Sun]:
 BUGFIX
-- Fix integer overflow in `.ibdOffsets`; see issue #22.
+- Fix integer overflow in `.ibdOffsets`; see issue #20.
+- Fix `exportImzMl` for missing coordinates, pixelSize and dimension; closes
+  #20.
 
 Version 0.10.2 [2016-03-26 Sat]:
 INTERNAL CHANGES

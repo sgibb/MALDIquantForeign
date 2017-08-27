@@ -19,25 +19,26 @@
 .writeImzMlDocument <- function(x, file,
                                 id=.withoutFileExtension(basename(file)),
                                 processed=TRUE, uuid=.uuid(),
-                                coordinates=NULL, pixelSize=c(100, 100), ...) {
+                                coordinates=MALDIquant::coordinates(x),
+                                pixelSize=c(metaData(x[[1L]])$imaging$pixelSize,
+                                            100, 100)[1L:2L], ...) {
   if(isMassSpectrum(x)) {
     x <- list(x)
   }
 
-  if (is.null(metaData(x[[1L]])$imaging) && is.null(coordinates)) {
+  if (is.null(metaData(x[[1L]])$imaging$pos) && is.null(coordinates)) {
     stop("The spectra contain no imaging information.")
   }
 
-  isCoordinatesMatrix <- is.matrix(coordinates) &&
+  isCoordinatesMatrix <- !is.null(coordinates) &&
+                         is.matrix(coordinates) &&
                          ncol(coordinates) == 2L &&
                          nrow(coordinates) == length(x)
 
-  if (!is.null(coordinates) && !isCoordinatesMatrix) {
+  if (!isCoordinatesMatrix) {
     stop("The ", sQuote("coordinates"),
          " argument has to be a matrix with two columns (x and y position)!")
-  }
-
-  if (isCoordinatesMatrix) {
+  } else {
     size <- apply(coordinates, 2, max)
     dimension <- size * pixelSize
 
