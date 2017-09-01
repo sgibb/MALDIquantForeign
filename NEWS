@@ -1,20 +1,19 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES IN MALDIquantForeign VERSION 0.11 [2017-09-01]:
+-------------------------------------------------------
 
-Version 0.10.3 [2017-08-27 Sun]:
 BUGFIX
-- Fix integer overflow in `.ibdOffsets`; see issue #20.
-- Fix `exportImzMl` for missing coordinates, pixelSize and dimension; closes
-  #20.
 
-Version 0.10.2 [2016-03-26 Sat]:
-INTERNAL CHANGES
-- Put MALDIquant into single quotes in the DESCRIPTION file.
+* Fix integer overflow in `.ibdOffsets`; see issue #20.
+* Fix `exportImzMl` for missing coordinates, pixelSize and dimension; closes
+* #20.
 
-Version 0.10.1 [2015-11-01 Sun]:
 INTERNAL CHANGES
-- Rezip inst/compressed/csv.tar.gz using `gzip -n` to avoid lintian's
+
+* Put MALDIquant into single quotes in the DESCRIPTION file.
+* Rezip inst/compressed/csv.tar.gz using `gzip -n` to avoid lintian's
   package-contains-timestamped-gzip warning; see
   https://wiki.debian.org/ReproducibleBuilds for details.
 
