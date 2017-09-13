@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES IN MALDIquantForeign VERSION 0.11.1 [2017-09-13]:
+---------------------------------------------------------
+
+BUGFIX
+
+* Fix handling of "processed" argument in `.writeImzMlDocument`; see #21.
+
+
 CHANGES IN MALDIquantForeign VERSION 0.11 [2017-09-01]:
 -------------------------------------------------------
 

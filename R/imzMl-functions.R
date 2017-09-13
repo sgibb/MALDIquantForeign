@@ -52,7 +52,8 @@
   .writeIbd(x, ibdFile, uuid=uuid, processed=processed)
   sha1 <- digest::digest(ibdFile, algo="sha1", file=TRUE)
 
-  .writeMzMlDocument(x=.addIbdOffsets(x), file=file, id=id,
+  .writeMzMlDocument(x=.addIbdOffsets(x, processed=processed),
+                     file=file, id=id,
                      imsArgs=list(uuid=uuid, sha1=sha1, processed=processed),
                      ...)
 }
