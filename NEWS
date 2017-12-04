@@ -1,12 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-CHANGES IN MALDIquantForeign VERSION 0.11.1 [2017-09-13]:
+CHANGES IN MALDIquantForeign VERSION 0.11.1 [2017-12-04]:
 ---------------------------------------------------------
 
 BUGFIX
 
 * Fix handling of "processed" argument in `.writeImzMlDocument`; see #21.
+* Fix `export` method if there was no filename given.
 
 
 CHANGES IN MALDIquantForeign VERSION 0.11 [2017-09-01]:

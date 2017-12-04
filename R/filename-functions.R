@@ -56,6 +56,11 @@
 .cutFilenames <- function(x) {
   l <- strsplit(x, split=.Platform$file.sep, fixed=TRUE)
 
+  if (any(lengths(l) == 0)) {
+    return(sprintf(paste0("%0", trunc(log10(length(x))) + 1L, "d"),
+                   seq_along(x)))
+  }
+
   nCol <- unlist(lapply(l, length))
   mCol <- max(nCol)
 

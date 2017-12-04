@@ -55,6 +55,8 @@ test_that(".uniqueBaseFilenames", {
   expect_identical(MALDIquantForeign:::.uniqueBaseFilenames(
                      c("/home/user/foo.bar", "/home/user/foo.bar"),
                      fileExtension="txt"), c("foo_1.txt", "foo_2.txt"))
+  expect_identical(MALDIquantForeign:::.uniqueBaseFilenames(
+                     c("", "")), c("1.csv", "2.csv"))
 })
 
 test_that(".make.unique", {
