@@ -326,7 +326,7 @@
       .writeXmlTag("cvParam", intend=3, file=file,
                    attrs=c(cvRef="MS", accession="MS:1000515",
                            name="intensity array", unitCvRef="MS",
-                           unitAccession="MS:1000131"))
+                           unitAccession="MS:1000131", unitName="number of counts"))
 
       for (i in seq(along=accession)) {
         .writeXmlTag("cvParam", intend=3, file=file,
