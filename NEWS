@@ -1,6 +1,15 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.11.2 [2018-03-18]:
+---------------------------------------------------------
+
+BUGFIX
+
+* Fix missing unitName in intensity array in mzMl export.
+  Reported by Jan Kobarg patch proposed by F. Orlando Galashan (see #22/#24).
+
+
 CHANGES IN MALDIquantForeign VERSION 0.11.1 [2017-12-04]:
 ---------------------------------------------------------
 
