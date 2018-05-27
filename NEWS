@@ -1,6 +1,15 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.11.3 [2018-05-27]:
+---------------------------------------------------------
+
+BUGFIX
+
+* Don't use scientific format for numeric values in (i)mzML export.
+  Patch by F. Orlando Galashan (see #25).
+
+
 CHANGES in MALDIquantForeign VERSION 0.11.2 [2018-03-18]:
 ---------------------------------------------------------
 
