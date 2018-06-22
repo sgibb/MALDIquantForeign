@@ -3,7 +3,8 @@ Version: 0.11.3
 Date: 2018-05-27
 Title: Import/Export Routines for 'MALDIquant'
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
-        email="mail@sebastiangibb.de"), person("Pietro", "Franceschi",
+        email="mail@sebastiangibb.de", comment=c(ORCID="0000-0001-7406-4443")),
+        person("Pietro", "Franceschi",
         role=c("ctb"), email="pietro.franceschi@fmach.it"))
 Depends: R (>= 3.2.2), methods, MALDIquant (>= 1.16.4)
 Imports: base64enc, digest, readBrukerFlexData (>= 1.7), readMzXmlData
