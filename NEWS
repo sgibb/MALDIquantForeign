@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.11.4 [2018-08-01]:
+---------------------------------------------------------
+
+BUGFIX
+
+* Don't access `totalIonCurrent` for `MassPeaks` objects in `exportMzMl` and
+  `exportImzMl`.
+
 CHANGES in MALDIquantForeign VERSION 0.11.3 [2018-05-27]:
 ---------------------------------------------------------
 

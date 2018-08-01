@@ -230,14 +230,13 @@
                      accession="MS:1000527", name="highest observed m/z",
                      value=max(mass(x[[i]])), unitCvRef="MS",
                      unitAccession="MS:1000040", unitName="m/z"), file=file)
-      .writeXmlTag("cvParam", intend=4, attrs=c(cvRef="MS",
-                     accession="MS:1000285", name="total ion current",
-                     value=totalIonCurrent(x[[i]])), file=file)
-
     if (MALDIquant::isMassSpectrum(x[[i]])) {
       .writeXmlTag("cvParam", intend=4, attrs=c(cvRef="MS",
                      accession="MS:1000128", name="profile spectrum"),
                    file=file)
+      .writeXmlTag("cvParam", intend=4, attrs=c(cvRef="MS",
+                     accession="MS:1000285", name="total ion current",
+                     value=totalIonCurrent(x[[i]])), file=file)
     } else {
       .writeXmlTag("cvParam", intend=4, attrs=c(cvRef="MS",
                      accession="MS:1000127", name="centroid spectrum"),
