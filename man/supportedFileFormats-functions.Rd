@@ -49,9 +49,6 @@ library("MALDIquantForeign")
 supportedFileFormats()
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -59,4 +56,6 @@ Sebastian Gibb
 \code{\link[MALDIquantForeign]{export}},
  \code{\link[MALDIquantForeign]{import}}
 }
-
+\author{
+Sebastian Gibb
+}

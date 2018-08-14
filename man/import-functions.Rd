@@ -5,8 +5,9 @@
 \title{Import files}
 \usage{
 import(path, type = "auto", pattern, excludePattern = NULL,
-  removeEmptySpectra = TRUE, centroided = FALSE, massRange = c(0, Inf),
-  minIntensity = 0, mc.cores = 1L, verbose = interactive(), ...)
+  removeEmptySpectra = TRUE, centroided = FALSE, massRange = c(0,
+  Inf), minIntensity = 0, mc.cores = 1L, verbose = interactive(),
+  ...)
 }
 \arguments{
 \item{path}{\code{character}, path to directory or file which should be read
@@ -109,9 +110,6 @@ s <- import(file.path(exampleDirectory, "tiny1.mzML1.1.mzML"))
 s <- import(file.path(exampleDirectory, "compressed", "csv1.csv.gz"))
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -120,4 +118,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassPeaks-class}}
 \code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}}
 }
-
+\author{
+Sebastian Gibb
+}

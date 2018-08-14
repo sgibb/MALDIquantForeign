@@ -333,7 +333,7 @@ importMzXml <- function(path, ...) {
 #' @author Sebastian Gibb
 #' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
 #' Definition of \code{mzML} format:
-#' \url{http://www.psidev.info/mzml_1_0_0\%20}
+#' \url{http://www.psidev.info/mzml}
 #' @examples
 #'
 #' library("MALDIquant")

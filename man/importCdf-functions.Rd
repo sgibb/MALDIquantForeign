@@ -40,9 +40,6 @@ if (requireNamespace("RNetCDF", quietly=TRUE)) {
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -50,4 +47,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
 }
-
+\author{
+Sebastian Gibb
+}

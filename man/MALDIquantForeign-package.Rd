@@ -15,11 +15,10 @@ License: \tab GPL (>= 3)\cr
 URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 }
 }
-\author{
-Sebastian Gibb \email{mail@sebastiangibb.de}
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
+\author{
+Sebastian Gibb \email{mail@sebastiangibb.de}
+}
 \keyword{package}
-

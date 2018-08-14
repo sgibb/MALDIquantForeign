@@ -35,9 +35,6 @@ exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 s <- importMsd(exampleDirectory)
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 mMass homepage: \url{http://mmass.org/}
@@ -46,4 +43,6 @@ mMass homepage: \url{http://mmass.org/}
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
 }
-
+\author{
+Sebastian Gibb
+}

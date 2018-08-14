@@ -2,8 +2,8 @@
 % Please edit documentation in R/export-methods.R
 \docType{methods}
 \name{exportMsd,MassSpectrum-method}
-\alias{exportMsd}
 \alias{exportMsd,MassSpectrum-method}
+\alias{exportMsd}
 \alias{exportMsd,list-method}
 \title{Export to MSD files}
 \usage{
@@ -57,9 +57,6 @@ exportMsd(s, path="spectra", peaks=p, force=TRUE)
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 mMass homepage: \url{http://mmass.org/}
@@ -68,4 +65,6 @@ mMass homepage: \url{http://mmass.org/}
 \code{\link[MALDIquant]{MassPeaks-class}},
 \code{\link[MALDIquant]{MassSpectrum-class}}
 }
-
+\author{
+Sebastian Gibb
+}

@@ -2,8 +2,8 @@
 % Please edit documentation in R/export-methods.R
 \docType{methods}
 \name{export,AbstractMassObject-method}
-\alias{export}
 \alias{export,AbstractMassObject-method}
+\alias{export}
 \alias{export,list-method}
 \title{Export files}
 \usage{
@@ -64,9 +64,6 @@ export(s, path="spectra", type="csv")
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -74,4 +71,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassPeaks-class}},
 \code{\link[MALDIquant]{MassSpectrum-class}}
 }
-
+\author{
+Sebastian Gibb
+}

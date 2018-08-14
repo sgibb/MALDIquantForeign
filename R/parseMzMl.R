@@ -50,7 +50,7 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @references
 #' Definition of \code{mzML} format:
-#' \url{http://www.psidev.info/mzml_1_0_0}
+#' \url{http://www.psidev.info/mzml}
 #' @keywords internal
 #' @noRd
 .mzMlHandlers <- function(fileName, verbose=FALSE) {

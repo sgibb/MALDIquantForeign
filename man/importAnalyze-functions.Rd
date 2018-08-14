@@ -23,9 +23,6 @@ This function imports files in Analyze 7.5 file format
 into \code{\link[MALDIquant]{MassSpectrum-class}} or
 \code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/} \cr
  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
@@ -35,4 +32,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
 }
-
+\author{
+Sebastian Gibb
+}

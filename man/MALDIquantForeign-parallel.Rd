@@ -47,9 +47,6 @@ runtime!
    stopifnot(all.equal(s1, s2))
  }
 }
-\author{
-Sebastian Gibb \email{mail@sebastiangibb.de}
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -58,5 +55,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[parallel]{mclapply}},
 \code{\link[parallel]{mcmapply}}
 }
+\author{
+Sebastian Gibb \email{mail@sebastiangibb.de}
+}
 \keyword{misc}
-

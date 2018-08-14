@@ -2,8 +2,8 @@
 % Please edit documentation in R/export-methods.R
 \docType{methods}
 \name{exportMzMl,MassSpectrum-method}
-\alias{exportMzMl}
 \alias{exportMzMl,MassSpectrum-method}
+\alias{exportMzMl}
 \alias{exportMzMl,list-method}
 \title{Export to mzML files}
 \usage{
@@ -48,15 +48,14 @@ exportMzMl(s, path="spectra.mzML")
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 HUPO Proteomics Standards Inititative mzML 1.1.0 Specification:
-\url{http://www.psidev.info/mzml_1_0_0}
+\url{http://www.psidev.info/mzml}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}}
 }
-
+\author{
+Sebastian Gibb
+}

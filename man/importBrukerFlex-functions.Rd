@@ -34,9 +34,6 @@ exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 s <- importBrukerFlex(exampleDirectory)
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -45,4 +42,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassPeaks-class}},
 \code{\link[readBrukerFlexData]{readBrukerFlexFile}}
 }
-
+\author{
+Sebastian Gibb
+}

@@ -2,8 +2,8 @@
 % Please edit documentation in R/export-methods.R
 \docType{methods}
 \name{exportImzMl,MassSpectrum-method}
-\alias{exportImzMl}
 \alias{exportImzMl,MassSpectrum-method}
+\alias{exportImzMl}
 \alias{exportImzMl,list-method}
 \title{Export to imzML files}
 \usage{
@@ -58,9 +58,6 @@ exportImzMl(s, path="processed.imzML", coordinates=cbind(x=1:2, y=c(1, 1)))
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 
@@ -75,4 +72,6 @@ Journal of Proteomics 75 (16):5106-5110. \cr
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}}
 }
-
+\author{
+Sebastian Gibb
+}

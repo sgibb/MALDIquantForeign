@@ -35,9 +35,6 @@ exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 s <- importMzXml(exampleDirectory)
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 Definition of \code{mzXML} format:
@@ -48,4 +45,6 @@ Definition of \code{mzXML} format:
 \code{\link[MALDIquant]{MassPeaks-class}},
 \code{\link[readMzXmlData]{readMzXmlFile}}
 }
-
+\author{
+Sebastian Gibb
+}

@@ -35,16 +35,15 @@ exampleDirectory <- system.file("exampledata", package="MALDIquantForeign")
 s <- importMzMl(exampleDirectory)
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 Definition of \code{mzML} format:
-\url{http://www.psidev.info/mzml_1_0_0\%20}
+\url{http://www.psidev.info/mzml}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
 }
-
+\author{
+Sebastian Gibb
+}

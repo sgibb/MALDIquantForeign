@@ -2,12 +2,12 @@
 % Please edit documentation in R/export-methods.R
 \docType{methods}
 \name{exportTab,AbstractMassObject-method}
+\alias{exportTab,AbstractMassObject-method}
+\alias{exportTab}
+\alias{exportTab,list-method}
 \alias{exportCsv}
 \alias{exportCsv,AbstractMassObject-method}
 \alias{exportCsv,list-method}
-\alias{exportTab}
-\alias{exportTab,AbstractMassObject-method}
-\alias{exportTab,list-method}
 \title{Export to text files}
 \usage{
 \S4method{exportTab}{AbstractMassObject}(x, file, force=FALSE, \ldots)
@@ -61,9 +61,6 @@ exportCsv(s, path="spectra", sep=";", force=TRUE)
 }
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -72,4 +69,6 @@ Sebastian Gibb
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[utils]{write.table}}
 }
-
+\author{
+Sebastian Gibb
+}

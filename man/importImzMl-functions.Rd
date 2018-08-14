@@ -43,9 +43,6 @@ s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"),
                  coordinates = cbind(1:2, c(1, 1)))
 
 }
-\author{
-Sebastian Gibb
-}
 \references{
 \url{http://strimmerlab.org/software/maldiquant/}, \cr
 Definition of \code{imzML} format:
@@ -55,4 +52,6 @@ Definition of \code{imzML} format:
 \code{\link[MALDIquant]{MassSpectrum-class}},
 \code{\link[MALDIquant]{MassPeaks-class}}
 }
-
+\author{
+Sebastian Gibb
+}

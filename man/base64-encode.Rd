@@ -27,11 +27,10 @@ Vector of type \code{character}.
 This function converts a \code{double} vector to a base64 encoded
 \code{character} vector.
 }
-\author{
-Sebastian Gibb \email{mail@sebastiangibb.de}
-}
 \seealso{
 \code{\link[base64enc]{base64encode}} from \pkg{base64enc} package
 }
+\author{
+Sebastian Gibb \email{mail@sebastiangibb.de}
+}
 \keyword{internal}
-
