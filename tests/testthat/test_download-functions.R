@@ -34,7 +34,7 @@ test_that(".download", {
 
   files <- MALDIquantForeign:::.download(urls)
 
-  expect_identical(list(read.table(files[1]), read.csv(files[2])),
+  expect_identical(list(read.table(files[1]), read.csv(files[2], comment.char="#")),
                    list(ascii, csv))
 
   expect_message(MALDIquantForeign:::.download(urls[1],
