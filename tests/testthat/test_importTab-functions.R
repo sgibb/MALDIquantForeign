@@ -70,13 +70,13 @@ test_that("autoHeader", {
   result <- c(FALSE, TRUE, TRUE, TRUE, FALSE)
 
   for (i in seq(along=x)) {
-    expect_identical(MALDIquantForeign:::.autoHeader(textConnection(x[i]),
-                                                     sep=sep[i]), result[i])
+    expect_identical(MALDIquantForeign:::.autoHeader(x[i], sep=sep[i]),
+                     result[i])
   }
 })
 
 test_that("autoSep", {
   for (i in seq(along=x)) {
-    expect_identical(MALDIquantForeign:::.autoSep(textConnection(x[i])), sep[i])
+    expect_identical(MALDIquantForeign:::.autoSep(x[i]), sep[i])
   }
 })

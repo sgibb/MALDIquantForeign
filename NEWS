@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.11.6 [2018-08-30]:
+---------------------------------------------------------
+
+* Ignore comments in `.autoSep` and `.autoHeader`. Affected functions: .tab and
+  .csv import, `import`, `importCsv`, `importTab`, `importTxt`.
+  Bug reported by Fernando Pineda.
+
 CHANGES in MALDIquantForeign VERSION 0.11.5 [2018-08-14]:
 ---------------------------------------------------------
 
