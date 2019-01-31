@@ -201,6 +201,9 @@
     } else if (.isAttrSet(attrs, "MS:1000517", "signal to noise array")) {
       .setCvValue("snr", "currentArray")
       return()
+    } else if (.isAttrSet(attrs, "MS:1000786", "non-standard data array")) {
+      .setCvValue("nonstandard", "currentArray")
+      return()
     }
 
     ## IMS extensions

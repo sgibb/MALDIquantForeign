@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.12 [2019-01-30]:
+---------------------------------------------------------
+
+* Fix reading of mzML with "non-standard data" arrays.
+  Bug reported by Paul Turner.
+
 CHANGES in MALDIquantForeign VERSION 0.11.6 [2018-08-30]:
 ---------------------------------------------------------
 
