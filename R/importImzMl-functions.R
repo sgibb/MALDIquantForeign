@@ -100,8 +100,7 @@
     e <- x[column, "encodedLength"]
     
     if(attachOnly){
-       matter::matter_vec(datamode="double", paths=unname(summary(ibd)[[1]]), filemode="rb+",
-                          offset=x[column, "offset"], extent=n)  
+       
        OnDiskVector(path=unname(summary(ibd)[[1]]), n=n, offset=x[column, "offset"], size=8L)
        
     }else{
