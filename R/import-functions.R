@@ -363,8 +363,8 @@ importMzMl <- function(path, ...) {
 #' @param coordinates \code{matrix}, 2 column matrix that contains the x- and
 #'  y-coordinates for spectra that should be imported. Other spectra would be
 #'  ignored.
-#' @param attachOnly logical (defaults to \code{FALSE}), whether to attach the dataset via the \code{matter}
-#' package without loading it into memory. See \code{\link[MALDIquant]{MassSpectrumOnDisk-class}}.
+#' @param attachOnly logical (defaults to \code{FALSE}), whether to attach the dataset via the 
+#' \code{OnDiskVector} class without loading it into memory. See \code{\link[MALDIquant]{MassSpectrumOnDisk-class}}.
 #' @param duplicateFile logical, when \code{TRUE} (default), creates a temporary copy of the binary \code{ibd}
 #' file in the \code{tempdir} and attaches the \code{\link[MALDIquant]{MassSpectrumOnDisk}} objects to it so 
 #' as not to affect the original \code{ibd} file.

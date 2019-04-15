@@ -101,8 +101,11 @@
     
     if(attachOnly){
        matter::matter_vec(datamode="double", paths=unname(summary(ibd)[[1]]), filemode="rb+",
-                          offset=x[column, "offset"], extent=n)    
+                          offset=x[column, "offset"], extent=n)  
+       OnDiskVector(path=unname(summary(ibd)[[1]]), n=n, offset=x[column, "offset"], size=8L)
+       
     }else{
+           
        readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")       
     }
     
@@ -139,7 +142,7 @@
     
     if(attachOnly){
            spectra[[i]] <- new("MassSpectrumOnDisk", mass=mass, intensity=intensity, 
-                               metaData=m, path=unname(summary(ibd)[[1]]))
+                               metaData=m)
     }else{
            spectra[[i]] <- .createMassObject(mass=mass, intensity=intensity,
                                              metaData=m, centroided=centroided,
