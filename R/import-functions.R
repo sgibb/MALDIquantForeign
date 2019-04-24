@@ -368,6 +368,8 @@ importMzMl <- function(path, ...) {
 #' @param duplicateFile logical, when \code{TRUE} (default), creates a temporary copy of the binary \code{ibd}
 #' file in the \code{tempdir} and attaches the \code{\link[MALDIquant]{MassSpectrumOnDisk}} objects to it so 
 #' as not to affect the original \code{ibd} file.
+#' @param mc.cores integer, specifying number of cores for parallel evaluation through \code{parallel::mclapply}. 
+#' Falls back to \code{mc.cores = 1} is Windows. 
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
@@ -401,8 +403,10 @@ importMzMl <- function(path, ...) {
 #' @rdname importImzMl-functions
 #' 
 #' @export
-importImzMl <- function(path, coordinates=NULL, attachOnly=FALSE, duplicateFile=TRUE, ...) {
-  import(path=path, type="imzml", coordinates=coordinates, attachOnly=attachOnly, duplicateFile=duplicateFile, ...)
+importImzMl <- function(path, coordinates=NULL, attachOnly=FALSE, duplicateFile=TRUE, 
+                        mc.cores = 1L, ...) {
+  import(path=path, type="imzml", coordinates=coordinates, attachOnly=attachOnly, 
+         duplicateFile=duplicateFile, mc.cores = 1L, ...)
 }
 
 #' Import Ciphergen XML files

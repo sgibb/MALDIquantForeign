@@ -18,7 +18,7 @@
 
 .importImzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                          minIntensity=0, coordinates=NULL, attachOnly=FALSE,
-                         duplicateFile=TRUE, verbose=FALSE) {
+                         duplicateFile=TRUE, mc.cores = 1L, verbose=FALSE) {
 
   .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
 
@@ -127,30 +127,39 @@
     mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isSeekNeeded)
   }
 
-  ## read mass and intensity values
-  for (i in seq(along=sel)) {
-    .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
-
-    m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
-    m$file <- file
-
-    if (isProcessed) {
-      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
-    }
-    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
-    
-    if(attachOnly){
-           spectra[[i]] <- new("MassSpectrumOnDisk", mass=mass, intensity=intensity, 
-                               metaData=m)
-    }else{
-           spectra[[i]] <- .createMassObject(mass=mass, intensity=intensity,
-                                             metaData=m, centroided=centroided,
-                                             massRange=massRange,
-                                             minIntensity=minIntensity,
-                                             verbose=verbose)
-    }
-    
-  }
+  ## read mass and intensity values - possibly in parallel
+  mc.cores <- ifelse(.Platform$OS.type == "windows", 1, mc.cores)
+  
+  spectra <- parallel::mclapply(X = seq_along(sel), 
+                                mc.cores = mc.cores, 
+                                FUN = function(i) {
+                                       
+                                       .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
+                                       
+                                       m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
+                                       m$file <- file
+                                       
+                                       if (isProcessed) {
+                                              mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
+                                       }
+                                       intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
+                                       
+                                       if(attachOnly){
+                                              tmpSpectrum <- new("MassSpectrumOnDisk", mass=mass, intensity=intensity, 
+                                                                  metaData=m)
+                                       }else{
+                                              tmpSpectrum <- .createMassObject(mass=mass, intensity=intensity,
+                                                                                metaData=m, centroided=centroided,
+                                                                                massRange=massRange,
+                                                                                minIntensity=minIntensity,
+                                                                                verbose=verbose)
+                                       }  
+                                       
+                                       tmpSpectrum
+                                })
+  
+  
+  
   
   .msg(verbose, "Done. ")
   
