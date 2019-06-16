@@ -61,6 +61,11 @@
     }
   }
 
+  if (!centroided && is(mass, "OnDiskVector") && is(intensity, "OnDiskVector")) {
+      return(new("MassSpectrumOnDisk", mass=mass, intensity=intensity,
+                 metaData=metaData))
+  }
+
   .msg(centroided & verbose,
        "Assume centroided data and creating a MassPeaks object.")
 
@@ -78,11 +83,9 @@
 
   ## create a MassPeaks object for centroided data
   if (centroided) {
-    m <- createMassPeaks(mass=mass[i], intensity=intensity[i],
-                         snr=snr[i], metaData=metaData)
+    createMassPeaks(mass=mass[i], intensity=intensity[i],
+                    snr=snr[i], metaData=metaData)
   } else {
-    m <- createMassSpectrum(mass=mass[i], intensity=intensity[i],
-                            metaData=metaData)
+    createMassSpectrum(mass=mass[i], intensity=intensity[i], metaData=metaData)
   }
-  m
 }

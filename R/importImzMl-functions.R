@@ -18,6 +18,7 @@
 
 .importImzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
                          minIntensity=0, coordinates=NULL,
+                         attachOnly=FALSE, duplicateFiles=TRUE,
                          verbose=FALSE) {
 
   .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
@@ -30,6 +31,17 @@
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
+  }
+
+  if (attachOnly && duplicateFiles) {
+    # duplicate ibd file in tmp to keep the original ibd intact
+    tmpfile <- tempfile(.withoutFileExtension(basename(ibdFilename)),
+                        fileext=".ibd")
+
+    if (all(file.copy(from=ibdFilename, to=tmpfile)))
+      ibdFilename <- tmpfile
+    else
+      stop("Failed to duplicate files.")
   }
 
   s <- .parseMzMl(file=file, verbose=verbose)
@@ -81,15 +93,22 @@
     }
   }
 
-  .readValues <- function(file, x, column, isSeekNeeded) {
-    if (isSeekNeeded) {
-      ## WARNING: we know that `seek` is discouraged on some platforms,
-      ## namely Windows. See `?seek` for details.
-      seek(file, where=x[column, "offset"])
-    }
+  .readValues <- function(file, x, column, isSeekNeeded, attachOnly) {
     n <- x[column, "length"]
     e <- x[column, "encodedLength"]
-    readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")
+
+    if (attachOnly) {
+      MALDIquant:::OnDiskVector(path=summary(file)$description, n=n,
+                                offset=x[column, "offset"],
+                                size=as.integer(e/n))
+    } else {
+      if (isSeekNeeded) {
+        ## WARNING: we know that `seek` is discouraged on some platforms,
+        ## namely Windows. See `?seek` for details.
+        seek(file, where=x[column, "offset"])
+      }
+      readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")
+    }
   }
 
   n <- length(sel)
@@ -99,7 +118,8 @@
   isSeekNeeded <- length(s$ims$ibd) > length(sel)
 
   if (!isProcessed) {
-    mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isSeekNeeded)
+    mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass",
+                        isSeekNeeded, attachOnly)
   }
 
   ## read mass and intensity values
@@ -107,12 +127,14 @@
     .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
 
     m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
-    m$file <- file
+    m$file <- ibdFilename
 
     if (isProcessed) {
-      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
+      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass",
+                          isSeekNeeded, attachOnly)
     }
-    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
+    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity",
+                             isSeekNeeded, attachOnly)
     spectra[[i]] <- .createMassObject(mass=mass, intensity=intensity,
                                       metaData=m, centroided=centroided,
                                       massRange=massRange,
