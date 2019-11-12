@@ -166,10 +166,10 @@
   if(attachOnly)
   {
          if(duplicateFile)
-                warning("imzML dataset was loaded via attacheOnly option and a duplicate file was generate. ", 
+                message("\nNOTE: imzML dataset was loaded via attacheOnly option and a duplicate file was generate. ", 
                  "Any changes made to the spectra are directly written to the duplicate file.\n ")
          else
-                warning("imzML dataset was loaded via attacheOnly option to the ORIGINAL FILE. ", 
+                message("\nNOTE: imzML dataset was loaded via attacheOnly option to the ORIGINAL FILE. ", 
                         "Any changes made to the spectra are directly written to the imzML file.\n ")
   }
          
