@@ -17,8 +17,8 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 .importImzMl <- function(file, centroided=FALSE, massRange=c(0, Inf),
-                         minIntensity=0, coordinates=NULL,
-                         verbose=FALSE) {
+                         minIntensity=0, coordinates=NULL, attachOnly=FALSE,
+                         duplicateFile=TRUE, mc.cores = 1L, verbose=FALSE) {
 
   .msg(verbose, "Reading spectrum from ", sQuote(file), " ...")
 
@@ -30,6 +30,15 @@
 
   if (!file.exists(ibdFilename)) {
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
+  }
+  
+  if (attachOnly) { # attach rather than load
+         if (duplicateFile) { # duplicate the ibd file to the temp dir in order to keep the original ibd intact 
+                tf <- paste0(tempfile(), "_", basename(ibdFilename))
+                file.copy(from=ibdFilename, to=tf)
+                ibdFilename  <- tf
+                
+         }
   }
 
   s <- .parseMzMl(file=file, verbose=verbose)
@@ -89,7 +98,16 @@
     }
     n <- x[column, "length"]
     e <- x[column, "encodedLength"]
-    readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")
+    
+    if(attachOnly){
+       
+       OnDiskVector(path=unname(summary(ibd)[[1]]), n=n, offset=x[column, "offset"], size=8L)
+       
+    }else{
+           
+       readBin(file, double(), n=n, size=e/n, signed=TRUE, endian="little")       
+    }
+    
   }
 
   n <- length(sel)
@@ -97,27 +115,63 @@
 
   isProcessed <- s$ims$type == "processed"
   isSeekNeeded <- length(s$ims$ibd) > length(sel)
+  
+  if(isProcessed && attachOnly){
+         message("The imzML file is of type 'processed'. The 'attachOnly' option is only available ", 
+                 "for 'continuous' type and therefore will be overridden. In-memory MassPeaks objects will be created.")
+         attachOnly <- FALSE
+  }
+         
 
   if (!isProcessed) {
     mass <- .readValues(ibd, s$ims$ibd[[sel[1L]]], "mass", isSeekNeeded)
   }
 
-  ## read mass and intensity values
-  for (i in seq(along=sel)) {
-    .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
-
-    m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
-    m$file <- file
-
-    if (isProcessed) {
-      mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
-    }
-    intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
-    spectra[[i]] <- .createMassObject(mass=mass, intensity=intensity,
-                                      metaData=m, centroided=centroided,
-                                      massRange=massRange,
-                                      minIntensity=minIntensity,
-                                      verbose=verbose)
+  ## read mass and intensity values - possibly in parallel
+  mc.cores <- ifelse(.Platform$OS.type == "windows", 1, mc.cores)
+  
+  spectra <- parallel::mclapply(X = seq_along(sel), 
+                                mc.cores = mc.cores, 
+                                FUN = function(i) {
+                                       
+                                       .msg(verbose, "Reading binary data for spectrum ", i, "/", n, " ...")
+                                       
+                                       m <- modifyList(s$metaData, s$spectra[[sel[i]]]$metaData)
+                                       m$file <- file
+                                       
+                                       if (isProcessed) {
+                                              mass <- .readValues(ibd, s$ims$ibd[[sel[i]]], "mass", isSeekNeeded)
+                                       }
+                                       intensity <- .readValues(ibd, s$ims$ibd[[sel[i]]], "intensity", isSeekNeeded)
+                                       
+                                       if(attachOnly){
+                                              tmpSpectrum <- new("MassSpectrumOnDisk", mass=mass, intensity=intensity, 
+                                                                  metaData=m)
+                                       }else{
+                                              tmpSpectrum <- .createMassObject(mass=mass, intensity=intensity,
+                                                                                metaData=m, centroided=centroided,
+                                                                                massRange=massRange,
+                                                                                minIntensity=minIntensity,
+                                                                                verbose=verbose)
+                                       }  
+                                       
+                                       tmpSpectrum
+                                })
+  
+  
+  
+  
+  .msg(verbose, "Done. ")
+  
+  if(attachOnly)
+  {
+         if(duplicateFile)
+                message("\nNOTE: imzML dataset was loaded via attacheOnly option and a duplicate file was generate. ", 
+                 "Any changes made to the spectra are directly written to the duplicate file.\n ")
+         else
+                message("\nNOTE: imzML dataset was loaded via attacheOnly option to the ORIGINAL FILE. ", 
+                        "Any changes made to the spectra are directly written to the imzML file.\n ")
   }
+         
   spectra
 }

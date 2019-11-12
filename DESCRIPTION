@@ -1,5 +1,5 @@
 Package: MALDIquantForeign
-Version: 0.12
+Version: 0.12.75
 Date: 2019-01-30
 Title: Import/Export Routines for 'MALDIquant'
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
@@ -7,9 +7,10 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         comment=c(ORCID="0000-0001-7406-4443")), person("Pietro",
         "Franceschi", role=c("ctb"),
         email="pietro.franceschi@fmach.it"))
-Depends: R (>= 3.2.2), methods, MALDIquant (>= 1.16.4)
+biocViews:
+Depends: R (>= 3.2.2), methods, MALDIquant (>= 1.19.15)
 Imports: base64enc, digest, readBrukerFlexData (>= 1.7), readMzXmlData
-        (>= 2.7), XML
+        (>= 2.7), XML, parallel
 Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)
 Description: Functions for reading (tab, csv, Bruker fid, Ciphergen
         XML, mzXML, mzML, imzML, Analyze 7.5, CDF, mMass MSD) and

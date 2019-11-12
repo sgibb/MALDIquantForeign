@@ -3,3 +3,5 @@
 ^\.git$
 ^\.gitignore$
 ^\.travis.yml$
+^.*\.Rproj$
+^\.Rproj\.user$

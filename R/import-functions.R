@@ -354,7 +354,8 @@ importMzMl <- function(path, ...) {
 #' Import imzML files
 #'
 #' This function imports files in imzML file format
-#' into \code{\link[MALDIquant]{MassSpectrum-class}} or
+#' into \code{\link[MALDIquant]{MassSpectrum-class}}, 
+#' \code{\link[MALDIquant]{MassSpectrumOnDisk-class}} or
 #' \code{\link[MALDIquant]{MassPeaks-class}} objects.
 #'
 #' @param path \code{character}, path to directory or file which should be read
@@ -362,6 +363,13 @@ importMzMl <- function(path, ...) {
 #' @param coordinates \code{matrix}, 2 column matrix that contains the x- and
 #'  y-coordinates for spectra that should be imported. Other spectra would be
 #'  ignored.
+#' @param attachOnly logical (defaults to \code{FALSE}), whether to attach the dataset via the 
+#' \code{OnDiskVector} class without loading it into memory. See \code{\link[MALDIquant]{MassSpectrumOnDisk-class}}.
+#' @param duplicateFile logical, when \code{TRUE} (default), creates a temporary copy of the binary \code{ibd}
+#' file in the \code{tempdir} and attaches the \code{\link[MALDIquant]{MassSpectrumOnDisk}} objects to it so 
+#' as not to affect the original \code{ibd} file.
+#' @param mc.cores integer, specifying number of cores for parallel evaluation through \code{parallel::mclapply}. 
+#' Falls back to \code{mc.cores = 1} is Windows. 
 #' @param \ldots arguments to be passed to
 #' \code{\link[MALDIquantForeign]{import}}.
 #'
@@ -372,9 +380,11 @@ importMzMl <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr\cr
 #' Definition of \code{imzML} format:
-#' \url{http://www.imzml.org/}
+#' \url{http://www.imzml.org/}\cr\cr
+#' \code{"matter"}: Kylie A. Bemis (2018). matter: A framework for rapid prototyping with binary data on disk. R
+#' package version 1.8.0. \url{https://github.com/kuwisdelu/matter}.
 #' @examples
 #'
 #' library("MALDIquant")
@@ -391,9 +401,12 @@ importMzMl <- function(path, ...) {
 #'                  coordinates = cbind(1:2, c(1, 1)))
 #'
 #' @rdname importImzMl-functions
+#' 
 #' @export
-importImzMl <- function(path, coordinates=NULL, ...) {
-  import(path=path, type="imzml", coordinates=coordinates, ...)
+importImzMl <- function(path, coordinates=NULL, attachOnly=FALSE, duplicateFile=TRUE, 
+                        mc.cores = 1L, ...) {
+  import(path=path, type="imzml", coordinates=coordinates, attachOnly=attachOnly, 
+         duplicateFile=duplicateFile, mc.cores = 1L, ...)
 }
 
 #' Import Ciphergen XML files

@@ -4,7 +4,8 @@
 \alias{importImzMl}
 \title{Import imzML files}
 \usage{
-importImzMl(path, coordinates = NULL, ...)
+importImzMl(path, coordinates = NULL, attachOnly = FALSE,
+  duplicateFile = TRUE, ...)
 }
 \arguments{
 \item{path}{\code{character}, path to directory or file which should be read
@@ -13,6 +14,13 @@ in.}
 \item{coordinates}{\code{matrix}, 2 column matrix that contains the x- and
 y-coordinates for spectra that should be imported. Other spectra would be
 ignored.}
+
+\item{attachOnly}{logical (defaults to \code{FALSE}), whether to attach the dataset via the \code{matter}
+package without loading it into memory. See \code{\link[MALDIquant]{MassSpectrumOnDisk-class}}.}
+
+\item{duplicateFile}{logical, when \code{TRUE} (default), creates a temporary copy of the binary \code{ibd}
+file in the \code{tempdir} and attaches the \code{\link[MALDIquant]{MassSpectrumOnDisk}} objects to it so 
+as not to affect the original \code{ibd} file.}
 
 \item{\ldots}{arguments to be passed to
 \code{\link[MALDIquantForeign]{import}}.}
@@ -24,7 +32,8 @@ a \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} or
 }
 \description{
 This function imports files in imzML file format
-into \code{\link[MALDIquant]{MassSpectrum-class}} or
+into \code{\link[MALDIquant]{MassSpectrum-class}}, 
+\code{\link[MALDIquant]{MassSpectrumOnDisk-class}} or
 \code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \examples{
@@ -44,9 +53,11 @@ s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"),
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{http://strimmerlab.org/software/maldiquant/}, \cr\cr
 Definition of \code{imzML} format:
-\url{http://www.imzml.org/}
+\url{http://www.imzml.org/}\cr\cr
+\code{"matter"}: Kylie A. Bemis (2018). matter: A framework for rapid prototyping with binary data on disk. R
+package version 1.8.0. \url{https://github.com/kuwisdelu/matter}.
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},
