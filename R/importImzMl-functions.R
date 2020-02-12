@@ -33,15 +33,20 @@
     stop("File ", sQuote(ibdFilename), " doesn't exists!")
   }
 
-  if (attachOnly && duplicateFiles) {
-    # duplicate ibd file in tmp to keep the original ibd intact
-    tmpfile <- tempfile(.withoutFileExtension(basename(ibdFilename)),
-                        fileext=".ibd")
+  if (attachOnly) {
+    if (duplicateFiles) {
+      # duplicate ibd file in tmp to keep the original ibd intact
+      tmpfile <- tempfile(.withoutFileExtension(basename(ibdFilename)),
+                          fileext=".ibd")
 
-    if (all(file.copy(from=ibdFilename, to=tmpfile)))
-      ibdFilename <- tmpfile
-    else
-      stop("Failed to duplicate files.")
+      if (all(file.copy(from=ibdFilename, to=tmpfile)))
+        ibdFilename <- tmpfile
+      else
+        stop("Failed to duplicate files.")
+    } else
+      warning("Files arn't copied! ",
+              "If the spectra objects are modified the source files ",
+              "are changed, too!")
   }
 
   s <- .parseMzMl(file=file, verbose=verbose)
