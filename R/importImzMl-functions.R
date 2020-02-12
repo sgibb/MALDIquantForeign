@@ -98,9 +98,11 @@
     e <- x[column, "encodedLength"]
 
     if (attachOnly) {
-      MALDIquant:::OnDiskVector(path=summary(file)$description, n=n,
-                                offset=x[column, "offset"],
-                                size=as.integer(e/n))
+      fn <- summary(file)$description
+      o <- x[column, "offset"]
+      MALDIquant:::OnDiskVector(path=fn,
+                                mpath=paste(fn, column, o, "mod", sep="."),
+                                n=n, offset=o, size=as.integer(e/n))
     } else {
       if (isSeekNeeded) {
         ## WARNING: we know that `seek` is discouraged on some platforms,
