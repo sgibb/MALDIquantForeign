@@ -1,8 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-CHANGES in MALDIquantForeign VERSION 0.12 [2019-01-30]:
+CHANGES in MALDIquantForeign VERSION 0.12.1 [2020-03-09]:
 ---------------------------------------------------------
+
+* Fix reading of txt, csv, tab files if "skip" argument is used ("skip" was
+  applied twice). Affected functions: .csv, .tab, .txt import: `import`,
+  `importCsv`, `importTab`, `importTxt`.
+  Bug reported by Samuel Granjeaud (#29).
+
+CHANGES in MALDIquantForeign VERSION 0.12 [2019-01-30]:
+-------------------------------------------------------
 
 * Fix reading of mzML with "non-standard data" arrays.
   Bug reported by Paul Turner.

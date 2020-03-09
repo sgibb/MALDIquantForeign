@@ -16,6 +16,12 @@ test_that("importTab", {
   expect_equal(mass(s[[1]]), 1:5)
   expect_equal(intensity(s[[1]]), 6:10)
   expect_equal(basename(metaData(s[[1]])$file), "ascii.txt")
+
+  ## issue 29, double skip
+  expect_equal(
+    as.matrix(MALDIquantForeign:::.importTab(path, skip=2L, verbose=FALSE)[[1L]]),
+    matrix(c(3:5, 8:10), ncol=2L, dimnames=list(c(), c("mass", "intensity")))
+  )
 })
 
 test_that("importCsv", {

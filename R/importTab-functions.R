@@ -1,4 +1,4 @@
-## Copyright 2012-2014 Sebastian Gibb
+## Copyright 2012-2020 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquantForeign for R and related languages.
@@ -35,7 +35,7 @@
   }
 
   ## load ms file
-  s <- read.table(text=text, header=header, sep=sep, skip=skip,
+  s <- read.table(text=text, header=header, sep=sep, skip=0L,
                   comment.char=comment.char, stringsAsFactors=FALSE, ...)
 
   list(.createMassObject(mass=s[, 1L], intensity=s[, 2L],
