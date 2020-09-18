@@ -57,7 +57,7 @@
 }
 
 .autoHeader <- function(text, sep="\t") {
-  l <- gsub(pattern='[\\\\"]*', replacement="", x=text)
+  l <- gsub(pattern='[\\\\"]*', replacement="", x=text[1L])
   l <- strsplit(l, split=sep)[[1L]][1L]
   !is.numeric(type.convert(l, as.is=TRUE))
 }
@@ -65,7 +65,7 @@
 .autoSep <- function(text, sep=c(",", ";", "\t", " ")) {
   pattern <- paste0(".+", sep, ".+")
   i <- vapply(pattern, function(x) {
-    g <- gregexpr(pattern=x, text=text)[[1L]]
+    g <- gregexpr(pattern=x, text=text[1L])[[1L]]
     all(g > 0L) & length(g) == 1L
   }, logical(1L))
 
