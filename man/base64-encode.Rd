@@ -4,8 +4,12 @@
 \alias{.base64encode}
 \title{Converts double to base64 character.}
 \usage{
-.base64encode(x, size, endian = .Platform$endian,
-  compressionType = c("none", "gzip"))
+.base64encode(
+  x,
+  size,
+  endian = .Platform$endian,
+  compressionType = c("none", "gzip")
+)
 }
 \arguments{
 \item{x}{\code{double}, vector}

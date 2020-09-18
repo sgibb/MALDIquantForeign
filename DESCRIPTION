@@ -22,4 +22,4 @@ URL: http://strimmerlab.org/software/maldiquant/
 BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.1
