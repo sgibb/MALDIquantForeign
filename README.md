@@ -1,6 +1,6 @@
 # MALDIquantForeign
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.org/sgibb/MALDIquantForeign.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquantForeign)
+[![R-CMD-check](https://github.com/sgibb/MALDIquantForeign/workflows/R-CMD-check/badge.svg)](https://github.com/sgibb/MALDIquantForeign/actions)
 [![codecov.io](http://codecov.io/github/sgibb/MALDIquantForeign/coverage.svg?branch=master)](http://codecov.io/github/sgibb/MALDIquantForeign?branch=master)
 [![license](http://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![cran checks](https://cranchecks.info/badges/worst/MALDIquantForeign)](https://cran.r-project.org/web/checks/check_results_MALDIquantForeign.html)
