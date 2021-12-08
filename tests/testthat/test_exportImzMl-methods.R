@@ -124,6 +124,10 @@ test_that("exportImzMl,MassSpectrum", {
 })
 
 test_that("exportImzMl,list", {
+  expect_error(MALDIquantForeign:::.exportImzMl(list(1:3, 4:6),
+                                                file="tmp.imzML"),
+               "MassSpectrum.*supported")
+
   m <- createMassSpectrum(mass=1:5, intensity=6:10,
                           metaData=list(name="TEST", file="TESTS/fid",
                                         imaging=list(pos=c(1, 1),
