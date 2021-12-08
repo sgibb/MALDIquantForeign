@@ -1,6 +1,23 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+
+CHANGES in MALDIquantForeign VERSION 0.12.2.9999 [unreleased]:
+--------------------------------------------------------------
+
+DOCUMENTATION
+
+* `exportMzMl` and `exportImzMl` also support the export of
+  `MALDIquant::MassPeaks` objects. (Before just `MassSpectrum` was mentioned.)
+
+INTERNAL CHANGES
+
+* Test for `MassSpectrum` and `MassPeaks` list in `.write{Imz,Mz}MlDocument`.
+
+* Remove `is.null(getGeneric(...))` tests before setting generics for
+  S4 methods to avoid errors in package loading (especially with
+  `pkgload::load_all()`).
+
 CHANGES in MALDIquantForeign VERSION 0.12.2 [2020-09-18]:
 ---------------------------------------------------------
 
