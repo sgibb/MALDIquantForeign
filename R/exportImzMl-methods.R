@@ -17,6 +17,13 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 setMethod(f=".exportImzMl",
+  signature=signature(x="MassPeaks"),
+  definition=function(x, file, id=.withoutFileExtension(basename(file)),
+                      processed=TRUE, ...) {
+  .writeImzMlDocument(x=x, file=file, id=id, processed=processed, ...)
+})
+
+setMethod(f=".exportImzMl",
   signature=signature(x="MassSpectrum"),
   definition=function(x, file, id=.withoutFileExtension(basename(file)),
                       processed=TRUE, ...) {

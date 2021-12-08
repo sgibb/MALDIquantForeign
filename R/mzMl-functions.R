@@ -22,6 +22,11 @@
     stop("No permissions to write into ", sQuote(file), "!")
   }
 
+  if (!MALDIquant:::.isMassObjectList(x)) {
+    stop("Only MALDIquant::MassSpectrum or MALDIquant::MassPeaks objects ",
+         "are supported!")
+  }
+
   isIms <- length(imsArgs)
 
   ## file handle

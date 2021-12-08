@@ -17,6 +17,13 @@
 ## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
 
 setMethod(f=".exportMzMl",
+  signature=signature(x="MassPeaks"),
+  definition=function(x, file, id=.withoutFileExtension(basename(file)), ...) {
+
+  .writeMzMlDocument(x=list(x), file=file, id=id, ...)
+})
+
+setMethod(f=".exportMzMl",
   signature=signature(x="MassSpectrum"),
   definition=function(x, file, id=.withoutFileExtension(basename(file)), ...) {
 

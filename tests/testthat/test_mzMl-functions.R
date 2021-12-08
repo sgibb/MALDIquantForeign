@@ -14,6 +14,7 @@ test_that(".writeImzMlScanList", {
 "    </scanList>"
 )
 
+  expect_error(.writeImzMlScanList(1:5, file=f), "MassSpectrum.*supported")
   MALDIquantForeign:::.writeImzMlScanList(m, file=f)
   expect_equal(readLines(f), r)
 })

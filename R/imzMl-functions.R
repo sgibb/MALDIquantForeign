@@ -22,8 +22,13 @@
                                 coordinates=MALDIquant::coordinates(x),
                                 pixelSize=c(metaData(x[[1L]])$imaging$pixelSize,
                                             100, 100)[1L:2L], ...) {
-  if(isMassSpectrum(x)) {
+  if(isMassSpectrum(x) || isMassPeaks(x)) {
     x <- list(x)
+  }
+
+  if (!MALDIquant:::.isMassObjectList(x)) {
+    stop("Only MALDIquant::MassSpectrum or MALDIquant::MassPeaks objects ",
+         "are supported!")
   }
 
   if (is.null(metaData(x[[1L]])$imaging$pos) && is.null(coordinates)) {
