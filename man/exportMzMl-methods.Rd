@@ -12,8 +12,8 @@
 \S4method{exportMzMl}{list}(x, path, force=FALSE, \ldots)
 }
 \arguments{
-\item{x}{a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
-\code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.}
+\item{x}{a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a
+\code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.}
 
 \item{file}{\code{character}, file name.}
 

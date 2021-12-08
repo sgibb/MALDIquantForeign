@@ -290,8 +290,8 @@ setMethod(f="exportMsd",
 #' @usage
 #' \S4method{exportMzMl}{MassSpectrum}(x, file, force=FALSE, \ldots)
 #'
-#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
-#'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a
+#'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
 #'  \code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
@@ -353,8 +353,8 @@ setMethod(f="exportMzMl",
 #' \S4method{exportImzMl}{MassSpectrum}(x, file, force=FALSE, processed=TRUE,
 #' coordinates=NULL, pixelSize=c(100, 100), \ldots)
 #'
-#' @param x a \code{\link[MALDIquant]{MassSpectrum-class}} object or a
-#'  \code{list} of \code{\link[MALDIquant]{MassSpectrum-class}} objects.
+#' @param x a \code{\link[MALDIquant]{AbstractMassObject-class}} object or a
+#'  \code{list} of \code{\link[MALDIquant]{AbstractMassObject-class}} objects.
 #' @param file \code{character}, file name.
 #' @param path \code{character}, path to directory in which the \code{list} of
 #'  \code{\link[MALDIquant]{MassSpectrum-class}} would be exported. If
