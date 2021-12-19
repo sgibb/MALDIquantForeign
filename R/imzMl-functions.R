@@ -50,7 +50,7 @@
     x[[1L]]@metaData$imaging <- list(size=size,
                                      dim=dimension,
                                      pixelSize=pixelSize)
-    coordinates(x) <- coordinates
+    MALDIquant::coordinates(x) <- coordinates
   }
 
   ibdFile <- .changeFileExtension(file, "ibd")

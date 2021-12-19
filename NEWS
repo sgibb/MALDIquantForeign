@@ -18,6 +18,10 @@ INTERNAL CHANGES
   S4 methods to avoid errors in package loading (especially with
   `pkgload::load_all()`).
 
+* `.writeImzMlDocument` uses `MALDIquant::coordinates` explicitly to avoid
+  method dispatch conflict in combination with the `sp` package.
+  Reported by Denis Abu Sammour (#33).
+
 CHANGES in MALDIquantForeign VERSION 0.12.2 [2020-09-18]:
 ---------------------------------------------------------
 
