@@ -1,14 +1,17 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-
-CHANGES in MALDIquantForeign VERSION 0.12.2.9999 [unreleased]:
---------------------------------------------------------------
+CHANGES in MALDIquantForeign VERSION 0.13 [2021-12-23]
+------------------------------------------------------
 
 DOCUMENTATION
 
 * `exportMzMl` and `exportImzMl` also support the export of
   `MALDIquant::MassPeaks` objects. (Before just `MassSpectrum` was mentioned.)
+
+MODIFICATIONS
+
+* Change URLs from http to https where possible.
 
 INTERNAL CHANGES
 
@@ -22,6 +25,7 @@ INTERNAL CHANGES
   method dispatch conflict in combination with the `sp` package.
   Reported by Denis Abu Sammour (#33).
 
+
 CHANGES in MALDIquantForeign VERSION 0.12.2 [2020-09-18]:
 ---------------------------------------------------------
 
@@ -32,6 +36,7 @@ CHANGES in MALDIquantForeign VERSION 0.12.2 [2020-09-18]:
   given by the user: .csv, .tab, .txt import: `import`, `importCsv`,
   `importTab`, `importTxt`.
 
+
 CHANGES in MALDIquantForeign VERSION 0.12.1 [2020-03-09]:
 ---------------------------------------------------------
 
@@ -40,11 +45,13 @@ CHANGES in MALDIquantForeign VERSION 0.12.1 [2020-03-09]:
   `importCsv`, `importTab`, `importTxt`.
   Bug reported by Samuel Granjeaud (#29).
 
+
 CHANGES in MALDIquantForeign VERSION 0.12 [2019-01-30]:
 -------------------------------------------------------
 
 * Fix reading of mzML with "non-standard data" arrays.
   Bug reported by Paul Turner.
+
 
 CHANGES in MALDIquantForeign VERSION 0.11.6 [2018-08-30]:
 ---------------------------------------------------------
@@ -53,10 +60,12 @@ CHANGES in MALDIquantForeign VERSION 0.11.6 [2018-08-30]:
   .csv import, `import`, `importCsv`, `importTab`, `importTxt`.
   Bug reported by Fernando Pineda.
 
+
 CHANGES in MALDIquantForeign VERSION 0.11.5 [2018-08-14]:
 ---------------------------------------------------------
 
 * Fix psidev URLs.
+
 
 CHANGES in MALDIquantForeign VERSION 0.11.4 [2018-08-01]:
 ---------------------------------------------------------
@@ -65,6 +74,7 @@ BUGFIX
 
 * Don't access `totalIonCurrent` for `MassPeaks` objects in `exportMzMl` and
   `exportImzMl`.
+
 
 CHANGES in MALDIquantForeign VERSION 0.11.3 [2018-05-27]:
 ---------------------------------------------------------
