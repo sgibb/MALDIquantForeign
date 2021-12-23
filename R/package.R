@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Import/Export routines for \sQuote{MALDIquant}
 #'
@@ -24,13 +24,13 @@
 #' \tabular{ll}{
 #' Package: \tab MALDIquantForeign \cr
 #' License: \tab GPL (>= 3)\cr
-#' URL: \tab http://strimmerlab.org/software/maldiquant/\cr
+#' URL: \tab https://strimmerlab.github.io/software/maldiquant/\cr
 #' }
 #'
 #' @docType package
 #' @name MALDIquantForeign-package
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @keywords package
 #'
 #' @import MALDIquant

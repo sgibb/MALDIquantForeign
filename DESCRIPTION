@@ -17,7 +17,7 @@ Description: Functions for reading (tab, csv, Bruker fid, Ciphergen
         formats of mass spectrometry data into/from 'MALDIquant'
         objects.
 License: GPL (>= 3)
-URL: http://strimmerlab.org/software/maldiquant/
+URL: https://strimmerlab.github.io/software/maldiquant/
         https://github.com/sgibb/MALDIquantForeign/
 BugReports: https://github.com/sgibb/MALDIquantForeign/issues/
 LazyLoad: yes

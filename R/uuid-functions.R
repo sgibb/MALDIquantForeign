@@ -14,12 +14,12 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 ## generate uuid needed for imzML idb files
 ## based on dplR::uuid.gen by Mikko Korpela
 ## should be compatible to:
-## http://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29
+## https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29
 ## @param init used to create the md5 string, just for testing; don't change the
 ## default in other use cases.
 ## @return uuid string

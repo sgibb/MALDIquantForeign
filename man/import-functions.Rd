@@ -120,7 +120,7 @@ s <- import(file.path(exampleDirectory, "compressed", "csv1.csv.gz"))
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}
+\url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},

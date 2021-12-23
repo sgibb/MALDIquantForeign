@@ -24,7 +24,7 @@ into \code{\link[MALDIquant]{MassSpectrum-class}} or
 \code{\link[MALDIquant]{MassPeaks-class}} objects.
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/} \cr
+\url{https://strimmerlab.github.io/software/maldiquant/} \cr
  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
 }

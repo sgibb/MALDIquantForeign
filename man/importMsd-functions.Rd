@@ -36,7 +36,7 @@ s <- importMsd(exampleDirectory)
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 mMass homepage: \url{http://mmass.org/}
 }
 \seealso{

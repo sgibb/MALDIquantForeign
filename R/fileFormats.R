@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Supported file formats
 #'
@@ -56,7 +56,7 @@
 #'  \code{\link[MALDIquantForeign]{export}},
 #'  \code{\link[MALDIquantForeign]{import}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #' library("MALDIquantForeign")
 #'

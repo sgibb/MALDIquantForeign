@@ -62,7 +62,7 @@ exportCsv(s, path="spectra", sep=";", force=TRUE)
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}
+\url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \seealso{
 \code{\link[MALDIquant]{MassPeaks-class}},

@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 .importTab <- function(file, centroided=FALSE, massRange=c(0L, Inf),
                        minIntensity=0L, skip=0L, sep=NULL, header=NULL,

@@ -36,9 +36,9 @@ s <- importMzXml(exampleDirectory)
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 Definition of \code{mzXML} format:
-\url{http://tools.proteomecenter.org/mzXMLschema.php}
+\url{http://tools.proteomecenter.org/wiki/index.php?title=Formats:mzXML}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},

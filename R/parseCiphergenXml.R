@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Parse Ciphergen XML files.
 #'
@@ -61,7 +61,7 @@
   ## tof2mass
   ## mass = U*(A*(tof-t0)^2 + B)
   ## Calibration formula was taken from:
-  ## http://bioinformatics.mdanderson.org/Supplements/Datasets/KuererQC/scripts.zip
+  ## https://bioinformatics.mdanderson.org/Supplements/Datasets/KuererQC/scripts.zip
   ## file: ciphergenXMLreader.pl
   n <- 0:(length(intensity)-1)
   time <- metaData$spotCorrectionFactor*n/metaData$digitizerRate

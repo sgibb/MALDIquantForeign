@@ -49,9 +49,9 @@ exportMzMl(s, path="spectra.mzML")
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 HUPO Proteomics Standards Inititative mzML 1.1.0 Specification:
-\url{http://www.psidev.info/mzml}
+\url{https://www.psidev.info/mzML}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}}

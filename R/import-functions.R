@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Import files
 #'
@@ -89,7 +89,7 @@
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' \code{\link[MALDIquantForeign]{MALDIquantForeign-parallel}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -205,7 +205,7 @@ import <- function(path, type="auto", pattern, excludePattern=NULL,
 #' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[utils]{read.table}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -257,7 +257,7 @@ importCsv <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[readBrukerFlexData]{readBrukerFlexFile}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -293,9 +293,9 @@ importBrukerFlex <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[readMzXmlData]{readMzXmlFile}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' Definition of \code{mzXML} format:
-#' \url{http://tools.proteomecenter.org/mzXMLschema.php}
+#' \url{http://tools.proteomecenter.org/wiki/index.php?title=Formats:mzXML}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -331,9 +331,9 @@ importMzXml <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' Definition of \code{mzML} format:
-#' \url{http://www.psidev.info/mzml}
+#' \url{https://www.psidev.info/mzML}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -372,9 +372,9 @@ importMzMl <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' Definition of \code{imzML} format:
-#' \url{http://www.imzml.org/}
+#' \url{https://ms-imaging.org/imzml/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -414,7 +414,7 @@ importImzMl <- function(path, coordinates=NULL, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -450,7 +450,7 @@ importCiphergenXml <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/} \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/} \cr
 #'  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
 #'  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
 #' @rdname importAnalyze-functions
@@ -478,7 +478,7 @@ importAnalyze <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' library("MALDIquant")
@@ -518,7 +518,7 @@ importCdf <- function(path, ...) {
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[MALDIquant]{MassPeaks-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' mMass homepage: \url{http://mmass.org/}
 #' @examples
 #'

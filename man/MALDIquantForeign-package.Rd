@@ -12,11 +12,11 @@ spectrometry data into/from \sQuote{MALDIquant} objects.
 \tabular{ll}{
 Package: \tab MALDIquantForeign \cr
 License: \tab GPL (>= 3)\cr
-URL: \tab http://strimmerlab.org/software/maldiquant/\cr
+URL: \tab https://strimmerlab.github.io/software/maldiquant/\cr
 }
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}
+\url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}

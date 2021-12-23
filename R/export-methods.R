@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Export files
 #'
@@ -52,7 +52,7 @@
 #' \code{\link[MALDIquant]{MassPeaks-class}},
 #' \code{\link[MALDIquant]{MassSpectrum-class}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' \dontrun{
@@ -142,7 +142,7 @@ setMethod(f="export",
 #' \code{\link[MALDIquant]{MassSpectrum-class}},
 #' \code{\link[utils]{write.table}}
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #' @examples
 #'
 #' \dontrun{
@@ -227,7 +227,7 @@ setMethod(f="exportCsv",
 #' \code{\link[MALDIquant]{MassSpectrum-class}}
 #'
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' mMass homepage: \url{http://mmass.org/}
 #' @examples
 #'
@@ -305,9 +305,9 @@ setMethod(f="exportMsd",
 #' \code{\link[MALDIquant]{MassSpectrum-class}}
 #'
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}, \cr
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 #' HUPO Proteomics Standards Inititative mzML 1.1.0 Specification:
-#' \url{http://www.psidev.info/mzml}
+#' \url{https://www.psidev.info/mzML}
 #' @examples
 #'
 #' \dontrun{
@@ -376,7 +376,7 @@ setMethod(f="exportMzMl",
 #' \code{\link[MALDIquant]{MassSpectrum-class}}
 #'
 #' @author Sebastian Gibb
-#' @references \url{http://strimmerlab.org/software/maldiquant/}
+#' @references \url{https://strimmerlab.github.io/software/maldiquant/}
 #'
 #' Schramm T, Hester A, Klinkert I, Both J-P, Heeren RMA, Brunelle A,
 #' Laprevote O, Desbenoit N, Robbe M-F, Stoeckli M, Spengler B, Roempp A
@@ -384,7 +384,7 @@ setMethod(f="exportMzMl",
 #' imzML - A common data format for the flexible exchange and processing of mass
 #' spectrometry imaging data.\cr
 #' Journal of Proteomics 75 (16):5106-5110. \cr
-#' \url{http://dx.doi.org/10.1016/j.jprot.2012.07.026}
+#' \doi{10.1016/j.jprot.2012.07.026}
 #' @examples
 #'
 #' \dontrun{

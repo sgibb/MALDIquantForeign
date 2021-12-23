@@ -36,9 +36,9 @@ s <- importMzMl(exampleDirectory)
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 Definition of \code{mzML} format:
-\url{http://www.psidev.info/mzml}
+\url{https://www.psidev.info/mzML}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},

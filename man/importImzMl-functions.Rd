@@ -44,9 +44,9 @@ s <- importImzMl(file.path(exampleDirectory, "tiny_continuous.imzML"),
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}, \cr
+\url{https://strimmerlab.github.io/software/maldiquant/}, \cr
 Definition of \code{imzML} format:
-\url{http://www.imzml.org/}
+\url{https://ms-imaging.org/imzml/}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},

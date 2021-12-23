@@ -36,7 +36,7 @@ s <- importCiphergenXml(exampleDirectory)
 
 }
 \references{
-\url{http://strimmerlab.org/software/maldiquant/}
+\url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}},

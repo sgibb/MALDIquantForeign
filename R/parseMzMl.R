@@ -14,7 +14,7 @@
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
-## along with MALDIquantForeign. If not, see <http://www.gnu.org/licenses/>
+## along with MALDIquantForeign. If not, see <https://www.gnu.org/licenses/>
 
 #' Parse mzML files.
 #'
@@ -50,7 +50,7 @@
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @references
 #' Definition of \code{mzML} format:
-#' \url{http://www.psidev.info/mzml}
+#' \url{https://www.psidev.info/mzML}
 #' @keywords internal
 #' @noRd
 .mzMlHandlers <- function(fileName, verbose=FALSE) {
