@@ -452,7 +452,7 @@ importCiphergenXml <- function(path, ...) {
 #' @author Sebastian Gibb
 #' @references \url{https://strimmerlab.github.io/software/maldiquant/} \cr
 #'  \url{http://www.grahamwideman.com/gw/brain/analyze/formatdoc.htm},
-#'  \url{http://eeg.sourceforge.net/ANALYZE75.pdf}
+#'  \url{https://eeg.sourceforge.net/ANALYZE75.pdf}
 #' @rdname importAnalyze-functions
 #' @export
 importAnalyze <- function(path, ...) {
