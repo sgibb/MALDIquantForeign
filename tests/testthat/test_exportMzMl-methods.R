@@ -2,6 +2,9 @@ context("exportMzMl")
 
 m <- createMassSpectrum(mass=1:5, intensity=6:10,
                         metaData=list(name="TEST", file="TESTS/fid"))
+bm <- .base64encode(1:5, size=8, endian="little", compressionType="gzip")
+bi <- .base64encode(6:10, size=8, endian="little", compressionType="gzip")
+
 tmp <- tempdir()
 
 mzML <- c(
@@ -47,17 +50,17 @@ paste0("  <software id=\"MALDIquantForeign\" version=\"",
 "    <cvParam cvRef=\"MS\" accession=\"MS:1000128\" name=\"profile spectrum\"/>",
 "    <cvParam cvRef=\"MS\" accession=\"MS:1000285\" name=\"total ion current\" value=\"32\"/>",
 "    <binaryDataArrayList count=\"2\">",
-"     <binaryDataArray encodedLength=\"36\">",
+paste0("     <binaryDataArray encodedLength=\"", nchar(bm), "\">"),
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000574\" name=\"zlib compression\"/>",
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000523\" name=\"64-bit float\"/>",
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000514\" name=\"m/z array\" unitCvRef=\"MS\" unitAccession=\"MS:1000040\" unitName=\"m/z\"/>",
-"      <binary>eJxjYACBD/YMEOAAoTigtACUFnEAADZ/Alw=</binary>",
+paste0("      <binary>", bm, "</binary>"),
 "     </binaryDataArray>",
-"     <binaryDataArray encodedLength=\"36\">",
+paste0("     <binaryDataArray encodedLength=\"", nchar(bi), "\">"),
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000574\" name=\"zlib compression\"/>",
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000523\" name=\"64-bit float\"/>",
 "      <cvParam cvRef=\"MS\" accession=\"MS:1000515\" name=\"intensity array\" unitCvRef=\"MS\" unitAccession=\"MS:1000131\" unitName=\"number of counts\"/>",
-"      <binary>eJxjYAABCQcwxSADpRWgtBKUVnEAAB9MAds=</binary>",
+paste0("      <binary>", bi, "</binary>"),
 "     </binaryDataArray>",
 "    </binaryDataArrayList>",
 "   </spectrum>",

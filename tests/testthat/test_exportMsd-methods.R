@@ -5,6 +5,9 @@ m <- createMassSpectrum(mass=1:5, intensity=6:10,
                                       instrument="INSTRUMENT"))
 p <- createMassPeaks(mass=4:5, intensity=9:10, snr=1:2)
 
+bm <- .base64encode(1:5, size=8, compressionType="gzip")
+bi <- .base64encode(6:10, size=8, compressionType="gzip")
+
 tmp <- tempdir()
 
 msd <- c(
@@ -20,20 +23,16 @@ msd <- c(
 "  <notes></notes>",
 " </description>",
 " <spectrum points=\"5\" msLevel=\"1\" polarity=\"\">",
-"  <mzArray precision=\"64\" compression=\"zlib\" endian=\"little\">eJxjYACBD/YMEOAAoTigtACUFnEAADZ/Alw=</mzArray>",
-"  <intArray precision=\"64\" compression=\"zlib\" endian=\"little\">eJxjYAABCQcwxSADpRWgtBKUVnEAAB9MAds=</intArray>",
+paste0("  <mzArray precision=\"64\" compression=\"zlib\" endian=\"",
+       .Platform$endian, "\">", bm ,"</mzArray>"),
+paste0("  <intArray precision=\"64\" compression=\"zlib\" endian=\"",
+       .Platform$endian, "\">", bi, "</intArray>"),
 " </spectrum>",
 " <peaklist>",
 "  <peak mz=\"4\" intensity=\"9\" baseline=\"0\" sn=\"1\"/>",
 "  <peak mz=\"5\" intensity=\"10\" baseline=\"0\" sn=\"2\"/>",
 " </peaklist>",
 "</mSD>")
-
-if (.Platform$endian == "big") {
-  msd[13:14] <- c(
-    "  <mzArray precision=\"64\" compression=\"zlib\" endian=\"big\">eJyz/8AABg4MUJoDSgtAaREIDQBExAJc</mzArray>",
-    "  <intArray precision=\"64\" compression=\"zlib\" endian=\"big\">eJxzkGAAAwcZKK0ApZWgtAqEBgArDgHb</intArray>")
-}
 
 test_that(".exportMsd", {
   MALDIquantForeign:::.exportMsd(m, file=file.path(tmp, "m.msd"), peaks=p)
