@@ -1,13 +1,13 @@
 Package: MALDIquantForeign
 Version: 0.14
-Date: 2023-08-08
+Date: 2023-08-11
 Title: Import/Export Routines for 'MALDIquant'
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de",
         comment=c(ORCID="0000-0001-7406-4443")), person("Pietro",
         "Franceschi", role=c("ctb"),
         email="pietro.franceschi@fmach.it"))
-Depends: R (>= 4.4.0), methods, MALDIquant (>= 1.16.4)
+Depends: R (>= 3.2.2), methods, MALDIquant (>= 1.16.4)
 Imports: base64enc, digest, readBrukerFlexData (>= 1.7), readMzXmlData
         (>= 2.7), XML
 Suggests: knitr, testthat (>= 0.8), RNetCDF (>= 1.6.1)

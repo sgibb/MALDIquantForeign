@@ -1,14 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
-CHANGES in MALDIquantForeign VERSION 0.14 [2023-08-08]
+CHANGES in MALDIquantForeign VERSION 0.14 [2023-08-11]
 ------------------------------------------------------
 
 INTERNAL CHANGES
 
 * Adapt unit tests for `writeMzMlDocument`/`writeMsdDocument`
   to `libdeflate` (new default compression for `memCompress`/`memDecompress`
-  in R 4.4.0).
+  in R > 3.4.1).
 
 
 CHANGES in MALDIquantForeign VERSION 0.13 [2021-12-23]
