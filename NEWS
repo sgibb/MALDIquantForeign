@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquantForeign" PACKAGE
 ==================================================
 
+CHANGES in MALDIquantForeign VERSION 0.14.1 [2024-01-22]
+--------------------------------------------------------
+
+INTERNAL CHANGES
+
+* Fix VignetteEngine NOTE.
+
+
 CHANGES in MALDIquantForeign VERSION 0.14 [2023-08-11]
 ------------------------------------------------------
 

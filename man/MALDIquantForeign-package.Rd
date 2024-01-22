@@ -2,6 +2,7 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{MALDIquantForeign-package}
+\alias{MALDIquantForeign}
 \alias{MALDIquantForeign-package}
 \title{Import/Export routines for \sQuote{MALDIquant}}
 \description{
@@ -17,6 +18,15 @@ URL: \tab https://strimmerlab.github.io/software/maldiquant/\cr
 }
 \references{
 \url{https://strimmerlab.github.io/software/maldiquant/}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://strimmerlab.github.io/software/maldiquant/}
+  \item \url{https://github.com/sgibb/MALDIquantForeign/}
+  \item Report bugs at \url{https://github.com/sgibb/MALDIquantForeign/issues/}
+}
+
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}

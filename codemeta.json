@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/sgibb/MALDIquantForeign/",
   "issueTracker": "https://github.com/sgibb/MALDIquantForeign/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.14",
+  "version": "0.14.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+  "runtimePlatform": "R Under development (unstable) (2024-01-22 r85820)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -176,7 +176,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "281.382KB",
+  "fileSize": "281.82KB",
   "releaseNotes": "https://github.com/sgibb/MALDIquantForeign/blob/master/NEWS",
   "readme": "https://github.com/sgibb/MALDIquantForeign/blob/master/README.md",
   "contIntegration": ["https://github.com/sgibb/MALDIquantForeign/actions", "https://codecov.io/github/sgibb/MALDIquantForeign?branch=master"],

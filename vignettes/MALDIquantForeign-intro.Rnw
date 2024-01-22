@@ -1,4 +1,4 @@
-%\VignetteEngine{knitr}
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{MALDIquantForeign: Import/Export routines for MALDIquant}
 %\VignetteKeywords{Bioinformatics, Proteomics, Mass Spectrometry}
 %\VignettePackage{MALDIquantForeign}

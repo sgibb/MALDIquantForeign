@@ -27,7 +27,6 @@
 #' URL: \tab https://strimmerlab.github.io/software/maldiquant/\cr
 #' }
 #'
-#' @docType package
 #' @name MALDIquantForeign-package
 #' @author Sebastian Gibb \email{mail@@sebastiangibb.de}
 #' @references \url{https://strimmerlab.github.io/software/maldiquant/}
@@ -44,4 +43,4 @@
 #' type.convert write.table untar unzip
 #' @importFrom XML xmlEventParse xmlParse xmlValue xpathApply xpathSApply
 #'
-NULL
+"_PACKAGE"
